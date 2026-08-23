@@ -111,6 +111,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
     <p><a href="/about.html">About</a> &middot; <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a></p>
   </div>
 </footer>
+<script src="/assets/weather.js" defer></script>
 </body>
 </html>
 """

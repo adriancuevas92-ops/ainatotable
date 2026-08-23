@@ -2,6 +2,51 @@
 
 *South Kona, Hawaiʻi Island*
 
+<div class="weather-band" id="konaWeather" data-lat="19.5064" data-lon="-155.9169" role="region" aria-label="Live weather conditions at the South Kona site">
+  <div class="weather-head">
+    <div>
+      <h3 class="weather-title">South Kona right now</h3>
+      <p class="weather-sub">Captain Cook · Where this food forest actually grows</p>
+    </div>
+    <div class="weather-live"><span class="weather-dot"></span>Live</div>
+  </div>
+
+  <p class="weather-clock" id="weatherClock">Loading local time…</p>
+
+  <div class="weather-loading" id="weatherLoading">Loading current conditions…</div>
+  <div class="weather-error" id="weatherError" hidden>
+    Conditions are unavailable right now.
+    <br><button type="button" id="weatherRetry">Try again</button>
+  </div>
+
+  <div class="weather-content" id="weatherContent" hidden>
+    <div class="weather-now">
+      <div class="weather-icon" id="weatherIcon"></div>
+      <div class="weather-now-main">
+        <div class="weather-temp"><span id="weatherTemp">--</span>&deg;F</div>
+        <p class="weather-cond" id="weatherCond">&mdash;</p>
+        <p class="weather-feels">Feels like <span id="weatherFeels">--</span>&deg;</p>
+      </div>
+    </div>
+
+    <ul class="weather-stats">
+      <li><span class="weather-stat-label">Wind</span><span class="weather-stat-value" id="weatherWind">--</span></li>
+      <li><span class="weather-stat-label">Humidity</span><span class="weather-stat-value" id="weatherHumidity">--</span></li>
+      <li><span class="weather-stat-label">UV Index</span><span class="weather-stat-value" id="weatherUv">--</span></li>
+      <li><span class="weather-stat-label">Rain today</span><span class="weather-stat-value" id="weatherRain">--</span></li>
+    </ul>
+
+    <div class="weather-sun">
+      <span>Sunrise <strong id="weatherSunrise">--</strong></span>
+      <span>Sunset <strong id="weatherSunset">--</strong></span>
+    </div>
+
+    <div class="weather-forecast" id="weatherForecast"></div>
+  </div>
+
+  <p class="weather-credit">Live weather for the actual site, via <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>.</p>
+</div>
+
 Most of the design and species detail on this site — the guild example, the invasive-clearing list, the kalo and ʻōlena specifics — is drawn from one real, working site, not assembled from theory. This page is that site, told honestly at its actual current scale.
 
 <div class="stat-band">
