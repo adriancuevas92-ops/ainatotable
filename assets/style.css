@@ -133,6 +133,9 @@ li { margin-bottom: 0.4em; }
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: "Noto Serif", Georgia, serif;
   font-size: 1.4em;
   font-weight: 700;
@@ -140,6 +143,8 @@ li { margin-bottom: 0.4em; }
   text-decoration: none;
   letter-spacing: -0.01em;
 }
+
+.brand img { flex: none; display: block; }
 
 .site-header nav {
   display: flex;

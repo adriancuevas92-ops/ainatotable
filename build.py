@@ -88,6 +88,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} — {SITE_NAME}</title>
 <meta name="description" content="{SITE_TAGLINE}">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -96,7 +97,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">{SITE_NAME}</a>
+    <a class="brand" href="/"><img src="/assets/logo-header.svg" alt="" width="30" height="30">{SITE_NAME}</a>
     <nav>
 {nav_links}
     </nav>
