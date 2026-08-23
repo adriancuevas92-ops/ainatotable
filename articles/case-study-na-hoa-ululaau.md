@@ -1,4 +1,6 @@
-# Case Study: Nā Hoa Ululāʻau (South Kona)
+# Case Study: Nā Hoa Ululāʻau
+
+*South Kona, Hawaiʻi Island*
 
 Most of the design and species detail on this site — the guild example, the invasive-clearing list, the kalo and ʻōlena specifics — is drawn from one real, working site, not assembled from theory. This page is that site, told honestly at its actual current scale.
 
