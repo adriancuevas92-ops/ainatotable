@@ -20,7 +20,7 @@ Start with the same process as any scale — [Planning Your Site](02-planning-yo
 
 ## What real, working plantings look like
 
-If you want to see this design logic already producing real food rather than staying theoretical, the [Nā Hoa Ululāʻau case study](case-study-na-hoa-ululaau.md) documents a real South Kona site — including what was cleared before anything went in, and what's actually harvesting now.
+If you want to see this design logic already producing real food rather than staying theoretical, the [Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa case study](case-study-na-hoa-ululaau.md) documents a real South Kona site — including what was cleared before anything went in, and what's actually harvesting now.
 
 ## Tools
 

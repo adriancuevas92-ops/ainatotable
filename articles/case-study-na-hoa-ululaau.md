@@ -1,4 +1,4 @@
-# Case Study: Nā Hoa Ululāʻau
+# Case Study: Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa
 
 *South Kona, Hawaiʻi Island*
 
@@ -92,4 +92,4 @@ This is a genuinely small site, still building out its full infrastructure — t
 
 ## Why this site anchors this website
 
-Every piece of Hawaiʻi-specific guidance on this site — the layer design, the species choices, the clear-before-you-plant sequencing — comes from what's actually working here, not from a generic guide adapted for the climate. ʻĀina to Table, the commercial venture this website supports, is partnered with this nonprofit: Nā Hoa Ululāʻau manages and restores the land; ʻĀina to Table grows and sells from it, bringing labor closer to the profit of the food it grows and building direct relationships with restaurants that value real, traceable sourcing.
+Every piece of Hawaiʻi-specific guidance on this site — the layer design, the species choices, the clear-before-you-plant sequencing — comes from what's actually working here, not from a generic guide adapted for the climate. ʻĀina to Table, the commercial venture this website supports, is partnered with this nonprofit: Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa manages and restores the land; ʻĀina to Table grows and sells from it, bringing labor closer to the profit of the food it grows and building direct relationships with restaurants that value real, traceable sourcing.
