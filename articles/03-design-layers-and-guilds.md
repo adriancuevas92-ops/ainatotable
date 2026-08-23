@@ -137,4 +137,4 @@ On a site with existing invasive growth, design and clearing happen together, no
 
 ## Next
 
-Once the layer plan and a first guild or two are sketched onto your site map, the next real question is what the ground underneath all of it needs — see [Soil, Water & Establishment](04-soil-water-and-establishment.md).
+Once the layer plan and a first guild or two are sketched onto your site map, the next real question is what the ground underneath all of it needs — see [Soil, Water & Establishment](05-soil-water-and-establishment.md).
