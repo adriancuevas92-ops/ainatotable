@@ -1,9 +1,0 @@
-{
-  "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 400, "h": 400, "title": "Icon" },
-    { "file": "IconSolid.dc.html", "x": 440, "y": 0, "w": 400, "h": 400, "title": "Icon — 1 color" },
-    { "file": "Badge.dc.html", "x": 880, "y": 0, "w": 400, "h": 400, "title": "Program seal" },
-    { "file": "Lockup.dc.html", "x": 0, "y": 440, "w": 640, "h": 160, "title": "Lockup" }
-  ],
-  "launch": { "view": "canvas" }
-}

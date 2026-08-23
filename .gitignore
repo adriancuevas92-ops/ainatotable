@@ -1,3 +1,5 @@
 site/
 __pycache__/
 *.pyc
+logo-canvas/
+assets/logo/
