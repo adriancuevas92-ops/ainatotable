@@ -2,7 +2,7 @@
 
 ## What this is
 
-Āina to Table is a food forest venture based in South Kona, Hawaiʻi, working in partnership with [Nā Hoa Ululāʻau](case-study-na-hoa-ululaau.md), the nonprofit that manages the land it grows on. This site is the venture's free information arm. It's built on three ideas, together, not separately:
+ʻĀina to Table is a food forest venture based in South Kona, Hawaiʻi, working in partnership with [Nā Hoa Ululāʻau](case-study-na-hoa-ululaau.md), the nonprofit that manages the land it grows on. This site is the venture's free information arm. It's built on three ideas, together, not separately:
 
 - **Food is one of the fastest ways to actually connect with a culture** — and a real way for people to experience Hawaiian land and culture through what they eat, not just hear about it.
 - **Labor should share in the profit of the food it grows** — not just be paid a wage to produce something someone else profits from.
@@ -47,7 +47,7 @@ Laulima applied to a business means more than fair pay. When the people growing,
 
 ## Where the knowledge comes from
 
-Nearly everything Hawaiʻi-specific on this site — the species choices, the invasive-clearing sequence, the guild example — comes from a real, working site: [Nā Hoa Ululāʻau](case-study-na-hoa-ululaau.md), the nonprofit that manages and restores the South Kona land this venture partners with. The nonprofit runs the land's restoration work; Āina to Table is the separate, commercial partner growing and selling from it under that partnership.
+Nearly everything Hawaiʻi-specific on this site — the species choices, the invasive-clearing sequence, the guild example — comes from a real, working site: [Nā Hoa Ululāʻau](case-study-na-hoa-ululaau.md), the nonprofit that manages and restores the South Kona land this venture partners with. The nonprofit runs the land's restoration work; ʻĀina to Table is the separate, commercial partner growing and selling from it under that partnership.
 
 ## Where this stands right now
 

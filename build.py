@@ -1,5 +1,5 @@
 """
-Static site builder for Āina to Table (ainatotable.com).
+Static site builder for ʻĀina to Table (ainatotable.com).
 Reads the Markdown content under articles/ and tools/, converts it to HTML,
 rewrites internal links, and writes a deployable static site to site/.
 
@@ -16,7 +16,7 @@ import markdown
 
 ROOT = Path(__file__).parent
 SITE = ROOT / "site"
-SITE_NAME = "Āina to Table"
+SITE_NAME = "ʻĀina to Table"
 SITE_TAGLINE = "Free information on planning a food forest — and taking ownership of your food supply."
 
 # source markdown path (relative to ROOT) -> output path (relative to SITE, root-relative URL)
