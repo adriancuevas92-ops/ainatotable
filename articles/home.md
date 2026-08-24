@@ -54,11 +54,3 @@ Eight core guides, meant to be read in order if you're starting from zero:
 Everything above is drawn from a real site — a small restoration project in South Kona, Hawaiʻi, currently growing kalo and ʻōlena on land that was, not long ago, overtaken by invasive growth.
 
 → [Read the case study](case-study-na-hoa-ululaau.md)
-
----
-
-### Why this site exists
-
-This is the first thing a larger effort is putting into the world: a food forest venture built on the idea that the people growing the food should share in what it's worth, and that restaurants deserve a real relationship with where their ingredients come from — not just a distributor line. The information here is free because trust comes first. Everything else follows from that.
-
-→ [About](about-contact.md)
