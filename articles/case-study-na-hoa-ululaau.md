@@ -96,4 +96,4 @@ Every piece of Hawaiʻi-specific guidance on this site — the layer design, the
 
 ## Support the restoration work directly
 
-Everything on this page — the clearing, the kalo, the ʻōlena — is real work the nonprofit has already done, separate from anything ʻĀina to Table sells. Support doesn't have to mean money — time, tools, materials, and expertise all help a small restoration site like this. If you want to help, [get in touch with Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa](https://ululaau.org/contact) directly.
+To support [Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa](https://ululaau.org/contact) directly, get in touch with them here.
