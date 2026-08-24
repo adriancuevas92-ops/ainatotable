@@ -5,19 +5,19 @@ If you run a restaurant, market, or kitchen on Hawaiʻi Island, this tool shows 
 <div class="proximity-band" id="proximityFinder">
   <div class="proximity-head">
     <h3>Find what's near you</h3>
-    <p class="proximity-sub">Enter your address to see distances to verified farms, farmers markets, and food-access nonprofits on Hawaiʻi Island.</p>
+    <p class="proximity-sub">A ZIP code is enough — a full address isn't required. See distances to verified farms, farmers markets, and food-access nonprofits on Hawaiʻi Island.</p>
   </div>
 
   <form id="proximityForm" class="proximity-form">
-    <label for="proximityAddress">Your address</label>
-    <input type="text" id="proximityAddress" name="address" placeholder="e.g. 123 Ali'i Dr, Kailua-Kona, HI" autocomplete="off">
+    <label for="proximityAddress">Your ZIP code or address</label>
+    <input type="text" id="proximityAddress" name="address" placeholder="e.g. 96704, or 123 Ali'i Dr, Kailua-Kona, HI" autocomplete="off">
     <button type="submit" class="btn">Find what's nearby</button>
   </form>
 
   <p class="proximity-status" id="proximityStatus" hidden></p>
   <div class="proximity-results" id="proximityResults" hidden></div>
 
-  <p class="proximity-credit">Address lookup via <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>. Nothing you enter is stored — the lookup happens in your browser, not on our servers. Distances shown are straight-line, not driving distance — a quick way to compare "closer" vs. "farther," not a promise of how long the drive actually takes.</p>
+  <p class="proximity-credit">ZIP lookup via <a href="https://www.zippopotam.us/" target="_blank" rel="noopener">Zippopotam.us</a>; address lookup via <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>. Nothing you enter is stored — the lookup happens in your browser, not on our servers. Distances shown are straight-line, not driving distance — a quick way to compare "closer" vs. "farther," not a promise of how long the drive actually takes.</p>
 </div>
 
 ## What this is, honestly

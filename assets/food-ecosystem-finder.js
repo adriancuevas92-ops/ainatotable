@@ -165,14 +165,38 @@
     $("proximityResults").hidden = false;
   }
 
-  function geocode(address) {
+  var ZIP_RE = /^\d{5}$/;
+
+  // Zippopotam.us is a dedicated zip-centroid lookup — more accurate than
+  // Nominatim for a bare zip code. Verified directly: Nominatim's zip
+  // boundary for 96704 (Captain Cook) centers nearly 40 miles from the
+  // actual town (bad rural-Hawaii boundary data in OpenStreetMap);
+  // Zippopotam's centroid lands correctly in South Kona. Full street
+  // addresses still go through Nominatim, which handles those well.
+  function geocodeZip(zip) {
+    return fetch("https://api.zippopotam.us/us/" + zip).then(function (r) {
+      if (!r.ok) return null;
+      return r.json().then(function (data) {
+        var place = data.places && data.places[0];
+        if (!place) return null;
+        return { lat: parseFloat(place.latitude), lon: parseFloat(place.longitude) };
+      });
+    });
+  }
+
+  function geocodeAddress(address) {
     var url =
       "https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q=" +
       encodeURIComponent(address);
-    return fetch(url, { headers: { Accept: "application/json" } }).then(function (r) {
-      if (!r.ok) throw new Error("geocode failed: " + r.status);
-      return r.json();
-    });
+    return fetch(url, { headers: { Accept: "application/json" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error("geocode failed: " + r.status);
+        return r.json();
+      })
+      .then(function (matches) {
+        if (!matches || matches.length === 0) return null;
+        return { lat: parseFloat(matches[0].lat), lon: parseFloat(matches[0].lon) };
+      });
   }
 
   form.addEventListener("submit", function (e) {
@@ -184,7 +208,7 @@
 
     results.hidden = true;
     if (!address) {
-      status.textContent = "Enter an address first — include the city so it can be found.";
+      status.textContent = "Enter a ZIP code or address first.";
       status.hidden = false;
       return;
     }
@@ -192,16 +216,18 @@
     status.textContent = "Looking that up…";
     status.hidden = false;
 
-    geocode(address)
-      .then(function (matches) {
-        if (!matches || matches.length === 0) {
-          status.textContent =
-            "Couldn't find that address — try adding the city and “HI”, e.g. “123 Main St, Kailua-Kona, HI”.";
+    var lookup = ZIP_RE.test(address) ? geocodeZip(address) : geocodeAddress(address);
+
+    lookup
+      .then(function (coords) {
+        if (!coords) {
+          status.textContent = ZIP_RE.test(address)
+            ? "Couldn't find that ZIP code — double-check it and try again."
+            : "Couldn't find that address — try a ZIP code instead, or add the city and “HI”, e.g. “123 Main St, Kailua-Kona, HI”.";
           return;
         }
-        var match = matches[0];
         status.hidden = true;
-        renderResults(address, parseFloat(match.lat), parseFloat(match.lon));
+        renderResults(address, coords.lat, coords.lon);
       })
       .catch(function () {
         status.textContent = "Something went wrong looking that up — try again in a moment.";
