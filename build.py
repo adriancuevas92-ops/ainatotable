@@ -51,7 +51,6 @@ NAV = [
     ("/case-study.html", "Case Study"),
     ("/tools/", "Tools"),
     ("/further-reading.html", "Further Reading"),
-    ("/about.html", "About"),
 ]
 
 MD_LINK_RE = re.compile(r"\]\(([^)]+)\)")
@@ -110,7 +109,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 <footer class="site-footer">
   <div class="wrap">
     <p>{SITE_NAME} — free information, always. Grown out of a real food forest in South Kona, Hawaiʻi.</p>
-    <p><a href="/about.html">About</a> &middot; <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a></p>
+    <p><a href="/about.html">About Us</a> &middot; <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a></p>
   </div>
 </footer>
 <script src="/assets/weather.js" defer></script>
