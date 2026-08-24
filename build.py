@@ -36,7 +36,6 @@ PAGES = [
     ("articles/about-contact.md", "about.html"),
     ("articles/further-reading.md", "further-reading.html"),
     ("tools/nearby-food-partners.md", "tools/nearby-food-partners.html"),
-    ("tools/grant-funding-tracker.md", "tools/grant-funding-tracker.html"),
     ("tools/site-assessment-worksheet.md", "tools/site-assessment-worksheet.html"),
     ("tools/seven-layer-planting-planner.md", "tools/seven-layer-planting-planner.html"),
     ("tools/hawaii-species-starter-list.md", "tools/hawaii-species-starter-list.html"),
@@ -52,6 +51,7 @@ NAV = [
     ("/restaurants.html", "For Restaurants"),
     ("/case-study.html", "Case Study"),
     ("/tools/", "Tools"),
+    ("/grants/", "Grant Opportunities"),
     ("/further-reading.html", "Further Reading"),
 ]
 
@@ -137,7 +137,23 @@ def main() -> None:
 
     md = markdown.Markdown(extensions=["tables", "sane_lists"])
 
-    for src_rel, out_rel in PAGES:
+    # Grant profile pages are generated (one .md per program, filename = slug)
+    # under grants/ by grants-data/generate_public_tracker_page.py — discovered
+    # dynamically here instead of hardcoded in PAGES, since the set of tracked
+    # programs changes without a build.py edit.
+    grants_dir = ROOT / "grants"
+    grant_pages = []
+    if grants_dir.exists():
+        if (grants_dir / "index.md").exists():
+            grant_pages.append(("grants/index.md", "grants/index.html"))
+        grant_pages += [
+            (f"grants/{p.name}", f"grants/{p.stem}.html")
+            for p in sorted(grants_dir.glob("*.md"))
+            if p.name != "index.md"
+        ]
+    pages = PAGES + grant_pages
+
+    for src_rel, out_rel in pages:
         src_path = ROOT / src_rel
         out_path = SITE / out_rel
         out_path.parent.mkdir(parents=True, exist_ok=True)

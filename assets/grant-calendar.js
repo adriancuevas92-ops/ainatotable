@@ -4,35 +4,12 @@
   var container = document.getElementById("grantCalendar");
   if (!container) return;
 
-  var DATE_TYPE_LABEL = {
-    deadline: "deadline",
-    contact_window: "contact first — no fixed deadline",
-    closed: "closed for this cycle"
-  };
+  var MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+  var WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  function daysUntil(dateStr) {
-    if (!dateStr) return null;
-    var target = new Date(dateStr + "T00:00:00");
-    var today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return Math.round((target - today) / 86400000);
-  }
-
-  function urgencyClass(days) {
-    if (days === null) return "grant-urgency-none";
-    if (days < 0) return "grant-urgency-past";
-    if (days <= 30) return "grant-urgency-soon";
-    if (days <= 60) return "grant-urgency-medium";
-    return "grant-urgency-far";
-  }
-
-  function daysLabel(days, dateType) {
-    if (dateType === "contact_window") return "no fixed deadline";
-    if (days === null) return "no date";
-    if (days < 0) return "closed";
-    if (days === 0) return "due today";
-    if (days === 1) return "1 day left";
-    return days + " days left";
+  function parseDate(dateStr) {
+    return new Date(dateStr + "T00:00:00");
   }
 
   function escapeHtml(s) {
@@ -41,46 +18,110 @@
     });
   }
 
-  function renderCard(e) {
-    var days = daysUntil(e.action_date);
-    var badge = daysLabel(days, e.date_type);
-    var dateLine = e.action_date
-      ? new Date(e.action_date + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-      : DATE_TYPE_LABEL[e.date_type] || "";
+  function daysUntil(target) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return Math.round((target - today) / 86400000);
+  }
+
+  // Builds one month's grid (Sun-first) as HTML. entriesByDay maps "YYYY-M-D" -> [entries].
+  function renderMonth(year, month, entriesByDay) {
+    var first = new Date(year, month, 1);
+    var startWeekday = first.getDay();
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    var cells = "";
+    for (var i = 0; i < startWeekday; i++) {
+      cells += '<div class="grant-cal-cell grant-cal-empty"></div>';
+    }
+    for (var day = 1; day <= daysInMonth; day++) {
+      var key = year + "-" + month + "-" + day;
+      var dayEntries = entriesByDay[key] || [];
+      var cellDate = new Date(year, month, day);
+      var isPast = daysUntil(cellDate) < 0;
+      var hasDeadline = dayEntries.length > 0;
+
+      var links = dayEntries.map(function (e) {
+        return '<a href="/grants/' + escapeHtml(e.slug) + '.html" class="grant-cal-link">' +
+          escapeHtml(e.name.length > 28 ? e.name.slice(0, 26) + "…" : e.name) + '</a>';
+      }).join("");
+
+      var cellClass = "grant-cal-cell" +
+        (hasDeadline ? " grant-cal-has-deadline" : "") +
+        (isPast ? " grant-cal-past" : "");
+
+      cells +=
+        '<div class="' + cellClass + '">' +
+          '<span class="grant-cal-daynum">' + day + '</span>' +
+          links +
+        '</div>';
+    }
 
     return (
-      '<article class="grant-card ' + urgencyClass(days) + '">' +
-      '<div class="grant-card-head">' +
-        '<h3>' + escapeHtml(e.name) + '</h3>' +
-        '<span class="grant-badge">' + escapeHtml(badge) + '</span>' +
-      '</div>' +
-      '<p class="grant-level">' + escapeHtml(e.level) + (dateLine ? " · " + escapeHtml(dateLine) : "") + '</p>' +
-      '<p><strong>Why it\'s relevant:</strong> ' + escapeHtml(e.relevance) + '</p>' +
-      '<p><strong>How it actually works:</strong> ' + escapeHtml(e.real_process) + '</p>' +
-      '<p><strong>The deadline lesson:</strong> ' + escapeHtml(e.deadline_lesson) + '</p>' +
-      (e.date_note ? '<p><strong>About this date:</strong> ' + escapeHtml(e.date_note) + '</p>' : '') +
-      '<p><strong>Where to start:</strong> ' + escapeHtml(e.start_here) + '</p>' +
-      '<p class="grant-verified">Checked ' + escapeHtml(e.last_verified) + '. Programs change — verify directly before relying on this.</p>' +
-      '</article>'
+      '<div class="grant-cal-month">' +
+        '<h4 class="grant-cal-month-title">' + MONTH_NAMES[month] + " " + year + '</h4>' +
+        '<div class="grant-cal-weekdays">' +
+          WEEKDAYS.map(function (w) { return '<div class="grant-cal-weekday">' + w + '</div>'; }).join("") +
+        '</div>' +
+        '<div class="grant-cal-grid">' + cells + '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderUndated(entries) {
+    if (!entries.length) return "";
+    var items = entries.map(function (e) {
+      var label = e.date_type === "contact_window" ? "no fixed deadline — contact first" : "closed, no open window";
+      return (
+        '<li class="grant-cal-undated-item">' +
+          '<a href="/grants/' + escapeHtml(e.slug) + '.html">' + escapeHtml(e.name) + '</a>' +
+          ' <span class="grant-cal-undated-label">— ' + escapeHtml(label) + '</span>' +
+        '</li>'
+      );
+    }).join("");
+    return (
+      '<h4 class="grant-calendar-group">Contact-first or closed right now</h4>' +
+      '<ul class="grant-cal-undated-list">' + items + '</ul>'
     );
   }
 
   function render(entries) {
-    var dated = entries.filter(function (e) { return e.date_type === "deadline"; });
-    var undated = entries.filter(function (e) { return e.date_type !== "deadline"; });
+    var dated = entries.filter(function (e) {
+      return e.date_type === "deadline" && e.action_date;
+    });
+    var undated = entries.filter(function (e) {
+      return e.date_type !== "deadline" || !e.action_date;
+    });
 
-    dated.sort(function (a, b) { return daysUntil(a.action_date) - daysUntil(b.action_date); });
+    if (!dated.length) {
+      container.innerHTML = renderUndated(undated) || '<p>No tracked programs right now.</p>';
+      return;
+    }
 
-    var html = "";
-    if (dated.length) {
-      html += '<h3 class="grant-calendar-group">Programs with a real posted deadline, soonest first</h3>';
-      html += '<div class="grant-card-grid">' + dated.map(renderCard).join("") + "</div>";
+    var entriesByDay = {};
+    var dates = dated.map(function (e) {
+      var d = parseDate(e.action_date);
+      var key = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+      (entriesByDay[key] = entriesByDay[key] || []).push(e);
+      return d;
+    });
+
+    var today = new Date();
+    var startYear = today.getFullYear(), startMonth = today.getMonth();
+    var maxDate = dates.reduce(function (a, b) { return b > a ? b : a; });
+    var endYear = maxDate.getFullYear(), endMonth = maxDate.getMonth();
+
+    var months = "";
+    var y = startYear, m = startMonth;
+    while (y < endYear || (y === endYear && m <= endMonth)) {
+      months += renderMonth(y, m, entriesByDay);
+      m++;
+      if (m > 11) { m = 0; y++; }
     }
-    if (undated.length) {
-      html += '<h3 class="grant-calendar-group">Contact-first or closed right now</h3>';
-      html += '<div class="grant-card-grid">' + undated.map(renderCard).join("") + "</div>";
-    }
-    container.innerHTML = html;
+
+    container.innerHTML =
+      '<div class="grant-cal-months">' + months + '</div>' +
+      renderUndated(undated);
   }
 
   var src = container.getAttribute("data-src") || "/assets/data/grant-calendar.json";

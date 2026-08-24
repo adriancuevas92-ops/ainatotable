@@ -1,5 +1,6 @@
 [
   {
+    "slug": "partners-for-fish-and-wildlife",
     "name": "Partners for Fish and Wildlife Program (USFWS)",
     "level": "Federal",
     "relevance": "Funds invasive-species control, native out-planting, and habitat restoration on private land — close to the core work of building a food forest that includes real ecological restoration, not just planting.",
@@ -12,6 +13,7 @@
     "last_verified": "2026-08-24"
   },
   {
+    "slug": "hoola-aina-green-fee",
     "name": "Hoʻōla ʻĀina (Green Fee), DLNR / Division of Forestry & Wildlife",
     "level": "State (Hawaiʻi)",
     "relevance": "State-funded, specifically for community-based restoration of forests, watersheds, and wetlands — as close a mission match to food-forest and land-restoration work as any program tracked here.",
@@ -24,6 +26,7 @@
     "last_verified": "2026-08-24"
   },
   {
+    "slug": "urban-community-forestry-challenge-cost-share",
     "name": "USDA Urban & Community Forestry Challenge Cost Share Grant Program",
     "level": "Federal",
     "relevance": "Sounds like a food-forest match by name alone — a real caution, not a real fit every year.",
@@ -36,6 +39,7 @@
     "last_verified": "2026-08-24"
   },
   {
+    "slug": "community-forest-open-space-conservation",
     "name": "Community Forest and Open Space Conservation Program (USDA Forest Service)",
     "level": "Federal",
     "relevance": "Relevant if the real need is acquiring new land to protect, not restoring land already held.",
@@ -48,6 +52,7 @@
     "last_verified": "2026-08-24"
   },
   {
+    "slug": "forest-legacy-program",
     "name": "Forest Legacy Program",
     "level": "Federal, administered through the state",
     "relevance": "Land-protection funding (conservation easements or acquisition) — relevant to keeping land in forest use long-term, not to funding restoration work on land already held.",
@@ -60,6 +65,7 @@
     "last_verified": "2026-08-24"
   },
   {
+    "slug": "competitive-state-wildlife-grant",
     "name": "Competitive State Wildlife Grant Program",
     "level": "Federal, administered through the state",
     "relevance": "Funds native-species habitat work, but the money typically flows to the state wildlife agency first.",

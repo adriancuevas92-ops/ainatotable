@@ -694,62 +694,101 @@ li { margin-bottom: 0.4em; }
 
 .proximity-credit { margin: 1.3em 0 0; font-size: 0.85em; color: var(--ink-soft); }
 
-/* Grant deadline calendar */
+/* Grant deadline calendar — a real month grid, not a card list */
 .grant-calendar-loading, .grant-calendar-error { color: var(--ink-soft); }
 
-.grant-calendar-group {
-  margin-top: 1.6em;
-  border-top: none;
-  padding-top: 0;
-  font-size: 1.15em;
-}
-
-.grant-card-grid {
+.grant-cal-months {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin-bottom: 0.4em;
+  gap: 20px;
+  margin-bottom: 0.6em;
 }
 
-.grant-card {
+.grant-cal-month {
   background: var(--cream);
   border-radius: 12px;
-  padding: 1.2em 1.3em;
+  padding: 1em 1em 1.2em;
   border-top: 4px solid var(--leaf);
 }
 
-.grant-card.grant-urgency-soon { border-top-color: var(--coral); }
-.grant-card.grant-urgency-medium { border-top-color: var(--gold); }
-.grant-card.grant-urgency-past,
-.grant-card.grant-urgency-none { border-top-color: var(--ink-soft); }
-
-.grant-card-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.6em;
-  margin-bottom: 0.2em;
+.grant-cal-month-title {
+  margin: 0 0 0.6em;
+  font-size: 1.05em;
+  text-align: center;
 }
 
-.grant-card-head h3 { margin: 0; font-size: 1.05em; }
+.grant-cal-weekdays, .grant-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
 
-.grant-badge {
-  flex-shrink: 0;
-  font-size: 0.8em;
+.grant-cal-weekday {
+  font-size: 0.72em;
   font-weight: 700;
-  padding: 0.2em 0.6em;
-  border-radius: 999px;
-  background: var(--leaf-pale);
-  color: var(--forest);
-  white-space: nowrap;
+  text-align: center;
+  color: var(--ink-soft);
+  padding-bottom: 0.3em;
 }
 
-.grant-urgency-soon .grant-badge { background: var(--coral); color: #fff; }
-.grant-urgency-medium .grant-badge { background: var(--gold); color: var(--forest); }
-.grant-urgency-past .grant-badge,
-.grant-urgency-none .grant-badge { background: var(--leaf-pale); color: var(--ink-soft); }
+.grant-cal-cell {
+  min-height: 44px;
+  border-radius: 6px;
+  padding: 3px 3px 4px;
+  font-size: 0.78em;
+  background: var(--paper);
+}
 
-.grant-level { margin: 0 0 0.6em; font-size: 0.85em; color: var(--ink-soft); font-style: italic; }
-.grant-card p { margin: 0 0 0.55em; font-size: 0.95em; color: var(--ink-soft); }
-.grant-card p:last-child { margin-bottom: 0; }
-.grant-verified { font-size: 0.82em; }
+.grant-cal-empty { background: transparent; }
+
+.grant-cal-daynum {
+  display: block;
+  font-size: 0.85em;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+
+.grant-cal-has-deadline {
+  background: var(--coral);
+}
+
+.grant-cal-has-deadline .grant-cal-daynum {
+  color: #fff;
+  font-weight: 700;
+}
+
+.grant-cal-past.grant-cal-has-deadline {
+  background: var(--ink-soft);
+}
+
+.grant-cal-link {
+  display: block;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--forest);
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 1px 4px;
+  margin-top: 2px;
+  text-decoration: none;
+  line-height: 1.25;
+  font-size: 0.92em;
+}
+
+.grant-cal-link:hover { background: #fff; color: var(--gold-dark); }
+
+.grant-calendar-group {
+  margin-top: 1.2em;
+  border-top: none;
+  padding-top: 0;
+  font-size: 1.1em;
+}
+
+.grant-cal-undated-list { list-style: none; margin: 0; padding: 0; }
+.grant-cal-undated-item {
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 0.7em 1em;
+  margin-bottom: 8px;
+  border-left: 4px solid var(--ink-soft);
+}
+.grant-cal-undated-label { color: var(--ink-soft); font-size: 0.9em; }
