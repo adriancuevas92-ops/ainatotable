@@ -35,6 +35,7 @@ PAGES = [
     ("articles/case-study-na-hoa-ululaau.md", "case-study.html"),
     ("articles/about-contact.md", "about.html"),
     ("articles/further-reading.md", "further-reading.html"),
+    ("tools/nearby-food-nonprofits.md", "tools/nearby-food-nonprofits.html"),
     ("tools/site-assessment-worksheet.md", "tools/site-assessment-worksheet.html"),
     ("tools/seven-layer-planting-planner.md", "tools/seven-layer-planting-planner.html"),
     ("tools/hawaii-species-starter-list.md", "tools/hawaii-species-starter-list.html"),
@@ -113,6 +114,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
   </div>
 </footer>
 <script src="/assets/weather.js" defer></script>
+<script src="/assets/nonprofit-finder.js" defer></script>
 </body>
 </html>
 """

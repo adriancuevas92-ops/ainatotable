@@ -29,6 +29,10 @@ This isn't a plug-and-play upgrade. A real grower relationship asks something of
 
 Most farm-to-table sourcing stops at "know your farmer." This venture starts from a different premise: the people actually growing the food hold a real, structural stake in what it's worth. That changes what's on the plate — a dish that represents everyone who grew and made it, and the culture behind them, rather than ingredients sourced from a named farm. It's the structural difference between this and a standard direct-sourcing relationship, and it's the same story a menu tells from it: *local*, grown by people with a real stake in it, from a culture with a real stake in it too.
 
+## A community food-access map, not just us
+
+Direct sourcing is one piece of a kitchen's local-food picture — there are real nonprofits on Hawaiʻi Island doing the same "close the gap" work from a different angle. [See which ones are closest to you](nearby-food-nonprofits.md).
+
 ## Further reading
 
 The pattern this page describes isn't unique to this venture — it's been studied directly, if you want to look past our own claims:

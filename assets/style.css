@@ -584,3 +584,101 @@ li { margin-bottom: 0.4em; }
   .site-header .wrap { flex-direction: column; align-items: flex-start; }
   .hero { padding: 2.4em 0 2.2em; }
 }
+
+/* Nonprofit proximity finder */
+
+.proximity-band {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.7em 1.8em 1.5em;
+  margin: 1.6em 0 2.2em;
+  box-shadow: 0 2px 14px rgba(15, 61, 43, 0.1);
+}
+
+.proximity-head h3 { margin: 0; font-size: 1.3em; }
+.proximity-sub { margin: 0.2em 0 1.2em; color: var(--ink-soft); font-size: 0.95em; }
+
+.proximity-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.proximity-form label {
+  flex: 1 1 100%;
+  font-weight: 700;
+  font-size: 0.9em;
+  color: var(--forest-2);
+}
+
+.proximity-form input[type="text"] {
+  flex: 1 1 260px;
+  padding: 0.65em 0.9em;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+.proximity-form input[type="text"]:focus {
+  outline: 2px solid var(--leaf-bright);
+  outline-offset: 1px;
+}
+
+.proximity-form button {
+  flex: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.proximity-status {
+  margin: 1em 0 0;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.proximity-origin { margin: 1.3em 0 0.6em; color: var(--ink-soft); }
+
+.proximity-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.proximity-card {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 1.1em 1.2em;
+  border-top: 4px solid var(--leaf);
+}
+
+.proximity-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.3em;
+}
+
+.proximity-miles {
+  font-family: "Noto Serif", Georgia, serif;
+  font-weight: 700;
+  color: var(--forest-2);
+  font-size: 1.15em;
+}
+
+.proximity-loc {
+  font-size: 0.8em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.proximity-card h4 { margin: 0 0 0.3em; }
+.proximity-card h4 a { color: var(--forest); }
+.proximity-card p { margin: 0; color: var(--ink-soft); font-size: 0.95em; }
+
+.proximity-credit { margin: 1.3em 0 0; font-size: 0.85em; color: var(--ink-soft); }
