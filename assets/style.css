@@ -120,6 +120,7 @@ li { margin-bottom: 0.4em; }
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .site-header .wrap {
@@ -127,9 +128,15 @@ li { margin-bottom: 0.4em; }
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 1180px;
   padding-top: 14px;
   padding-bottom: 14px;
   gap: 8px 20px;
+}
+
+@media (min-width: 1060px) {
+  .site-header .wrap { flex-wrap: nowrap; }
+  .site-header nav { flex-wrap: nowrap; white-space: nowrap; }
 }
 
 .brand {
