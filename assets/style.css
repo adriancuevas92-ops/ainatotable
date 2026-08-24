@@ -693,3 +693,63 @@ li { margin-bottom: 0.4em; }
 .proximity-card p { margin: 0; color: var(--ink-soft); font-size: 0.95em; }
 
 .proximity-credit { margin: 1.3em 0 0; font-size: 0.85em; color: var(--ink-soft); }
+
+/* Grant deadline calendar */
+.grant-calendar-loading, .grant-calendar-error { color: var(--ink-soft); }
+
+.grant-calendar-group {
+  margin-top: 1.6em;
+  border-top: none;
+  padding-top: 0;
+  font-size: 1.15em;
+}
+
+.grant-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 0.4em;
+}
+
+.grant-card {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 1.2em 1.3em;
+  border-top: 4px solid var(--leaf);
+}
+
+.grant-card.grant-urgency-soon { border-top-color: var(--coral); }
+.grant-card.grant-urgency-medium { border-top-color: var(--gold); }
+.grant-card.grant-urgency-past,
+.grant-card.grant-urgency-none { border-top-color: var(--ink-soft); }
+
+.grant-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.grant-card-head h3 { margin: 0; font-size: 1.05em; }
+
+.grant-badge {
+  flex-shrink: 0;
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  background: var(--leaf-pale);
+  color: var(--forest);
+  white-space: nowrap;
+}
+
+.grant-urgency-soon .grant-badge { background: var(--coral); color: #fff; }
+.grant-urgency-medium .grant-badge { background: var(--gold); color: var(--forest); }
+.grant-urgency-past .grant-badge,
+.grant-urgency-none .grant-badge { background: var(--leaf-pale); color: var(--ink-soft); }
+
+.grant-level { margin: 0 0 0.6em; font-size: 0.85em; color: var(--ink-soft); font-style: italic; }
+.grant-card p { margin: 0 0 0.55em; font-size: 0.95em; color: var(--ink-soft); }
+.grant-card p:last-child { margin-bottom: 0; }
+.grant-verified { font-size: 0.82em; }

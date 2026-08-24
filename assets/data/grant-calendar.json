@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Partners for Fish and Wildlife Program (USFWS)",
+    "level": "Federal",
+    "relevance": "Funds invasive-species control, native out-planting, and habitat restoration on private land — close to the core work of building a food forest that includes real ecological restoration, not just planting.",
+    "real_process": "Contact-first, not a cold written submission. The program's own terms require reaching out to local Partners for Fish and Wildlife staff before an application exists — a biologist works with you to shape the project first.",
+    "deadline_lesson": "A Grants.gov posting can show a submission deadline that only applies to applicants already invited into the process. There can be an earlier, separate cutoff for a first-time contact — always ask directly rather than trusting the posted date alone.",
+    "start_here": "Pacific Islands Fish and Wildlife Office — pifwo_admin@fws.gov, (808) 792-9400",
+    "date_type": "contact_window",
+    "action_date": null,
+    "date_note": "No posted deadline applies until you've made contact — reach out any time.",
+    "last_verified": "2026-08-24"
+  },
+  {
+    "name": "Hoʻōla ʻĀina (Green Fee), DLNR / Division of Forestry & Wildlife",
+    "level": "State (Hawaiʻi)",
+    "relevance": "State-funded, specifically for community-based restoration of forests, watersheds, and wetlands — as close a mission match to food-forest and land-restoration work as any program tracked here.",
+    "real_process": "A full proposal (not just a letter of intent) submitted through the state's HANDS portal during an open RFP window — the window is not year-round.",
+    "deadline_lesson": "This program isn't listed on Grants.gov at all — it's state, not federal — so a federal-only search will miss it entirely. Worth checking DLNR's own announcements directly, not just Grants.gov.",
+    "start_here": "dlnr.hawaii.gov/blog and hands.ehawaii.gov — watch for the next RFP announcement",
+    "date_type": "closed",
+    "action_date": "2026-08-17",
+    "date_note": "2026 cycle's full-proposal deadline already passed. Next cycle not yet announced.",
+    "last_verified": "2026-08-24"
+  },
+  {
+    "name": "USDA Urban & Community Forestry Challenge Cost Share Grant Program",
+    "level": "Federal",
+    "relevance": "Sounds like a food-forest match by name alone — a real caution, not a real fit every year.",
+    "real_process": "Each annual cycle has its own stated funding priority, which can shift year to year. The 2026 cycle's actual focus is wood utilization (turning pruning and removal waste into lumber, biochar, and similar products) rather than ecosystem restoration or food-bearing tree planting.",
+    "deadline_lesson": "A program's title can describe its general authorizing purpose without describing what a specific year's funding call actually prioritizes. Read the current year's own funding priority before assuming a promising-sounding name is a fit.",
+    "start_here": "grants.gov — search the program name for the current cycle's specific funding priority",
+    "date_type": "deadline",
+    "action_date": "2026-10-12",
+    "date_note": "Real 2026 deadline, shown for reference — this cycle's wood-utilization focus makes it an unlikely fit for food-forest planting itself.",
+    "last_verified": "2026-08-24"
+  },
+  {
+    "name": "Community Forest and Open Space Conservation Program (USDA Forest Service)",
+    "level": "Federal",
+    "relevance": "Relevant if the real need is acquiring new land to protect, not restoring land already held.",
+    "real_process": "Funds fee-simple acquisition of forest land by qualified nonprofits, tribes, or local governments. Applications route through the state's own State Forester, not directly to the federal agency.",
+    "deadline_lesson": "Two different real programs can share the same federal assistance-listing number (CFDA) — one national, general-purpose version, and a separate, geographically-restricted version funded under a different initiative. Read which specific funding notice you're looking at, not just the number.",
+    "start_here": "Hawaiʻi Division of Forestry & Wildlife (state forester's office)",
+    "date_type": "deadline",
+    "action_date": "2026-10-13",
+    "date_note": "Real 2026 deadline for the national (non-Great-Lakes) version of this program.",
+    "last_verified": "2026-08-24"
+  },
+  {
+    "name": "Forest Legacy Program",
+    "level": "Federal, administered through the state",
+    "relevance": "Land-protection funding (conservation easements or acquisition) — relevant to keeping land in forest use long-term, not to funding restoration work on land already held.",
+    "real_process": "State-administered through Hawaiʻi's Division of Forestry & Wildlife, which nominates projects into the federal program.",
+    "deadline_lesson": "A real, well-funded program can still be the wrong tool for the job — check what the money is actually for (buying/protecting land vs. doing restoration work on it) before treating a deadline as relevant to you.",
+    "start_here": "Hawaiʻi Division of Forestry & Wildlife",
+    "date_type": "deadline",
+    "action_date": "2026-09-11",
+    "date_note": "Real 2026 nomination deadline, shown for reference.",
+    "last_verified": "2026-08-24"
+  },
+  {
+    "name": "Competitive State Wildlife Grant Program",
+    "level": "Federal, administered through the state",
+    "relevance": "Funds native-species habitat work, but the money typically flows to the state wildlife agency first.",
+    "real_process": "Usually the state agency (in Hawaiʻi, DLNR) is the direct applicant; a community organization would most likely need to be a named project partner or subawardee under the state's own application, not a solo direct applicant.",
+    "deadline_lesson": "A program being 'open' on Grants.gov doesn't mean a small organization can apply to it directly — check who the actual eligible applicant is before assuming a posted deadline applies to you.",
+    "start_here": "Hawaiʻi DLNR — ask directly whether community partners can be named on the state's application",
+    "date_type": "deadline",
+    "action_date": "2026-09-18",
+    "date_note": "Real 2026 deadline for the state's own application — confirm you can be named as a partner well before this.",
+    "last_verified": "2026-08-24"
+  }
+]

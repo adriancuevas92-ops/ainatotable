@@ -116,6 +116,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 </footer>
 <script src="/assets/weather.js" defer></script>
 <script src="/assets/food-ecosystem-finder.js" defer></script>
+<script src="/assets/grant-calendar.js" defer></script>
 </body>
 </html>
 """
