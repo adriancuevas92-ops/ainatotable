@@ -36,6 +36,7 @@ PAGES = [
     ("articles/about-contact.md", "about.html"),
     ("articles/further-reading.md", "further-reading.html"),
     ("tools/nearby-food-partners.md", "tools/nearby-food-partners.html"),
+    ("tools/grant-funding-tracker.md", "tools/grant-funding-tracker.html"),
     ("tools/site-assessment-worksheet.md", "tools/site-assessment-worksheet.html"),
     ("tools/seven-layer-planting-planner.md", "tools/seven-layer-planting-planner.html"),
     ("tools/hawaii-species-starter-list.md", "tools/hawaii-species-starter-list.html"),
