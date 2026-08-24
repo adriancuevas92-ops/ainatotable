@@ -34,6 +34,7 @@ PAGES = [
     ("articles/homeowners-start-your-food-forest.md", "homeowners.html"),
     ("articles/case-study-na-hoa-ululaau.md", "case-study.html"),
     ("articles/about-contact.md", "about.html"),
+    ("articles/further-reading.md", "further-reading.html"),
     ("tools/site-assessment-worksheet.md", "tools/site-assessment-worksheet.html"),
     ("tools/seven-layer-planting-planner.md", "tools/seven-layer-planting-planner.html"),
     ("tools/hawaii-species-starter-list.md", "tools/hawaii-species-starter-list.html"),
@@ -49,6 +50,7 @@ NAV = [
     ("/restaurants.html", "For Restaurants"),
     ("/case-study.html", "Case Study"),
     ("/tools/", "Tools"),
+    ("/further-reading.html", "Further Reading"),
     ("/about.html", "About"),
 ]
 
