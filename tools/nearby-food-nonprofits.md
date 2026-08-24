@@ -17,7 +17,7 @@ If you run a restaurant, market, or kitchen on Hawaiʻi Island, this tool shows 
   <p class="proximity-status" id="proximityStatus" hidden></p>
   <div class="proximity-results" id="proximityResults" hidden></div>
 
-  <p class="proximity-credit">Address lookup via <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>. Nothing you enter is stored — the lookup happens in your browser, not on our servers.</p>
+  <p class="proximity-credit">Address lookup via <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>. Nothing you enter is stored — the lookup happens in your browser, not on our servers. Distances shown are straight-line, not driving distance — a quick way to compare "closer" vs. "farther," not a promise of how long the drive actually takes.</p>
 </div>
 
 ## What this is, honestly
