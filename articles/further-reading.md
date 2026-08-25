@@ -59,6 +59,7 @@ None of the traditional-ecological-knowledge research above is Hawaiʻi- or Kana
 - McCoy, Cheng, Mulrooney & Ladefoged (2022), [Garden Offerings in the Kona Field System, Hawaiʻi Island: A Fine-Grained Chronology and Its Implications](https://doi.org/10.1017/aaq.2022.3) — open access; excavated directly in Kealakekua Ahupuaʻa, the same ahupuaʻa this venture's land is in. Dates upland farming here to around AD 1400 and documents the shift from individual farmers' own agricultural ritual to elite surplus extraction via the Makahiki ceremony as political control centralized.
 - McCoy, Mulrooney, Horrocks, Cheng & Ladefoged (2017), [Evaluating agricultural bet-hedging strategies in the Kona Field System](https://doi.org/10.1002/arco.5121) — direct predecessor to the 2022 study above, on the same excavation.
 - Horrocks & Rechtman (2008), [Sweet potato (*Ipomoea batatas*) and banana (*Musa* sp.) microfossils in deposits from the Kona Field System, Island of Hawaii](https://doi.org/10.1016/j.jas.2008.12.014) — direct crop evidence from the field system itself.
+- [Māla Kaluʻulu](https://malakaluulu.squarespace.com/kaluulu) — not a research citation but a real, currently operating example: a worker-owned cooperative a few miles from this site, co-founded by one of the researchers above, restoring the same kaluʻulu belt on its own parcel. The closest real analogue to this venture of anything in this list — same historical system, same district, same labor-equity structure, already running.
 
 **On health and safety risks in food forest work**
 
