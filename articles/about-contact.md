@@ -10,9 +10,9 @@
 
 The information on this site — how to plan, design, and grow a food forest — is given away free, on purpose, before any of that business exists to sell to you. If it's useful to you as a homeowner growing your own food, that's the whole point, independent of anything else. If you're a restaurant interested in a direct grower relationship built on those same values, [that conversation lives here](restaurants-own-your-ingredients.md) — but it starts from real information, not a pitch.
 
-### What this venture is actually betting on
+### What the data shows
 
-The growing side of this isn't a hypothesis. Māla Kaluʻulu, a worker-owned cooperative farming the same historical breadfruit-canopy system a few miles from this site, is already proving the supply side works — see the [case study](case-study-na-hoa-ululaau.md) and [Further Reading](further-reading.md). What's undeveloped isn't growing capacity or whether people want this food; the [documented market data](direct-to-consumer-markets.md) shows real, farmer-reported demand outstripping supply for breadfruit, and a small, high-value retail and restaurant channel for kalo that most producers aren't set up to reach. The actual gap is market access — getting real supply to a real buyer without losing it along the way. That's the specific problem this venture and its site exist to solve: direct grower-to-restaurant relationships, and eventually the coordination tools to support them, built as the mechanism that closes that gap, not just a values statement alongside it.
+The growing side of this isn't a hypothesis. Māla Kaluʻulu, a worker-owned cooperative farming the same historical breadfruit-canopy system a few miles from this site, is already proving the supply side works — see the [case study](case-study-na-hoa-ululaau.md) and [Further Reading](further-reading.md). The demand side is documented too: real, farmer-reported demand outstripping supply for breadfruit, and a small, high-value retail and restaurant channel for kalo that most producers aren't set up to reach. See [Direct-to-Consumer Markets](direct-to-consumer-markets.md) for the full picture.
 
 <img class="photo-full" src="/assets/photos/about-hero.jpg" alt="View from the South Kona property, looking down toward the coast, with papaya and ti leaf growing in the foreground">
 

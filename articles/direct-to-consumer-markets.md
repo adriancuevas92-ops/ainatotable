@@ -24,8 +24,8 @@ Kalo tells a more mature-market story, and it's worth being precise rather than 
 
 Worth stating plainly: the state's own 2021 report explicitly pushes back on claims that taro imports are about to exceed local production — that specific fear isn't supported by the data. The honest opportunity here isn't a supply crisis. It's a real, underdeveloped, higher-value channel sitting mostly unused inside an industry that's built around a different kind of buyer.
 
-## Why this is the actual work, not a side note
+## The same pattern, close to home
 
-None of this changes what to grow. It changes what "economic viability" actually depends on: not more acreage, not proving people want the food — both of those are already real — but building the direct relationships and the coordination that gets real supply to a real buyer without losing it to the same access gap every study above names. That's what the direct-to-restaurant relationships described on [For Restaurants](restaurants-own-your-ingredients.md) are for, and it's the reason this venture treats coordination and market access as core infrastructure to build, not an afterthought once growing is solved. That infrastructure is still early — stated plainly here for the same reason the rest of this site is honest about its own stage, not dressed up as further along than it is.
+Every figure above points to the same shape of problem: not a lack of demand, and not a lack of capacity, but a lack of direct paths between the two. Direct, local sales are the channel breadfruit farmers themselves report as most profitable. Upland kalo's highest price sits specifically in the smallest, most direct channel. A direct grower relationship — the kind described on [For Restaurants](restaurants-own-your-ingredients.md) — is one way that gap actually closes.
 
 *Full sourcing for every claim on this page is in [Further Reading](further-reading.md).*
