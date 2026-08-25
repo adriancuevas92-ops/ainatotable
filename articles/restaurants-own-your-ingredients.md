@@ -6,7 +6,7 @@ A direct grower relationship is the alternative, and it's worth understanding ho
 
 ## More than sourcing — an experience of place
 
-Traceability and freshness are practical reasons to source direct. Underneath both is what this venture is actually built on: food is one of the fastest ways anyone connects with a culture. A dish built on kalo or ʻōlena grown a few miles from where it's served is a point of contact with Hawaiian land and Hawaiian culture, for a guest who might not otherwise get one. That experience is the product. The supply chain exists to make it real.
+Traceability and freshness are practical reasons to source direct. Underneath both is something simpler: food is one of the fastest ways anyone connects with a culture. A dish built on kalo or ʻōlena grown a few miles from where it's served is a point of contact with Hawaiian land and Hawaiian culture, for a guest who might not otherwise get one. The supply chain — real growers, real land — is what makes that experience real.
 
 The labor-equity model matters here for the same reason. The value of that cultural expression is meant to stay with the people actually growing and cooking it — Native Hawaiian growers holding a real stake in what they grow, not a wage for someone else's margin.
 
@@ -16,11 +16,11 @@ The labor-equity model matters here for the same reason. The value of that cultu
 - **Freshness.** Produce harvested days (sometimes hours) before it reaches your kitchen, instead of sitting in a supply chain built for shelf life over flavor.
 - **A real story for the menu.** "Grown on a food forest in South Kona" is a sentence a guest actually responds to, and it's true rather than marketing language, because you can point to the real place and the real growers behind it. Restaurateurs sit in an outsized position of influence over what a whole room of guests eats and hears about — [research on local produce sourcing has pointed to this directly](https://core.ac.uk/download/212904006.pdf) — which is part of why a real, checkable sourcing story carries more weight here than it would elsewhere in the supply chain.
 
-## The channel this venture is built for
+## Where kalo and breadfruit actually sell short
 
-This isn't a guess about what restaurants might want. For the two crops this venture is built around, the retail and restaurant channel is specifically the underdeveloped one:
+For both of the crops this site's growing guides cover, the retail and restaurant channel is specifically the underdeveloped one:
 
-- Upland kalo — the style grown at this venture's own site — sells for $2.19 a pound, the highest of any taro category in Hawaiʻi, but retail and restaurant sales are only 7.3% of the statewide taro market by volume. Most kalo moves through poi processors and wholesalers instead, channels built for bulk, not for a kitchen relationship (Hawaiʻi Department of Agriculture, 2021).
+- Upland kalo — the style grown at the [case study](case-study-na-hoa-ululaau.md) site — sells for $2.19 a pound, the highest of any taro category in Hawaiʻi, but retail and restaurant sales are only 7.3% of the statewide taro market by volume. Most kalo moves through poi processors and wholesalers instead, channels built for bulk, not for a kitchen relationship (Hawaiʻi Department of Agriculture, 2021).
 - For breadfruit, the Hawaiʻi ʻUlu Cooperative has put it plainly: demand already outstrips supply. Farmers selling through a cooperative sell nearly twice as much of what they harvest as farmers going it alone — the constraint is reaching a buyer, not growing the crop.
 
 Full sourcing and the wider addressable-market picture is on [Direct-to-Consumer Markets](direct-to-consumer-markets.md).
@@ -34,9 +34,9 @@ This isn't a plug-and-play upgrade. A real grower relationship asks something of
 - **Volume consistency.** Small-scale growing rarely matches the volume a large kitchen is used to from a distributor. [Research on local food logistics for restaurants](https://www.emerald.com/insight/content/doi/10.1108/IJRDM-10-2021-0477/full/pdf) treats this as a real design question — how a distribution system connecting small farms and restaurants actually has to be built — not a reason to give up on direct sourcing. This tends to work best as a complement to existing sourcing — a rotating menu feature, a specific dish — rather than a full replacement on day one.
 - **Pricing that works for both sides.** Direct relationships cut out distributor margin, but they also mean the grower is pricing to actually sustain the work, not to compete with commodity-scale pricing. It's a real tension, not an impossible one — [a study of small independent restaurants built around short supply chains](https://studies.hu/wp-content/uploads/2022/04/2253_Torok.pdf) found they can survive economically in a competitive market without giving up the sourcing values that define them. Worth a real conversation, not an assumption in either direction.
 
-## Why this venture is built differently
+## What labor equity changes on the plate
 
-Most farm-to-table sourcing stops at "know your farmer." This venture starts from a different premise: the people actually growing the food hold a real, structural stake in what it's worth. That changes what's on the plate — a dish that represents everyone who grew and made it, and the culture behind them, rather than ingredients sourced from a named farm. It's the structural difference between this and a standard direct-sourcing relationship, and it's the same story a menu tells from it: *local*, grown by people with a real stake in it, from a culture with a real stake in it too.
+Most farm-to-table sourcing stops at "know your farmer." Here, the people actually growing the food hold a real, structural stake in what it's worth — not a wage for someone else's margin. That changes what's on the plate: a dish that represents everyone who grew and made it, and the culture behind them, rather than ingredients sourced from a named farm. It's the same story a menu tells from it: *local*, grown by people with a real stake in it, from a culture with a real stake in it too.
 
 ## A community food map, not just us
 

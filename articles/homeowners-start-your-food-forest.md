@@ -26,7 +26,7 @@ It's not the only place this pattern has been documented. [A case study of Parma
 
 ## Tools
 
-A printable site-assessment worksheet, matched to the four observation categories in [Planning Your Site](02-planning-your-site.md), is planned for the Resources section. Check there before building your own tracking sheet from scratch.
+A printable [site-assessment worksheet](site-assessment-worksheet.md), matched to the four observation categories in [Planning Your Site](02-planning-your-site.md), is available in the Tools section. Check there before building your own tracking sheet from scratch.
 
 ## Further reading
 

@@ -8,7 +8,7 @@
 - **Labor should share in the profit of the food it grows** — not just be paid a wage to produce something someone else profits from.
 - **Restaurants deserve a real relationship with where their ingredients come from** — not an anonymous line in a distributor's truck.
 
-The information on this site — how to plan, design, and grow a food forest — is given away free, on purpose, before any of that business exists to sell to you. If it's useful to you as a homeowner growing your own food, that's the whole point, independent of anything else. If you're a restaurant interested in a direct grower relationship built on those same values, [that conversation lives here](restaurants-own-your-ingredients.md) — but it starts from real information, not a pitch.
+The information on this site — how to plan, design, and grow a food forest — is free and complete on its own, whether or not anything else here is ever relevant to you. If you're a restaurant interested in a direct grower relationship built on those same values, [that conversation lives here](restaurants-own-your-ingredients.md).
 
 ### What the data shows
 
@@ -20,7 +20,7 @@ The growing side of this isn't a hypothesis. Māla Kaluʻulu, a worker-owned coo
 
 Food is one of the fastest ways to connect with a culture. A place can be described, or it can be tasted. Hawaiian values treat that as self-evident: land is experienced through food, and cuisine is one of the most direct ways a culture expresses itself.
 
-This site is a philosophy as much as it is a technique library. It is also a business, and that connection isn't hidden here. Giving restaurants, and the people eating at them, a genuine way to experience Hawaiian land and culture through food is valuable on its own terms, and it's the product this business exists to deliver. The supply chain makes that experience real. The business makes it last.
+This site is a philosophy as much as it is a technique library. Giving restaurants, and the people eating at them, a genuine way to experience Hawaiian land and culture through food is valuable on its own terms. The supply chain — real growers, real land, real crops — is what makes that experience real.
 
 This is meant to benefit the people whose culture it draws from, directly. Native Hawaiians should be the ones growing, cooking, and profiting from that expression of culture, not referenced by it from the outside. That's the link to the three values below: the people doing the work hold a real stake in what the food is worth.
 
