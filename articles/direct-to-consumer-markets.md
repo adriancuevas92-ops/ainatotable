@@ -45,10 +45,8 @@ None of this is theoretical. Fourteen real food hubs already operate across the 
 - **Kauaʻi** — Kauaʻi Community Market, Saturdays at Kauaʻi Community College, plus the county-run Sunshine Markets, including Kealia's, where taro is the primary crop.
 - **Hawaiʻi Island** — South Kona Green Market, South Kona Fruit Stand, and Keauhou Farmers Market; see [Find Farms, Markets & Food Nonprofits Near You](../tools/nearby-food-partners.md) for the full, verified South Kona list.
 
-This is real, existing infrastructure, active today, in every county — not a market that has to be built from nothing.
+## For growers and markets
 
-## The same pattern, close to home
-
-Every figure above points to the same shape of problem: not a lack of demand, and not a lack of capacity, but a lack of direct paths between the two. Direct, local sales are the channel breadfruit farmers themselves report as most profitable. Upland kalo's highest price sits specifically in the smallest, most direct channel. A direct grower relationship — the kind described on [For Restaurants](restaurants-own-your-ingredients.md) — is one way that gap actually closes.
+If you grow kalo, ʻulu, or ʻōlena and want to reach one of the channels above, or you run a market, food hub, or retail program and want to reach growers: [hello@ainatotable.com](mailto:hello@ainatotable.com) is a real inbox, not a form.
 
 *Full sourcing for every claim on this page is in [Further Reading](further-reading.md).*
