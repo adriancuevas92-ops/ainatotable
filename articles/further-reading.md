@@ -61,6 +61,12 @@ None of the traditional-ecological-knowledge research above is Hawaiʻi- or Kana
 - Horrocks & Rechtman (2008), [Sweet potato (*Ipomoea batatas*) and banana (*Musa* sp.) microfossils in deposits from the Kona Field System, Island of Hawaii](https://doi.org/10.1016/j.jas.2008.12.014) — direct crop evidence from the field system itself.
 - [Māla Kaluʻulu](https://malakaluulu.squarespace.com/kaluulu) — not a research citation but a real, currently operating example: a worker-owned cooperative a few miles from this site, co-founded by one of the researchers above, restoring the same kaluʻulu belt on its own parcel. The closest real analogue to this venture of anything in this list — same historical system, same district, same labor-equity structure, already running.
 
+**On the addressable market for breadfruit and kalo**
+
+- Berning, Andersen, Mertz et al. (2022), [Resilience of breadfruit agro-ecosystems in Hawaiʻi during the COVID-19 pandemic](https://doi.org/10.1186/s43170-022-00125-3), *CABI Agriculture and Bioscience* — the primary source behind the [Direct-to-Consumer Markets](direct-to-consumer-markets.md) breadfruit figures, including the Hawaiʻi ʻUlu Cooperative's own account of demand outstripping supply.
+- Zhao & Loke (2021), *Taro Production and Market Landscape in Hawaiʻi*, Hawaiʻi Department of Agriculture — the primary source behind that same page's kalo pricing and channel data, and the report that explicitly argues against a taro supply shortfall.
+- Lysák, Ritz & Henriksen (2019), [Assessing Consumer Acceptance and Willingness to Pay for Novel Value-Added Products Made from Breadfruit in the Hawaiian Islands](https://www.mdpi.com/2071-1050/11/11/3135), *Sustainability* — a controlled consumer study finding informed buyers willing to pay more for breadfruit products, included as a data point on the demand side rather than a market-sizing study.
+
 **On health and safety risks in food forest work**
 
 - University of Hawaiʻi CTAHR (2010), [Best On-Farm Food Safety Practices: Reducing Risks Associated with Rat Lungworm Infection](https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/FST-39.pdf) — the primary source behind [Growing Safely](09-growing-safely.md)'s rat lungworm section.

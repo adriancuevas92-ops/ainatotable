@@ -16,6 +16,15 @@ The labor-equity model matters here for the same reason. The value of that cultu
 - **Freshness.** Produce harvested days (sometimes hours) before it reaches your kitchen, instead of sitting in a supply chain built for shelf life over flavor.
 - **A real story for the menu.** "Grown on a food forest in South Kona" is a sentence a guest actually responds to, and it's true rather than marketing language, because you can point to the real place and the real growers behind it. Restaurateurs sit in an outsized position of influence over what a whole room of guests eats and hears about — [research on local produce sourcing has pointed to this directly](https://core.ac.uk/download/212904006.pdf) — which is part of why a real, checkable sourcing story carries more weight here than it would elsewhere in the supply chain.
 
+## The channel this venture is built for
+
+This isn't a guess about what restaurants might want. For the two crops this venture is built around, the retail and restaurant channel is specifically the underdeveloped one:
+
+- Upland kalo — the style grown at this venture's own site — sells for $2.19 a pound, the highest of any taro category in Hawaiʻi, but retail and restaurant sales are only 7.3% of the statewide taro market by volume. Most kalo moves through poi processors and wholesalers instead, channels built for bulk, not for a kitchen relationship (Hawaiʻi Department of Agriculture, 2021).
+- For breadfruit, the Hawaiʻi ʻUlu Cooperative has put it plainly: demand already outstrips supply. Farmers selling through a cooperative sell nearly twice as much of what they harvest as farmers going it alone — the constraint is reaching a buyer, not growing the crop.
+
+Full sourcing and the wider addressable-market picture is on [Direct-to-Consumer Markets](direct-to-consumer-markets.md).
+
 ## What it actually takes — the honest version
 
 This isn't a plug-and-play upgrade. A real grower relationship asks something of both sides — and it's a documented pattern, not just this venture's own experience. Researchers who've studied small-farm-to-restaurant supply chains directly keep landing on the same handful of frictions, worth naming up front rather than discovering mid-relationship.

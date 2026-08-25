@@ -34,6 +34,7 @@ PAGES = [
     ("articles/restaurants-own-your-ingredients.md", "restaurants.html"),
     ("articles/homeowners-start-your-food-forest.md", "homeowners.html"),
     ("articles/case-study-na-hoa-ululaau.md", "case-study.html"),
+    ("articles/direct-to-consumer-markets.md", "direct-to-consumer-markets.html"),
     ("articles/about-contact.md", "about.html"),
     ("articles/further-reading.md", "further-reading.html"),
     ("tools/nearby-food-partners.md", "tools/nearby-food-partners.html"),
@@ -51,6 +52,7 @@ NAV = [
     ("/homeowners.html", "For Homeowners"),
     ("/restaurants.html", "For Restaurants"),
     ("/case-study.html", "Case Study"),
+    ("/direct-to-consumer-markets.html", "Markets"),
     ("/tools/", "Tools"),
     ("/further-reading.html", "Further Reading"),
 ]
