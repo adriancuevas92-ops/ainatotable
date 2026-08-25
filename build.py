@@ -34,6 +34,7 @@ PAGES = [
     ("articles/restaurants-own-your-ingredients.md", "restaurants.html"),
     ("articles/homeowners-start-your-food-forest.md", "homeowners.html"),
     ("articles/case-study-na-hoa-ululaau.md", "case-study.html"),
+    ("articles/how-poi-is-made.md", "how-poi-is-made.html"),
     ("articles/direct-to-consumer-markets.md", "direct-to-consumer-markets.html"),
     ("articles/about-contact.md", "about.html"),
     ("articles/further-reading.md", "further-reading.html"),

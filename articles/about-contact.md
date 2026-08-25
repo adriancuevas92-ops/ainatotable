@@ -41,7 +41,7 @@ This is meant to benefit the people whose culture it draws from, directly. Nativ
 </div>
 </div>
 
-Kalo carries additional weight here. In Hawaiian tradition, kalo's origin story places it as the elder sibling of the Hawaiian people, grown from the first ancestor, Hāloa. Growing kalo, and feeding people from it, passes something forward older than any business — ʻohana, carried through food.
+Kalo carries additional weight here. In Hawaiian tradition, kalo's origin story places it as the elder sibling of the Hawaiian people, grown from the first ancestor, Hāloa. Growing kalo, and feeding people from it, passes something forward older than any business — ʻohana, carried through food. See [How Poi Is Made](how-poi-is-made.md) for what happens to kalo after it's harvested.
 
 ### A product that represents everyone who made it
 

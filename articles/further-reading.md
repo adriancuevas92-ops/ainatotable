@@ -67,6 +67,12 @@ None of the traditional-ecological-knowledge research above is Hawaiʻi- or Kana
 - Zhao & Loke (2021), *Taro Production and Market Landscape in Hawaiʻi*, Hawaiʻi Department of Agriculture — the primary source behind that same page's kalo pricing and channel data, and the report that explicitly argues against a taro supply shortfall.
 - Lysák, Ritz & Henriksen (2019), [Assessing Consumer Acceptance and Willingness to Pay for Novel Value-Added Products Made from Breadfruit in the Hawaiian Islands](https://www.mdpi.com/2071-1050/11/11/3135), *Sustainability* — a controlled consumer study finding informed buyers willing to pay more for breadfruit products, included as a data point on the demand side rather than a market-sizing study.
 
+**On poi and traditional taro processing**
+
+- [Puʻueo Poi bids aloha](https://www.westhawaiitoday.com/2017/08/21/hawaii-news/puueo-poi-bids-aloha/), West Hawaii Today, 2017 — the primary source behind [How Poi Is Made](how-poi-is-made.md)'s history of Hilo's own commercial poi mill and its 2017 closure.
+- [Hand-Pounded vs. Milled Poi Explained](https://www.waiaholepoifactory.com/post/the-traditional-way-hand-pounded-vs-milled-poi-explained), Waiāhole Poi Factory — the source on the technical difference between the two methods, and that mill's own move away from milling entirely.
+- Hawaii Administrative Rules §11-50-3 — the state food safety code's specific exemption for hand-pounded poi, distinct from every other processed food.
+
 **On health and safety risks in food forest work**
 
 - University of Hawaiʻi CTAHR (2010), [Best On-Farm Food Safety Practices: Reducing Risks Associated with Rat Lungworm Infection](https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/FST-39.pdf) — the primary source behind [Growing Safely](09-growing-safely.md)'s rat lungworm section.

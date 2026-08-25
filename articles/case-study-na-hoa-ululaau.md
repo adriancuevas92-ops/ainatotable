@@ -75,7 +75,7 @@ This land sits inside a documented, centuries-old farming system, not empty grou
 ## What's real and already documented
 
 - **Invasive species cleared:** Guinea grass, maile pilau, cat's claw, and Christmas berry — all named specifically because clearing them was real, completed work, not a plan.
-- **Kalo (taro), now growing** on land that was previously choked with invasive growth.
+- **Kalo (taro), now growing** on land that was previously choked with invasive growth. See [How Poi Is Made](how-poi-is-made.md) for what kalo becomes after harvest.
 - **ʻŌlena (turmeric), producing at real volume** — 130 lbs of raw root harvested in a single season.
 - **A vetiver hedge**, planted in contour along the slope, actively controlling erosion — a working example of the technique described in [Soil, Water & Establishment](05-soil-water-and-establishment.md).
 - **Koa replanted** after Christmas berry removal — a nitrogen-fixing native canopy species doing double duty: restoring the site's native character and building soil fertility for what's planted beneath it.

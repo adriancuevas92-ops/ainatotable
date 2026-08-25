@@ -24,6 +24,8 @@ Kalo tells a more mature-market story, and it's worth being precise rather than 
 
 Worth stating plainly: the state's own 2021 report explicitly pushes back on claims that taro imports are about to exceed local production — that specific fear isn't supported by the data. The honest opportunity here isn't a supply crisis. It's a real, underdeveloped, higher-value channel sitting mostly unused inside an industry that's built around a different kind of buyer.
 
+Nearly half of that statewide taro volume goes to poi processors specifically. See [How Poi Is Made](how-poi-is-made.md) for how that side of the industry actually works, on Hawaiʻi Island and elsewhere.
+
 ## Where these markets actually are
 
 None of this is theoretical. Fourteen real food hubs already operate across the islands, each one built specifically to connect small farms directly to buyers:
