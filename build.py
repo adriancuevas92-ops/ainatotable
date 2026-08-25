@@ -34,7 +34,7 @@ PAGES = [
     ("articles/restaurants-own-your-ingredients.md", "restaurants.html"),
     ("articles/homeowners-start-your-food-forest.md", "homeowners.html"),
     ("articles/case-study-na-hoa-ululaau.md", "case-study.html"),
-    ("articles/how-poi-is-made.md", "how-poi-is-made.html"),
+    ("articles/how-poi-is-made.md", "learn/how-poi-is-made.html"),
     ("articles/direct-to-consumer-markets.md", "direct-to-consumer-markets.html"),
     ("articles/about-contact.md", "about.html"),
     ("articles/further-reading.md", "further-reading.html"),
@@ -163,9 +163,19 @@ def main() -> None:
         (LINK_MAP[Path(src).name], page_title(md.convert(rewrite_links((ROOT / src).read_text(encoding="utf-8"))), src))
         for src, _ in PAGES if src.startswith("articles/0")
     ]
+    spotlight_html = """
+<h2>Spotlight</h2>
+<div class="card-grid">
+<div class="card gold">
+<h3>How Poi Is Made</h3>
+<p>Two methods, a Hilo mill that closed in 2017, and what Hawaiʻi's food code says about hand-pounded poi specifically.</p>
+<a class="card-link" href="/learn/how-poi-is-made.html">Read →</a>
+</div>
+</div>
+"""
     (SITE / "learn").mkdir(parents=True, exist_ok=True)
     (SITE / "learn" / "index.html").write_text(
-        render_page("Learn", build_index_page("Learn", learn_entries), SITE / "learn" / "index.html"),
+        render_page("Learn", build_index_page("Learn", learn_entries) + spotlight_html, SITE / "learn" / "index.html"),
         encoding="utf-8",
     )
     print("built learn/index.html")

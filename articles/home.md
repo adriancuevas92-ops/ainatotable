@@ -55,6 +55,16 @@ Eight core guides, meant to be read in order if you're starting from zero:
 <li><a href="/learn/glossary.html"><span class="num">8</span> Glossary</a></li>
 </ul>
 
+### Spotlight
+
+<div class="card-grid">
+<div class="card gold">
+<h3>How Poi Is Made</h3>
+<p>Two methods, a Hilo mill that closed in 2017, and what Hawaiʻi's food code says about hand-pounded poi specifically.</p>
+<a class="card-link" href="/learn/how-poi-is-made.html">Read →</a>
+</div>
+</div>
+
 ---
 
 ### See it working, not just explained
