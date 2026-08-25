@@ -592,7 +592,8 @@ li { margin-bottom: 0.4em; }
   body { font-size: 16.5px; }
   h1 { font-size: 2em; }
   .hero h1 { font-size: 2em; }
-  .site-header .wrap { flex-direction: column; align-items: flex-start; }
+  .site-header .wrap { flex-direction: column; align-items: flex-start; row-gap: 18px; }
+  .brand-logo { width: 220px; }
   .hero { padding: 2.4em 0 2.2em; }
 }
 
