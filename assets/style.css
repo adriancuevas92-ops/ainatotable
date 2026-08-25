@@ -147,7 +147,7 @@ li { margin-bottom: 0.4em; }
 
 .brand-logo {
   display: block;
-  width: 441px;
+  width: 573px;
   height: auto;
   flex: none;
 }
@@ -593,7 +593,7 @@ li { margin-bottom: 0.4em; }
   h1 { font-size: 2em; }
   .hero h1 { font-size: 2em; }
   .site-header .wrap { flex-direction: column; align-items: flex-start; row-gap: 18px; }
-  .brand-logo { width: 220px; }
+  .brand-logo { width: 300px; }
   .hero { padding: 2.4em 0 2.2em; }
 }
 
