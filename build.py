@@ -103,8 +103,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/">
-      <img class="brand-seal" src="/assets/brand/aina-to-table-seal.svg" alt="" width="44" height="44">
-      {SITE_NAME}
+      <img class="brand-logo" src="/assets/brand/aina-to-table-lockup-reverse.svg" alt="{SITE_NAME}" width="300" height="100">
     </a>
     <nav>
 {nav_links}

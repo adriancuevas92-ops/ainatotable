@@ -143,19 +143,12 @@ li { margin-bottom: 0.4em; }
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  white-space: nowrap;
-  gap: 10px;
-  font-family: "Noto Serif", Georgia, serif;
-  font-size: 1.4em;
-  font-weight: 700;
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: -0.01em;
 }
 
-.brand-seal {
-  width: 44px;
-  height: 44px;
+.brand-logo {
+  display: block;
+  width: 220px;
+  height: auto;
   flex: none;
 }
 
