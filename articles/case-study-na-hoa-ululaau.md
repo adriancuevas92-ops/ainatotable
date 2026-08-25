@@ -70,6 +70,8 @@ Most of the design and species detail on this site — the guild example, the in
 
 Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa is a small (roughly quarter-acre) restoration site in South Kona, on Hawaiʻi Island, working to clear invasive species and reestablish native, food-bearing plants on land that had been overtaken by aggressive introduced growth.
 
+This land sits inside a documented, centuries-old farming system, not empty ground waiting for a new idea. Archaeological research on the Kona Field System shows dryland farming across this district from around AD 1400 onward, and a specific breadfruit-canopy agroforestry belt — the kaluʻulu, spanning roughly Honaunau to Kaʻupulehu — grew kalo, ʻōlena, ʻuala, and ʻōhiʻa ʻai together under open breadfruit canopy across exactly this area. What's growing on this site now isn't a combination chosen for this project. It's the same one already documented here, before cultivation in this spot stopped and the invasive growth described below took over what it left behind. Clearing that growth doesn't start something new — it clears the way to farm the same land the same way again.
+
 ## What's real and already documented
 
 - **Invasive species cleared:** Guinea grass, maile pilau, cat's claw, and Christmas berry — all named specifically because clearing them was real, completed work, not a plan.
@@ -92,7 +94,7 @@ This is a genuinely small site, still building out its full infrastructure — t
 
 ## Why this site anchors this website
 
-Every piece of Hawaiʻi-specific guidance on this site — the layer design, the species choices, the clear-before-you-plant sequencing — comes from what's actually working here, not from a generic guide adapted for the climate. ʻĀina to Table, the commercial venture this website supports, is partnered with this nonprofit: Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa manages and restores the land; ʻĀina to Table grows and sells from it, bringing labor closer to the profit of the food it grows and building direct relationships with restaurants that value real, traceable sourcing.
+Every piece of Hawaiʻi-specific guidance on this site — the layer design, the species choices, the clear-before-you-plant sequencing — comes from what's actually working here, not from a generic guide adapted for the climate. And what's working here isn't a new idea being tested against this place — it's a documented system being farmed again, not invented. ʻĀina to Table, the commercial venture this website supports, is partnered with this nonprofit: Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa manages and restores the land; ʻĀina to Table grows and sells from it, bringing labor closer to the profit of the food it grows and building direct relationships with restaurants that value real, traceable sourcing.
 
 ## Support the restoration work directly
 

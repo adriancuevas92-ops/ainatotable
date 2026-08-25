@@ -49,6 +49,8 @@ Laulima applied to a business means more than fair pay. When the people growing,
 
 Nearly everything Hawaiʻi-specific on this site — the species choices, the invasive-clearing sequence, the guild example — comes from a real, working site: [Nā Hoa Ululāʻau O Kalamawaiʻawaʻawa](case-study-na-hoa-ululaau.md), the nonprofit that manages and restores the South Kona land this venture partners with. The nonprofit runs the land's restoration work; ʻĀina to Table is the separate, commercial partner growing and selling from it under that partnership.
 
+Further back than either organization, the knowledge itself is older than both. This exact district was farmed this way — kalo and ʻōlena among the crops grown under breadfruit canopy — for centuries before that stopped. What the nonprofit restores and this venture grows from isn't a new arrangement of old values; it's the resumption of a real, documented system. See the [case study](case-study-na-hoa-ululaau.md) for what the record actually shows.
+
 ## Where this stands right now
 
 Early. The information library is real and complete for its current scope (wet-tropical / Hawaiʻi climates). The commercial side — the food forest supplying restaurants and farmers markets, and the labor-equity structure behind it — is still being built. That's stated here plainly rather than dressed up, for the same reason the [case study](case-study-na-hoa-ululaau.md) is honest about its own early stage: useful information doesn't need to pretend to be more finished than it is.

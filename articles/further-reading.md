@@ -53,6 +53,13 @@ Organized to mirror the rest of this site, so you can go straight to the researc
 
 None of the traditional-ecological-knowledge research above is Hawaiʻi- or Kanaka Maoli-specific — worth saying plainly rather than letting the citations imply otherwise. This site's own laulima and mālama ʻāina content (see [About](about-contact.md)) comes from family and cultural knowledge, not from these papers. They're included here as general grounding for why traditional ecological knowledge matters as a field, not as a substitute for Hawaiian sourcing.
 
+**On South Kona's traditional agricultural system**
+
+- Lincoln & Ladefoged (2014), [Agroecology of pre-contact Hawaiian dryland farming: the spatial extent, yield and social impact of Hawaiian breadfruit groves in Kona, Hawaiʻi](https://www.sciencedirect.com/science/article/abs/pii/S0305440314001861) — the primary source for the kaluʻulu, the documented breadfruit-canopy agroforestry belt this site's own case study draws on directly.
+- McCoy, Cheng, Mulrooney & Ladefoged (2022), [Garden Offerings in the Kona Field System, Hawaiʻi Island: A Fine-Grained Chronology and Its Implications](https://doi.org/10.1017/aaq.2022.3) — open access; excavated directly in Kealakekua Ahupuaʻa, the same ahupuaʻa this venture's land is in. Dates upland farming here to around AD 1400 and documents the shift from individual farmers' own agricultural ritual to elite surplus extraction via the Makahiki ceremony as political control centralized.
+- McCoy, Mulrooney, Horrocks, Cheng & Ladefoged (2017), [Evaluating agricultural bet-hedging strategies in the Kona Field System](https://doi.org/10.1002/arco.5121) — direct predecessor to the 2022 study above, on the same excavation.
+- Horrocks & Rechtman (2008), [Sweet potato (*Ipomoea batatas*) and banana (*Musa* sp.) microfossils in deposits from the Kona Field System, Island of Hawaii](https://doi.org/10.1016/j.jas.2008.12.014) — direct crop evidence from the field system itself.
+
 **On health and safety risks in food forest work**
 
 - University of Hawaiʻi CTAHR (2010), [Best On-Farm Food Safety Practices: Reducing Risks Associated with Rat Lungworm Infection](https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/FST-39.pdf) — the primary source behind [Growing Safely](09-growing-safely.md)'s rat lungworm section.
