@@ -36,6 +36,8 @@ Hawaiʻi has a long list of species that were once introduced deliberately and a
 
 These four are named specifically because they're real — all four were cleared from the South Kona reference site before kalo, ʻōlena, and koa went in. If your site has different invasive pressure, the principle is the same: identify what's already dominating the ground before you plan around it, because it will outcompete a young food forest planting if left in place.
 
+Christmas berry carries a real handling hazard worth knowing before you cut into it — see [Growing Safely](09-growing-safely.md).
+
 ## Matching selection to your guild plan
 
 Go back to the guild sketch from [Design: The Layers & Guilds](03-design-layers-and-guilds.md) and slot real species into each layer using the list above. The next question — what the soil and water situation needs to look like to actually support this planting — is covered in [Soil, Water & Establishment](05-soil-water-and-establishment.md).

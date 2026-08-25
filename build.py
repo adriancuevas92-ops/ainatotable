@@ -29,6 +29,7 @@ PAGES = [
     ("articles/05-soil-water-and-establishment.md", "learn/soil-water-and-establishment.html"),
     ("articles/06-timeline-and-what-to-expect.md", "learn/timeline-and-what-to-expect.html"),
     ("articles/07-maintenance-and-harvest.md", "learn/maintenance-and-harvest.html"),
+    ("articles/09-growing-safely.md", "learn/growing-safely.html"),
     ("articles/08-glossary.md", "learn/glossary.html"),
     ("articles/restaurants-own-your-ingredients.md", "restaurants.html"),
     ("articles/homeowners-start-your-food-forest.md", "homeowners.html"),

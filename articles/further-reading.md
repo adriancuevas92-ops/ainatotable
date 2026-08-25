@@ -53,6 +53,12 @@ Organized to mirror the rest of this site, so you can go straight to the researc
 
 None of the traditional-ecological-knowledge research above is Hawaiʻi- or Kanaka Maoli-specific — worth saying plainly rather than letting the citations imply otherwise. This site's own laulima and mālama ʻāina content (see [About](about-contact.md)) comes from family and cultural knowledge, not from these papers. They're included here as general grounding for why traditional ecological knowledge matters as a field, not as a substitute for Hawaiian sourcing.
 
+**On health and safety risks in food forest work**
+
+- University of Hawaiʻi CTAHR (2010), [Best On-Farm Food Safety Practices: Reducing Risks Associated with Rat Lungworm Infection](https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/FST-39.pdf) — the primary source behind [Growing Safely](09-growing-safely.md)'s rat lungworm section.
+- [Leptospirosis: The Microscopic Danger in Paradise](https://pmc.ncbi.nlm.nih.gov/articles/PMC4244898/), a review of Hawaiʻi case data including the taro-farming exposure figures cited on that same page.
+- [PlantPono.org](https://plantpono.org/high-risk-plants/schinus-terebinthifolius-christmas-berry/) and the USDA NRCS Pacific Islands Area invasive species fact sheet for Christmas berry (*Schinus terebinthifolius*).
+
 **On labor and cooperative structures**
 
 - Arana Landín (2019), [A study of the statutory background for worker cooperatives in the US](https://baidc.revistas.deusto.es/article/download/1424/1942)
