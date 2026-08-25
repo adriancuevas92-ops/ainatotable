@@ -1,11 +1,11 @@
 <div class="hero" style="background-image: linear-gradient(rgba(15,61,43,0.62), rgba(15,61,43,0.8)), url('/assets/photos/hero-forest-clearing.jpg');">
 <div class="wrap">
 <p class="tagline">Free, real information. No product to buy first.</p>
-<h1>Grow real food. Own the supply chain behind it.</h1>
-<p>Practical guides on planning and building a food forest — for homeowners who want to grow real food on their own land, and restaurants who want ingredients they can trace back to a real grower. Built on <strong>laulima</strong> — the traditional Hawaiian practice of many hands, working land together, sharing in what it grows.</p>
+<h1>This land already knew how to grow this.</h1>
+<p>Kalo and ʻōlena growing together under breadfruit canopy isn't a new idea for South Kona — it's a documented system, farmed here for centuries, interrupted, and being farmed again. This site teaches that same way of growing to anyone who wants to do it: homeowners growing real food on their own land, and restaurants who want ingredients they can trace back to a real grower.</p>
 <a class="btn" href="/learn/what-is-a-food-forest.html">Start Learning →</a>
 <a class="btn outline" href="/case-study.html" style="margin-left:12px;">See the real site →</a>
-<div style="margin-top:14px;"><a href="/about.html#laulima" style="color:#fff;font-size:0.9em;">Read why this matters to us →</a></div>
+<div style="margin-top:14px;"><a href="/about.html#laulima" style="color:#fff;font-size:0.9em;">Read more about why this matters →</a></div>
 </div>
 </div>
 
