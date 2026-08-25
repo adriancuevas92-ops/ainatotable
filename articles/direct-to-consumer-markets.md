@@ -24,6 +24,29 @@ Kalo tells a more mature-market story, and it's worth being precise rather than 
 
 Worth stating plainly: the state's own 2021 report explicitly pushes back on claims that taro imports are about to exceed local production — that specific fear isn't supported by the data. The honest opportunity here isn't a supply crisis. It's a real, underdeveloped, higher-value channel sitting mostly unused inside an industry that's built around a different kind of buyer.
 
+## Where these markets actually are
+
+None of this is theoretical. Fourteen real food hubs already operate across the islands, each one built specifically to connect small farms directly to buyers:
+
+- **Hawaiʻi Island:** [Adaptations](https://adaptationsaloha.com/), [Da BOX CSA](https://www.daboxbigisland.org/) (The Food Basket), [Hawaiʻi ʻUlu Cooperative](https://eatbreadfruit.com/), [Hoʻōla Farms – Hilo Food Hub](https://www.hoolafarms.org/hilo-food-hub/), [Kohala Food Hub](https://www.kohalafoodhub.com/), [O.K. Farms Food Hub](https://www.hawaii-eco.com/)
+- **Oʻahu:** [Farm Link Hawaiʻi](https://farmlinkhawaii.com/), [Kahumana](https://www.kahumana.org/), [Oahu Fresh](https://shop.oahufresh.com/), [Roots Cultural Food Hub](https://www.rootskalihi.com/) (Kalihi)
+- **Maui:** [Local Harvest](https://www.localharvesthawaii.com/), [Maui Hub](https://www.mauihub.org/)
+- **Kauaʻi:** [Mālama Kauaʻi](https://kauailocalfood.com/)
+- **Molokaʻi:** [Sustʻāinable Molokaʻi](https://www.sustainablemolokai.org/)
+
+*(Source: [Hawaiʻi Food Hub Hui directory](https://foodhubhui.org/food-hub-directory).)*
+
+**Retail already carries exactly this.** Hawaiʻi ʻUlu Cooperative's breadfruit and kalo products are on shelves statewide at Foodland, Times, Safeway, and Longs Drugs — findable through their [store locator](https://eatbreadfruit.com/pages/store-locator). On Hawaiʻi Island, [KTA Super Stores](https://ktasuperstores.com/mountain-apple-brand/) runs Mountain Apple Brand, a shelf label reserved for food actually grown or made in Hawaiʻi — over 200 products from 50-plus local vendors, running since 1992. Foodland and Sack N Save also carry wetland taro directly when it's in season, across Oʻahu, Maui, Kauaʻi, and Hawaiʻi Island.
+
+**Farmers markets, real and flagship, per island:**
+
+- **Oʻahu** — [KCC Farmers Market](https://hfbf.org/farmers-markets/kcc/), Saturdays at Kapiʻolani Community College, one of the largest in the state.
+- **Maui** — [Upcountry Farmers Market](https://www.upcountryfarmersmarket.com/), Saturdays in Makawao, where breadfruit is a regular find; the Maui Swap Meet, Saturdays at UH Maui College, where taro is sold directly.
+- **Kauaʻi** — Kauaʻi Community Market, Saturdays at Kauaʻi Community College, plus the county-run Sunshine Markets, including Kealia's, where taro is the primary crop.
+- **Hawaiʻi Island** — South Kona Green Market, South Kona Fruit Stand, and Keauhou Farmers Market; see [Find Farms, Markets & Food Nonprofits Near You](../tools/nearby-food-partners.md) for the full, verified South Kona list.
+
+This is real, existing infrastructure, active today, in every county — not a market that has to be built from nothing.
+
 ## The same pattern, close to home
 
 Every figure above points to the same shape of problem: not a lack of demand, and not a lack of capacity, but a lack of direct paths between the two. Direct, local sales are the channel breadfruit farmers themselves report as most profitable. Upland kalo's highest price sits specifically in the smallest, most direct channel. A direct grower relationship — the kind described on [For Restaurants](restaurants-own-your-ingredients.md) — is one way that gap actually closes.
