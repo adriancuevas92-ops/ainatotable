@@ -58,6 +58,9 @@ None of the traditional-ecological-knowledge research above is Hawaiʻi- or Kana
 - University of Hawaiʻi CTAHR (2010), [Best On-Farm Food Safety Practices: Reducing Risks Associated with Rat Lungworm Infection](https://www3.ctahr.hawaii.edu/oc/freepubs/pdf/FST-39.pdf) — the primary source behind [Growing Safely](09-growing-safely.md)'s rat lungworm section.
 - [Leptospirosis: The Microscopic Danger in Paradise](https://pmc.ncbi.nlm.nih.gov/articles/PMC4244898/), a review of Hawaiʻi case data including the taro-farming exposure figures cited on that same page.
 - [PlantPono.org](https://plantpono.org/high-risk-plants/schinus-terebinthifolius-christmas-berry/) and the USDA NRCS Pacific Islands Area invasive species fact sheet for Christmas berry (*Schinus terebinthifolius*).
+- [Hawaiian Ecosystems at Risk (HEAR) project report](http://www.hear.org/PIER/pdf/pohreports/caesalpinia_decapetala.pdf) and the [Hawaiʻi Cattlemen's Council species profile](https://www.hicattle.org/Media/HICattle/Docs/caesalpinia_decapetala.pdf) for cat's claw (*Caesalpinia decapetala*).
+- [Hawaiʻi Invasive Species Council](https://dlnr.hawaii.gov/hisc/info/invasive-species-profiles/guinea-grass/) and [Pacific Fire Exchange](https://pacificfireexchange.org/resource/the-grass-fire-cycle-on-pacific-islands/) on the grass-fire cycle behind guinea grass and maile pilau's fire risk.
+- CDC/NIOSH, [Preventing Heat-related Illness or Death of Outdoor Workers](https://www.cdc.gov/niosh/docs/wp-solutions/2013-143/default.html).
 
 **On labor and cooperative structures**
 

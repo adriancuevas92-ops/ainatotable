@@ -36,7 +36,7 @@ Hawaiʻi has a long list of species that were once introduced deliberately and a
 
 These four are named specifically because they're real — all four were cleared from the South Kona reference site before kalo, ʻōlena, and koa went in. If your site has different invasive pressure, the principle is the same: identify what's already dominating the ground before you plan around it, because it will outcompete a young food forest planting if left in place.
 
-Christmas berry carries a real handling hazard worth knowing before you cut into it — see [Growing Safely](09-growing-safely.md).
+All four of these carry a real hazard worth knowing before you clear them — Christmas berry's sap, cat's claw's thorns, and guinea grass and maile pilau's fire risk once cut and dried. See [Growing Safely](09-growing-safely.md).
 
 ## Matching selection to your guild plan
 
