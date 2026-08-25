@@ -1,0 +1,45 @@
+{
+  "seasons": {
+    "wet": {
+      "label": "Wet season",
+      "start": { "month": 4, "day": 15 },
+      "end": { "month": 9, "day": 15 },
+      "summary": "South Kona's rain comes in the afternoon and builds through spring and summer here — the reverse of most of Hawaiʻi's Nov–Mar wet season. This is the site's main planting and active-growth stretch.",
+      "tips": [
+        "Main planting window for both of this site's flagship crops: kalo goes in April through September, ʻōlena (turmeric) March through June.",
+        "Rain-fed and not irrigating? Don't plant kalo after the first rain of the season — wait for the second. A single early shower can be a false start; the second confirms the season has really turned and gives roots enough sustained moisture to establish.",
+        "Weed early. Pressure on new plantings is highest in the first two to three months — for kalo, letting weeds go during this stretch can cut yield by half or more. Established canopy does most of the weeding for you after that.",
+        "The rain does the watering. An on-schedule wet-season planting needs little to no supplemental irrigation through this stretch — the practical payoff of planting on-season instead of against it."
+      ]
+    },
+    "dry": {
+      "label": "Dry season",
+      "start": { "month": 9, "day": 16 },
+      "end": { "month": 4, "day": 14 },
+      "summary": "Cooler and drier, with some species going semi-dormant — the stretch that sets up the next wet season's growth.",
+      "tips": [
+        "Harvest window for ʻōlena: dig roots January through March, and stop watering at least a month before — wet soil at harvest invites rot.",
+        "Kalo tells you when it's ready on its own — watch for the big leaves to start dying back and shrinking as the plant redirects energy into the corm.",
+        "Cold, not rain, is the real disease risk for ʻōlena this time of year — cold conditions raise the risk of rhizome rot. Worth keeping that distinction straight when deciding what's actually stressing a planting.",
+        "Coffee throughout this belt goes semi-dormant now, then blooms once a real rain breaks the dry spell — usually January through May, heaviest in February and March. A visible sign the wet season is on its way back."
+      ]
+    }
+  },
+  "events": [
+    {
+      "id": "olena-harvest",
+      "label": "ʻōlena harvest window",
+      "start": { "month": 1, "day": 1 },
+      "end": { "month": 3, "day": 31 },
+      "note": "Dig roots now — stop watering at least a month out, and don't harvest into wet soil."
+    },
+    {
+      "id": "coffee-bloom",
+      "label": "Coffee bloom (“Kona snow”)",
+      "start": { "month": 1, "day": 1 },
+      "end": { "month": 5, "day": 31 },
+      "note": "Look for white blossoms after the next real rain breaks a dry spell — heaviest in February and March."
+    }
+  ],
+  "source_note": "Season timing and tips verified 2026-08-25 against the UH Rainfall Atlas of Hawaiʻi, CTAHR's Hawaiʻi Turmeric Production Guidelines (VC-9), the USDA NRCS Plant Guide for taro (COES), and the Hawaiʻi ʻUlu Cooperative's upland kalo growing guide. See Playbook - Daily Seasonal Growing Guide for full sourcing."
+}

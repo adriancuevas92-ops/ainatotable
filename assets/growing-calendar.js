@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var container = document.getElementById("grantCalendar");
+  var container = document.getElementById("growingCalendar");
   if (!container) return;
 
   var MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
@@ -24,6 +24,52 @@
     return Math.round((target - today) / 86400000);
   }
 
+  // Compares today's (month, day) against a start/end (month, day) range,
+  // wrapping across the New Year when start > end (e.g. dry season Sep 16 - Apr 14).
+  function isDateInRange(month, day, start, end) {
+    var m = month * 100 + day;
+    var s = start.month * 100 + start.day;
+    var e = end.month * 100 + end.day;
+    if (s <= e) return m >= s && m <= e;
+    return m >= s || m <= e;
+  }
+
+  function renderSeasonBand(seasonData) {
+    var today = new Date();
+    var month = today.getMonth() + 1;
+    var day = today.getDate();
+
+    var current = isDateInRange(month, day, seasonData.seasons.wet.start, seasonData.seasons.wet.end)
+      ? seasonData.seasons.wet
+      : seasonData.seasons.dry;
+
+    var activeEvents = (seasonData.events || []).filter(function (e) {
+      return isDateInRange(month, day, e.start, e.end);
+    });
+
+    var tipsHtml = current.tips.map(function (t) {
+      return "<li>" + escapeHtml(t) + "</li>";
+    }).join("");
+
+    var eventsHtml = activeEvents.length
+      ? '<div class="season-events">' +
+        activeEvents.map(function (e) {
+          return '<p class="season-event"><strong>Happening now:</strong> ' +
+            escapeHtml(e.label) + " — " + escapeHtml(e.note) + "</p>";
+        }).join("") +
+        "</div>"
+      : "";
+
+    return (
+      '<div class="season-band season-band-' + (current === seasonData.seasons.wet ? "wet" : "dry") + '">' +
+        '<span class="season-label">' + escapeHtml(current.label) + "</span>" +
+        "<p class=\"season-summary\">" + escapeHtml(current.summary) + "</p>" +
+        eventsHtml +
+        '<ul class="season-tips">' + tipsHtml + "</ul>" +
+      "</div>"
+    );
+  }
+
   // Builds one month's grid (Sun-first) as HTML. entriesByDay maps "YYYY-M-D" -> [entries].
   function renderMonth(year, month, entriesByDay) {
     var first = new Date(year, month, 1);
@@ -42,7 +88,7 @@
       var hasDeadline = dayEntries.length > 0;
 
       var links = dayEntries.map(function (e) {
-        return '<a href="/grants/' + escapeHtml(e.slug) + '.html" class="grant-cal-link">' +
+        return '<a href="' + escapeHtml(e.learn_more_url) + '" class="grant-cal-link" target="_blank" rel="noopener">' +
           escapeHtml(e.name.length > 28 ? e.name.slice(0, 26) + "…" : e.name) + '</a>';
       }).join("");
 
@@ -74,7 +120,7 @@
       var label = e.date_type === "contact_window" ? "no fixed deadline — contact first" : "closed, no open window";
       return (
         '<li class="grant-cal-undated-item">' +
-          '<a href="/grants/' + escapeHtml(e.slug) + '.html">' + escapeHtml(e.name) + '</a>' +
+          '<a href="' + escapeHtml(e.learn_more_url) + '" target="_blank" rel="noopener">' + escapeHtml(e.name) + '</a>' +
           ' <span class="grant-cal-undated-label">— ' + escapeHtml(label) + '</span>' +
         '</li>'
       );
@@ -85,7 +131,7 @@
     );
   }
 
-  function render(entries) {
+  function renderGrantCalendar(entries) {
     var dated = entries.filter(function (e) {
       return e.date_type === "deadline" && e.action_date;
     });
@@ -94,8 +140,7 @@
     });
 
     if (!dated.length) {
-      container.innerHTML = renderUndated(undated) || '<p>No tracked programs right now.</p>';
-      return;
+      return renderUndated(undated) || "";
     }
 
     var entriesByDay = {};
@@ -119,19 +164,29 @@
       if (m > 11) { m = 0; y++; }
     }
 
-    container.innerHTML =
-      '<div class="grant-cal-months">' + months + '</div>' +
-      renderUndated(undated);
+    return '<div class="grant-cal-months">' + months + '</div>' + renderUndated(undated);
   }
 
-  var src = container.getAttribute("data-src") || "/assets/data/grant-calendar.json";
-  fetch(src)
-    .then(function (r) {
+  var seasonSrc = container.getAttribute("data-season-src") || "/assets/data/season-tips.json";
+  var grantsSrc = container.getAttribute("data-grants-src") || "/assets/data/grant-calendar.json";
+
+  Promise.all([
+    fetch(seasonSrc).then(function (r) {
+      if (!r.ok) throw new Error("Failed to load season data");
+      return r.json();
+    }),
+    fetch(grantsSrc).then(function (r) {
       if (!r.ok) throw new Error("Failed to load grant calendar data");
       return r.json();
     })
-    .then(render)
-    .catch(function () {
-      container.innerHTML = '<p class="grant-calendar-error">Couldn\'t load the live calendar right now — try refreshing, or email <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a> if it keeps happening.</p>';
-    });
+  ]).then(function (results) {
+    var seasonData = results[0];
+    var grantEntries = results[1];
+    container.innerHTML =
+      renderSeasonBand(seasonData) +
+      '<h4 class="grant-calendar-group">Grant deadlines this year</h4>' +
+      renderGrantCalendar(grantEntries);
+  }).catch(function () {
+    container.innerHTML = '<p class="grant-calendar-error">Couldn\'t load the growing calendar right now — try refreshing, or email <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a> if it keeps happening.</p>';
+  });
 })();

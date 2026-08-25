@@ -51,7 +51,6 @@ NAV = [
     ("/restaurants.html", "For Restaurants"),
     ("/case-study.html", "Case Study"),
     ("/tools/", "Tools"),
-    ("/grants/", "Grant Opportunities"),
     ("/further-reading.html", "Further Reading"),
 ]
 
@@ -121,7 +120,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 </footer>
 <script src="/assets/weather.js" defer></script>
 <script src="/assets/food-ecosystem-finder.js" defer></script>
-<script src="/assets/grant-calendar.js" defer></script>
+<script src="/assets/growing-calendar.js" defer></script>
 </body>
 </html>
 """
@@ -142,23 +141,7 @@ def main() -> None:
 
     md = markdown.Markdown(extensions=["tables", "sane_lists"])
 
-    # Grant profile pages are generated (one .md per program, filename = slug)
-    # under grants/ by grants-data/generate_public_tracker_page.py — discovered
-    # dynamically here instead of hardcoded in PAGES, since the set of tracked
-    # programs changes without a build.py edit.
-    grants_dir = ROOT / "grants"
-    grant_pages = []
-    if grants_dir.exists():
-        if (grants_dir / "index.md").exists():
-            grant_pages.append(("grants/index.md", "grants/index.html"))
-        grant_pages += [
-            (f"grants/{p.name}", f"grants/{p.stem}.html")
-            for p in sorted(grants_dir.glob("*.md"))
-            if p.name != "index.md"
-        ]
-    pages = PAGES + grant_pages
-
-    for src_rel, out_rel in pages:
+    for src_rel, out_rel in PAGES:
         src_path = ROOT / src_rel
         out_path = SITE / out_rel
         out_path.parent.mkdir(parents=True, exist_ok=True)

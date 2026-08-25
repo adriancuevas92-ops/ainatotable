@@ -705,8 +705,47 @@ li { margin-bottom: 0.4em; }
 
 .proximity-credit { margin: 1.3em 0 0; font-size: 0.85em; color: var(--ink-soft); }
 
-/* Grant deadline calendar — a real month grid, not a card list */
+/* Growing calendar — season/operating tips banner, then a real month grid for grant dates */
 .grant-calendar-loading, .grant-calendar-error { color: var(--ink-soft); }
+
+.season-band {
+  border-radius: 14px;
+  padding: 1.4em 1.6em 1.6em;
+  margin-bottom: 1.6em;
+  color: #fff;
+}
+
+.season-band-wet { background: linear-gradient(120deg, var(--forest) 0%, var(--leaf) 100%); }
+.season-band-dry { background: linear-gradient(120deg, var(--soil-dark) 0%, var(--soil) 100%); }
+
+.season-label {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 0.25em 0.9em;
+  font-weight: 700;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.6em;
+}
+
+.season-summary { color: rgba(255, 255, 255, 0.92); margin-bottom: 0.8em; }
+
+.season-events { margin-bottom: 0.8em; }
+.season-event {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 0.6em 0.9em;
+  margin: 0 0 0.5em;
+  font-size: 0.95em;
+}
+
+.season-tips {
+  margin: 0;
+  padding-left: 1.3em;
+}
+.season-tips li { margin-bottom: 0.5em; color: rgba(255, 255, 255, 0.95); }
 
 .grant-cal-months {
   display: grid;

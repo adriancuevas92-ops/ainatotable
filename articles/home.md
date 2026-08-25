@@ -9,6 +9,14 @@
 </div>
 </div>
 
+## What's Growing Right Now
+
+South Kona runs on its own calendar — real seasonal timing for what to plant, watch, and harvest here, not generic advice borrowed from somewhere else. Real grant deadlines for anyone funding restoration work show up here too.
+
+<div id="growingCalendar" class="grant-calendar" data-season-src="/assets/data/season-tips.json" data-grants-src="/assets/data/grant-calendar.json">
+  <p class="grant-calendar-loading">Loading today's calendar…</p>
+</div>
+
 ## Start Here
 
 <div class="card-grid">
