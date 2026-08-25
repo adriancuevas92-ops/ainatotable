@@ -95,11 +95,17 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{css_href}">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/aina-to-table-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/png/icon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/png/icon-180.png">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">{SITE_NAME}</a>
+    <a class="brand" href="/">
+      <img class="brand-seal" src="/assets/brand/aina-to-table-seal.svg" alt="" width="44" height="44">
+      {SITE_NAME}
+    </a>
     <nav>
 {nav_links}
     </nav>
@@ -110,7 +116,7 @@ def render_page(title: str, body_html: str, out_path: Path) -> str:
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <p>{SITE_NAME} — free information, always. Grown out of a real food forest in South Kona, Hawaiʻi.</p>
+    <img class="footer-logo" src="/assets/brand/aina-to-table-lockup-reverse.svg" alt="{SITE_NAME} — South Kona, Hawaiʻi" width="300" height="100">
     <p><a href="/about.html">About Us</a> &middot; <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a></p>
   </div>
 </footer>

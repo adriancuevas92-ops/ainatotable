@@ -1,0 +1,54 @@
+<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="ʻĀina to Table horizontal lockup"><rect width="900" height="300" fill="#fdf6e8"></rect>
+<g transform="translate(70,42) scale(0.92)"><g transform="translate(160,25)">
+    
+    <g transform="rotate(-62 0 172) translate(0,172) scale(0.9) translate(0,-172)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#1c5a3c" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#f0a415" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="rotate(62 0 172) translate(0,172) scale(0.9) translate(0,-172)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#c98a12" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#fdf6e8" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="translate(0,0)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#0f3d2b" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#f0a415" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    <rect x="-5" y="168" width="10" height="34" rx="5" fill="#0f3d2b"></rect>
+          </g></g>
+<text x="300" y="132" font-family="Noto Serif, Georgia, serif" font-weight="700" font-size="62" fill="#0f3d2b">ʻĀina to Table</text>
+<rect x="302" y="158" width="44" height="2.5" fill="#f0a415"></rect>
+<text x="362" y="165" font-family="Inter, Arial, sans-serif" font-weight="600" font-size="15" letter-spacing="3" fill="#145238">SOUTH KONA, HAWAIʻI</text>
+<text x="302" y="206" font-family="Inter, Arial, sans-serif" font-weight="500" font-size="16" letter-spacing="1.8" fill="#4a5a48">LAULIMA · MĀLAMA ʻĀINA · KULEANA</text>
+</svg>

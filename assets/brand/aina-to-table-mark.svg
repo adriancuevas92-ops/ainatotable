@@ -1,0 +1,48 @@
+<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="-160 -25 320 240" role="img" aria-label="ʻĀina to Table three-leaf mark">
+    
+    <g transform="rotate(-62 0 172) translate(0,172) scale(0.9) translate(0,-172)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#1c5a3c" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#f0a415" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="rotate(62 0 172) translate(0,172) scale(0.9) translate(0,-172)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#c98a12" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#fdf6e8" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="translate(0,0)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#0f3d2b" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#f0a415" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    <rect x="-5" y="168" width="10" height="34" rx="5" fill="#0f3d2b"></rect>
+          </svg>

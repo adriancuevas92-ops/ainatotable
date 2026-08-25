@@ -1,0 +1,67 @@
+<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420" role="img" aria-label="ʻĀina to Table seal — South Kona, Hawaiʻi">
+          <title>ʻĀina to Table — South Kona, Hawaiʻi</title>
+          <defs>
+            <path id="sealTop" d="M 52,210 A 158,158 0 0 1 368,210" fill="none"></path>
+            <path id="sealBottom" d="M 38,210 A 172,172 0 0 0 382,210" fill="none"></path>
+          </defs>
+          <circle cx="210" cy="210" r="190" fill="#fdf6e8" stroke="#0f3d2b" stroke-width="8"></circle>
+          <circle cx="210" cy="210" r="150" fill="none" stroke="#f0a415" stroke-width="2"></circle>
+          <g transform="translate(210,114) scale(0.55)">
+    
+    <g transform="rotate(-62 0 172) translate(0,172) scale(0.9) translate(0,-172)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#1c5a3c" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#f0a415" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="rotate(62 0 172) translate(0,172) scale(0.9) translate(0,-172)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#c98a12" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#fdf6e8" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    
+    <g transform="translate(0,0)">
+      <path d="M 0,-8 C 58,32 68,112 0,172 C -68,112 -58,32 0,-8 Z" fill="#0f3d2b" stroke="#fdf6e8" stroke-width="8"></path>
+      
+      <g stroke="#f0a415" stroke-linecap="round" fill="none">
+        <path d="M0,10 L0,158" stroke-width="5"></path>
+        <g stroke-width="4">
+          <path d="M0,40 Q10,33 16,23"></path><path d="M0,40 Q-10,33 -16,23"></path>
+          <path d="M0,68 Q17,60 27,46"></path><path d="M0,68 Q-17,60 -27,46"></path>
+          <path d="M0,98 Q22,91 33,77"></path><path d="M0,98 Q-22,91 -33,77"></path>
+          <path d="M0,126 Q18,122 28,111"></path><path d="M0,126 Q-18,122 -28,111"></path>
+          <path d="M0,150 Q10,148 15,140"></path><path d="M0,150 Q-10,148 -15,140"></path>
+        </g>
+      </g>
+    </g>
+    <rect x="-5" y="168" width="10" height="34" rx="5" fill="#0f3d2b"></rect>
+          </g>
+          <text font-family="Noto Serif, Georgia, serif" font-weight="700" font-size="25" fill="#0f3d2b" letter-spacing="2.5">
+            <textPath href="#sealTop" startOffset="50%" text-anchor="middle">ʻĀINA TO TABLE</textPath>
+          </text>
+          <text font-family="Inter, Arial, sans-serif" font-weight="600" font-size="13" fill="#145238" letter-spacing="3">
+            <textPath href="#sealBottom" startOffset="50%" text-anchor="middle">SOUTH KONA, HAWAIʻI</textPath>
+          </text>
+          <path d="M190,242 L230,242" stroke="#f0a415" stroke-width="2"></path>
+          <text x="210" y="271" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="500" font-size="14.5" letter-spacing="2.8" fill="#0f3d2b">LAULIMA</text>
+          <text x="210" y="295" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="500" font-size="14.5" letter-spacing="2.8" fill="#0f3d2b">MĀLAMA ʻĀINA</text>
+          <text x="210" y="319" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="500" font-size="14.5" letter-spacing="2.8" fill="#0f3d2b">KULEANA</text>
+        </svg>
