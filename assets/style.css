@@ -126,12 +126,12 @@ li { margin-bottom: 0.4em; }
 .site-header .wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   max-width: 1500px;
   padding-top: 14px;
   padding-bottom: 14px;
-  gap: 8px 20px;
+  gap: 8px 36px;
 }
 
 @media (min-width: 1480px) {
