@@ -42,6 +42,7 @@ PAGES = [
     ("tools/site-assessment-worksheet.md", "tools/site-assessment-worksheet.html"),
     ("tools/seven-layer-planting-planner.md", "tools/seven-layer-planting-planner.html"),
     ("tools/hawaii-species-starter-list.md", "tools/hawaii-species-starter-list.html"),
+    ("tools/hand-pounded-poi-starter-guide.md", "tools/hand-pounded-poi-starter-guide.html"),
 ]
 
 # basename of source .md file -> root-relative output URL, for link rewriting

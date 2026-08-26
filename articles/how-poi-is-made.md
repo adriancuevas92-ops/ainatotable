@@ -26,4 +26,6 @@ It's a real legal distinction, not just a difference in technique, and at least 
 
 Two brands supply most of the poi sold in Hawaiʻi's grocery stores: HPC Foods (Taro Brand), based in Waipahu on Oʻahu and the largest poi manufacturer in the state, and Hanalei Poi Company, founded in 1999 by two Kauaʻi taro farmers. Both mill their poi rather than hand-pound it. Outside those two, hand-pounded poi is mostly a small-batch, direct product — sold at a factory counter, a farmers market, or by a grower who also mills a portion of their own harvest — rather than something found on a supermarket shelf.
 
+If you're already growing kalo yourself, see [Hand-Pounded Poi: A Starter Checklist](../tools/hand-pounded-poi-starter-guide.md) for what it actually takes to make your first batch.
+
 *Sources: [Puʻueo Poi bids aloha](https://www.westhawaiitoday.com/2017/08/21/hawaii-news/puueo-poi-bids-aloha/), West Hawaii Today, 2017; [Hand-Pounded vs. Milled Poi Explained](https://www.waiaholepoifactory.com/post/the-traditional-way-hand-pounded-vs-milled-poi-explained), Waiāhole Poi Factory; Hawaii Administrative Rules §11-50-3; further sourcing in [Further Reading](further-reading.md).*
