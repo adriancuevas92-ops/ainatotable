@@ -80,7 +80,7 @@ articles/                  — Markdown source for every page (one file per page
   restaurants-own-your-ingredients.md
   case-study-na-hoa-ululaau.md   — the nonprofit case study + live weather widget
   about-contact.md          — mission/values + contact
-tools/                      — the 3 downloadable planning tools (worksheet, planner, species list)
+tools/                      — the 4 downloadable planning tools (worksheet, planner, species list, hand-pounded poi starter checklist)
 assets/
   style.css                 — all site styling, one file, CSS custom properties for the palette
   weather.js                — vanilla JS, powers the case study page's live weather widget (Open-Meteo API)
@@ -200,16 +200,39 @@ key required), plus a live-ticking local clock in HST. Refreshes every
 with "South Kona" (see Hard Rules #3) and don't break the loading /
 error states (`#weatherLoading`, `#weatherError`, `#weatherContent`).
 
-## Recent changes (most recent first, as of 2026-08-24)
+## Recent changes (most recent first, as of 2026-08-25)
 
-1. Case study page: "Support the restoration work directly" section
+1. Home page (`articles/home.md`): hero paragraph and closing
+   "See it working" section rewritten to make the mission explicit —
+   invasive growth is what interrupted the kalo/ʻōlena/breadfruit
+   guild, the goal is scaling it back up (not keeping it small), and
+   framed as putting control back with the people doing the growing
+   (laulima/labor-ownership throughline). Kept to the site's
+   info-first voice — stated as fact, not a pitch. Verified okina
+   codepoints (U+02BB) render correctly in browser before pushing.
+2. New Tools page: `tools/hand-pounded-poi-starter-guide.md` — a
+   practical checklist companion to `how-poi-is-made.md` (what
+   Hawaiʻi's hand-pounded exemption actually requires, realistic
+   startup cost, GAP/insurance expectations for institutional sales,
+   the upland-vs-wetland taro note, and a UBIT caution for nonprofits).
+   Deliberately generalized, not tied to any specific grower — this
+   site doesn't publish Nā Hoa Ululāʻau's own internal business
+   planning (that stays in the family's private working notes), only
+   generalized public information anyone growing kalo could use, same
+   split already established for the grant-tracker tool. Added to
+   `build.py`'s `PAGES` list and cross-linked from
+   `how-poi-is-made.md`. Committed and pushed to `main`
+   (`c8aa935`); deploy watched end-to-end via `gh run watch`, confirmed
+   live at `/tools/hand-pounded-poi-starter-guide.html` with correct
+   diacritics.
+3. Case study page: "Support the restoration work directly" section
    added, linking to `https://ululaau.org/contact`. Explicitly framed
    as *not* only monetary — "time, tools, materials, and expertise"
    — because the nonprofit accepts more than donations and the copy
    shouldn't imply otherwise.
-2. Site header/favicon logo: added, then reverted (see "Logo status"
+4. Site header/favicon logo: added, then reverted (see "Logo status"
    above).
-3. Org full name fix, Noto Serif font fix, case-study heading fix, the
+5. Org full name fix, Noto Serif font fix, case-study heading fix, the
    ʻĀina okina fix, the weather widget build — see git log for full
    detail, messages are descriptive.
 

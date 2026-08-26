@@ -2,7 +2,7 @@
 <div class="wrap">
 <p class="tagline">Free, real information. No product to buy first.</p>
 <h1>This land already knew how to grow this.</h1>
-<p>Kalo and ʻōlena growing together under breadfruit canopy isn't a new idea for South Kona — it's a documented system, farmed here for centuries, interrupted, and being farmed again. This site teaches that same way of growing to anyone who wants to do it: homeowners growing real food on their own land, and restaurants who want ingredients they can trace back to a real grower.</p>
+<p>Kalo and ʻōlena growing together under breadfruit canopy isn't a new idea for South Kona — it's a documented system, farmed here for centuries, interrupted by invasive growth, and being cleared and farmed again. The goal isn't to keep it small: it's to scale the same system back up, on more land, with more hands, so the people doing the growing are the ones who hold it. This site teaches that same way of growing to anyone who wants to do it: homeowners growing real food on their own land, and restaurants who want ingredients they can trace back to a real grower.</p>
 <a class="btn" href="/learn/what-is-a-food-forest.html">Start Learning →</a>
 <a class="btn outline" href="/case-study.html" style="margin-left:12px;">See the real site →</a>
 <div style="margin-top:14px;"><a href="/about.html#laulima" style="color:#fff;font-size:0.9em;">Read more about why this matters →</a></div>
@@ -69,6 +69,6 @@ Eight core guides, meant to be read in order if you're starting from zero:
 
 ### See it working, not just explained
 
-Everything above is drawn from a real site — a small restoration project in South Kona, Hawaiʻi, currently growing kalo and ʻōlena on land that was, not long ago, overtaken by invasive growth.
+Everything above is drawn from a real site — a small restoration project in South Kona, Hawaiʻi, where invasive growth has been cleared by hand and kalo and ʻōlena are growing again, with breadfruit going back in as the canopy above them. The plan is the same one this whole site teaches, just at the scale it takes to matter.
 
 → [Read the case study](case-study-na-hoa-ululaau.md)
