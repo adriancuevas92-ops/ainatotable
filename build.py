@@ -28,9 +28,12 @@ DIST = os.path.join(ROOT, "dist")
 #     is impossible while the path is absolute;
 #   • and if local and CI read different files they produce different sites
 #     from the same commit. The committed copy is what the commit means.
+# The marts keep dated filenames; these copies take STABLE names so this
+# file never has to be edited to follow a date. data/PROVENANCE.txt records
+# which dated mart each copy came from.
 # Refresh with:  python3 -I tools/refresh_data.py
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
-MART = os.path.join(DATA, "aina_to_table_crop_catalogue_v2_2026-11-04.csv")
+MART = os.path.join(DATA, "crop_catalogue_v2.csv")
 MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
 # ── the mark, from the locked masters (viewBox and geometry unchanged) ─────────
@@ -1489,8 +1492,8 @@ def about_page():
 # in the catalogue — it existed to find new crops — so 74 rows had no price
 # while the report on disk quoted many of them. One source of truth, and the
 # attribution is recorded per row.
-ZIP3 = os.path.join(DATA, "usda_terminal_market_by_zip3_2026-11-04.csv")
-REGISTRY = os.path.join(DATA, "usda_terminal_market_registry_2026-11-04.csv")
+ZIP3 = os.path.join(DATA, "usda_terminal_market_by_zip3.csv")
+REGISTRY = os.path.join(DATA, "usda_terminal_market_registry.csv")
 
 def market_rows():
     try:
