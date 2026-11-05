@@ -1,0 +1,104 @@
+/* ʻĀina to Table — design tokens
+   🔒 PALETTE LOCKED 2026-11-03 — "Earthen Wall base, green reverse"
+   Two earlier bases were tried and withdrawn: navy #1C1C3C and brown #3A2718.
+   Both are on the Decision Log as reversals, not edits.
+   Sources: Fireworks (hanabi) · Maple Leaf Hunting (momiji gari) · Earthen Wall
+   (tsuchi kabe) · The Great Wave (kanagawa oki), from Japanese Color Combinations.
+   Accent is Ruby Leaf, measured from the Casa Chromatica card.
+   🔴 Use the values, never the palette names as brand terms.
+
+   Every ratio below is WCAG relative luminance, computed — not estimated.
+   Names are ROLES. The previous set named colours (--forest, --cream, --leaf);
+   after the palette change those names lied, so they are aliased and deprecated. */
+
+:root {
+  /* ---- GROUNDS --------------------------------------------------------- */
+  --page:           #FFFEF7;  /* the page. Great Wave                        */
+  --panel:          #DDD4C0;  /* cards, table bodies, bands. Earthen Wall    */
+  --surface-dark:   #26301F;  /* the reverse surface, GREEN. A darkening of
+                                 Earthen Wall's own sage #888E7E and khaki
+                                 #897D55 — it belongs to this palette rather
+                                 than being imported back from the old system.
+                                 The brown #3A2718 and the navy #1C1C3C are
+                                 both withdrawn.                              */
+  --surface-dark-2: #35412C;  /* raised element on the dark surface          */
+  /* page/panel 1.46 · page/dark 13.62 · panel/dark 9.35                      */
+
+  /* ---- TEXT ------------------------------------------------------------- */
+  --ink:      #2E2418;  /* body, warm near-black. 15.3 on page · 10.5 panel  */
+  --ink-soft: #6A5A47;  /* secondary. 6.56 on page · 4.50 on panel           */
+  --on-dark:      #FFFEF7;  /* text on surface-dark. 16.22                   */
+  --on-dark-soft: #DDD4C0;  /* secondary on surface-dark. 11.13              */
+
+  /* ---- LINE -------------------------------------------------------------- */
+  --line: #BCAD90;  /* 2.18 on page · 1.50 on panel. Visible on BOTH grounds.
+                       Chosen after #C9BFA8 measured 1.24 on panel — a rule
+                       that disappears on the catalogue's own background.     */
+  --line-dark: #43512F;  /* 8.98-equivalent separation on surface-dark       */
+
+  /* ---- ACCENTS ----------------------------------------------------------- */
+  --accent: #841A1A;  /* Ruby Leaf brick. 9.69 on page · 6.65 on panel.
+                         🔴 NOT optional: #c8102e measured 3.99 on panel and
+                         fails body text. The panel ground forces this value. */
+  /* 🔴 DARK SURFACE ONLY. Both fail on every light ground.                  */
+  --accent-warm:      #F8B500;  /* 7.61 on dark · 1.79 on page — FAILS light */
+  --accent-warm-deep: #E08A1E;  /* 5.13 on dark · 2.66 on page — FAILS light */
+
+  /* ---- EARTH TONES — 🔴 NON-TEXT OR LARGE TEXT ONLY ---------------------- */
+  --earth: #B7603C;  /* terracotta. page 4.37 large · panel 3.00 FAIL        */
+  --moss:  #897D55;  /* khaki. page 4.05 large · panel 2.78 FAIL             */
+  --sage:  #888E7E;  /* page 3.34 large · panel 2.29 FAIL · dark 4.19 large  */
+
+  /* ---- CATALOGUE SEMANTICS ----------------------------------------------- */
+  /* Fills, not text. Every one still ships a text label — colour never
+     carries meaning alone. The 2010 UCCE matrix lost its meaning to exactly
+     that and the rule exists because of it.                                  */
+  --season-peak:     #B7603C;
+  --season-shoulder: #DCBFA6;
+  --season-none:     #D6CCB6;
+  --gap-contractable: #B7603C;
+  --gap-input-limited:#897D55;
+  --gap-blocked:      #4F4A3F;
+  /* 🔴 Chip TEXT is always --ink-soft. Only the chip BORDER carries the class
+     colour — --earth and --moss cannot pass body text on panel.              */
+
+  /* ---- TYPE --------------------------------------------------------------- */
+  --font-display: "Noto Serif", Georgia, serif;   /* SELF-HOSTED — fonts.css  */
+  --font-ui:      "Inter", "Segoe UI", -apple-system, sans-serif;
+  --fs-base: 17px;        /* scale ratio 1.25 (major third) */
+  --fs-display: 2.441rem; --fs-h1: 1.953rem; --fs-h2: 1.563rem; --fs-h3: 1.25rem;
+  --fs-body: 1rem; --fs-data: 0.9375rem; --fs-caption: 0.8125rem;
+  --lh-tight: 1.2; --lh-body: 1.55;
+
+  /* ---- SPACE (4px base) ---------------------------------------------------- */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:64px;
+
+  /* ---- MEASURE ------------------------------------------------------------- */
+  --max-width: 800px;         /* prose */
+  --max-width-table: 1240px;  /* the catalogue is EXEMPT: 800px cannot hold 12
+                                 month columns plus crop, cuisine and status  */
+  --radius: 3px;
+  --bp-sm: 640px; --bp-md: 960px; --bp-lg: 1280px;
+  --mark-min: 32px;           /* below this use the purpose-drawn 16px glyph  */
+  --lockup-min-width: 237px;  /* below this: the mark alone                   */
+
+  /* ---- aliases REMOVED 2026-11-03 at the first real build, as the block
+     itself instructed. Role names are the only names. Twice a colour-named
+     alias named a colour the palette did not contain (--forest was navy,
+     then brown) and twice it caused a real misread.                        */
+}
+
+/* Tables use tabular figures so columns align. Non-negotiable in the catalogue. */
+table, .data { font-variant-numeric: tabular-nums; font-size: var(--fs-data); }
+
+/* The mark inherits colour. Never hard-code its fill. */
+.mark { color: var(--accent); }
+.on-dark .mark, .reverse .mark { color: var(--on-dark); }
+
+/* 🔴 FORBIDDEN — stated so a builder cannot do it by accident:
+   color: var(--accent-warm);      background: var(--page);   1.79 — fails
+   color: var(--accent-warm-deep); background: var(--page);   2.66 — fails
+   color: var(--accent);           background: var(--surface-dark); 1.41 — fails
+   color: var(--moss) or var(--earth) at body size on any light ground — fails
+   🔴 No red works on any dark surface. The reverse treatment uses --on-dark. */
