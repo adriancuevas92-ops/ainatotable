@@ -87,17 +87,8 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .tools select{font:inherit;font-size:.875rem;padding:6px 10px;border:1px solid var(--line);
               border-radius:var(--radius);background:var(--page);color:var(--ink)}
 table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.9375rem;min-width:620px}
-/* th locks below the sticky nav, not under it -- --nav-h is measured by the
-   site-wide script in build.py's page() template (nav height isn't constant,
-   its link list wraps on narrow viewports), with a same-ballpark static
-   fallback here for the instant before that script runs. The filter toolbar
-   above the table is NOT sticky -- only this header row is. */
-th{position:sticky;top:var(--nav-h,63px);background:var(--panel);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
+th{position:sticky;top:0;background:var(--panel);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
    text-align:left;font-weight:600;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--line)}
-/* Table scrolls within itself on narrow viewports -- never the whole page.
-   overflow-x only: overflow-y stays visible so the sticky th above still
-   tracks the PAGE's scroll, not this wrapper's. */
-.tbl{overflow-x:auto}
 td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:middle;height:48px}
 tr:last-child td{border-bottom:0}
 tbody tr:hover{background:var(--panel)}

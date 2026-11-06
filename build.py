@@ -155,17 +155,6 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 <main id="main">
 {body}
 </main>
-<script>
-(function(){{
-  // Sticky table headers (th{{position:sticky}}) must sit BELOW the sticky
-  // nav, not under it -- and nav's own height isn't constant: its link list
-  // wraps to a second line on narrow viewports. Measured here, not guessed,
-  // so it stays correct at every width instead of a brittle magic number.
-  var nv=document.querySelector('nav');
-  function setNavH(){{document.documentElement.style.setProperty('--nav-h', nv.offsetHeight+'px');}}
-  if(nv){{setNavH(); window.addEventListener('resize', setNavH);}}
-}})();
-</script>
 <footer><div class="wrap wide">
   <p><strong>ʻĀina to Table</strong> — a network for ingredients you can trace to the ground they
      came out of, operating in the Fresno region. It qualifies land, publishes what is known about
@@ -1273,12 +1262,12 @@ def market_page():
       <option value="acre-desc">County $/acre, high to low</option></select>
     <span class="src" id="mcnt">{len(rs)} of {len(rs)} ingredients</span>
   </div>
-  <div class="tbl"><table class="data">
+  <table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre</th>
       <th>Terminal (wholesale)</th>
       <th>Retail (regional)</th></tr></thead>
     <tbody id="tb-market">{"".join(market_row(r) for r in market)}</tbody>
-  </table></div>
+  </table>
 </div></section>
 <script>
 (function(){{
