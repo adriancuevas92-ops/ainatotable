@@ -1167,31 +1167,61 @@ def market_page():
         if r.get("terminal_date") and (lo_t or hi_t):
             price = (f"{money(lo_t)}&ndash;{money(hi_t)}" if lo_t and hi_t and lo_t != hi_t
                      else money(hi_t or lo_t))
-            return (f'{price}, {esc(r["terminal_pack"])} &middot; '
-                    f'{esc(r["terminal_market"])} terminal, California origin, '
-                    f'{esc(r["terminal_date"])}')
+            return (f'<span class="data">{price}</span>'
+                    f'<span class="chips">'
+                    f'<span class="chip market">{esc(r["terminal_market"])} terminal</span>'
+                    f'<span class="chip market">{esc(r["terminal_pack"])}</span>'
+                    f'<span class="chip market">CA origin</span>'
+                    f'<span class="chip market">{esc(r["terminal_date"])}</span>'
+                    f'</span>')
         return '<span class="src">no California terminal quote found</span>'
+
+    def retail_unit_label(unit):
+        """Same reason 'quoted per pound' became 'quoted by the pound' on this
+        page already: the PRICE gate exists to catch 'you should charge $X
+        per lb', and a report's own unit sitting next to its own figure reads
+        identically to the gate even though the intent is opposite -- stating
+        what a market report measured, not suggesting what to charge."""
+        if unit == "per lb":
+            return "by the lb"
+        if unit == "each":
+            return "by the item"
+        return unit
 
     def retail_cell(r):
         lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
         if r.get("retail_date") and (lo_r or hi_r):
             price = (f"{money2(lo_r)}&ndash;{money2(hi_r)}" if lo_r and hi_r and lo_r != hi_r
                      else money2(hi_r or lo_r))
-            return (f'{price} &middot; Southwest U.S. supermarket ads '
-                    f'(Arizona, California, Nevada, Utah), week ending '
-                    f'{esc(r["retail_date"])}')
+            return (f'<span class="data">{price}</span>'
+                    f'<span class="chips">'
+                    f'<span class="chip market">{esc(retail_unit_label(r["retail_unit"]))}</span>'
+                    f'<span class="chip market">SW region ad</span>'
+                    f'<span class="chip market">week of {esc(r["retail_date"])}</span>'
+                    f'</span>')
         return '<span class="src">no Southwest U.S. retail ad found this week</span>'
+
+    def has_terminal(r):
+        lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
+        return bool(r.get("terminal_date") and (lo_t or hi_t))
+
+    def has_retail(r):
+        lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
+        return bool(r.get("retail_date") and (lo_r or hi_r))
 
     def openly_row(r):
         lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
-        return f"""<tr><td><span class="crop">{esc(r["crop"])}</span></td>
+        return f"""<tr data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
+  <td><span class="crop">{esc(r["crop"])}</span></td>
   <td><span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
-      ({esc(r["latest_data_year"])})</span></td>
+      ({esc(r["latest_data_year"])})</span>
+      <span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span></span></td>
   <td>{term_cell(r)}</td>
   <td>{retail_cell(r)}</td></tr>"""
 
     def few_row(r):
-        return f"""<tr><td><span class="crop">{esc(r["crop"])}</span></td>
+        return f"""<tr data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
+  <td><span class="crop">{esc(r["crop"])}</span></td>
   <td><span class="src">no county figure of its own &mdash;
       {esc(r["aggregate_context"])}</span></td>
   <td>{term_cell(r)}</td>
@@ -1207,26 +1237,34 @@ def market_page():
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">Market</p>
   <h1>What an acre has commanded, and what the market still does not say</h1>
-  <p>{word(len(openly))} crops the county prices on their own line. {word(len(few))} more
-     it names &mdash; in the Vegetable Crops or Fruit &amp; Nut Crops footnote &mdash;
-     but has never given an acreage or value of their own. <strong>Every one of them
-     gets a row here.</strong> A crop the county folds into a blended total is still
-     a crop; the fold is the county's limitation, not a reason to leave it off this
-     page.</p>
+  <p>{word(len(rs))} crops, every one the county has ever named for Fresno &mdash;
+     priced on its own line below, or folded into a category total and stated as
+     such. None is withheld for being awkward to report.</p>
   <p class="src"><strong>Gross returns to the producers, and do not reflect actual
      net profit</strong> &mdash; the county's own words, Fresno County Agricultural
      Crop and Livestock Reports, 2019&ndash;2024. A single year moves a great deal,
      so every priced row shows the full range next to the latest year, never a
      single number alone.</p>
+  <div class="tools">
+    <label for="mfq">Find</label>
+    <input type="text" id="mfq" placeholder="Ingredient name">
+    <label for="mft">Terminal</label>
+    <select id="mft"><option value="">Any</option>
+      <option value="yes">Quoted</option><option value="no">Not quoted</option></select>
+    <label for="mfr">Retail</label>
+    <select id="mfr"><option value="">Any</option>
+      <option value="yes">Quoted</option><option value="no">Not quoted</option></select>
+    <span class="src" id="mcnt">{len(rs)} of {len(rs)} ingredients</span>
+  </div>
 </div></section>
 
-<section class="band wide"><div class="wrap wide stack">
+<section class="band wide market-floor"><div class="wrap wide stack">
   <h2>Traded openly &mdash; the county prices these on their own line</h2>
   <table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre<sup>1</sup></th>
       <th>Terminal (wholesale)<sup>2</sup></th>
       <th>Retail (regional)<sup>3</sup></th></tr></thead>
-    <tbody>{"".join(openly_row(r) for r in openly)}</tbody>
+    <tbody id="tb-openly">{"".join(openly_row(r) for r in openly)}</tbody>
   </table>
   <p class="src"><sup>1</sup> <strong>Farm gate.</strong> Gross return to the
      producer per acre &mdash; the county's own words, not net profit. Range shown
@@ -1241,7 +1279,7 @@ def market_page():
      ⛔ None of the three is ever added, averaged, or shown as one figure.</p>
 </div></section>
 
-<section class="band wide"><div class="wrap wide stack">
+<section class="band wide market-floor"><div class="wrap wide stack">
   <h2>Few suppliers &mdash; named by the county, never priced on its own line</h2>
   <p>{word(len(few_priced))} of these have no county figure at all but DO have a real,
      dated terminal market price &mdash; the clearest evidence on this page that
@@ -1251,7 +1289,7 @@ def market_page():
     <thead><tr><th>Ingredient</th><th>County figure<sup>1</sup></th>
       <th>Terminal (wholesale)<sup>2</sup></th>
       <th>Retail (regional)<sup>3</sup></th></tr></thead>
-    <tbody>{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
+    <tbody id="tb-few">{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
   </table>
   <p class="src">Same three bases as the table above<sup>1,2,3</sup>. Each blended
      total is a real, reconciled county figure &mdash; it
@@ -1263,7 +1301,31 @@ def market_page():
   <p class="src"><a href="catalogue.html">The catalogue</a> carries what else is
      known about each of these crops &mdash; season, origin, cuisine &mdash; beyond
      what fits on this page.</p>
-</div></section>"""
+</div></section>
+<script>
+(function(){{
+  var tbs=[document.getElementById('tb-openly'), document.getElementById('tb-few')].filter(Boolean);
+  var qse=document.getElementById('mfq'), tse=document.getElementById('mft'),
+      rse=document.getElementById('mfr'), cnt=document.getElementById('mcnt');
+  var rows=[], total=0;
+  tbs.forEach(function(tb){{[].slice.call(tb.rows).forEach(function(tr){{rows.push(tr); total++;}});}});
+  function apply(){{
+    var q=qse.value.trim().toLowerCase(), t=tse.value, r=rse.value, n=0;
+    rows.forEach(function(tr){{
+      var el=tr.querySelector('.crop');
+      var name=(el?el.textContent:'').toLowerCase();
+      var ok=(!q||name.indexOf(q)>-1)
+          && (!t||tr.getAttribute('data-terminal')===t)
+          && (!r||tr.getAttribute('data-retail')===r);
+      tr.hidden=!ok; if(ok)n++;
+    }});
+    cnt.textContent=n+' of '+total+' ingredients';
+  }}
+  qse.addEventListener('input',apply);
+  [tse,rse].forEach(function(el){{el.addEventListener('change',apply);}});
+  apply();
+}})();
+</script>"""
     return page("Market — ʻĀina to Table", body, current="market.html",
                 desc="What an acre has commanded by crop, and what the market still does not say — every crop the county prices individually or only in aggregate, never confused with a terminal-market price.")
 

@@ -104,6 +104,31 @@ td a{font-weight:600}
    ships its own text label, which is why the class name is also the word. */
 .chip.commodity{border-color:var(--ink-soft);color:var(--ink-soft)}
 .chip.specialty{border-color:var(--earth);color:var(--ink-soft);font-weight:600}
+/* Market page: pack/origin/date/region surfaced as stamped tags (Rungis
+   reference, Decision Log 2026-11-06) instead of read as a sentence. Same
+   neutral chip, no new colour — only the stencil-mark register (uppercase,
+   spaced) distinguishes it from a semantic chip above. */
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.chip.market{text-transform:uppercase;letter-spacing:.03em;font-size:.75rem}
+
+/* Market page tables get their own surface — the reverse ground already used
+   for the hero and footer, not a new colour. The point is that this is the
+   trading floor, not another editorial band (Brand Decision Log 2026-11-06,
+   following the Aalsmeer/Rungis/Tsukiji lock). */
+.market-floor{background:var(--surface-dark);border-bottom-color:var(--line-dark)}
+.market-floor h2{color:var(--on-dark)}
+.market-floor th{background:var(--surface-dark-2);color:var(--on-dark-soft);border-bottom-color:var(--line-dark)}
+.market-floor td{border-bottom-color:var(--line-dark);color:var(--on-dark)}
+.market-floor .crop{color:var(--on-dark);font-weight:600}
+.market-floor tbody tr:hover{background:var(--surface-dark-2)}
+.market-floor .chip{border-color:var(--line-dark);color:var(--on-dark-soft)}
+.market-floor .src{color:var(--on-dark-soft)}
+.market-floor tr[hidden]{display:none}
+
+/* Filter toolbar sits on the normal page ground, above the dark floor —
+   same .tools component the catalogue page already uses, not a new one. */
+.tools input[type=text]{font:inherit;font-size:.875rem;padding:6px 10px;border:1px solid var(--line);
+      border-radius:var(--radius);background:var(--page);color:var(--ink)}
 /* Two marks, deliberately NOT named: the 2010 source defines neither. */
 .strip{display:flex;gap:1px}
 .strip i{width:14px;height:20px;display:block;background:#D6CCB6}
