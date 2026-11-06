@@ -1262,12 +1262,12 @@ def market_page():
       <option value="acre-desc">County $/acre, high to low</option></select>
     <span class="src" id="mcnt">{len(rs)} of {len(rs)} ingredients</span>
   </div>
-  <table class="data">
+  <div class="tbl"><table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre</th>
       <th>Terminal (wholesale)</th>
       <th>Retail (regional)</th></tr></thead>
     <tbody id="tb-market">{"".join(market_row(r) for r in market)}</tbody>
-  </table>
+  </table></div>
 </div></section>
 <script>
 (function(){{
