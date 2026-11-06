@@ -30,6 +30,7 @@ FILES = {
     "crop_catalogue_v2.csv": "aina_to_table_crop_catalogue_v2_*.csv",
     "usda_terminal_market_by_zip3.csv": "usda_terminal_market_by_zip3_*.csv",
     "usda_terminal_market_registry.csv": "usda_terminal_market_registry_*.csv",
+    "price_per_acre_chart.csv": "fresno_price_per_acre_chart_*.csv",
 }
 
 

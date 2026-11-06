@@ -110,6 +110,15 @@ td a{font-weight:600}
 .strip i.dk{background:var(--earth)}
 .strip i.lt{background:#DCBFA6}
 .win{font-size:.9375rem;color:var(--ink-soft);display:none}
+/* Market page range bar — a single series, magnitude with a range, so one
+   fill colour (not a categorical palette) and the number stays visible in
+   text beside it rather than only on hover. */
+.rangebar{position:relative;height:10px;background:var(--panel);
+  border-radius:var(--radius);margin-bottom:4px;min-width:160px}
+.rangebar::before{content:"";position:absolute;top:0;left:var(--l);width:var(--w);
+  height:100%;background:var(--earth);border-radius:var(--radius)}
+.rangebar::after{content:"";position:absolute;top:-3px;left:var(--m);width:2px;
+  height:16px;background:var(--ink)}
 /* A crop with NO marks must never render as an empty strip: an empty strip is
    indistinguishable from "special order only", and they mean different things. */
 .win.show{display:block;font-weight:600}

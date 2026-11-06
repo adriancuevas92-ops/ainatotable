@@ -55,6 +55,7 @@ MARK = ('<svg viewBox="-1.2199 -1.2859 2.484 2.484" aria-hidden="true">'
  '<ellipse cx="0.5386" cy="-0.7985" rx="0.135" ry="0.1242"/></g></svg>')
 
 NAV = [("index.html","Home"),("catalogue.html","Catalogue"),("inspect.html","Inspect"),
+       ("market.html","Market"),
        ("buyers.html","For Buyers"),("growers.html","For Growers"),
        ("growing.html","Growing"), ("qualify.html","Qualify")]
 
@@ -1136,6 +1137,114 @@ def inspect_page():
     return page("Inspect — ʻĀina to Table", body, current="inspect.html",
                 desc="What this market is actually doing, with every figure sourced, dated, and its gaps stated.")
 
+# ── Market (price per acre) ───────────────────────────────────────────────────
+PRICE_CHART = os.path.join(DATA, "price_per_acre_chart.csv")
+
+def price_chart_rows():
+    try:
+        with io.open(PRICE_CHART, encoding="utf-8") as f:
+            return list(csv.DictReader(f))
+    except FileNotFoundError:
+        return []
+
+def money(v):
+    return f"${float(v):,.0f}"
+
+def market_page():
+    S = stats()
+    rs = sorted(price_chart_rows(), key=lambda r: -float(r["latest_value_per_acre"]))
+    if not rs:
+        body = """<section class="band"><div class="wrap stack"><h1>Market</h1>
+  <p>Not built yet.</p></div></section>"""
+        return page("Market — ʻĀina to Table", body, current="market.html")
+
+    maxv = max(float(r["range_high"]) for r in rs)
+
+    def bar_row(r):
+        lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
+        left, width = lo/maxv*100, max((hi-lo)/maxv*100, 0.6)
+        mark = (latest-lo)/maxv*100
+        agg = r["is_aggregate"] == "True"
+        name = esc(r["crop"])
+        term = ""
+        lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
+        if not agg and r.get("terminal_date") and (lo_t or hi_t):
+            price = (f"{money(lo_t)}&ndash;{money(hi_t)}" if lo_t and hi_t and lo_t != hi_t
+                     else money(hi_t or lo_t))
+            term = (f'<span class="src">{price}, {esc(r["terminal_pack"])} &middot; '
+                    f'{esc(r["terminal_market"])} terminal, California origin, '
+                    f'{esc(r["terminal_date"])}</span>')
+        else:
+            term = '<span class="src">no California terminal quote found</span>'
+        agg_note = (' <span class="src">— blended across many crops the '
+                    'county does not price individually; see note below</span>'
+                    if agg else "")
+        return f"""<tr><td><span class="crop">{name}</span>{agg_note}</td>
+  <td><div class="rangebar" style="--l:{left:.2f}%;--w:{width:.2f}%;--m:{mark:.2f}%"></div>
+      <span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
+      ({esc(r["latest_data_year"])})</span></td>
+  <td>{term}</td></tr>"""
+
+    trs = "".join(bar_row(r) for r in rs)
+    n_individual = sum(1 for r in rs if r["is_aggregate"] != "True")
+
+    body = f"""<section class="band"><div class="wrap stack">
+  <p class="eyebrow">Market</p>
+  <h1>What an acre has commanded, by crop, 2019&ndash;2024</h1>
+  <p>{word(n_individual)} crops the county breaks out on their own line, plus two
+     blended lines for everything it only prices in aggregate. <strong>Gross returns
+     to the producers, and do not reflect actual net profit</strong> &mdash; the
+     county's own words, carried here because there is no cost side behind any
+     figure on this page.</p>
+  <p class="src">Fresno County Agricultural Crop and Livestock Reports, 2019&ndash;2024.
+     A single year moves a great deal &mdash; persimmons swung from
+     $6,448 to $18,214 an acre across the series &mdash; so every row shows the
+     full range next to the latest year, never a single number alone.</p>
+</div></section>
+
+<section class="band wide"><div class="wrap wide stack">
+  <table class="data">
+    <thead><tr><th>Crop</th><th>County value per acre (range, latest)</th>
+      <th>Terminal reference, separately</th></tr></thead>
+    <tbody>{trs}</tbody>
+  </table>
+  <p class="src">⛔ The two columns are never the same number and are never combined.
+     The county figure is <strong>farm gate</strong> &mdash; what this acre returned
+     here. The terminal figure is <strong>delivered wholesale</strong>, hundreds of
+     miles away, after freight, cooling and a jobber's margin. Multiplying county
+     yield by a terminal price overstates what a Fresno acre earns by that whole
+     gap, which is why they stay in separate columns rather than one.</p>
+</div></section>
+
+<section class="band"><div class="wrap stack">
+  <h2>The two blended lines, and why they are here at all</h2>
+  <p>Most of this valley's specialty produce &mdash; the crops this venture exists
+     to carry &mdash; is not priced on its own line anywhere in the county's report.
+     It is folded into one of two catch-all totals, each with a real, reconciled
+     dollar value and a real acreage, that nobody had previously extracted.</p>
+  <div class="cards">
+    <div class="card"><h3>Vegetable Crops, blended</h3>
+      <p>Named inside it, by the county's own footnote: <strong>cilantro, tomatillo,
+         chili pepper, jicama, purslane, sunchoke</strong>, cactus leaf, chipilin,
+         epazote, and dozens more &mdash; the same crops a cuisine-demand reading
+         would call Mexican specialty produce, priced here for the first time as a
+         bucket rather than not at all.</p></div>
+    <div class="card"><h3>Fruit &amp; Nut Crops, blended</h3>
+      <p>Named inside it: <strong>figs, kiwifruit, guava</strong>, boysenberries,
+         mulberries, quince, and more &mdash; tree fruit the county tracks only in
+         aggregate.</p></div>
+  </div>
+  <p class="src">Neither blended figure says what any one crop inside it is worth
+     on its own &mdash; that is the whole reason they are not on individual lines.
+     Read them as what the category as a whole returned, not as a price for any
+     single crop in it.</p>
+  <p class="src"><a href="catalogue.html">The catalogue</a> is where an individual
+     specialty crop is described; this page is where the county's own aggregate
+     for the category it sits in is priced.</p>
+</div></section>"""
+    return page("Market — ʻĀina to Table", body, current="market.html",
+                desc="What an acre has commanded by crop, 2019–2024, from the county's own reports — gross, farm gate, and never confused with a terminal-market price.")
+
 # ── For Buyers (C2b). Gate C condition 1 lives here. ──────────────────────────
 def buyers_page():
     S = stats()
@@ -1929,7 +2038,8 @@ def check(pages):
 def main():
     rs = rows()
     pages = {"index.html": home_page(), "catalogue.html": catalogue_page(rs),
-             "inspect.html": inspect_page(), "buyers.html": buyers_page(),
+             "inspect.html": inspect_page(), "market.html": market_page(),
+             "buyers.html": buyers_page(),
              "growers.html": growers_page(), "about.html": about_page(),
              "qualify.html": qualify_page(), "growing.html": growing_page()}
     for r in rs:
