@@ -1237,14 +1237,6 @@ def market_page():
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">Market</p>
   <h1>What an acre has commanded, and what the market still does not say</h1>
-  <p>{word(len(rs))} crops, every one the county has ever named for Fresno &mdash;
-     priced on its own line below, or folded into a category total and stated as
-     such. None is withheld for being awkward to report.</p>
-  <p class="src"><strong>Gross returns to the producers, and do not reflect actual
-     net profit</strong> &mdash; the county's own words, Fresno County Agricultural
-     Crop and Livestock Reports, 2019&ndash;2024. A single year moves a great deal,
-     so every priced row shows the full range next to the latest year, never a
-     single number alone.</p>
   <div class="tools">
     <label for="mfq">Find</label>
     <input type="text" id="mfq" placeholder="Ingredient name">
@@ -1266,6 +1258,10 @@ def market_page():
       <th>Retail (regional)<sup>3</sup></th></tr></thead>
     <tbody id="tb-openly">{"".join(openly_row(r) for r in openly)}</tbody>
   </table>
+  <p class="src"><strong>Every crop the county has ever named for Fresno is
+     here</strong> &mdash; {word(len(rs))} in all, priced on its own line above or
+     folded into a category total below. None is withheld for being hard to
+     report.</p>
   <p class="src"><sup>1</sup> <strong>Farm gate.</strong> Gross return to the
      producer per acre &mdash; the county's own words, not net profit. Range shown
      next to the latest year; a single year moves a great deal. Fresno County
@@ -1281,18 +1277,18 @@ def market_page():
 
 <section class="band wide market-floor"><div class="wrap wide stack">
   <h2>Few suppliers &mdash; named by the county, never priced on its own line</h2>
-  <p>{word(len(few_priced))} of these have no county figure at all but DO have a real,
-     dated terminal market price &mdash; the clearest evidence on this page that
-     <strong>unreported is not unproduced.</strong> {word(len(few_unpriced))} have
-     neither, yet, anywhere this venture has looked.</p>
   <table class="data">
     <thead><tr><th>Ingredient</th><th>County figure<sup>1</sup></th>
       <th>Terminal (wholesale)<sup>2</sup></th>
       <th>Retail (regional)<sup>3</sup></th></tr></thead>
     <tbody id="tb-few">{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
   </table>
-  <p class="src">Same three bases as the table above<sup>1,2,3</sup>. Each blended
-     total is a real, reconciled county figure &mdash; it
+  <p class="src">Same three bases as the table above<sup>1,2,3</sup>.
+     {word(len(few_priced))} of these rows have no county figure at all but DO carry
+     a real, dated terminal market price &mdash; the clearest evidence on this page
+     that <strong>unreported is not unproduced.</strong> {word(len(few_unpriced))}
+     have neither, yet, anywhere this venture has looked. Each blended total is a
+     real, reconciled county figure &mdash; it
      says what the WHOLE category earned, not what any one crop inside it is worth.
      Reading it as one crop's price would be fabricating a precision the county
      never published. That is why every row above states the blend as context,
