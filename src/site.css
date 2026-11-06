@@ -130,9 +130,13 @@ td a{font-weight:600}
    the page's own light ground visible on both sides, not a colored band
    that stretches edge to edge regardless of window width (which is why it
    never looked centered: there was nothing for "centered" to mean). */
-.market-floor{background:var(--page);border-bottom:none}
+/* padding, not margin -- the wrap's own margin would collapse through this
+   section (which has no padding/border of its own to contain it) and expose
+   the BODY's background (--panel, tan) instead of this section's --page,
+   which is exactly the off-color strip found by screenshot 2026-11-06. */
+.market-floor{background:var(--page);border-bottom:none;padding-block:32px}
 .market-floor>.wrap{background:var(--surface-dark);border-top:4px solid var(--accent-warm);
-                     border-radius:var(--radius);padding:32px;margin-block:32px}
+                     border-radius:var(--radius);padding:32px}
 /* A hard rule between the toolbar and the table -- without it the toolbar's
    label/field pairs and the table's own header cells read as one confused
    grid stacked on top of itself, which is exactly the complaint. */
