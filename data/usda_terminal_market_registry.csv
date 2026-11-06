@@ -1,0 +1,12 @@
+code,city,state,rep_zip,status,report_date,lat,lon
+hc,Los Angeles,CA,90012,live,2026-11-04,34.06598,-118.23864
+sx,San Francisco,CA,94102,frozen,2025-05-01,37.77956,-122.41929
+hx,Chicago,IL,60601,live,2026-11-04,41.88515,-87.62151
+nx,New York,NY,10001,live,2026-11-04,40.75065,-73.99730
+aj,Atlanta,GA,30303,live,2026-11-04,33.75285,-84.39023
+bh,Boston,MA,02108,live,2026-11-04,42.35510,-71.06574
+bp,Baltimore,MD,21201,live,2026-11-04,39.29496,-76.62234
+du,Detroit,MI,48226,live,2026-11-04,42.33181,-83.05035
+mh,Miami,FL,33130,live,2026-11-04,25.76852,-80.20336
+na,Philadelphia,PA,19107,live,2026-11-04,39.95176,-75.15867
+ca,Columbia,SC,29201,live,2026-11-04,33.98248,-81.02809

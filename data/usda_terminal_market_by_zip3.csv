@@ -1,0 +1,897 @@
+zip3,code,city,mi_lo,mi_hi,band,n,mixed
+006,MH,Miami,976,1024,none,46,
+007,MH,Miami,1017,1083,none,46,
+008,MH,Miami,1103,1137,none,6,
+009,MH,Miami,1025,1046,none,40,
+010,BH,Boston,51,101,direct,62,yes
+011,BH,Boston,75,80,direct,13,
+012,BH,Boston,97,117,freight,32,yes
+013,BH,Boston,58,101,direct,30,yes
+014,BH,Boston,25,55,direct,21,
+015,BH,Boston,29,61,direct,45,
+016,BH,Boston,37,44,direct,11,
+017,BH,Boston,13,30,direct,27,
+018,BH,Boston,8,34,direct,32,
+019,BH,Boston,8,36,direct,32,
+020,BH,Boston,9,28,direct,26,
+021,BH,Boston,0,14,direct,53,
+022,BH,Boston,1,2,direct,4,
+023,BH,Boston,12,41,direct,28,
+024,BH,Boston,3,13,direct,27,
+025,BH,Boston,43,93,direct,25,
+026,BH,Boston,49,72,direct,35,
+027,BH,Boston,27,65,direct,36,
+028,BH,Boston,32,86,direct,63,
+029,BH,Boston,38,47,direct,18,
+030,BH,Boston,29,59,direct,34,
+031,BH,Boston,45,54,direct,7,
+032,BH,Boston,54,124,direct,58,yes
+033,BH,Boston,59,73,direct,4,
+034,BH,Boston,56,82,direct,25,
+035,BH,Boston,129,191,freight,20,
+036,BH,Boston,83,91,direct,8,
+037,BH,Boston,82,142,freight,24,yes
+038,BH,Boston,34,127,direct,67,yes
+039,BH,Boston,51,70,direct,11,
+040,BH,Boston,71,131,freight,62,yes
+041,BH,Boston,95,106,direct,9,yes
+042,BH,Boston,117,164,freight,48,
+043,BH,Boston,137,163,freight,21,
+044,BH,Boston,181,293,freight,66,
+045,BH,Boston,116,156,freight,29,
+046,BH,Boston,171,272,freight,59,
+047,BH,Boston,269,369,reference,39,yes
+048,BH,Boston,132,172,freight,18,
+049,BH,Boston,160,226,freight,64,
+050,BH,Boston,99,143,freight,49,yes
+051,BH,Boston,88,113,freight,16,yes
+052,BH,Boston,111,120,freight,11,
+053,BH,Boston,79,112,direct,21,yes
+054,BH,Boston,158,211,freight,48,
+056,BH,Boston,137,181,freight,33,
+057,BH,Boston,113,160,freight,40,
+058,BH,Boston,145,192,freight,40,
+059,BH,Boston,146,185,freight,7,
+060,NX,New York,66,101,direct,61,yes
+061,BH,Boston,89,95,direct,14,yes
+062,BH,Boston,48,83,direct,33,
+063,BH,Boston,58,95,direct,36,
+064,NX,New York,57,94,direct,54,yes
+065,NX,New York,65,74,direct,12,
+066,NX,New York,50,56,direct,10,
+067,NX,New York,63,87,direct,38,
+068,NX,New York,28,58,direct,25,
+069,NX,New York,32,35,direct,6,
+070,NX,New York,2,28,direct,79,
+071,NX,New York,8,12,direct,12,
+072,NX,New York,11,15,direct,7,
+073,NX,New York,2,5,direct,7,
+074,NX,New York,12,47,direct,37,
+075,NX,New York,13,17,direct,12,
+076,NX,New York,6,21,direct,39,
+077,NX,New York,22,43,direct,41,
+078,NX,New York,27,58,direct,45,
+079,NX,New York,19,38,direct,29,
+080,NA,Philadelphia,5,57,direct,87,
+081,NA,Philadelphia,2,6,direct,9,
+082,NA,Philadelphia,35,71,direct,29,
+083,NA,Philadelphia,20,52,direct,33,
+084,NA,Philadelphia,55,55,direct,4,
+085,NA,Philadelphia,22,44,direct,31,yes
+086,NA,Philadelphia,27,34,direct,15,
+087,NA,Philadelphia,42,57,direct,25,yes
+088,NX,New York,21,52,direct,54,yes
+089,NX,New York,28,34,direct,3,
+100,NX,New York,0,9,direct,42,
+101,NX,New York,0,5,direct,22,
+102,NX,New York,2,3,direct,5,
+103,NX,New York,10,21,direct,13,
+104,NX,New York,6,13,direct,25,
+105,NX,New York,14,50,direct,63,
+106,NX,New York,22,26,direct,6,
+107,NX,New York,13,18,direct,9,
+108,NX,New York,14,17,direct,4,
+109,NX,New York,19,60,direct,59,
+110,NX,New York,14,17,direct,14,
+111,NX,New York,2,5,direct,7,
+112,NX,New York,3,12,direct,38,
+113,NX,New York,5,14,direct,26,
+114,NX,New York,8,15,direct,26,
+115,NX,New York,16,24,direct,40,
+116,NX,New York,14,16,direct,5,
+117,NX,New York,24,63,direct,77,
+118,NX,New York,25,28,direct,3,
+119,NX,New York,56,101,direct,44,yes
+120,NX,New York,107,178,freight,66,yes
+121,NX,New York,107,193,freight,68,yes
+122,NX,New York,131,136,freight,12,
+123,NX,New York,138,147,freight,8,
+124,NX,New York,67,118,direct,82,yes
+125,NX,New York,46,106,direct,63,yes
+126,NX,New York,64,66,direct,3,
+127,NX,New York,54,98,direct,59,
+128,BH,Boston,126,211,freight,65,
+129,BH,Boston,169,251,freight,72,
+130,NX,New York,160,224,freight,50,
+131,NX,New York,160,228,freight,51,
+132,NX,New York,191,198,freight,17,
+133,NX,New York,144,232,freight,53,
+134,NX,New York,139,220,freight,62,
+135,NX,New York,173,176,freight,2,
+136,NX,New York,227,276,freight,83,yes
+137,NX,New York,104,166,freight,39,
+138,NX,New York,116,163,freight,41,
+139,NX,New York,133,141,freight,5,
+140,DU,Detroit,190,253,freight,61,
+141,DU,Detroit,186,257,freight,35,
+142,DU,Detroit,215,224,freight,29,
+143,DU,Detroit,210,215,freight,5,
+144,NX,New York,203,268,freight,45,yes
+145,NX,New York,197,259,freight,56,yes
+146,NX,New York,245,256,freight,25,
+147,DU,Detroit,170,232,freight,62,yes
+148,NA,Philadelphia,159,231,freight,74,yes
+149,NA,Philadelphia,168,174,freight,4,
+150,BP,Baltimore,174,201,freight,71,yes
+151,BP,Baltimore,183,200,freight,28,yes
+152,BP,Baltimore,184,201,freight,43,
+153,BP,Baltimore,181,209,freight,55,yes
+154,BP,Baltimore,148,186,freight,70,
+155,BP,Baltimore,95,148,freight,37,yes
+156,BP,Baltimore,149,186,freight,72,
+157,BP,Baltimore,143,179,freight,63,
+158,BP,Baltimore,161,195,freight,30,
+159,BP,Baltimore,127,154,freight,43,
+160,DU,Detroit,178,197,freight,35,yes
+161,DU,Detroit,143,181,freight,42,
+162,BP,Baltimore,170,202,freight,39,
+163,DU,Detroit,151,210,freight,43,
+164,DU,Detroit,135,187,freight,33,
+165,DU,Detroit,149,159,freight,14,
+166,BP,Baltimore,95,149,freight,67,yes
+167,BP,Baltimore,175,213,freight,22,
+168,BP,Baltimore,115,160,freight,55,
+169,NA,Philadelphia,146,195,freight,32,yes
+170,BP,Baltimore,59,111,direct,86,yes
+171,BP,Baltimore,65,75,direct,10,
+172,BP,Baltimore,55,101,direct,49,yes
+173,BP,Baltimore,31,60,direct,48,
+174,BP,Baltimore,41,50,direct,7,
+175,BP,Baltimore,39,62,direct,47,yes
+176,BP,Baltimore,53,59,direct,4,
+177,NA,Philadelphia,115,164,freight,40,yes
+178,NA,Philadelphia,88,127,freight,54,yes
+179,NA,Philadelphia,66,92,direct,45,
+180,NA,Philadelphia,31,67,direct,55,
+181,NA,Philadelphia,46,50,direct,7,
+182,NA,Philadelphia,64,88,direct,36,
+183,NX,New York,58,85,direct,36,yes
+184,NX,New York,66,111,direct,51,yes
+185,NX,New York,95,100,direct,11,yes
+186,NA,Philadelphia,79,133,freight,36,yes
+187,NA,Philadelphia,91,102,direct,8,yes
+188,NX,New York,110,156,freight,34,yes
+189,NA,Philadelphia,18,40,direct,39,
+190,NA,Philadelphia,6,25,direct,68,
+191,NA,Philadelphia,0,14,direct,50,
+193,NA,Philadelphia,15,44,direct,34,
+194,NA,Philadelphia,11,35,direct,32,
+195,NA,Philadelphia,33,70,direct,42,
+196,NA,Philadelphia,46,53,direct,10,
+197,NA,Philadelphia,19,47,direct,19,
+198,NA,Philadelphia,21,31,direct,10,
+199,BP,Baltimore,49,102,direct,39,yes
+200,BP,Baltimore,31,38,direct,27,
+201,BP,Baltimore,44,85,direct,45,
+202,BP,Baltimore,35,36,direct,7,
+203,BP,Baltimore,33,37,direct,5,
+204,BP,Baltimore,33,36,direct,6,
+205,BP,Baltimore,33,36,direct,12,
+206,BP,Baltimore,40,86,direct,61,
+207,BP,Baltimore,14,44,direct,53,
+208,BP,Baltimore,21,44,direct,40,
+209,BP,Baltimore,23,30,direct,8,
+210,BP,Baltimore,6,32,direct,48,
+211,BP,Baltimore,9,33,direct,30,
+212,BP,Baltimore,0,13,direct,43,
+214,BP,Baltimore,19,25,direct,5,
+215,BP,Baltimore,105,152,freight,23,
+216,BP,Baltimore,26,80,direct,58,
+217,BP,Baltimore,18,98,direct,56,
+218,BP,Baltimore,64,109,direct,37,yes
+219,BP,Baltimore,35,44,direct,15,yes
+220,BP,Baltimore,41,62,direct,19,
+221,BP,Baltimore,38,67,direct,16,
+222,BP,Baltimore,37,40,direct,11,
+223,BP,Baltimore,39,47,direct,14,
+224,BP,Baltimore,70,113,direct,24,yes
+225,BP,Baltimore,73,115,direct,25,yes
+226,BP,Baltimore,74,106,direct,29,yes
+227,BP,Baltimore,76,116,direct,35,yes
+228,BP,Baltimore,107,150,freight,28,
+229,BP,Baltimore,104,168,freight,40,
+230,BP,Baltimore,107,159,freight,48,
+231,BP,Baltimore,99,145,freight,45,yes
+232,BP,Baltimore,124,138,freight,23,
+233,BP,Baltimore,111,185,freight,29,
+234,BP,Baltimore,107,188,freight,45,
+235,BP,Baltimore,163,171,freight,14,
+236,BP,Baltimore,141,161,freight,24,
+237,BP,Baltimore,166,173,freight,7,
+238,BP,Baltimore,140,202,freight,55,
+239,BP,Baltimore,158,215,freight,36,
+240,CA,Columbia,183,236,freight,43,yes
+241,CA,Columbia,189,237,freight,40,yes
+242,CA,Columbia,185,235,freight,44,yes
+243,CA,Columbia,180,227,freight,40,
+244,BP,Baltimore,135,213,freight,43,
+245,BP,Baltimore,144,220,freight,56,yes
+246,CA,Columbia,214,245,freight,25,
+247,CA,Columbia,230,246,freight,17,
+248,CA,Columbia,226,264,freight,55,
+249,BP,Baltimore,171,250,freight,35,yes
+250,BP,Baltimore,236,287,freight,50,yes
+251,BP,Baltimore,241,289,freight,52,yes
+252,DU,Detroit,234,284,freight,40,yes
+253,BP,Baltimore,271,285,freight,14,yes
+254,BP,Baltimore,62,105,direct,24,yes
+255,DU,Detroit,245,295,freight,40,yes
+256,CA,Columbia,253,285,freight,43,
+257,DU,Detroit,272,280,freight,6,
+258,CA,Columbia,244,267,freight,44,yes
+259,CA,Columbia,232,267,freight,37,yes
+260,DU,Detroit,173,214,freight,24,
+261,DU,Detroit,218,249,freight,33,yes
+262,BP,Baltimore,150,228,freight,52,
+263,BP,Baltimore,174,237,freight,31,
+264,BP,Baltimore,164,231,freight,29,
+265,BP,Baltimore,161,212,freight,37,
+266,BP,Baltimore,213,256,freight,28,
+267,BP,Baltimore,98,157,freight,23,yes
+268,BP,Baltimore,95,162,freight,24,yes
+270,CA,Columbia,124,184,freight,34,
+271,CA,Columbia,147,157,freight,9,
+272,CA,Columbia,112,199,freight,44,
+273,CA,Columbia,105,206,freight,36,
+274,CA,Columbia,155,167,freight,11,
+275,CA,Columbia,151,221,freight,72,yes
+276,CA,Columbia,178,192,freight,17,
+277,CA,Columbia,177,189,freight,9,
+278,BP,Baltimore,194,269,freight,83,yes
+279,BP,Baltimore,192,294,freight,58,
+280,CA,Columbia,82,122,freight,49,yes
+281,CA,Columbia,67,124,direct,43,yes
+282,CA,Columbia,75,94,direct,29,
+283,CA,Columbia,94,193,freight,77,yes
+284,CA,Columbia,118,210,freight,55,
+285,CA,Columbia,196,274,freight,62,
+286,CA,Columbia,110,179,freight,79,
+287,CA,Columbia,103,164,freight,75,yes
+288,CA,Columbia,137,144,freight,5,
+289,AJ,Atlanta,91,105,direct,6,yes
+290,CA,Columbia,3,65,direct,49,
+291,CA,Columbia,4,63,direct,47,
+292,CA,Columbia,0,14,direct,13,
+293,CA,Columbia,49,107,direct,45,yes
+294,CA,Columbia,54,111,direct,57,yes
+295,CA,Columbia,61,136,direct,57,yes
+296,CA,Columbia,55,122,freight,65,yes
+297,CA,Columbia,49,82,direct,25,
+298,CA,Columbia,41,87,direct,35,
+299,CA,Columbia,71,129,freight,31,yes
+300,AJ,Atlanta,6,46,direct,62,
+301,AJ,Atlanta,10,65,direct,57,
+302,AJ,Atlanta,8,65,direct,56,
+303,AJ,Atlanta,0,16,direct,40,
+304,CA,Columbia,74,160,freight,43,yes
+305,AJ,Atlanta,34,104,direct,63,yes
+306,AJ,Atlanta,38,96,direct,44,
+307,AJ,Atlanta,57,104,direct,32,yes
+308,CA,Columbia,72,105,direct,22,yes
+309,CA,Columbia,65,76,direct,7,
+310,AJ,Atlanta,49,150,freight,84,yes
+312,AJ,Atlanta,68,82,direct,10,
+313,CA,Columbia,103,182,freight,24,
+314,CA,Columbia,125,141,freight,12,
+315,CA,Columbia,156,250,freight,47,yes
+316,AJ,Atlanta,178,234,freight,31,
+317,AJ,Atlanta,109,207,freight,52,
+318,AJ,Atlanta,62,125,direct,27,yes
+319,AJ,Atlanta,89,99,direct,7,
+320,CA,Columbia,232,293,freight,46,yes
+321,MH,Miami,223,294,freight,45,
+322,CA,Columbia,244,272,freight,37,
+323,AJ,Atlanta,214,290,freight,43,
+324,AJ,Atlanta,198,277,freight,43,
+325,AJ,Atlanta,229,294,freight,41,
+326,MH,Miami,270,306,freight,43,yes
+327,MH,Miami,194,243,freight,44,
+328,MH,Miami,191,211,freight,34,
+329,MH,Miami,126,190,freight,34,
+330,MH,Miami,6,137,direct,51,yes
+331,MH,Miami,0,30,direct,63,
+333,MH,Miami,21,33,direct,28,
+334,MH,Miami,38,100,direct,57,yes
+335,MH,Miami,184,245,freight,44,
+336,MH,Miami,201,217,freight,27,
+337,MH,Miami,203,222,freight,39,
+338,MH,Miami,125,205,freight,52,
+339,MH,Miami,93,151,freight,49,yes
+341,MH,Miami,57,109,direct,24,yes
+342,MH,Miami,140,198,freight,48,
+344,MH,Miami,242,277,freight,34,
+346,MH,Miami,218,245,freight,33,
+347,MH,Miami,159,241,freight,32,
+349,MH,Miami,89,126,freight,22,yes
+350,AJ,Atlanta,99,177,freight,57,yes
+351,AJ,Atlanta,103,165,freight,42,
+352,AJ,Atlanta,130,148,freight,31,
+354,AJ,Atlanta,168,234,freight,34,
+355,AJ,Atlanta,155,218,freight,41,
+356,AJ,Atlanta,140,223,freight,37,
+357,AJ,Atlanta,104,161,freight,32,
+358,AJ,Atlanta,134,149,freight,11,
+359,AJ,Atlanta,72,118,direct,39,yes
+360,AJ,Atlanta,120,203,freight,57,
+361,AJ,Atlanta,139,152,freight,16,
+362,AJ,Atlanta,57,98,direct,28,
+363,AJ,Atlanta,156,206,freight,34,
+364,AJ,Atlanta,203,252,freight,32,
+365,AJ,Atlanta,249,331,freight,60,yes
+366,AJ,Atlanta,298,313,reference,21,yes
+367,AJ,Atlanta,157,247,freight,44,
+368,AJ,Atlanta,73,119,freight,27,yes
+369,AJ,Atlanta,236,266,freight,13,
+370,AJ,Atlanta,166,279,freight,64,
+371,AJ,Atlanta,152,266,freight,47,
+372,AJ,Atlanta,207,220,freight,23,
+373,AJ,Atlanta,88,158,freight,77,yes
+374,AJ,Atlanta,98,111,freight,16,yes
+376,CA,Columbia,163,201,freight,33,
+377,AJ,Atlanta,133,209,freight,48,
+378,AJ,Atlanta,121,203,freight,58,
+379,AJ,Atlanta,147,166,freight,19,
+380,AJ,Atlanta,266,341,reference,50,yes
+381,AJ,Atlanta,319,341,reference,31,
+382,AJ,Atlanta,269,334,freight,28,yes
+383,AJ,Atlanta,235,313,freight,61,yes
+384,AJ,Atlanta,158,234,freight,34,
+385,AJ,Atlanta,146,206,freight,47,
+386,AJ,Atlanta,261,359,reference,53,yes
+387,AJ,Atlanta,350,391,reference,40,
+388,AJ,Atlanta,222,281,freight,41,
+389,AJ,Atlanta,282,345,reference,37,yes
+390,AJ,Atlanta,295,413,reference,36,yes
+391,AJ,Atlanta,288,434,reference,43,yes
+392,AJ,Atlanta,344,357,reference,17,
+393,AJ,Atlanta,243,303,freight,40,yes
+394,AJ,Atlanta,298,378,reference,36,yes
+395,AJ,Atlanta,326,390,reference,28,
+396,AJ,Atlanta,360,444,reference,26,
+397,AJ,Atlanta,226,297,freight,30,
+398,AJ,Atlanta,127,208,freight,31,
+400,HX,Chicago,251,297,freight,49,yes
+401,HX,Chicago,271,295,freight,31,yes
+402,HX,Chicago,268,282,freight,34,
+403,AJ,Atlanta,267,300,freight,40,yes
+404,AJ,Atlanta,246,277,freight,25,
+405,AJ,Atlanta,288,299,freight,16,
+406,HX,Chicago,291,291,freight,1,
+407,AJ,Atlanta,204,242,freight,11,
+408,AJ,Atlanta,209,237,freight,37,yes
+409,AJ,Atlanta,199,251,freight,30,
+410,DU,Detroit,235,282,freight,53,yes
+411,DU,Detroit,251,299,freight,27,
+412,CA,Columbia,270,296,freight,29,
+413,AJ,Atlanta,252,288,freight,19,
+414,AJ,Atlanta,275,300,freight,6,yes
+415,CA,Columbia,239,265,freight,38,
+416,CA,Columbia,248,277,freight,34,
+417,AJ,Atlanta,237,263,freight,33,yes
+418,CA,Columbia,235,260,freight,33,
+420,AJ,Atlanta,286,342,reference,48,yes
+421,AJ,Atlanta,211,256,freight,28,
+422,AJ,Atlanta,245,290,freight,30,
+423,AJ,Atlanta,274,303,freight,40,yes
+424,HX,Chicago,277,313,freight,28,yes
+425,AJ,Atlanta,218,251,freight,14,
+426,AJ,Atlanta,199,231,freight,12,
+427,AJ,Atlanta,217,287,freight,34,
+430,DU,Detroit,129,172,freight,62,
+431,DU,Detroit,165,204,freight,46,
+432,DU,Detroit,151,174,freight,30,
+433,DU,Detroit,97,148,freight,40,yes
+434,DU,Detroit,44,81,direct,43,
+435,DU,Detroit,56,112,direct,53,yes
+436,DU,Detroit,49,58,direct,17,
+437,DU,Detroit,169,206,freight,56,
+438,DU,Detroit,144,167,freight,17,
+439,DU,Detroit,160,216,freight,55,
+440,DU,Detroit,74,137,freight,57,yes
+441,DU,Detroit,82,105,direct,48,yes
+442,DU,Detroit,95,132,freight,44,yes
+443,DU,Detroit,109,124,freight,18,
+444,DU,Detroit,124,169,freight,52,
+445,DU,Detroit,145,156,freight,13,
+446,DU,Detroit,118,171,freight,72,
+447,DU,Detroit,129,142,freight,14,
+448,DU,Detroit,65,127,direct,56,yes
+449,DU,Detroit,111,117,freight,7,
+450,DU,Detroit,200,239,freight,33,
+451,DU,Detroit,196,254,freight,48,
+452,DU,Detroit,221,238,freight,46,
+453,DU,Detroit,140,205,freight,77,
+454,DU,Detroit,180,197,freight,30,
+455,DU,Detroit,167,172,freight,6,
+456,DU,Detroit,200,269,freight,64,
+457,DU,Detroit,201,240,freight,47,
+458,DU,Detroit,85,159,freight,82,yes
+460,HX,Chicago,114,169,freight,44,
+461,HX,Chicago,141,200,freight,62,
+462,HX,Chicago,154,177,freight,38,
+463,HX,Chicago,15,64,direct,45,
+464,HX,Chicago,22,32,direct,9,
+465,HX,Chicago,60,111,direct,48,yes
+466,HX,Chicago,67,74,direct,11,
+467,HX,Chicago,104,155,freight,62,yes
+468,DU,Detroit,131,143,freight,16,yes
+469,HX,Chicago,74,151,freight,62,yes
+470,HX,Chicago,209,255,freight,29,
+471,HX,Chicago,235,277,freight,45,
+472,HX,Chicago,199,249,freight,33,
+473,HX,Chicago,152,211,freight,59,yes
+474,HX,Chicago,174,241,freight,43,
+475,HX,Chicago,209,278,freight,52,
+476,HX,Chicago,236,278,freight,26,
+477,HX,Chicago,261,274,freight,9,
+478,HX,Chicago,140,202,freight,49,
+479,HX,Chicago,59,143,freight,65,yes
+480,DU,Detroit,9,60,direct,69,
+481,DU,Detroit,6,53,direct,70,
+482,DU,Detroit,0,18,direct,39,
+483,DU,Detroit,16,40,direct,51,
+484,DU,Detroit,40,116,direct,59,yes
+485,DU,Detroit,53,61,direct,10,
+486,DU,Detroit,80,179,freight,51,yes
+487,DU,Detroit,68,172,freight,50,yes
+488,DU,Detroit,48,136,freight,79,yes
+489,DU,Detroit,79,85,direct,7,
+490,HX,Chicago,61,120,freight,79,yes
+491,HX,Chicago,47,91,direct,20,
+492,DU,Detroit,45,101,direct,58,yes
+493,DU,Detroit,108,165,freight,42,yes
+494,HX,Chicago,89,169,freight,50,yes
+495,HX,Chicago,120,130,freight,14,
+496,DU,Detroit,151,231,freight,67,yes
+497,DU,Detroit,175,315,freight,66,yes
+498,HX,Chicago,231,380,freight,65,yes
+499,HX,Chicago,290,384,reference,46,yes
+500,HX,Chicago,252,383,reference,63,yes
+501,HX,Chicago,243,379,reference,69,yes
+502,HX,Chicago,245,375,reference,64,yes
+503,HX,Chicago,303,320,reference,17,
+504,HX,Chicago,271,345,reference,55,yes
+505,HX,Chicago,318,391,reference,74,
+506,HX,Chicago,206,287,freight,68,
+507,HX,Chicago,242,245,freight,4,
+508,HX,Chicago,345,386,reference,28,
+510,HX,Chicago,395,460,reference,55,
+511,HX,Chicago,447,455,reference,8,
+512,HX,Chicago,415,462,reference,20,
+513,HX,Chicago,374,417,reference,23,
+514,HX,Chicago,356,409,reference,32,
+515,HX,Chicago,384,434,reference,54,
+516,HX,Chicago,384,432,reference,20,
+520,HX,Chicago,134,211,freight,44,
+521,HX,Chicago,199,266,freight,32,
+522,HX,Chicago,164,249,freight,47,
+523,HX,Chicago,169,255,freight,53,
+524,HX,Chicago,203,212,freight,6,
+525,HX,Chicago,223,299,freight,50,
+526,HX,Chicago,185,232,freight,34,
+527,HX,Chicago,135,199,freight,44,
+528,HX,Chicago,150,160,freight,6,
+530,HX,Chicago,85,155,freight,75,yes
+531,HX,Chicago,46,94,direct,55,
+532,HX,Chicago,76,91,direct,30,
+534,HX,Chicago,56,64,direct,5,
+535,HX,Chicago,72,178,freight,81,yes
+537,HX,Chicago,119,127,freight,14,
+538,HX,Chicago,147,193,freight,21,
+539,HX,Chicago,123,189,freight,48,
+540,HX,Chicago,311,358,reference,24,
+541,HX,Chicago,156,277,freight,54,
+542,HX,Chicago,147,244,freight,27,
+543,HX,Chicago,180,188,freight,7,
+544,HX,Chicago,194,281,freight,77,
+545,HX,Chicago,250,349,freight,45,yes
+546,HX,Chicago,184,273,freight,53,
+547,HX,Chicago,237,320,freight,49,yes
+548,HX,Chicago,305,394,reference,62,
+549,HX,Chicago,133,211,freight,56,
+550,HX,Chicago,294,399,reference,69,yes
+551,HX,Chicago,336,356,reference,32,
+553,HX,Chicago,346,420,reference,86,
+554,HX,Chicago,348,366,reference,51,
+556,HX,Chicago,407,445,reference,13,
+557,HX,Chicago,389,507,reference,69,
+558,HX,Chicago,402,418,reference,11,
+559,HX,Chicago,222,315,freight,71,yes
+560,HX,Chicago,307,412,reference,71,
+561,HX,Chicago,371,478,reference,66,
+562,HX,Chicago,407,525,reference,74,
+563,HX,Chicago,398,506,reference,70,
+564,HX,Chicago,431,516,reference,39,
+565,HX,Chicago,491,600,reference,71,yes
+566,HX,Chicago,461,600,reference,48,
+567,HX,Chicago,577,671,none,40,yes
+570,HX,Chicago,457,531,reference,69,
+571,HX,Chicago,472,481,reference,9,
+572,HX,Chicago,485,560,reference,56,
+573,HX,Chicago,513,623,reference,60,yes
+574,HX,Chicago,563,670,reference,49,yes
+575,HX,Chicago,590,728,none,43,yes
+576,HX,Chicago,673,813,none,32,
+577,HX,Chicago,733,855,none,57,
+580,HX,Chicago,533,627,reference,60,yes
+581,HX,Chicago,567,572,reference,4,
+582,HX,Chicago,596,723,none,58,yes
+583,HX,Chicago,664,784,none,50,
+584,HX,Chicago,598,739,none,62,yes
+585,HX,Chicago,670,802,none,45,
+586,HX,Chicago,779,880,none,31,
+587,HX,Chicago,732,898,none,63,
+588,HX,Chicago,853,917,none,15,
+590,HC,Los Angeles,862,1047,none,72,yes
+591,HC,Los Angeles,953,965,none,4,
+592,HX,Chicago,897,1063,none,41,
+593,HX,Chicago,860,1048,none,30,
+594,HC,Los Angeles,961,1085,none,61,
+595,HC,Los Angeles,1056,1124,none,23,yes
+596,HC,Los Angeles,898,953,none,19,
+597,HC,Los Angeles,787,918,none,42,
+598,HC,Los Angeles,835,974,none,50,
+599,HC,Los Angeles,971,1042,none,27,
+600,HX,Chicago,12,63,direct,65,
+601,HX,Chicago,10,70,direct,72,
+602,HX,Chicago,10,12,direct,4,
+603,HX,Chicago,9,10,direct,4,
+604,HX,Chicago,9,77,direct,79,
+605,HX,Chicago,11,73,direct,56,
+606,HX,Chicago,0,16,direct,56,
+607,HX,Chicago,10,14,direct,4,
+608,HX,Chicago,8,16,direct,4,
+609,HX,Chicago,44,107,direct,56,yes
+610,HX,Chicago,63,156,freight,66,yes
+611,HX,Chicago,74,84,direct,11,
+612,HX,Chicago,108,181,freight,44,
+613,HX,Chicago,63,119,direct,62,yes
+614,HX,Chicago,115,197,freight,73,
+615,HX,Chicago,104,181,freight,46,
+616,HX,Chicago,128,138,freight,12,
+617,HX,Chicago,80,146,freight,53,yes
+618,HX,Chicago,109,149,freight,58,
+619,HX,Chicago,143,177,freight,30,
+620,HX,Chicago,194,261,freight,75,
+622,HX,Chicago,221,299,freight,74,
+623,HX,Chicago,194,242,freight,52,
+624,HX,Chicago,167,237,freight,60,
+625,HX,Chicago,146,207,freight,51,
+626,HX,Chicago,146,227,freight,57,
+627,HX,Chicago,176,183,freight,8,
+628,HX,Chicago,217,288,freight,86,
+629,HX,Chicago,282,345,reference,78,yes
+630,HX,Chicago,253,314,freight,57,yes
+631,HX,Chicago,252,276,freight,46,
+633,HX,Chicago,246,301,freight,45,yes
+634,HX,Chicago,228,286,freight,40,
+635,HX,Chicago,252,310,freight,33,yes
+636,HX,Chicago,300,370,reference,34,
+637,HX,Chicago,309,360,reference,37,
+638,AJ,Atlanta,342,375,reference,45,yes
+639,HX,Chicago,352,412,reference,29,yes
+640,HX,Chicago,363,423,reference,63,
+641,HX,Chicago,401,422,reference,51,
+644,HX,Chicago,338,427,reference,70,
+645,HX,Chicago,401,410,reference,6,
+646,HX,Chicago,307,374,reference,54,
+647,HX,Chicago,391,477,reference,46,
+648,HX,Chicago,470,523,reference,34,
+650,HX,Chicago,301,383,reference,54,
+651,HX,Chicago,334,336,reference,2,
+652,HX,Chicago,275,350,reference,46,yes
+653,HX,Chicago,335,395,reference,31,
+654,HX,Chicago,322,400,reference,28,
+655,HX,Chicago,327,409,reference,31,
+656,HX,Chicago,398,495,reference,70,
+657,HX,Chicago,384,507,reference,74,
+658,HX,Chicago,438,447,reference,9,
+660,HX,Chicago,407,488,reference,68,
+661,HX,Chicago,413,423,reference,12,
+662,HX,Chicago,418,431,reference,25,
+664,HX,Chicago,435,523,reference,35,
+665,HX,Chicago,430,522,reference,43,
+666,HX,Chicago,461,477,reference,18,
+667,HX,Chicago,458,530,reference,51,
+668,HX,Chicago,487,563,reference,35,
+669,HX,Chicago,503,612,reference,34,yes
+670,HX,Chicago,535,701,none,58,yes
+671,HX,Chicago,543,711,none,42,yes
+672,HX,Chicago,581,601,reference,28,yes
+673,HX,Chicago,513,566,reference,27,
+674,HX,Chicago,517,615,reference,57,yes
+675,HX,Chicago,595,704,none,53,yes
+676,HX,Chicago,607,689,none,45,
+677,HX,Chicago,690,785,none,28,
+678,HX,Chicago,690,819,none,39,
+679,HX,Chicago,780,828,none,6,
+680,HX,Chicago,431,484,reference,55,
+681,HX,Chicago,429,446,reference,38,
+683,HX,Chicago,432,544,reference,70,
+684,HX,Chicago,426,542,reference,56,
+685,HX,Chicago,466,484,reference,23,
+686,HX,Chicago,466,567,reference,42,
+687,HX,Chicago,453,625,reference,73,yes
+688,HX,Chicago,534,641,reference,64,yes
+689,HX,Chicago,539,656,reference,55,yes
+690,HX,Chicago,651,753,none,26,
+691,HX,Chicago,643,842,none,44,
+692,HX,Chicago,620,716,none,11,
+693,HX,Chicago,716,840,none,29,
+700,AJ,Atlanta,416,458,reference,45,
+701,AJ,Atlanta,407,431,reference,22,
+703,AJ,Atlanta,451,494,reference,34,
+704,AJ,Atlanta,374,439,reference,39,
+705,AJ,Atlanta,493,557,reference,61,
+706,AJ,Atlanta,529,602,reference,39,yes
+707,AJ,Atlanta,426,489,reference,58,
+708,AJ,Atlanta,448,462,reference,21,
+710,AJ,Atlanta,489,569,reference,53,
+711,AJ,Atlanta,541,560,reference,15,
+712,AJ,Atlanta,391,495,reference,51,
+713,AJ,Atlanta,416,505,reference,42,
+714,AJ,Atlanta,453,562,reference,59,
+716,AJ,Atlanta,390,456,reference,35,
+717,AJ,Atlanta,454,514,reference,29,
+718,AJ,Atlanta,510,575,reference,35,
+719,AJ,Atlanta,492,574,reference,37,
+720,AJ,Atlanta,386,499,reference,75,
+721,AJ,Atlanta,389,493,reference,60,
+722,AJ,Atlanta,453,468,reference,12,
+723,AJ,Atlanta,342,392,reference,58,
+724,AJ,Atlanta,352,431,reference,60,
+725,AJ,Atlanta,418,471,reference,55,yes
+726,HX,Chicago,451,517,reference,49,yes
+727,HX,Chicago,507,559,reference,40,
+728,AJ,Atlanta,495,543,reference,35,
+729,AJ,Atlanta,544,580,reference,35,yes
+730,HX,Chicago,632,770,none,85,
+731,HX,Chicago,684,704,none,43,
+734,AJ,Atlanta,690,758,none,33,yes
+735,HX,Chicago,753,830,none,48,
+736,HX,Chicago,723,809,none,33,
+737,HX,Chicago,640,718,none,49,
+738,HX,Chicago,704,768,none,19,
+739,HX,Chicago,771,888,none,16,
+740,HX,Chicago,545,651,none,67,yes
+741,HX,Chicago,590,607,reference,29,yes
+743,HX,Chicago,509,573,reference,30,
+744,HX,Chicago,561,643,none,43,yes
+745,AJ,Atlanta,602,696,none,39,yes
+746,HX,Chicago,593,650,none,18,yes
+747,AJ,Atlanta,582,699,none,34,yes
+748,HX,Chicago,639,712,none,47,
+749,AJ,Atlanta,549,617,reference,32,yes
+750,AJ,Atlanta,694,736,none,62,
+751,AJ,Atlanta,657,732,none,52,
+752,AJ,Atlanta,710,733,none,50,
+753,AJ,Atlanta,722,722,none,1,
+754,AJ,Atlanta,610,707,none,74,
+755,AJ,Atlanta,559,604,reference,24,yes
+756,AJ,Atlanta,568,623,none,45,yes
+757,AJ,Atlanta,622,678,none,40,
+758,AJ,Atlanta,644,707,none,28,
+759,AJ,Atlanta,569,641,none,44,yes
+760,AJ,Atlanta,729,796,none,60,
+761,AJ,Atlanta,733,762,none,36,
+762,AJ,Atlanta,711,786,none,42,
+763,HX,Chicago,787,878,none,28,yes
+764,AJ,Atlanta,776,866,none,48,
+765,AJ,Atlanta,755,829,none,47,
+766,AJ,Atlanta,710,792,none,56,
+767,AJ,Atlanta,752,764,none,10,
+768,AJ,Atlanta,825,947,none,48,
+769,AJ,Atlanta,929,1015,none,25,
+770,AJ,Atlanta,686,719,none,96,
+772,AJ,Atlanta,701,701,none,1,
+773,AJ,Atlanta,643,711,none,56,
+774,AJ,Atlanta,708,780,none,71,
+775,AJ,Atlanta,639,729,none,58,
+776,AJ,Atlanta,597,674,none,30,yes
+777,AJ,Atlanta,623,632,none,8,
+778,AJ,Atlanta,698,765,none,36,
+779,AJ,Atlanta,784,845,none,34,
+780,AJ,Atlanta,864,1002,none,56,
+781,AJ,Atlanta,837,882,none,42,
+782,AJ,Atlanta,867,896,none,61,
+783,AJ,Atlanta,843,983,none,44,
+784,AJ,Atlanta,871,885,none,18,
+785,AJ,Atlanta,923,1010,none,61,
+786,AJ,Atlanta,785,904,none,64,
+787,AJ,Atlanta,810,832,none,44,
+788,AJ,Atlanta,918,1025,none,34,
+789,AJ,Atlanta,751,808,none,25,
+790,HX,Chicago,771,933,none,73,yes
+791,HX,Chicago,883,907,none,14,
+792,HX,Chicago,821,939,none,31,
+793,HC,Los Angeles,872,965,none,47,yes
+794,HC,Los Angeles,927,945,none,15,
+795,AJ,Atlanta,872,980,none,47,yes
+796,AJ,Atlanta,885,904,none,7,
+797,HC,Los Angeles,844,990,none,50,
+798,HC,Los Angeles,689,965,none,21,
+799,HC,Los Angeles,691,724,none,25,
+800,HC,Los Angeles,820,845,none,27,
+801,HC,Los Angeles,808,872,none,35,
+802,HC,Los Angeles,819,847,none,44,
+803,HC,Los Angeles,820,828,none,6,
+804,HC,Los Angeles,738,820,none,57,
+805,HC,Los Angeles,814,861,none,32,
+806,HC,Los Angeles,839,878,none,27,yes
+807,HX,Chicago,758,865,none,33,
+808,HX,Chicago,775,869,none,39,yes
+809,HC,Los Angeles,805,831,none,31,
+810,HC,Los Angeles,770,879,none,52,yes
+811,HC,Los Angeles,631,760,none,29,
+812,HC,Los Angeles,662,796,none,29,
+813,HC,Los Angeles,572,630,reference,15,yes
+814,HC,Los Angeles,592,689,none,23,yes
+815,HC,Los Angeles,608,649,none,14,
+816,HC,Los Angeles,652,765,none,34,
+820,HC,Los Angeles,816,888,none,22,yes
+821,HC,Los Angeles,828,828,none,1,
+822,HX,Chicago,845,898,none,20,
+823,HC,Los Angeles,755,858,none,14,
+824,HC,Los Angeles,846,919,none,22,
+825,HC,Los Angeles,786,821,none,9,
+826,HC,Los Angeles,841,923,none,18,
+827,HX,Chicago,849,929,none,16,
+828,HC,Los Angeles,933,960,none,13,yes
+829,HC,Los Angeles,633,776,none,19,
+830,HC,Los Angeles,757,806,none,6,
+831,HC,Los Angeles,676,748,none,18,
+832,HC,Los Angeles,640,762,none,52,
+833,HC,Los Angeles,584,697,none,37,yes
+834,HC,Los Angeles,728,826,none,42,
+835,HC,Los Angeles,783,874,none,27,
+836,HC,Los Angeles,616,797,none,50,
+837,HC,Los Angeles,664,698,none,12,
+838,HC,Los Angeles,866,1036,none,60,
+840,HC,Los Angeles,475,683,reference,86,yes
+841,HC,Los Angeles,568,587,reference,27,
+843,HC,Los Angeles,562,646,none,39,yes
+844,HC,Los Angeles,598,607,reference,6,yes
+845,HC,Los Angeles,489,600,reference,26,
+846,HC,Los Angeles,453,566,reference,45,
+847,HC,Los Angeles,327,520,reference,69,
+850,HC,Los Angeles,345,362,reference,44,
+851,HC,Los Angeles,356,442,reference,25,
+852,HC,Los Angeles,362,388,reference,45,
+853,HC,Los Angeles,216,363,reference,69,yes
+855,HC,Los Angeles,387,532,reference,21,
+856,HC,Los Angeles,387,547,reference,45,
+857,HC,Los Angeles,422,454,reference,38,
+859,HC,Los Angeles,419,524,reference,26,
+860,HC,Los Angeles,348,484,reference,36,
+863,HC,Los Angeles,296,377,reference,25,yes
+864,HC,Los Angeles,218,328,freight,23,yes
+865,HC,Los Angeles,474,540,reference,20,
+870,HC,Los Angeles,587,714,none,57,yes
+871,HC,Los Angeles,649,673,none,22,
+873,HC,Los Angeles,536,582,reference,23,
+874,HC,Los Angeles,550,628,reference,15,yes
+875,HC,Los Angeles,666,751,none,61,
+877,HC,Los Angeles,734,823,none,30,
+878,HC,Los Angeles,531,653,none,12,yes
+879,HC,Los Angeles,607,655,none,12,
+880,HC,Los Angeles,542,702,none,44,yes
+881,HC,Los Angeles,767,868,none,19,
+882,HC,Los Angeles,772,873,none,23,
+883,HC,Los Angeles,704,759,none,33,
+884,HC,Los Angeles,766,864,none,20,
+890,HC,Los Angeles,191,361,freight,47,yes
+891,HC,Los Angeles,206,237,freight,45,
+893,HC,Los Angeles,361,424,reference,9,
+894,HC,Los Angeles,302,551,reference,46,
+895,HC,Los Angeles,375,413,reference,13,
+897,HC,Los Angeles,358,370,reference,5,
+898,HC,Los Angeles,445,575,reference,16,
+900,HC,Los Angeles,0,15,direct,68,
+902,HC,Los Angeles,6,35,direct,35,
+903,HC,Los Angeles,9,11,direct,5,
+904,HC,Los Angeles,14,15,direct,5,
+905,HC,Los Angeles,14,19,direct,6,
+906,HC,Los Angeles,8,23,direct,18,
+907,HC,Los Angeles,12,47,direct,22,
+908,HC,Los Angeles,14,22,direct,14,
+910,HC,Los Angeles,6,17,direct,13,
+911,HC,Los Angeles,7,11,direct,8,
+912,HC,Los Angeles,5,12,direct,10,
+913,HC,Los Angeles,14,41,direct,38,
+914,HC,Los Angeles,12,17,direct,8,
+915,HC,Los Angeles,9,11,direct,5,
+916,HC,Los Angeles,8,13,direct,7,
+917,HC,Los Angeles,6,42,direct,46,
+918,HC,Los Angeles,5,7,direct,2,
+919,HC,Los Angeles,113,155,freight,25,
+920,HC,Los Angeles,65,134,direct,46,yes
+921,HC,Los Angeles,97,127,freight,43,yes
+922,HC,Los Angeles,73,231,freight,48,yes
+923,HC,Los Angeles,34,213,direct,63,yes
+924,HC,Los Angeles,50,58,direct,8,
+925,HC,Los Angeles,44,100,direct,40,
+926,HC,Los Angeles,26,63,direct,43,
+927,HC,Los Angeles,29,34,direct,9,
+928,HC,Los Angeles,20,48,direct,33,
+930,HC,Los Angeles,29,92,direct,24,
+931,HC,Los Angeles,82,109,direct,9,yes
+932,HC,Los Angeles,63,191,freight,65,yes
+933,HC,Los Angeles,89,110,freight,11,yes
+934,HC,Los Angeles,96,205,freight,38,yes
+935,HC,Los Angeles,26,297,direct,42,yes
+936,HC,Los Angeles,173,252,freight,59,
+937,HC,Los Angeles,196,214,freight,20,
+939,HC,Los Angeles,208,273,freight,25,
+940,HC,Los Angeles,311,345,reference,34,
+941,HC,Los Angeles,338,350,reference,29,
+943,HC,Los Angeles,318,320,reference,5,
+944,HC,Los Angeles,330,333,reference,4,
+945,HC,Los Angeles,303,399,reference,83,
+946,HC,Los Angeles,336,345,reference,15,
+947,HC,Los Angeles,345,348,reference,10,
+948,HC,Los Angeles,351,355,reference,5,
+949,HC,Los Angeles,354,398,reference,36,
+950,HC,Los Angeles,229,315,freight,39,yes
+951,HC,Los Angeles,286,312,reference,29,yes
+952,HC,Los Angeles,299,332,reference,41,yes
+953,HC,Los Angeles,247,318,freight,70,yes
+954,HC,Los Angeles,373,497,reference,68,
+955,HC,Los Angeles,496,631,reference,47,yes
+956,HC,Los Angeles,327,403,reference,87,
+957,HC,Los Angeles,344,384,reference,22,
+958,HC,Los Angeles,350,370,reference,29,
+959,HC,Los Angeles,383,452,reference,70,
+960,HC,Los Angeles,457,608,reference,74,yes
+961,HC,Los Angeles,309,564,reference,44,
+967,HC,Los Angeles,2457,4803,none,78,
+968,HC,Los Angeles,2550,2565,none,20,
+969,HC,Los Angeles,5969,6103,none,10,
+970,HC,Los Angeles,765,869,none,62,
+971,HC,Los Angeles,806,891,none,41,
+972,HC,Los Angeles,817,839,none,35,
+973,HC,Los Angeles,744,815,none,65,
+974,HC,Los Angeles,643,770,none,78,
+975,HC,Los Angeles,606,653,none,24,
+976,HC,Los Angeles,555,652,reference,22,yes
+977,HC,Los Angeles,558,763,none,32,yes
+978,HC,Los Angeles,696,820,none,53,
+979,HC,Los Angeles,609,728,none,16,
+980,HC,Los Angeles,923,976,none,55,
+981,HC,Los Angeles,945,969,none,39,
+982,HC,Los Angeles,950,1060,none,67,
+983,HC,Los Angeles,879,1039,none,68,
+984,HC,Los Angeles,928,941,none,27,
+985,HC,Los Angeles,883,973,none,67,
+986,HC,Los Angeles,814,920,none,57,
+988,HC,Los Angeles,894,1028,none,45,
+989,HC,Los Angeles,839,930,none,30,
+990,HC,Los Angeles,907,966,none,32,
+991,HC,Los Angeles,861,1029,none,64,
+992,HC,Los Angeles,936,949,none,16,
+993,HC,Los Angeles,820,889,none,35,
+994,HC,Los Angeles,832,852,none,3,
+995,HC,Los Angeles,2167,3102,none,57,
+996,HC,Los Angeles,2002,2881,none,85,
+997,HC,Los Angeles,2226,3033,none,77,
+998,HC,Los Angeles,1719,1925,none,15,
+999,HC,Los Angeles,1589,1702,none,11,

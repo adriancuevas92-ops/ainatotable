@@ -1,0 +1,178 @@
+/* ʻĀina to Table — public surface layout.
+   Role-named tokens only; the colour-named aliases were removed at this build.
+   Single-theme by deliberate choice: the palette is locked and measured, and a
+   page that recoloured to the viewer's OS would not be the thing that was locked. */
+
+@font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url("fonts/Inter-400.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url("fonts/Inter-500.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:600;font-display:swap;src:url("fonts/Inter-600.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:700;font-display:swap;src:url("fonts/Inter-700.woff2") format("woff2")}
+@font-face{font-family:"Noto Serif";font-weight:600;font-display:swap;src:url("fonts/NotoSerif-600.woff2") format("woff2")}
+@font-face{font-family:"Noto Serif";font-weight:700;font-display:swap;src:url("fonts/NotoSerif-700.woff2") format("woff2")}
+
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--panel);color:var(--ink);
+     font-family:"Inter","Segoe UI",-apple-system,sans-serif;font-size:17px;line-height:1.55;
+     -webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--page)}
+.wrap{max-width:800px;margin:0 auto;
+      padding-left:max(16px,env(safe-area-inset-left,0px));
+      padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wide{max-width:1240px}
+h1,h2,h3{font-family:"Noto Serif",Georgia,serif;text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:1.953rem;font-weight:700}
+h2{font-size:1.563rem;font-weight:600}
+h3{font-size:1.25rem;font-family:"Inter","Segoe UI",sans-serif;font-weight:600}
+p,ul,ol{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{position:static;display:block;padding:8px 16px;background:var(--accent);color:var(--page)}
+
+.band{background:var(--page);border-bottom:1px solid var(--line)}
+.band>.wrap{padding-block:48px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.src{font-size:.8125rem;color:var(--ink-soft)}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--page);border-bottom:1px solid var(--line)}
+nav>.wrap{display:flex;align-items:center;gap:24px;padding-block:14px;flex-wrap:wrap}
+.lockup{display:flex;align-items:center;gap:11px;color:var(--accent);flex:0 0 auto;text-decoration:none}
+.lockup svg{width:34px;height:34px;display:block}
+.lockup span{font-family:"Noto Serif",Georgia,serif;font-weight:600;font-size:1.25rem;color:var(--ink);white-space:nowrap}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap;font-size:.9375rem}
+nav a{color:var(--ink-soft);text-decoration:none}
+nav a[aria-current]{color:var(--accent);font-weight:600}
+
+/* The hero is a flat surface. There is no photography on this property, by
+   decision: the six existing images were South Kona and retired with Origin,
+   and no crop photography exists. Decision Log 2026-11-03. */
+.hero{background:var(--surface-dark);color:var(--on-dark-soft)}
+.hero>.wrap{padding-block:64px}
+.hero h1{font-size:2.441rem;color:var(--on-dark)}
+.hero .eyebrow{color:var(--on-dark-soft)}
+.hero p{color:var(--on-dark-soft);max-width:60ch}
+.hero .mk{width:52px;height:52px;color:var(--on-dark);margin-bottom:8px}
+.hero a{color:var(--accent-warm)}
+.btn{display:inline-block;font-weight:600;font-size:.9375rem;padding:10px 18px;border-radius:var(--radius);
+     text-decoration:none;background:var(--accent);color:var(--page);border:0}
+.hero .btn{background:var(--accent-warm);color:#4A2B06}
+.btn.ghost{background:transparent;color:var(--on-dark);border:1px solid var(--accent-warm)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+      display:flex;flex-direction:column;gap:10px}
+.card p{font-size:.9375rem;color:var(--ink-soft)}
+.note{background:var(--panel);border:1px solid var(--moss);border-radius:var(--radius);padding:16px;
+      font-size:.9375rem;display:flex;flex-direction:column;gap:10px}
+/* A note raised onto the dark hero. Added 2026-11-04 for Home's premium
+   figure. Every ratio computed, not estimated, per this system's own rule:
+     --on-dark      on --surface-dark-2  10.69  passes body
+     --on-dark-soft on --surface-dark-2   7.33  passes body
+     --ink          on --surface-dark-2   1.41  FAILS — never inherit it here
+   🔴 The raise alone is only 1.27 against --surface-dark, so the box does not
+   read without a border, and --line-dark measured 1.26 on it — invisible.
+   --sage is 3.20, which clears the 3:1 non-text threshold. */
+.hero .note{background:var(--surface-dark-2);border-color:var(--sage);color:var(--on-dark-soft)}
+.hero .note strong{color:var(--on-dark)}
+
+.spec{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:4px}
+
+/* catalogue */
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.875rem}
+.tools label{color:var(--ink-soft);font-weight:600}
+.tools label.chk{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.tools label.chk input{margin:0;cursor:pointer}
+.tools select{font:inherit;font-size:.875rem;padding:6px 10px;border:1px solid var(--line);
+              border-radius:var(--radius);background:var(--page);color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.9375rem;min-width:620px}
+th{position:sticky;top:0;background:var(--panel);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
+   text-align:left;font-weight:600;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:middle;height:48px}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--panel)}
+td a{font-weight:600}
+.aka{color:var(--ink-soft);font-size:.8125rem;display:block;font-weight:400}
+.chip{display:inline-block;font-size:.8125rem;padding:2px 8px;border-radius:var(--radius);
+      border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
+.chip.named{border-color:var(--ink-soft)}
+.chip.residual{border-color:var(--earth);color:var(--ink-soft);font-weight:600}
+.chip.absent{border-color:var(--accent);color:var(--accent);font-weight:600}
+.chip.gap{border-color:var(--accent-warm-deep);color:var(--accent-warm-deep);font-weight:600}
+/* crop_class chips. Colour never carries the meaning on its own — each chip
+   ships its own text label, which is why the class name is also the word. */
+.chip.commodity{border-color:var(--ink-soft);color:var(--ink-soft)}
+.chip.specialty{border-color:var(--earth);color:var(--ink-soft);font-weight:600}
+/* Market page: pack/origin/date/region surfaced as stamped tags (Rungis
+   reference, Decision Log 2026-11-06) instead of read as a sentence. Same
+   neutral chip, no new colour — only the stencil-mark register (uppercase,
+   spaced) distinguishes it from a semantic chip above. */
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.chip.market{text-transform:uppercase;letter-spacing:.03em;font-size:.75rem}
+
+/* Market page tables get their own surface — the reverse ground already used
+   for the hero and footer, not a new colour. The point is that this is the
+   trading floor, not another editorial band (Brand Decision Log 2026-11-06,
+   following the Aalsmeer/Rungis/Tsukiji lock). */
+/* 2026-11-06, "Chalkboard Stall" pass: a traditional market board makes the
+   PRICE the only thing read from across the room; everything else (origin,
+   pack, date) is small print beneath it. Top bar is a signage device, not
+   decoration -- same accent already approved for dark-surface use (hero's
+   own CTA), not a new color. */
+.market-floor{background:var(--surface-dark);border-bottom-color:var(--line-dark);
+               border-top:4px solid var(--accent-warm)}
+.market-floor table{border-top:1px solid var(--line-dark)}
+.market-floor th{background:var(--surface-dark-2);color:var(--on-dark-soft);border-bottom-color:var(--line-dark)}
+.market-floor td{border-bottom-color:var(--line-dark);color:var(--on-dark)}
+.market-floor tbody tr:nth-child(even){background:var(--surface-dark-2)}
+.market-floor tbody tr:hover{background:#3F4B32}
+.market-floor .crop{color:var(--on-dark);font-weight:600}
+.market-floor .data{font-family:"Noto Serif",Georgia,serif;font-weight:700;
+                     font-size:1.25rem;color:var(--accent-warm)}
+.market-floor .chip{border-color:var(--line-dark);color:var(--on-dark-soft)}
+.market-floor .src{color:var(--on-dark-soft)}
+.market-floor tr[hidden]{display:none}
+/* Title and toolbar now live ON the floor, not in a separate light band
+   above it -- the whole thing (title, controls, table) is one bounded
+   surface, not three pieces that happen to sit near each other. */
+.market-floor h1{color:var(--on-dark)}
+.market-floor .tools label{color:var(--on-dark-soft)}
+
+.market-title{font-size:3.052rem;margin:0}
+.market-title+.tools{margin-top:4px}
+
+/* Filter toolbar sits on the normal page ground, above the dark floor —
+   same .tools component the catalogue page already uses, not a new one. */
+.tools input[type=text]{font:inherit;font-size:.875rem;padding:6px 10px;border:1px solid var(--line);
+      border-radius:var(--radius);background:var(--page);color:var(--ink)}
+/* Two marks, deliberately NOT named: the 2010 source defines neither. */
+.strip{display:flex;gap:1px}
+.strip i{width:14px;height:20px;display:block;background:#D6CCB6}
+.strip i.dk{background:var(--earth)}
+.strip i.lt{background:#DCBFA6}
+.win{font-size:.9375rem;color:var(--ink-soft);display:none}
+/* Market page range bar — REMOVED 2026-11-05, Adrian: the dollar range
+   already speaks for itself as text. See Brand Decision Log,
+   "Market Page Range Bar Dropped". Left here as a one-line record rather
+   than silently vanishing from history. */
+/* A crop with NO marks must never render as an empty strip: an empty strip is
+   indistinguishable from "special order only", and they mean different things. */
+.win.show{display:block;font-weight:600}
+@media(max-width:640px){.strip{display:none}.win{display:block}table{min-width:0}}
+
+/* product page */
+.crop-head{display:flex;flex-direction:column;gap:6px}
+.bot{font-style:italic;color:var(--ink-soft)}
+.blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.blk{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+     display:flex;flex-direction:column;gap:6px}
+.blk .lbl{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.blk .val{font-size:1.0625rem;font-weight:600}
+.blk .cav{font-size:.8125rem;color:var(--ink-soft)}
+.absent-note{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:6px}
+
+footer{background:var(--surface-dark);color:var(--on-dark-soft)}
+footer>.wrap{padding-block:36px;font-size:.9375rem;display:flex;flex-direction:column;gap:12px}
+footer a{color:var(--accent-warm)}
+footer strong{color:var(--on-dark)}
