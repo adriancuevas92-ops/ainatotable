@@ -1241,7 +1241,7 @@ def market_page():
     few_unpriced = [r for r in few if not r.get("terminal_date")]
     market = openly + few_priced + few_unpriced
 
-    body = f"""<section class="band"><div class="wrap stack">
+    body = f"""<section class="band wide market-floor"><div class="wrap wide stack">
   <h1 class="market-title">Market</h1>
   <div class="tools">
     <label for="mfq">Find</label>
@@ -1262,9 +1262,6 @@ def market_page():
       <option value="acre-desc">County $/acre, high to low</option></select>
     <span class="src" id="mcnt">{len(rs)} of {len(rs)} ingredients</span>
   </div>
-</div></section>
-
-<section class="band wide market-floor"><div class="wrap wide stack">
   <table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre</th>
       <th>Terminal (wholesale)</th>

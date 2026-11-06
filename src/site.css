@@ -133,6 +133,11 @@ td a{font-weight:600}
 .market-floor .chip{border-color:var(--line-dark);color:var(--on-dark-soft)}
 .market-floor .src{color:var(--on-dark-soft)}
 .market-floor tr[hidden]{display:none}
+/* Title and toolbar now live ON the floor, not in a separate light band
+   above it -- the whole thing (title, controls, table) is one bounded
+   surface, not three pieces that happen to sit near each other. */
+.market-floor h1{color:var(--on-dark)}
+.market-floor .tools label{color:var(--on-dark-soft)}
 
 .market-title{font-size:3.052rem;margin:0}
 .market-title+.tools{margin-top:4px}
