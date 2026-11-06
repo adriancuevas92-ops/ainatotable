@@ -1150,6 +1150,11 @@ def price_chart_rows():
 def money(v):
     return f"${float(v):,.0f}"
 
+def money2(v):
+    """Retail unit prices are sub-$10 and cents matter — $1 vs $1.49 is not
+    a rounding error here the way it is for the acre/terminal figures."""
+    return f"${float(v):,.2f}"
+
 def market_page():
     rs = price_chart_rows()
     if not rs:
@@ -1167,18 +1172,30 @@ def market_page():
                     f'{esc(r["terminal_date"])}')
         return '<span class="src">no California terminal quote found</span>'
 
+    def retail_cell(r):
+        lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
+        if r.get("retail_date") and (lo_r or hi_r):
+            price = (f"{money2(lo_r)}&ndash;{money2(hi_r)}" if lo_r and hi_r and lo_r != hi_r
+                     else money2(hi_r or lo_r))
+            return (f'{price} &middot; Southwest U.S. supermarket ads '
+                    f'(Arizona, California, Nevada, Utah), week ending '
+                    f'{esc(r["retail_date"])}')
+        return '<span class="src">no Southwest U.S. retail ad found this week</span>'
+
     def openly_row(r):
         lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
         return f"""<tr><td><span class="crop">{esc(r["crop"])}</span></td>
   <td><span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
       ({esc(r["latest_data_year"])})</span></td>
-  <td>{term_cell(r)}</td></tr>"""
+  <td>{term_cell(r)}</td>
+  <td>{retail_cell(r)}</td></tr>"""
 
     def few_row(r):
         return f"""<tr><td><span class="crop">{esc(r["crop"])}</span></td>
   <td><span class="src">no county figure of its own &mdash;
       {esc(r["aggregate_context"])}</span></td>
-  <td>{term_cell(r)}</td></tr>"""
+  <td>{term_cell(r)}</td>
+  <td>{retail_cell(r)}</td></tr>"""
 
     openly = sorted((r for r in rs if r["status"] == "Traded openly"),
                     key=lambda r: -float(r["latest_value_per_acre"]))
@@ -1207,15 +1224,22 @@ def market_page():
   <h2>Traded openly &mdash; the county prices these on their own line</h2>
   <table class="data">
     <thead><tr><th>Crop</th><th>County value per acre (range, latest)</th>
-      <th>Terminal reference, separately</th></tr></thead>
+      <th>Terminal reference, separately</th>
+      <th>Retail reference, separately</th></tr></thead>
     <tbody>{"".join(openly_row(r) for r in openly)}</tbody>
   </table>
-  <p class="src">⛔ The two columns are never the same number and are never combined.
+  <p class="src">⛔ The three columns are never the same number and are never combined.
      The county figure is <strong>farm gate</strong> &mdash; what this acre returned
      here. The terminal figure is <strong>delivered wholesale</strong>, hundreds of
      miles away, after freight, cooling and a jobber's margin. Multiplying county
      yield by a terminal price overstates what a Fresno acre earns by that whole
      gap, which is why they stay in separate columns rather than one.</p>
+  <p class="src">The retail figure is a different question again: what a shopper was
+     advertised paying at a supermarket this week, Southwest U.S. region &mdash;
+     not Fresno, not local, and not the same unit as the terminal figure beside it.
+     A retail price is quoted by the pound or by the item; the terminal figure is
+     quoted by the shipping pack. The two are never added, averaged, or shown as
+     one spread.</p>
 </div></section>
 
 <section class="band wide"><div class="wrap wide stack">
@@ -1226,7 +1250,8 @@ def market_page():
      neither, yet, anywhere this venture has looked.</p>
   <table class="data">
     <thead><tr><th>Crop</th><th>County figure</th>
-      <th>Terminal reference, separately</th></tr></thead>
+      <th>Terminal reference, separately</th>
+      <th>Retail reference, separately</th></tr></thead>
     <tbody>{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
   </table>
   <p class="src">Each blended total is a real, reconciled county figure &mdash; it
