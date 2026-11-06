@@ -1223,23 +1223,22 @@ def market_page():
 <section class="band wide"><div class="wrap wide stack">
   <h2>Traded openly &mdash; the county prices these on their own line</h2>
   <table class="data">
-    <thead><tr><th>Crop</th><th>County value per acre (range, latest)</th>
-      <th>Terminal reference, separately</th>
-      <th>Retail reference, separately</th></tr></thead>
+    <thead><tr><th>Ingredient</th><th>County $/acre<sup>1</sup></th>
+      <th>Terminal (wholesale)<sup>2</sup></th>
+      <th>Retail (regional)<sup>3</sup></th></tr></thead>
     <tbody>{"".join(openly_row(r) for r in openly)}</tbody>
   </table>
-  <p class="src">⛔ The three columns are never the same number and are never combined.
-     The county figure is <strong>farm gate</strong> &mdash; what this acre returned
-     here. The terminal figure is <strong>delivered wholesale</strong>, hundreds of
-     miles away, after freight, cooling and a jobber's margin. Multiplying county
-     yield by a terminal price overstates what a Fresno acre earns by that whole
-     gap, which is why they stay in separate columns rather than one.</p>
-  <p class="src">The retail figure is a different question again: what a shopper was
-     advertised paying at a supermarket this week, Southwest U.S. region &mdash;
-     not Fresno, not local, and not the same unit as the terminal figure beside it.
-     A retail price is quoted by the pound or by the item; the terminal figure is
-     quoted by the shipping pack. The two are never added, averaged, or shown as
-     one spread.</p>
+  <p class="src"><sup>1</sup> <strong>Farm gate.</strong> Gross return to the
+     producer per acre &mdash; the county's own words, not net profit. Range shown
+     next to the latest year; a single year moves a great deal. Fresno County
+     Agricultural Crop and Livestock Reports, 2019&ndash;2024.<br>
+     <sup>2</sup> <strong>Delivered wholesale</strong>, hundreds of miles from the
+     farm, after freight, cooling and a jobber's margin &mdash; not what a Fresno
+     acre nets. Quoted by the shipping pack.<br>
+     <sup>3</sup> <strong>Southwest U.S. supermarket ads</strong> (Arizona,
+     California, Nevada, Utah) &mdash; not Fresno, not local. Quoted by the pound
+     or the item, a different unit than the terminal figure.<br>
+     ⛔ None of the three is ever added, averaged, or shown as one figure.</p>
 </div></section>
 
 <section class="band wide"><div class="wrap wide stack">
@@ -1249,12 +1248,13 @@ def market_page():
      <strong>unreported is not unproduced.</strong> {word(len(few_unpriced))} have
      neither, yet, anywhere this venture has looked.</p>
   <table class="data">
-    <thead><tr><th>Crop</th><th>County figure</th>
-      <th>Terminal reference, separately</th>
-      <th>Retail reference, separately</th></tr></thead>
+    <thead><tr><th>Ingredient</th><th>County figure<sup>1</sup></th>
+      <th>Terminal (wholesale)<sup>2</sup></th>
+      <th>Retail (regional)<sup>3</sup></th></tr></thead>
     <tbody>{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
   </table>
-  <p class="src">Each blended total is a real, reconciled county figure &mdash; it
+  <p class="src">Same three bases as the table above<sup>1,2,3</sup>. Each blended
+     total is a real, reconciled county figure &mdash; it
      says what the WHOLE category earned, not what any one crop inside it is worth.
      Reading it as one crop's price would be fabricating a precision the county
      never published. That is why every row above states the blend as context,
