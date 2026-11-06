@@ -1162,30 +1162,11 @@ def market_page():
   <p>Not built yet.</p></div></section>"""
         return page("Market — ʻĀina to Table", body, current="market.html")
 
-    # Display-only. The county report's own "Commodity, Variety (State)" order
-    # is what the mart keys matching on -- never touched here, only how the
-    # name READS on this page. Adrian, 2026-11-06: read like an ingredient,
-    # without losing the commodity description. Three names deliberately NOT
-    # simplified because a sibling row would then share the simplified name:
-    # "Peaches, Cling (Processed)" / "Tomatoes, Processed" would collide with
-    # the Freestone/Standard row once both dropped to "Peaches"/"Tomatoes",
-    # and "Pears, All" already carries an 11.3x value spread flagged as likely
-    # two varieties under one county label -- dropping "All" would hide the
-    # exact blending this page elsewhere insists on stating, not just rename it.
-    DISPLAY_NAME = {
-        "Corn, Sweet": "Sweet Corn",
-        "Grapefruit, Fresh": "Grapefruit",
-        "Lemons, Fresh": "Lemons",
-        "Lettuce, Leaf": "Leaf Lettuce",
-        "Peaches, Freestone (Fresh)": "Peaches",
-        "Pepper, Bell": "Bell Pepper",
-        "Plums, Dried": "Dried Plums",
-        "Tangelo, Fresh": "Tangelo",
-        "Tomatoes, Standard": "Tomatoes",
-    }
-
-    def display_crop(crop):
-        return DISPLAY_NAME.get(crop, crop)
+    # W1c, 2026-11-06 (Charter - Daily Produce Price Dataset): display_name
+    # now ships IN the mart, sourced from the codified registry
+    # (data-engineering/marts/market_floor_registry.csv), not a dict
+    # hard-coded here. The registry is the one place a display-name change
+    # (e.g. resolving the three held-back collisions) gets made and logged.
 
     def term_cell(r):
         lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
@@ -1247,7 +1228,7 @@ def market_page():
                            f'{esc(r["aggregate_context"])}</span>'
                            f'<span class="chips"><span class="chip market">{esc(status)}</span></span>')
         return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
-  <td><span class="crop">{esc(display_crop(r["crop"]))}</span></td>
+  <td><span class="crop">{esc(r["display_name"])}</span></td>
   <td>{county_cell}</td>
   <td>{term_cell(r)}</td>
   <td>{retail_cell(r)}</td></tr>"""
