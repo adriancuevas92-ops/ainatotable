@@ -1,7 +1,7 @@
 Which dated mart each committed copy came from.
 Written by tools/refresh_data.py; do not edit by hand.
-Refreshed: 2026-11-04T18:26:01
+Data last changed: 2026-11-05
 
-crop_catalogue_v2.csv  <-  aina_to_table_crop_catalogue_v2_2026-11-04.csv
+crop_catalogue_v2.csv  <-  aina_to_table_crop_catalogue_v2_2026-11-05.csv
 usda_terminal_market_by_zip3.csv  <-  usda_terminal_market_by_zip3_2026-11-04.csv
 usda_terminal_market_registry.csv  <-  usda_terminal_market_registry_2026-11-04.csv
