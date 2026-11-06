@@ -115,15 +115,27 @@ td a{font-weight:600}
    for the hero and footer, not a new colour. The point is that this is the
    trading floor, not another editorial band (Brand Decision Log 2026-11-06,
    following the Aalsmeer/Rungis/Tsukiji lock). */
-.market-floor{background:var(--surface-dark);border-bottom-color:var(--line-dark)}
-.market-floor h2{color:var(--on-dark)}
+/* 2026-11-06, "Chalkboard Stall" pass: a traditional market board makes the
+   PRICE the only thing read from across the room; everything else (origin,
+   pack, date) is small print beneath it. Top bar is a signage device, not
+   decoration -- same accent already approved for dark-surface use (hero's
+   own CTA), not a new color. */
+.market-floor{background:var(--surface-dark);border-bottom-color:var(--line-dark);
+               border-top:4px solid var(--accent-warm)}
+.market-floor table{border-top:1px solid var(--line-dark)}
 .market-floor th{background:var(--surface-dark-2);color:var(--on-dark-soft);border-bottom-color:var(--line-dark)}
 .market-floor td{border-bottom-color:var(--line-dark);color:var(--on-dark)}
+.market-floor tbody tr:nth-child(even){background:var(--surface-dark-2)}
+.market-floor tbody tr:hover{background:#3F4B32}
 .market-floor .crop{color:var(--on-dark);font-weight:600}
-.market-floor tbody tr:hover{background:var(--surface-dark-2)}
+.market-floor .data{font-family:"Noto Serif",Georgia,serif;font-weight:700;
+                     font-size:1.25rem;color:var(--accent-warm)}
 .market-floor .chip{border-color:var(--line-dark);color:var(--on-dark-soft)}
 .market-floor .src{color:var(--on-dark-soft)}
 .market-floor tr[hidden]{display:none}
+
+.market-title{font-size:3.052rem;margin:0}
+.market-title+.tools{margin-top:4px}
 
 /* Filter toolbar sits on the normal page ground, above the dark floor —
    same .tools component the catalogue page already uses, not a new one. */

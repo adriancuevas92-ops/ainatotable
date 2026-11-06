@@ -1242,8 +1242,7 @@ def market_page():
     market = openly + few_priced + few_unpriced
 
     body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow">Market</p>
-  <h1>What an acre has commanded, and what the market still does not say</h1>
+  <h1 class="market-title">Market</h1>
   <div class="tools">
     <label for="mfq">Find</label>
     <input type="text" id="mfq" placeholder="Ingredient name">
