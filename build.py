@@ -1162,6 +1162,31 @@ def market_page():
   <p>Not built yet.</p></div></section>"""
         return page("Market — ʻĀina to Table", body, current="market.html")
 
+    # Display-only. The county report's own "Commodity, Variety (State)" order
+    # is what the mart keys matching on -- never touched here, only how the
+    # name READS on this page. Adrian, 2026-11-06: read like an ingredient,
+    # without losing the commodity description. Three names deliberately NOT
+    # simplified because a sibling row would then share the simplified name:
+    # "Peaches, Cling (Processed)" / "Tomatoes, Processed" would collide with
+    # the Freestone/Standard row once both dropped to "Peaches"/"Tomatoes",
+    # and "Pears, All" already carries an 11.3x value spread flagged as likely
+    # two varieties under one county label -- dropping "All" would hide the
+    # exact blending this page elsewhere insists on stating, not just rename it.
+    DISPLAY_NAME = {
+        "Corn, Sweet": "Sweet Corn",
+        "Grapefruit, Fresh": "Grapefruit",
+        "Lemons, Fresh": "Lemons",
+        "Lettuce, Leaf": "Leaf Lettuce",
+        "Peaches, Freestone (Fresh)": "Peaches",
+        "Pepper, Bell": "Bell Pepper",
+        "Plums, Dried": "Dried Plums",
+        "Tangelo, Fresh": "Tangelo",
+        "Tomatoes, Standard": "Tomatoes",
+    }
+
+    def display_crop(crop):
+        return DISPLAY_NAME.get(crop, crop)
+
     def term_cell(r):
         lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
         if r.get("terminal_date") and (lo_t or hi_t):
@@ -1212,7 +1237,7 @@ def market_page():
     def openly_row(r):
         lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
         return f"""<tr data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
-  <td><span class="crop">{esc(r["crop"])}</span></td>
+  <td><span class="crop">{esc(display_crop(r["crop"]))}</span></td>
   <td><span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
       ({esc(r["latest_data_year"])})</span>
       <span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span></span></td>
@@ -1221,7 +1246,7 @@ def market_page():
 
     def few_row(r):
         return f"""<tr data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
-  <td><span class="crop">{esc(r["crop"])}</span></td>
+  <td><span class="crop">{esc(display_crop(r["crop"]))}</span></td>
   <td><span class="src">no county figure of its own &mdash;
       {esc(r["aggregate_context"])}</span></td>
   <td>{term_cell(r)}</td>
@@ -1253,50 +1278,21 @@ def market_page():
 <section class="band wide market-floor"><div class="wrap wide stack">
   <h2>Traded openly &mdash; the county prices these on their own line</h2>
   <table class="data">
-    <thead><tr><th>Ingredient</th><th>County $/acre<sup>1</sup></th>
-      <th>Terminal (wholesale)<sup>2</sup></th>
-      <th>Retail (regional)<sup>3</sup></th></tr></thead>
+    <thead><tr><th>Ingredient</th><th>County $/acre</th>
+      <th>Terminal (wholesale)</th>
+      <th>Retail (regional)</th></tr></thead>
     <tbody id="tb-openly">{"".join(openly_row(r) for r in openly)}</tbody>
   </table>
-  <p class="src"><strong>Every crop the county has ever named for Fresno is
-     here</strong> &mdash; {word(len(rs))} in all, priced on its own line above or
-     folded into a category total below. None is withheld for being hard to
-     report.</p>
-  <p class="src"><sup>1</sup> <strong>Farm gate.</strong> Gross return to the
-     producer per acre &mdash; the county's own words, not net profit. Range shown
-     next to the latest year; a single year moves a great deal. Fresno County
-     Agricultural Crop and Livestock Reports, 2019&ndash;2024.<br>
-     <sup>2</sup> <strong>Delivered wholesale</strong>, hundreds of miles from the
-     farm, after freight, cooling and a jobber's margin &mdash; not what a Fresno
-     acre nets. Quoted by the shipping pack.<br>
-     <sup>3</sup> <strong>Southwest U.S. supermarket ads</strong> (Arizona,
-     California, Nevada, Utah) &mdash; not Fresno, not local. Quoted by the pound
-     or the item, a different unit than the terminal figure.<br>
-     ⛔ None of the three is ever added, averaged, or shown as one figure.</p>
 </div></section>
 
 <section class="band wide market-floor"><div class="wrap wide stack">
   <h2>Few suppliers &mdash; named by the county, never priced on its own line</h2>
   <table class="data">
-    <thead><tr><th>Ingredient</th><th>County figure<sup>1</sup></th>
-      <th>Terminal (wholesale)<sup>2</sup></th>
-      <th>Retail (regional)<sup>3</sup></th></tr></thead>
+    <thead><tr><th>Ingredient</th><th>County figure</th>
+      <th>Terminal (wholesale)</th>
+      <th>Retail (regional)</th></tr></thead>
     <tbody id="tb-few">{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
   </table>
-  <p class="src">Same three bases as the table above<sup>1,2,3</sup>.
-     {word(len(few_priced))} of these rows have no county figure at all but DO carry
-     a real, dated terminal market price &mdash; the clearest evidence on this page
-     that <strong>unreported is not unproduced.</strong> {word(len(few_unpriced))}
-     have neither, yet, anywhere this venture has looked. Each blended total is a
-     real, reconciled county figure &mdash; it
-     says what the WHOLE category earned, not what any one crop inside it is worth.
-     Reading it as one crop's price would be fabricating a precision the county
-     never published. That is why every row above states the blend as context,
-     never as that crop's own number, and why a county cell with nothing in it is
-     left that way rather than filled in from the blend.</p>
-  <p class="src"><a href="catalogue.html">The catalogue</a> carries what else is
-     known about each of these crops &mdash; season, origin, cuisine &mdash; beyond
-     what fits on this page.</p>
 </div></section>
 <script>
 (function(){{
