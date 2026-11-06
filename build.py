@@ -1241,7 +1241,7 @@ def market_page():
     few_unpriced = [r for r in few if not r.get("terminal_date")]
     market = openly + few_priced + few_unpriced
 
-    body = f"""<section class="band wide market-floor"><div class="wrap wide stack">
+    body = f"""<section class="band market-floor"><div class="wrap wide stack">
   <h1 class="market-title">Market</h1>
   <div class="tools">
     <label for="mfq">Find</label>
