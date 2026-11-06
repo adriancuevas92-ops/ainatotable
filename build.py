@@ -1151,62 +1151,64 @@ def money(v):
     return f"${float(v):,.0f}"
 
 def market_page():
-    S = stats()
-    rs = sorted(price_chart_rows(), key=lambda r: -float(r["latest_value_per_acre"]))
+    rs = price_chart_rows()
     if not rs:
         body = """<section class="band"><div class="wrap stack"><h1>Market</h1>
   <p>Not built yet.</p></div></section>"""
         return page("Market — ʻĀina to Table", body, current="market.html")
 
-    maxv = max(float(r["range_high"]) for r in rs)
-
-    def bar_row(r):
-        lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
-        left, width = lo/maxv*100, max((hi-lo)/maxv*100, 0.6)
-        mark = (latest-lo)/maxv*100
-        agg = r["is_aggregate"] == "True"
-        name = esc(r["crop"])
-        term = ""
+    def term_cell(r):
         lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
-        if not agg and r.get("terminal_date") and (lo_t or hi_t):
+        if r.get("terminal_date") and (lo_t or hi_t):
             price = (f"{money(lo_t)}&ndash;{money(hi_t)}" if lo_t and hi_t and lo_t != hi_t
                      else money(hi_t or lo_t))
-            term = (f'<span class="src">{price}, {esc(r["terminal_pack"])} &middot; '
+            return (f'{price}, {esc(r["terminal_pack"])} &middot; '
                     f'{esc(r["terminal_market"])} terminal, California origin, '
-                    f'{esc(r["terminal_date"])}</span>')
-        else:
-            term = '<span class="src">no California terminal quote found</span>'
-        agg_note = (' <span class="src">— blended across many crops the '
-                    'county does not price individually; see note below</span>'
-                    if agg else "")
-        return f"""<tr><td><span class="crop">{name}</span>{agg_note}</td>
-  <td><div class="rangebar" style="--l:{left:.2f}%;--w:{width:.2f}%;--m:{mark:.2f}%"></div>
-      <span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
-      ({esc(r["latest_data_year"])})</span></td>
-  <td>{term}</td></tr>"""
+                    f'{esc(r["terminal_date"])}')
+        return '<span class="src">no California terminal quote found</span>'
 
-    trs = "".join(bar_row(r) for r in rs)
-    n_individual = sum(1 for r in rs if r["is_aggregate"] != "True")
+    def openly_row(r):
+        lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
+        return f"""<tr><td><span class="crop">{esc(r["crop"])}</span></td>
+  <td><span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
+      ({esc(r["latest_data_year"])})</span></td>
+  <td>{term_cell(r)}</td></tr>"""
+
+    def few_row(r):
+        return f"""<tr><td><span class="crop">{esc(r["crop"])}</span></td>
+  <td><span class="src">no county figure of its own &mdash;
+      {esc(r["aggregate_context"])}</span></td>
+  <td>{term_cell(r)}</td></tr>"""
+
+    openly = sorted((r for r in rs if r["status"] == "Traded openly"),
+                    key=lambda r: -float(r["latest_value_per_acre"]))
+    few = sorted((r for r in rs if r["status"] == "Few suppliers"),
+                 key=lambda r: r["crop"])
+    few_priced = [r for r in few if r.get("terminal_date")]
+    few_unpriced = [r for r in few if not r.get("terminal_date")]
 
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">Market</p>
-  <h1>What an acre has commanded, by crop, 2019&ndash;2024</h1>
-  <p>{word(n_individual)} crops the county breaks out on their own line, plus two
-     blended lines for everything it only prices in aggregate. <strong>Gross returns
-     to the producers, and do not reflect actual net profit</strong> &mdash; the
-     county's own words, carried here because there is no cost side behind any
-     figure on this page.</p>
-  <p class="src">Fresno County Agricultural Crop and Livestock Reports, 2019&ndash;2024.
-     A single year moves a great deal &mdash; persimmons swung from
-     $6,448 to $18,214 an acre across the series &mdash; so every row shows the
-     full range next to the latest year, never a single number alone.</p>
+  <h1>What an acre has commanded, and what the market still does not say</h1>
+  <p>{word(len(openly))} crops the county prices on their own line. {word(len(few))} more
+     it names &mdash; in the Vegetable Crops or Fruit &amp; Nut Crops footnote &mdash;
+     but has never given an acreage or value of their own. <strong>Every one of them
+     gets a row here.</strong> A crop the county folds into a blended total is still
+     a crop; the fold is the county's limitation, not a reason to leave it off this
+     page.</p>
+  <p class="src"><strong>Gross returns to the producers, and do not reflect actual
+     net profit</strong> &mdash; the county's own words, Fresno County Agricultural
+     Crop and Livestock Reports, 2019&ndash;2024. A single year moves a great deal,
+     so every priced row shows the full range next to the latest year, never a
+     single number alone.</p>
 </div></section>
 
 <section class="band wide"><div class="wrap wide stack">
+  <h2>Traded openly &mdash; the county prices these on their own line</h2>
   <table class="data">
     <thead><tr><th>Crop</th><th>County value per acre (range, latest)</th>
       <th>Terminal reference, separately</th></tr></thead>
-    <tbody>{trs}</tbody>
+    <tbody>{"".join(openly_row(r) for r in openly)}</tbody>
   </table>
   <p class="src">⛔ The two columns are never the same number and are never combined.
      The county figure is <strong>farm gate</strong> &mdash; what this acre returned
@@ -1216,34 +1218,29 @@ def market_page():
      gap, which is why they stay in separate columns rather than one.</p>
 </div></section>
 
-<section class="band"><div class="wrap stack">
-  <h2>The two blended lines, and why they are here at all</h2>
-  <p>Most of this valley's specialty produce &mdash; the crops this venture exists
-     to carry &mdash; is not priced on its own line anywhere in the county's report.
-     It is folded into one of two catch-all totals, each with a real, reconciled
-     dollar value and a real acreage, that nobody had previously extracted.</p>
-  <div class="cards">
-    <div class="card"><h3>Vegetable Crops, blended</h3>
-      <p>Named inside it, by the county's own footnote: <strong>cilantro, tomatillo,
-         chili pepper, jicama, purslane, sunchoke</strong>, cactus leaf, chipilin,
-         epazote, and dozens more &mdash; the same crops a cuisine-demand reading
-         would call Mexican specialty produce, priced here for the first time as a
-         bucket rather than not at all.</p></div>
-    <div class="card"><h3>Fruit &amp; Nut Crops, blended</h3>
-      <p>Named inside it: <strong>figs, kiwifruit, guava</strong>, boysenberries,
-         mulberries, quince, and more &mdash; tree fruit the county tracks only in
-         aggregate.</p></div>
-  </div>
-  <p class="src">Neither blended figure says what any one crop inside it is worth
-     on its own &mdash; that is the whole reason they are not on individual lines.
-     Read them as what the category as a whole returned, not as a price for any
-     single crop in it.</p>
-  <p class="src"><a href="catalogue.html">The catalogue</a> is where an individual
-     specialty crop is described; this page is where the county's own aggregate
-     for the category it sits in is priced.</p>
+<section class="band wide"><div class="wrap wide stack">
+  <h2>Few suppliers &mdash; named by the county, never priced on its own line</h2>
+  <p>{word(len(few_priced))} of these have no county figure at all but DO have a real,
+     dated terminal market price &mdash; the clearest evidence on this page that
+     <strong>unreported is not unproduced.</strong> {word(len(few_unpriced))} have
+     neither, yet, anywhere this venture has looked.</p>
+  <table class="data">
+    <thead><tr><th>Crop</th><th>County figure</th>
+      <th>Terminal reference, separately</th></tr></thead>
+    <tbody>{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
+  </table>
+  <p class="src">Each blended total is a real, reconciled county figure &mdash; it
+     says what the WHOLE category earned, not what any one crop inside it is worth.
+     Reading it as one crop's price would be fabricating a precision the county
+     never published. That is why every row above states the blend as context,
+     never as that crop's own number, and why a county cell with nothing in it is
+     left that way rather than filled in from the blend.</p>
+  <p class="src"><a href="catalogue.html">The catalogue</a> carries what else is
+     known about each of these crops &mdash; season, origin, cuisine &mdash; beyond
+     what fits on this page.</p>
 </div></section>"""
     return page("Market — ʻĀina to Table", body, current="market.html",
-                desc="What an acre has commanded by crop, 2019–2024, from the county's own reports — gross, farm gate, and never confused with a terminal-market price.")
+                desc="What an acre has commanded by crop, and what the market still does not say — every crop the county prices individually or only in aggregate, never confused with a terminal-market price.")
 
 # ── For Buyers (C2b). Gate C condition 1 lives here. ──────────────────────────
 def buyers_page():
