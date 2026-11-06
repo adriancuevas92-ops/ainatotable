@@ -1234,21 +1234,21 @@ def market_page():
         lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
         return bool(r.get("retail_date") and (lo_r or hi_r))
 
-    def openly_row(r):
-        lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
-        return f"""<tr data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
+    def market_row(r):
+        status = r["status"]
+        if status == "Traded openly":
+            lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
+            county_cell = (f'<span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}'
+                           f' ({esc(r["latest_data_year"])})</span>'
+                           f'<span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span>'
+                           f'<span class="chip market">{esc(status)}</span></span>')
+        else:
+            county_cell = (f'<span class="src">no county figure of its own &mdash; '
+                           f'{esc(r["aggregate_context"])}</span>'
+                           f'<span class="chips"><span class="chip market">{esc(status)}</span></span>')
+        return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
   <td><span class="crop">{esc(display_crop(r["crop"]))}</span></td>
-  <td><span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}
-      ({esc(r["latest_data_year"])})</span>
-      <span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span></span></td>
-  <td>{term_cell(r)}</td>
-  <td>{retail_cell(r)}</td></tr>"""
-
-    def few_row(r):
-        return f"""<tr data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
-  <td><span class="crop">{esc(display_crop(r["crop"]))}</span></td>
-  <td><span class="src">no county figure of its own &mdash;
-      {esc(r["aggregate_context"])}</span></td>
+  <td>{county_cell}</td>
   <td>{term_cell(r)}</td>
   <td>{retail_cell(r)}</td></tr>"""
 
@@ -1258,6 +1258,7 @@ def market_page():
                  key=lambda r: r["crop"])
     few_priced = [r for r in few if r.get("terminal_date")]
     few_unpriced = [r for r in few if not r.get("terminal_date")]
+    market = openly + few_priced + few_unpriced
 
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">Market</p>
@@ -1265,48 +1266,57 @@ def market_page():
   <div class="tools">
     <label for="mfq">Find</label>
     <input type="text" id="mfq" placeholder="Ingredient name">
+    <label for="mfs">Status</label>
+    <select id="mfs"><option value="">Any</option>
+      <option value="Traded openly">Traded openly</option>
+      <option value="Few suppliers">Few suppliers</option></select>
     <label for="mft">Terminal</label>
     <select id="mft"><option value="">Any</option>
       <option value="yes">Quoted</option><option value="no">Not quoted</option></select>
     <label for="mfr">Retail</label>
     <select id="mfr"><option value="">Any</option>
       <option value="yes">Quoted</option><option value="no">Not quoted</option></select>
+    <label for="mfsort">Sort</label>
+    <select id="mfsort"><option value="">As listed</option>
+      <option value="az">A&ndash;Z</option>
+      <option value="acre-desc">County $/acre, high to low</option></select>
     <span class="src" id="mcnt">{len(rs)} of {len(rs)} ingredients</span>
   </div>
 </div></section>
 
 <section class="band wide market-floor"><div class="wrap wide stack">
-  <h2>Traded openly &mdash; the county prices these on their own line</h2>
   <table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre</th>
       <th>Terminal (wholesale)</th>
       <th>Retail (regional)</th></tr></thead>
-    <tbody id="tb-openly">{"".join(openly_row(r) for r in openly)}</tbody>
-  </table>
-</div></section>
-
-<section class="band wide market-floor"><div class="wrap wide stack">
-  <h2>Few suppliers &mdash; named by the county, never priced on its own line</h2>
-  <table class="data">
-    <thead><tr><th>Ingredient</th><th>County figure</th>
-      <th>Terminal (wholesale)</th>
-      <th>Retail (regional)</th></tr></thead>
-    <tbody id="tb-few">{"".join(few_row(r) for r in few_priced + few_unpriced)}</tbody>
+    <tbody id="tb-market">{"".join(market_row(r) for r in market)}</tbody>
   </table>
 </div></section>
 <script>
 (function(){{
-  var tbs=[document.getElementById('tb-openly'), document.getElementById('tb-few')].filter(Boolean);
-  var qse=document.getElementById('mfq'), tse=document.getElementById('mft'),
-      rse=document.getElementById('mfr'), cnt=document.getElementById('mcnt');
-  var rows=[], total=0;
-  tbs.forEach(function(tb){{[].slice.call(tb.rows).forEach(function(tr){{rows.push(tr); total++;}});}});
+  var tb=document.getElementById('tb-market');
+  var qse=document.getElementById('mfq'), sse=document.getElementById('mfs'),
+      tse=document.getElementById('mft'), rse=document.getElementById('mfr'),
+      ose=document.getElementById('mfsort'), cnt=document.getElementById('mcnt');
+  var rows=[].slice.call(tb.rows), total=rows.length;
+  var order=rows.slice();
+  function cropName(tr){{var el=tr.querySelector('.crop'); return el?el.textContent:'';}}
+  function acreValue(tr){{
+    var el=tr.querySelector('td:nth-child(2) .data');
+    if(!el) return -1;
+    var m=/\\$([\\d,]+(?:\\.\\d+)?)/.exec(el.textContent);
+    return m?parseFloat(m[1].replace(/,/g,'')):-1;
+  }}
   function apply(){{
-    var q=qse.value.trim().toLowerCase(), t=tse.value, r=rse.value, n=0;
+    var q=qse.value.trim().toLowerCase(), s=sse.value, t=tse.value, r=rse.value, sort=ose.value, n=0;
+    var sorted=order.slice();
+    if(sort==='az') sorted.sort(function(a,b){{return cropName(a).localeCompare(cropName(b));}});
+    if(sort==='acre-desc') sorted.sort(function(a,b){{return acreValue(b)-acreValue(a);}});
+    sorted.forEach(function(tr){{ tb.appendChild(tr); }});
     rows.forEach(function(tr){{
-      var el=tr.querySelector('.crop');
-      var name=(el?el.textContent:'').toLowerCase();
+      var name=cropName(tr).toLowerCase();
       var ok=(!q||name.indexOf(q)>-1)
+          && (!s||tr.getAttribute('data-status')===s)
           && (!t||tr.getAttribute('data-terminal')===t)
           && (!r||tr.getAttribute('data-retail')===r);
       tr.hidden=!ok; if(ok)n++;
@@ -1314,7 +1324,7 @@ def market_page():
     cnt.textContent=n+' of '+total+' ingredients';
   }}
   qse.addEventListener('input',apply);
-  [tse,rse].forEach(function(el){{el.addEventListener('change',apply);}});
+  [sse,tse,rse,ose].forEach(function(el){{el.addEventListener('change',apply);}});
   apply();
 }})();
 </script>"""

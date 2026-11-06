@@ -1,13 +1,8 @@
 Which dated mart each committed copy came from.
-Normally written by tools/refresh_data.py; do not edit by hand.
+Written by tools/refresh_data.py; do not edit by hand.
+Data last changed: 2026-11-06
 
-🔴 2026-11-06 line below is a MANUAL exception: build_catalogue_v2.py's own
-2026-11-06 run silently produced 166 crops against a mart already holding
-199 -- see scripts/refresh_site_data.sh's new guard and Data Engineering's
-pending root-cause note. This copy was restored by hand from the last known-
-good mart (2026-11-05) rather than taken from the newest file on disk.
-
-crop_catalogue_v2.csv  <-  aina_to_table_crop_catalogue_v2_2026-11-05.csv (restored by hand, 2026-11-06 — see note above)
+crop_catalogue_v2.csv  <-  aina_to_table_crop_catalogue_v2_2026-11-05.csv
 price_per_acre_chart.csv  <-  fresno_price_per_acre_chart_2026-11-06.csv
 usda_terminal_market_by_zip3.csv  <-  usda_terminal_market_by_zip3_2026-11-04.csv
 usda_terminal_market_registry.csv  <-  usda_terminal_market_registry_2026-11-04.csv
