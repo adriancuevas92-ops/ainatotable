@@ -950,6 +950,19 @@ def market_page():
             return "by the item"
         return unit
 
+    def retail_history_note(r):
+        """Only ever attached to the Southwest-ad figure, never the ERS one --
+        it's built from the SAME weekly-ad report's history
+        (capture_fvwretail_history.py / W6 - Scoping Check for Remaining 76
+        Ingredients.md, 2026-11-12), not from ERS's one annual figure, which
+        has no week-to-week series to show a band from."""
+        weeks = r.get("retail_hist_weeks") or ""
+        lo_h, hi_h = r.get("retail_hist_low") or "", r.get("retail_hist_high") or ""
+        if not (weeks and lo_h and hi_h):
+            return ""
+        return (f'<span class="src">past {esc(weeks)} weeks (same region, same unit): '
+                f'{money2(lo_h)}&ndash;{money2(hi_h)}</span>')
+
     def retail_cell(r):
         lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
         if r.get("retail_date") and (lo_r or hi_r):
@@ -960,7 +973,8 @@ def market_page():
                     f'<span class="chip market">{esc(retail_unit_label(r["retail_unit"]))}</span>'
                     f'<span class="chip market">SW region ad</span>'
                     f'<span class="chip market">week of {esc(r["retail_date"])}</span>'
-                    f'</span>')
+                    f'</span>'
+                    f'{retail_history_note(r)}')
         # 2026-11-12 -- a second, clearly DIFFERENT retail reference: USDA
         # ERS's national annual average (built for Procurement Intelligence's
         # ingredient-cost work), used only where no Southwest weekly ad was
