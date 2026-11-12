@@ -948,6 +948,8 @@ def market_page():
             return "by the lb"
         if unit == "each":
             return "by the item"
+        if unit == "per bunch":
+            return "by the bunch"
         return unit
 
     def retail_history_note(r):
