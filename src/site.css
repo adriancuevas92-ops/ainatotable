@@ -195,3 +195,24 @@ footer{background:var(--surface-dark);color:var(--on-dark-soft)}
 footer>.wrap{padding-block:36px;font-size:.9375rem;display:flex;flex-direction:column;gap:12px}
 footer a{color:var(--accent-warm)}
 footer strong{color:var(--on-dark)}
+
+/* registration form — the MVP capture mechanism, added 2026-11-11 */
+.register{display:flex;flex-direction:column;gap:14px;max-width:560px}
+.register label{display:flex;flex-direction:column;gap:5px;font-size:.9375rem;font-weight:600;
+                 color:var(--ink-soft)}
+.register label.chk{flex-direction:row;align-items:flex-start;gap:8px;font-weight:400;cursor:pointer}
+.register label.chk input{margin:3px 0 0}
+.register input[type=text],.register input[type=email],.register input[type=tel],
+.register textarea{font:inherit;font-size:.9375rem;padding:8px 10px;border:1px solid var(--line);
+                    border-radius:var(--radius);background:var(--page);color:var(--ink);
+                    font-weight:400;resize:vertical}
+.register .btn{align-self:flex-start;border:0;cursor:pointer;font:inherit}
+.ing-group{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:0}
+.ing-group legend{font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
+                   color:var(--ink-soft);font-weight:600;padding:0 4px}
+.ing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 12px;
+          max-height:220px;overflow-y:auto;font-size:.875rem}
+.ing-grid label.chk{align-items:center}
+#register-buyer-fallback textarea,#register-grower-fallback textarea{width:100%;font:inherit;
+     font-size:.875rem;padding:8px;border:1px solid var(--line);border-radius:var(--radius);
+     background:var(--page);color:var(--ink)}

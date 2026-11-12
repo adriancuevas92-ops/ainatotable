@@ -54,28 +54,122 @@ MARK = ('<svg viewBox="-1.2199 -1.2859 2.484 2.484" aria-hidden="true">'
  '<path d="M-0.0507,-0.0342 0.4378,-0.7585 0.5392,-0.69 0.0507,0.0342Z"/>'
  '<ellipse cx="0.5386" cy="-0.7985" rx="0.135" ry="0.1242"/></g></svg>')
 
-NAV = [("index.html","Home"),("catalogue.html","Catalogue"),("inspect.html","Inspect"),
+NAV = [("index.html","Home"),("inspect.html","Inspect"),
        ("market.html","Market"),
-       ("buyers.html","For Buyers"),("growers.html","For Growers"),
-       ("growing.html","Growing"), ("qualify.html","Qualify")]
+       ("buyers.html","For Buyers"),("growers.html","For Growers")]
 
 # ⭐ The one contact route, and it is shown as TEXT as well as linked. A mailto
 # is unreliable for many readers and the page cannot tell whether it worked, so
 # the address must be readable and selectable on its own.
 EMAIL = "hello@ainatotable.com"
 
-def contact_block(subject, line):
-    """The ask, rendered the same way everywhere. Until 2026-11-04 the only
-    contact route on the site sat on the 167 product pages and on none of the
-    five entry surfaces — the pages least likely to be an entry point carried
-    the only way to reach anyone."""
-    href = f"mailto:{EMAIL}?subject={subject.replace(' ', '%20')}"
-    return (f'<div class="note"><p><strong>{line}</strong></p>'
-            f'<p style="font-size:1.0625rem"><a class="btn" href="{href}">'
-            f'Email us &rarr;</a></p>'
-            f'<p class="src">The address is <strong>{EMAIL}</strong> &mdash; copy it if the '
-            f'button does nothing in your browser. It reaches a person, not a form, and nobody '
-            f'is added to a list for writing to it.</p></div>')
+def registration_form(role):
+    """The MVP's actual job, built 2026-11-11 — Content Architecture v3's
+    audit found that every page on the site persuades, proves, or
+    describes, and none of them signs anyone up or ascertains what they're
+    sourcing or selling. This is the fix, on both For Buyers and For
+    Growers: role is "buyer" or "grower".
+
+    ⭐ Retires contact_block() (the site's previous one-size "Email us"
+    mailto helper, now unused — removed rather than left dead). Its
+    standing promise carries forward unchanged: "it reaches a person, not
+    a form, and nobody is added to a list for writing to it." This builds
+    a STRUCTURED mailto: on submit, same mechanism, just pre-filled with
+    real answers instead of a generic subject line. A real stored list (a
+    CRM, a spreadsheet someone reads later) is a different, bigger
+    decision — data retention, a privacy policy, who has access — and is
+    not silently introduced here.
+
+    🔴 Carries forward the one documented failure mode of every mailto on
+    this site: "a mailto is unreliable for many readers and the page
+    cannot tell whether it worked." So submitting does not just redirect —
+    it also reveals the composed message as read-only text with the
+    address printed beside it, the same copy-it-yourself fallback
+    contact_block() used to rely on.
+
+    The ingredient checklist is read live from the catalogue mart (129
+    crops), grouped by crop_class — the honest, comprehensive list, not
+    just the 105 that happen to be priced on Market yet. Per the site's
+    own standing rule, a buyer or grower checking boxes should see the
+    full record, blanks included."""
+    rs = rows()
+    groups = [("commodity", "Traded openly in this county"),
+              ("specialty", "Named by the county, not measured individually"),
+              ("gap", "Not yet in any published record here")]
+    checklist = ""
+    for cls, label in groups:
+        items = sorted(r["crop"] for r in rs if r["crop_class"] == cls)
+        if not items:
+            continue
+        boxes = "".join(
+            f'<label class="chk"><input type="checkbox" name="ingredient" '
+            f'value="{esc(c)}">{esc(c)}</label>' for c in items)
+        checklist += (f'<fieldset class="ing-group"><legend>{esc(label)} '
+                      f'({len(items)})</legend><div class="ing-grid">{boxes}'
+                      f'</div></fieldset>')
+
+    is_buyer = role == "buyer"
+    verb = "sourcing" if is_buyer else "selling"
+    noun = "buyer" if is_buyer else "grower"
+    org_label = "Business or market name" if is_buyer else "Farm or operation name"
+
+    extra_fields = ""
+    extra_js_collect = ""
+    if not is_buyer:
+        extra_fields = """
+  <label>Parcel number or nearest cross-streets<input type="text" name="parcel"></label>
+  <label>Roughly how many acres are sitting idle<input type="text" name="acres"></label>
+  <label class="chk"><input type="checkbox" name="has_land" required> I have the land &mdash; a
+    parcel, and ownership or a lease that lets me commit it for a season.</label>
+  <label class="chk"><input type="checkbox" name="can_contract" required> I can enter into the
+    contract &mdash; sole proprietor or entity, either way.</label>"""
+        extra_js_collect = """
+    if(fd.get('parcel')) lines.push('Parcel/cross-streets: '+fd.get('parcel'));
+    if(fd.get('acres')) lines.push('Idle acres: '+fd.get('acres'));
+    lines.push('Has the land: '+(fd.get('has_land')?'yes':'no'));
+    lines.push('Can enter a contract: '+(fd.get('can_contract')?'yes':'no'));"""
+
+    return f"""<form class="register" id="register-{role}">
+  <label>Name<input type="text" name="name" required></label>
+  <label>{org_label}<input type="text" name="org"></label>
+  <label>Email<input type="email" name="email" required></label>
+  <label>Phone (optional)<input type="tel" name="phone"></label>
+  {extra_fields}
+  <p class="src">Which of these are you {verb}? Check what applies &mdash; a handful is enough,
+     this is not a commitment.</p>
+  {checklist}
+  <label>Anything else &mdash; volume, timing, a crop not listed
+    <textarea name="notes" rows="3"></textarea></label>
+  <button type="submit" class="btn">Email us your registration &rarr;</button>
+  <div class="note" id="register-{role}-fallback" style="display:none">
+    <p><strong>If your email program did not open, copy this and send it to {EMAIL}.</strong></p>
+    <textarea id="register-{role}-text" rows="8" readonly></textarea>
+  </div>
+</form>
+<script>
+(function(){{
+  var f=document.getElementById('register-{role}');
+  f.addEventListener('submit', function(e){{
+    e.preventDefault();
+    var fd=new FormData(f);
+    var lines=[];
+    lines.push('Name: '+(fd.get('name')||''));
+    lines.push('{org_label}: '+(fd.get('org')||''));
+    lines.push('Email: '+(fd.get('email')||''));
+    if(fd.get('phone')) lines.push('Phone: '+fd.get('phone'));{extra_js_collect}
+    var ing=fd.getAll('ingredient');
+    lines.push('');
+    lines.push('{verb.capitalize()}: '+(ing.length?ing.join(', '):'(none checked)'));
+    if(fd.get('notes')) {{ lines.push(''); lines.push('Notes: '+fd.get('notes')); }}
+    var body=lines.join('\\n');
+    var subject='ʻĀina to Table — {noun} registration: '+(fd.get('name')||'');
+    document.getElementById('register-{role}-text').value=body;
+    document.getElementById('register-{role}-fallback').style.display='flex';
+    window.location.href='mailto:{EMAIL}?subject='+encodeURIComponent(subject)
+                         +'&body='+encodeURIComponent(body);
+  }});
+}})();
+</script>"""
 
 def how_it_moves():
     """⭐ The logistics reader, as a SECTION rather than a page — decided
@@ -182,27 +276,17 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 # Gate C3 audit returning by a different door: absence from a county report is
 # not absence of production, and our own headline had made that mistake once
 # already. Condition 6 below now fails the build on it.
-# 🔴 PROVENANCE, corrected 2026-11-04. The recorded search covered SEVEN
-# crops, not six, and not these six. Research/03 - Findings/"UCCE Specialty
-# Crop Evidence Base and the v0 Catalogue" §2:
-#
-#   "Of the seven category-A crops I named yesterday — shiso, edamame, gobo,
-#    negi, kabocha, shishito, mitsuba — UCCE has produced a yield trial for
-#    exactly none."
-#
-# The site had shipped "shiso, edamame, negi, mitsuba, shishito and ube":
-# gobo and kabocha dropped out, and UBE was added although no record anywhere
-# shows ube was searched. A crop was named as checked that was not checked.
-# The list is now the seven from the finding, held as data so the copy cannot
-# drift from it again.
-#
-# "Category A" is from the Cuisine-to-Crop Demand Mapping skill: demand
-# documented, no local production record. The skill marks A/B/C assignment
-# from climate zone alone as [E] and routes category A to extension trial
-# results before anything is contracted — which is the search that found
-# nothing, and the reason this paragraph exists.
-CHECKED_NO_TRIAL = ["Shiso", "Edamame", "Gobo", "Negi", "Kabocha",
-                    "Shishito", "Mitsuba"]
+# 🔴 RETIRED 2026-11-11. CHECKED_NO_TRIAL named seven crops (shiso, edamame,
+# gobo, negi, kabocha, shishito, mitsuba) UCCE never produced a yield trial
+# for — see Research/03 - Findings/"UCCE Specialty Crop Evidence Base and the
+# v0 Catalogue" §2 for the finding itself, which still stands as a historical
+# record there. All seven retired from the catalogue the same day the site
+# narrowed to the 125-item Procurement Intelligence master list (none of the
+# seven are on it), which made the Inspect paragraph quoting them describe
+# crops no longer on the public surface at all. Removed rather than patched
+# with a fresh, unchecked list — the house rule a fix like that would have
+# broken is "no claim of having checked something that was not actually
+# checked," the same rule this list existed to enforce in the first place.
 
 def rows():
     with io.open(MART, encoding="utf-8") as f:
@@ -525,7 +609,7 @@ def product_page(r):
 
     aka = f'<p class="aka">Also called {esc(r["also_known_as"])}</p>' if r["also_known_as"] else ""
     body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow"><a href="../catalogue.html">Catalogue</a></p>
+  <p class="eyebrow"><a href="../market.html">Market</a></p>
   <div class="crop-head"><h1>{esc(name)}</h1>{aka}</div>
   <div class="blocks">{''.join(blocks)}</div>
   {practice}
@@ -543,366 +627,6 @@ def product_page(r):
 </div></section>"""
     return page(f"{name} — ʻĀina to Table", body, depth=1,
                 desc=f"{name}: season, county reporting, scale and sources.")
-
-# ── catalogue index ───────────────────────────────────────────────────────────
-def catalogue_page(rs):
-    """The index, restructured 2026-11-04 on Adrian's decisions D2–D4.
-
-    ⭐ Adrian, on what the catalogue is FOR: "something that a buyer and grower
-    could come and see the price in which a commodity is trading at and look to
-    enter in a contract or plan their next crop cycle even."
-
-    🔴 What it had been doing instead: five columns of which FOUR were one
-    fact. County reporting, Class and Production gap are all derived from
-    county reporting — 167 rows displaying one piece of metadata three times,
-    beside two surveys (2000 acreage, 2010 availability) covering a fifth and a
-    half of the rows. And the metadata is about the quality of OUR KNOWLEDGE,
-    not about the crop. Right to publish while establishing that local supply
-    is invisible; wrong to lead a trading tool with.
-
-    D2 the cuisine filter is gone — it covered 74 of {n} rows, so using it was
-       the fastest way to see LESS of what is here. Cuisine stays on the
-       product page, where it is a fact about the crop and not a lens on the
-       whole catalogue.
-    D3 price and origin lead. County reporting and Scale 2000 move to the
-       product page, which already carries both — checked, nothing is lost.
-    D4 the class is relabelled in trading terms. See TRADE.
-    """
-    S = stats(rs)
-    trs = []
-    for r in rs:
-        trs.append(f"""    <tr data-class="{esc(r['crop_class'])}"
-        data-priced="{'yes' if r['la_price_low'] else 'no'}"
-        data-origin="{'sjv' if r['la_origin_sjv']=='yes' else ('ca' if r.get('la_origin_ca')=='yes' else 'other')}"
-        data-months="{esc(months_attr(r))}">
-      <td><a href="crops/{slug(r['crop'])}.html">{esc(r['crop'])}</a>
-          {f'<span class="aka">{esc(r["also_known_as"])}</span>' if r["also_known_as"] else ''}</td>
-      <td>{price_cell(r)}</td>
-      <td>{origin_cell(r)}</td>
-      <td>{season_cell(r)}</td>
-      <td>{trade_chip(r)}</td>
-    </tr>""")
-
-    kopts = "".join(
-        f'<option value="{esc(k)}">{esc(full)}</option>'
-        for k, (short, full) in TRADE.items())
-
-    body = f"""<section class="band"><div class="wrap wide stack">
-  <p class="eyebrow">Catalogue</p>
-  <h1>{S["total"]} crops, the reference price where one exists, and the origin the report named</h1>
-  <p>A reference price, the pack it is quoted in, the origin the report named, and the
-     season where one has ever been measured. Where the record is silent, this says so.</p>
-  <div class="note">
-    <p><strong>This is a reference-price and record view. It is not a list of what is available
-       this week, and no price here is an offer.</strong> {S["priced"]} of these
-       {S["total"]} crops were quoted in the terminal-market reports behind this page;
-       the other {S["total"] - S["priced"]} say <em>not quoted</em>, which means no report named
-       them — not that nobody is growing or selling them.</p>
-    <p class="src">Said at the top because a table of {S["total"]} crops with a price column reads
-       as {S["total"]} things for sale however carefully each cell is worded, and that impression
-       would be the one thing on this site we had got wrong. Availability is not something this
-       page can tell you; it needs members, and that is
-       <a href="growers.html">For Growers</a> and <a href="buyers.html">For Buyers</a>.</p>
-  </div>
-  <div class="tools">
-    <label for="fk">Kind of trade</label>
-    <select id="fk"><option value="">Any kind</option>{kopts}</select>
-    <label for="fq">Price</label>
-    <select id="fq"><option value="">Quoted or not</option>
-      <option value="yes">Quoted in the latest report</option>
-      <option value="no">Not quoted</option></select>
-    <label for="fo">Origin quoted</label>
-    <select id="fo"><option value="">Any origin</option>
-      <option value="sjv">San Joaquin Valley</option>
-      <option value="ca">California</option></select>
-    <label for="fs" class="chk"><input type="checkbox" id="fs"> In season now</label>
-    <span class="src" id="count">{len(rs)} of {len(rs)} crops</span>
-  </div>
-  <div class="tbl"><table>
-    <thead><tr><th>Crop</th><th>Trading at</th><th>Origin quoted</th>
-      <th>In season here</th><th>What kind of trade this is</th></tr></thead>
-    <tbody id="tb">
-{chr(10).join(trs)}
-    </tbody>
-  </table></div>
-  <div class="note">
-    <p><strong>What kind of trade this is</strong>, in full:</p>
-    <p class="src">{" ".join(f"<strong>{esc(short)}.</strong> {esc(full.split(chr(8212),1)[-1].strip())}" for short, full in TRADE.values())}</p>
-  </div>
-  <div class="note">
-    <p><strong>Where the prices come from, and what they are not.</strong> They are the USDA
-       Agricultural Marketing Service terminal-market reports — wholesale, f.o.b. shipping point
-       as USDA reports it (7 CFR &sect;46.43(i)), so the figure <em>excludes freight</em>. A
-       terminal market is not Fresno: it is where this valley&rsquo;s produce is trucked to and
-       priced. <strong>Read it as the price of the alternative channel, not as a local price and
-       not as a target.</strong> Every figure here comes from the reports of
-       {esc(price_report_date().strftime("%-d %B %Y")) if price_report_date() else "an undated day"},
-       and the build refuses to publish prices more than {MAX_PRICE_AGE_DAYS} days old.</p>
-    <p class="src">Origin is flagged for the San Joaquin Valley and for California and for nothing
-       else, so a dash in that column means the report&rsquo;s block for that crop named neither
-       — not that it came from abroad. {S["sjv"]} of these crops were quoted with a San Joaquin
-       Valley origin: grown here, trucked away, priced there.</p>
-  </div>
-  <div class="note">
-    <p><strong>The two season marks are deliberately not named.</strong> The 2010 survey marked two
-       kinds of availability and defined neither. In the six crops carrying both marks the lighter one
-       always precedes the darker — but two crops are light throughout, which that reading does not
-       explain. So both are shown and neither is labelled. <strong>In season now</strong> filters on
-       either mark for the current month, and a crop the survey never reached cannot match it.</p>
-    <p>{S["absent_all"]} of these crops are named by this county in no line and no footnote of
-       any report from 2020 to 2024, and {S["absent"] - S["absent_all"]} more have dropped out of
-       the latest one. {S["footnote"]} are named only in a footnote
-       to an aggregate line, with no acreage and no value of their own &mdash; being named is not
-       being measured. Only {S["line_item"]} have a line of their own. <span class="src">That
-       record now sits on each crop&rsquo;s own page, where it is provenance rather than
-       headline.</span></p>
-  </div>
-  <div class="note">
-    <p><strong>Found something you want, or something you grow?</strong> The two pages that do
-       something about it are
-       <a href="buyers.html">For Buyers</a> and <a href="growers.html">For Growers</a>.</p>
-  </div>
-</div></section>
-<script>
-(function(){{
-  var tb=document.getElementById('tb'), cnt=document.getElementById('count'),
-      kse=document.getElementById('fk'), qse=document.getElementById('fq'),
-      ose=document.getElementById('fo'), sch=document.getElementById('fs');
-  var rows=[].slice.call(tb.rows), total=rows.length;
-  // The reader's month, not the build's: a static page built in November and
-  // read in March must not claim March's seasons are November's.
-  var mi=new Date().getMonth();
-  function apply(){{
-    var k=kse.value, q=qse.value, o=ose.value, s=sch.checked, n=0;
-    rows.forEach(function(tr){{
-      var m=(tr.getAttribute('data-months')||'')[mi]||'-';
-      var ok=(!k||tr.getAttribute('data-class')===k)
-          && (!q||tr.getAttribute('data-priced')===q)
-          && (!o||tr.getAttribute('data-origin')===o)
-          && (!s||m==='S'||m==='P');
-      tr.hidden=!ok; if(ok)n++;
-    }});
-    cnt.textContent=n+' of '+total+' crops';
-  }}
-  [kse,qse,ose,sch].forEach(function(el){{el.addEventListener('change',apply);}});
-  apply();
-}})();
-</script>"""
-    return page("Catalogue — ʻĀina to Table", body, current="catalogue.html")
-
-def qualify_page():
-    """⭐ The join path, rewritten 2026-11-04 after Adrian corrected it.
-
-    The first version had NINE dimensions, including soil testing and an
-    irrigation survey. Qualification is TWO things: the party has the land, and
-    the party has the capacity to enter into the contract. Everything else is a
-    service, offered where wanted.
-
-    🔴 The over-build contradicted a finding already on record: half the
-    production value of fruit, nut and berry farms is already under contract,
-    94% on the farms that use them, and most smaller farms are registered and
-    know their own practices. A nine-point audit with soil testing is built for
-    a grower who needs teaching — and would have read as condescending to the
-    reader it was aimed at. This version assumes competence."""
-    S = stats()
-    body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow">Qualify</p>
-  <h1>Two questions. Do you have the land, and can you enter into the contract?</h1>
-  <p>That is the whole of it. <strong>Qualification is not a test of how you farm</strong> &mdash; it
-     establishes that the ground is real and committable, and that there is a party on your side who
-     can sign and be paid.</p>
-  <p class="src">We are assuming you know your own operation. Most farms this size are already
-     registered and already know their practices, and a network that opened by auditing your
-     competence would deserve the answer it got.</p>
-
-  <div class="cards">
-    <div class="card"><h3>You have the land</h3>
-      <p>A parcel, and ownership or a lease that lets you commit the ground for a season. If the
-         acreage is idle, that it is yours to put back into production.</p></div>
-    <div class="card"><h3>You can enter into the contract</h3>
-      <p>A party that can sign a commercial agreement, and a route to be paid. Sole proprietor or
-         entity &mdash; it does not matter which.</p></div>
-  </div>
-  <p class="src">Nothing else gates it. There is no minimum acreage, no certification requirement,
-     and no judgement about your methods.</p>
-
-  <h3 style="margin-top:12px">What you get, and it is yours to keep</h3>
-  <p>A dated record of what was verified and when, with the sources attached. <strong>You hold it.
-     You can show it to any buyer, including one who has never heard of us</strong> &mdash; which is
-     the point. A record about your operation belongs to you, and it is worth more to you if it
-     travels.</p>
-  <p class="src">It states its own limits too: what was checked, what you told us rather than showed
-     us, and when. A record that does not say what it left out is not worth much to the person
-     reading it.</p>
-
-  <h3 style="margin-top:12px">Available if you want it. Not required, and not a condition.</h3>
-  <p>Some growers want these and some have no use for them. <strong>Neither answer affects whether
-     you qualify.</strong></p>
-  <ul style="padding-left:20px;display:flex;flex-direction:column;gap:10px">
-    <li><strong>Where you stand in the federal thresholds.</strong> Read against your own three-year
-        average. Two different rules both say &ldquo;$25,000&rdquo; in their text and adjust from
-        different base years &mdash; a farm at $32,000 is under one and over the other.
-        <span class="src">The traceability figure lands near <strong>$29,800</strong>
-        (21 CFR &sect;1.1305(a), base year 2020; FDA has not published the adjusted figure, so we
-        computed it by FDA&rsquo;s own method and reproduced two figures FDA <em>has</em> published to
-        within 0.033%). The Produce Safety figure, which FDA does publish, is <strong>$34,324</strong>
-        (&sect;112.4(a), base year 2011). This reading is free and it is on this site whether you
-        join or not.</span></li>
-    <li><strong>A soil test for a specific field.</strong> A dated laboratory result, if you want one
-        for ground you have not cropped recently.</li>
-    <li><strong>An irrigation assessment.</strong> Whether water reaches the ground and at what rate,
-        by a partner who has worked in irrigation in this industry for over a decade. Useful mostly
-        where acreage has been idle long enough that nobody is certain any more.</li>
-  </ul>
-  <div class="note">
-    <p><strong>A soil test tells you what your soil is. It does not tell you what a crop will do in
-       it.</strong></p>
-    <p>For the crops this county does not count, <strong>nobody has published a trial in this valley
-       at all</strong>. Yield, quality and timing would need that trial data and there is none, so a
-       measured soil result is an answer to &ldquo;what have I got?&rdquo; rather than &ldquo;will
-       this work?&rdquo;</p>
-  </div>
-
-  <h3 style="margin-top:12px">What this is not</h3>
-  <div class="note">
-    <p><strong>Not a food-safety certification.</strong> We are not a certifying body. If you hold a
-       certification we can record it; we cannot grant one.</p>
-    <p><strong>Not a guarantee of supply, volume or condition.</strong> That is the contract&rsquo;s
-       job, in the produce trade&rsquo;s own terms.</p>
-    <p><strong>Not advice about your own position.</strong> The threshold reading comes with its
-       citation attached. The arithmetic about your farm stays yours.</p>
-    <p><strong>Not a judgement that anyone ought to buy from you.</strong> The record says what is
-       true of your operation. What a buyer does with it is the buyer&rsquo;s decision.</p>
-  </div>
-
-  {contact_block("Registering interest", "Two things to send, and we will tell you where that leaves you.")}
-  <p class="src">The parcel number or nearest cross-streets, and roughly how much ground is sitting
-     idle. <strong>That is enough.</strong> Dues and terms are published once the network&rsquo;s
-     structure is settled, so there is nothing to buy today &mdash; and the {S["total"]} crop pages,
-     the market conditions and the threshold reading are free to read either way.</p>
-</div></section>"""
-    return page("Qualify — ʻĀina to Table", body, current="qualify.html",
-                desc="Qualification is two things: you have the land, and you can enter into the contract. Everything else is a service, not a gate.")
-
-def growing_page():
-    """⭐ The free outward-facing material, 2026-11-04. Adrian: the soil-health
-    and growing information is the public portion of the site.
-
-    🔴 The line this page walks: the valley's conditions are a matter of record
-    and they are extraordinary. They still do not establish that a particular
-    uncounted crop performs here — that needs trial data and there is none.
-    Both are true and the page holds both, because holding only the first is a
-    suitability claim with nothing behind it."""
-    S = stats()
-    body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow">Growing</p>
-  <h1>Why this valley, what a soil test actually tells you, and what neither of those settles</h1>
-  <p>All of this is free and none of it sits behind anything. It is the part of the record we can
-     publish without asking you for a thing.</p>
-
-  <h2 style="margin-top:28px">Why produce from here reaches the rest of the world</h2>
-  <p>This is not a local boast. It is a published share of national output.</p>
-  <div class="cards">
-    <div class="card"><h3>Nearly half the country&rsquo;s vegetables</h3>
-      <p>And <strong>over three-quarters of the country&rsquo;s fruits and nuts</strong>, grown in
-         California.</p>
-      <p class="src">California Department of Food and Agriculture, California Agricultural
-         Production Statistics.</p></div>
-    <div class="card"><h3>$64.7 billion in cash receipts</h3>
-      <p>Received by California&rsquo;s farms and ranches in 2025, across more than 400
-         commodities.</p>
-      <p class="src">CDFA, as above. Agricultural exports totalled $23.8&nbsp;billion in 2024.</p></div>
-    <div class="card"><h3>$9.03 billion from this county alone</h3>
-      <p>Fresno County&rsquo;s total gross production value for 2024, across <strong>over 300
-         different commodities</strong>, shipped to <strong>more than 91 countries</strong>.</p>
-      <p class="src">Fresno County Agricultural Crop and Livestock Report, 2024.</p></div>
-  </div>
-
-  <h3 style="margin-top:12px">What the conditions actually are</h3>
-  <p>The valley has a <strong>Mediterranean climate</strong>: hot dry summers, mild wet winters, and
-     almost no summer rain. Three things follow from that, and together they are most of the
-     explanation.</p>
-  <ul style="padding-left:20px;display:flex;flex-direction:column;gap:10px">
-    <li><strong>A long frost-free season.</strong> Enough of one that two plantings of a short-cycle
-        crop are ordinary rather than ambitious.</li>
-    <li><strong>Dry harvest weather.</strong> Rain at the wrong moment splits fruit, spreads field
-        disease and stops a crew getting in. Here the summer is reliably dry, so a risk the rest of
-        the country carries is mostly absent.</li>
-    <li><strong>Deep alluvial valley floor, and water that is delivered rather than waited for.</strong>
-        The ground was built by rivers coming off the Sierra, and the water arrives through
-        infrastructure on a schedule. <span class="src">Which is also why an irrigation question is a
-        real question here rather than a formality.</span></li>
-  </ul>
-  <div class="note">
-    <p><strong>And here is the part that matters for this network.</strong> Wherever the growing is
-       good and ground is <em>still</em> sitting idle, whatever is keeping it idle is
-       <strong>not agronomic</strong>.</p>
-    <p>It is market access, or scale, or labour, or water allocation, or the simple fact that no buyer
-       ever asked. <strong>Those are structural, and a structural problem is the kind a contract and a
-       network can actually move.</strong></p>
-    <p class="src">That is the thesis in one sentence, and it does not depend on this valley being
-       exceptional &mdash; it holds anywhere produce is priced by volume while somebody nearby holds
-       ground that is earning nothing. It is also why this venture is about terms and counterparties
-       rather than agronomy: we are not proposing to teach anyone to farm.</p>
-  </div>
-
-  <h2 style="margin-top:28px">How to read a soil test</h2>
-  <p>A laboratory report is a list of measurements with no narrative attached. Here is what the common
-     lines mean. <strong>None of it is specific to your ground and none of it is advice</strong>
-     &mdash; it is how to read the page you were handed.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>What is measured</th><th>What it is telling you</th></tr></thead>
-    <tbody>
-    <tr><td><span class="crop">pH</span></td><td>Acidity or alkalinity. It governs whether nutrients
-        already present are available to a plant at all &mdash; a nutrient can be in the soil and
-        chemically out of reach. Valley soils commonly run neutral to alkaline.</td></tr>
-    <tr><td><span class="crop">Texture</span><span class="aka">sand, silt, clay</span></td>
-        <td>How fast water moves through and how much the soil holds. It sets an irrigation interval
-        more than almost anything else, and it is the one property you cannot change.</td></tr>
-    <tr><td><span class="crop">Organic matter</span></td><td>Structure, water-holding, and the
-        reservoir that slowly releases nitrogen. Usually low in long-cultivated valley ground, and
-        the figure most responsive to what is done next.</td></tr>
-    <tr><td><span class="crop">Nitrogen, phosphorus, potassium</span></td><td>The three removed in
-        quantity by a crop. Nitrogen moves with water and reads as a current snapshot; phosphorus and
-        potassium read as a reserve.</td></tr>
-    <tr><td><span class="crop">Salinity</span><span class="aka">EC &mdash; electrical conductivity</span></td>
-        <td>Total dissolved salts, and the line to read first on this valley floor: irrigation water
-        carries salt in, dry summers concentrate it, and crops differ widely in what they
-        tolerate.</td></tr>
-    <tr><td><span class="crop">Sodium</span><span class="aka">SAR, exchangeable sodium</span></td>
-        <td>Distinct from salinity. Sodium degrades soil <em>structure</em> &mdash; it disperses clay,
-        seals the surface and stops water infiltrating. Ground can be low in total salt and still have
-        a sodium problem.</td></tr>
-    <tr><td><span class="crop">Micronutrients</span></td><td>Zinc, boron, iron and others. Needed in
-        small amounts; boron in particular has a narrow band between deficient and toxic.</td></tr>
-    <tr><td><span class="crop">Lead and heavy metals</span></td><td>Not on a standard agricultural
-        panel &mdash; it has to be asked for. It matters where ground has a non-farm history, and
-        uptake differs sharply by crop, with leafy and root crops highest.</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3 style="margin-top:12px">What the test does not tell you, and this is the important part</h3>
-  <div class="note">
-    <p><strong>A soil test tells you what your soil is. It does not tell you what a crop will do in
-       it.</strong> Those are different questions and only the first has an answer on paper.</p>
-    <p><strong>The same goes for everything above about the valley.</strong> A region producing
-       three-quarters of the nation&rsquo;s fruit tells you the question is worth asking. It does not
-       tell you a particular crop performs on a particular field &mdash; and for {S["gap"]} of the
-       crops in this catalogue the county reports production in no line and no footnote, while
-       <strong>no extension trial has been published in this valley at all</strong> for the ones we
-       went looking for.</p>
-    <p class="src">We would rather give you the measurements, the published shares and the gaps and
-       let you weigh them, than convert any of it into a claim about your ground that nobody has
-       established. Anyone who tells you otherwise about an uncounted crop is guessing.</p>
-  </div>
-
-  <p class="src">Next: <a href="catalogue.html">the catalogue</a> records what is known about
-     {S["total"]} crops, including where the record is silent.
-     <a href="growers.html">For Growers</a> is the page about contracting ground you already hold.</p>
-</div></section>"""
-    return page("Growing — ʻĀina to Table", body, current="growing.html",
-                desc="Why this valley grows what it does, how to read a soil test, and what neither of those establishes about a particular crop on a particular field.")
-
 
 # ── Home (C2c) ────────────────────────────────────────────────────────────────
 def home_page():
@@ -985,14 +709,14 @@ def home_page():
       <p>A working farm with a block out of rotation, a few acres, a field corner. <strong>Qualifying
          asks two questions</strong> &mdash; do you have the land, and can you enter into the
          contract. Not a test of how you farm.</p>
-      <p><a class="btn" href="qualify.html">Join as a grower &rarr;</a></p></div>
+      <p><a class="btn" href="growers.html">Join as a grower &rarr;</a></p></div>
     <div class="card"><h3>Getting it there</h3>
       <p>Several stops, a few pallets each, one fixed day, inside one county. Who pre-cools, who
          pays and who unloads are settled in writing first.</p>
       <p><a class="btn" href="buyers.html#how-it-moves">How a load is shaped &rarr;</a></p></div>
   </div>
   <p style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
-    <a class="btn" href="catalogue.html">Open the catalogue &rarr;</a>
+    <a class="btn" href="market.html">Open the market &rarr;</a>
     <a class="btn ghost" href="inspect.html">See what the market is doing &rarr;</a>
   </p>
   <p class="src" style="color:var(--on-dark-soft)">Growing already? The ground you are farming earns
@@ -1012,9 +736,9 @@ def home_page():
          assigns a traceability lot code. And if you buy direct from the farm that grew it, the record
          asked of you is a name and address, kept 180 days.</p></div>
     <div class="card"><h3>No single grower can underwrite a commitment</h3>
-      <p>Chinese long bean was grown on 128 acres in this county by 66 separate growers &mdash; just
-         under two acres each, in UCCE&rsquo;s 2000 survey of that one crop. A weekly case commitment
-         is not something a two-acre grower can make alone.</p></div>
+      <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers &mdash; two and a half
+         acres each, in UCCE&rsquo;s 2000 survey of that one crop. A weekly case commitment
+         is not something a two-and-a-half-acre grower can make alone.</p></div>
   </div>
   <p class="src">The catalogue, the standard contract and the qualified network are those three fixes,
      in that order.</p>
@@ -1034,13 +758,13 @@ def home_page():
 </div></section>
 
 <section class="band"><div class="wrap stack">
-  <p class="eyebrow">The catalogue</p>
+  <p class="eyebrow">The crops</p>
   <h2>What is actually known about each crop</h2>
   <p>{S["total"]} crops &mdash; {S["commodity"]} commodity, {S["specialty"]} specialty,
      {S["gap"]} unreported &mdash; each with its season, its scale in growers rather than acres,
-     and how this county reports it. Where the record is silent, the catalogue
+     and how this county reports it. Where the record is silent, the market
      says so.</p>
-  <p><a class="btn" href="catalogue.html">Open the catalogue &rarr;</a></p>
+  <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
   <h2 style="margin-top:28px">What we are, and what we are not</h2>
   <p>Dues, not a commission. We never buy the food and we are never in the purchase path &mdash; which
      is also what keeps a buyer&rsquo;s own record relief intact. We qualify a grower&rsquo;s capacity
@@ -1096,9 +820,9 @@ def inspect_page():
      report from 2020 to 2024. {S["footnote"] - 32} more sit inside an
      undifferentiated &ldquo;other&rdquo; line with no acreage and no value of their own.</p>
   <div class="spec"><p class="lbl">The clearest case</p>
-    <p><strong>Gobo.</strong> Eight acres county-wide in 2000, a published growing guide in 2001, and in
-       2010 carried by Fresno specialty markets on special order only. Demand recorded, supply trivial,
-       agronomy already published &mdash; each with a date and an author on it.</p></div>
+    <p><strong>Jicama.</strong> Two-tenths of an acre county-wide in 2000, a published growing guide in
+       2001, and still carried by Fresno specialty markets in the 2010 retail survey. Demand recorded,
+       supply trivial, agronomy already published &mdash; each with a date and an author on it.</p></div>
   <p class="src">Two retail categories are too small for the federal government to publish without
      identifying the businesses in them. We recovered roughly thirty-five establishments by subtraction.
      A segment too small to be measured is a segment too small for anyone else to bother serving.</p>
@@ -1122,10 +846,9 @@ def inspect_page():
        here: the only published economics for that are UC cost studies from 2005, and they have not
        been re-verified or adjusted.</p>
     <p><strong>No agronomic promises.</strong> We do not know whether the crops this county does not
-       measure can be grown here. For the {word(len(CHECKED_NO_TRIAL)).lower()} crops we checked &mdash;
-       {esc(", ".join(c.split(" /")[0].lower() for c in CHECKED_NO_TRIAL))} &mdash; we found no
-       extension trial data in this valley at all, so anyone who tells you otherwise is guessing.</p>
-    <p class="src">{checked_class_note()}</p>
+       measure can be grown here, and we are not claiming to have checked. Extension trial data is
+       what would settle it; until it exists for a given crop, agronomic viability here is unverified,
+       not assumed.</p>
     <p><strong>No causal story.</strong> We do not know whether the acreage decline is a supply story or
        a demand story. A premium argues against demand collapse. It does not prove a supply
        constraint.</p>
@@ -1161,6 +884,32 @@ def market_page():
         body = """<section class="band"><div class="wrap stack"><h1>Market</h1>
   <p>Not built yet.</p></div></section>"""
         return page("Market — ʻĀina to Table", body, current="market.html")
+
+    # 2026-11-11 — Catalogue retired as a public destination; its crop pages
+    # now recycle through Market instead (Adrian: "can the links be
+    # recycled through the market chart?"). Matched by slug against the
+    # catalogue mart, not assumed 1:1 — Market's display_name and the
+    # catalogue's crop name diverge on a handful of rows (mostly singular
+    # vs. plural: "Honeydew" here, "Honeydews" in the catalogue), resolved
+    # through MARKET_TO_CATALOGUE_CROP rather than silently left unlinked.
+    # "Tomatoes (Processed)" has no processed-variant catalogue row (the
+    # master list never split it the way it split Peaches) -- pointed at
+    # the plain "Tomatoes" page as the closest honest match, not a true
+    # alias, and named as a judgment call here rather than a quiet merge.
+    MARKET_TO_CATALOGUE_CROP = {
+        "Honeydew": "Honeydews", "Watermelon": "Watermelons",
+        "Cantaloupe": "Cantaloupes", "Tangerine": "Tangerines",
+        "Brussel Sprout": "Brussels Sprouts", "Casava": "Yuca (Cassava)",
+        "Tomatoes (Processed)": "Tomatoes",
+    }
+    cat_slugs = {slug(r["crop"]) for r in rows()}
+
+    def crop_link(display_name):
+        target = MARKET_TO_CATALOGUE_CROP.get(display_name, display_name)
+        s = slug(target)
+        if s in cat_slugs:
+            return f'<a href="crops/{s}.html">{esc(display_name)}</a>'
+        return esc(display_name)
 
     # W1c, 2026-11-06 (Charter - Daily Produce Price Dataset): display_name
     # now ships IN the mart, sourced from the codified registry
@@ -1228,7 +977,7 @@ def market_page():
                            f'{esc(r["aggregate_context"])}</span>'
                            f'<span class="chips"><span class="chip market">{esc(status)}</span></span>')
         return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
-  <td><span class="crop">{esc(r["display_name"])}</span></td>
+  <td><span class="crop">{crop_link(r["display_name"])}</span></td>
   <td>{county_cell}</td>
   <td>{term_cell(r)}</td>
   <td>{retail_cell(r)}</td></tr>"""
@@ -1358,7 +1107,7 @@ def buyers_page():
   <p>{S["total"]} crops, with each one&rsquo;s season, its scale in growers rather
      than acres, and how Fresno County reports it. {S["gap"]} of them the county does not
      report in any form &mdash; which is the first thing worth knowing about them.</p>
-  <p><a class="btn" href="catalogue.html">Open the catalogue &rarr;</a></p>
+  <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
 
   <h3 style="margin-top:12px">Seasonality is the real constraint, and we are not going to pretend
       otherwise.</h3>
@@ -1379,10 +1128,11 @@ def buyers_page():
         grade, pack &mdash; is contingent on the product itself and on the intended use at your
         facility. Settle that once and it survives every season.</li>
     <li>Treat November as the end of the season, not December.</li>
-    <li>For the eight crops that carry January, name your substitution in the contract rather than at
+    <li>For the three crops that carry January, name your substitution in the contract rather than at
         the loading dock.</li>
-    <li>Ask how many growers are behind a crop, not how many acres. A crop grown on 86 acres by 58
-        growers is a different supply risk from one grown on 86 acres by three.</li>
+    <li>Ask how many growers are behind a crop, not how many acres. Bok choy&rsquo;s 82 acres sit
+        behind 33 separate growers; Basil&rsquo;s 58 acres sit behind five &mdash; close to the same
+        ground, a very different supply risk.</li>
     <li>For anything the county does not report, expect to contract it rather than buy it on the spot
         market.</li>
   </ul>
@@ -1443,12 +1193,13 @@ def buyers_page():
 
   {how_it_moves()}
 
-  {contact_block("Crop enquiry", "Name a crop and a week, and we will tell you what is behind it.")}
-  <p class="src">What helps: the crop, the pack you need, how much and how often, and the week you
-     would want to start. <strong>If the answer is that nobody here is growing it at that volume yet,
-     that is the answer you will get.</strong> We have nothing to sell yet &mdash; dues and terms are
-     published once the network&rsquo;s structure is settled &mdash; so the useful conversation now is
-     about what this county actually grows, and whether anything on these pages is wrong.</p>
+  <h3 style="margin-top:12px">Register as a buyer</h3>
+  <p class="src"><strong>If the answer is that nobody here is growing what you check at the volume
+     you need, that is the answer you will get.</strong> We have nothing to sell yet &mdash; dues and
+     terms are published once the network&rsquo;s structure is settled &mdash; so the useful
+     conversation now is about what this county actually grows, and whether anything on these pages
+     is wrong.</p>
+  {registration_form("buyer")}
 </div></section>"""
     return page("For Buyers — ʻĀina to Table", body, current="buyers.html",
                 desc="For kitchens and markets that want a specification rather than a grade: what local supply, the records and the terms actually look like.")
@@ -1501,13 +1252,14 @@ def growers_page():
        numbers to do it against.</p>
   </div>
 
-  <h3 style="margin-top:12px">Two acres cannot serve a commercial contract. The county&rsquo;s own
-      survey counted sixty-six growers on a single crop.</h3>
-  <p>Chinese long bean was grown on 128 acres in this county by 66 separate growers &mdash; just under
-     two acres each. Ten of the crops in our catalogue were farmed at under two acres per grower.</p>
-  <p class="src">Ten of twenty-six, not ten of {S["total"]}: only twenty-six crops in the catalogue
-     carry both an acreage and a grower count from the 2000 survey, which is twenty-six years old. Read
-     it as the shape of this production, not its current size.</p>
+  <h3 style="margin-top:12px">Two and a half acres cannot serve a commercial contract. The county&rsquo;s
+      own survey counted thirty-three growers on a single crop.</h3>
+  <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers &mdash; two and a half acres
+     each, in UCCE&rsquo;s 2000 survey of that one crop.</p>
+  <p class="src">Four crops in our catalogue carry both an acreage and a grower count from the 2000
+     survey, which is twenty-six years old, and Bok choy is the smallest-per-grower of them. Read it as
+     the shape of this production, not its current size &mdash; and as how thin that specific survey
+     cut now is against a catalogue this much narrower than the one it was first read against.</p>
   <p>A buyer asking for weekly case volume is asking for something no two-acre grower can promise alone
      and no single grower should have to. The network is how that commitment gets underwritten &mdash;
      not by us buying it, but by enough qualified growers standing behind one specification.</p>
@@ -1524,7 +1276,7 @@ def growers_page():
     <p class="src">Agronomic viability not established for this region &mdash; see extension trial
        data.</p>
   </div>
-  <p><a class="btn" href="catalogue.html">Open the catalogue &rarr;</a></p>
+  <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
 
   <h3 style="margin-top:12px">You have signed contracts before, so here is the part that is
       different</h3>
@@ -1551,11 +1303,10 @@ def growers_page():
 
   {how_it_moves()}
 
-  {contact_block("Registering interest", "Two things to send, and we will tell you where that leaves you.")}
-  <p class="src">The parcel number or nearest cross-streets, and roughly how much ground is sitting
-     idle. <strong>That is enough</strong> &mdash; <a href="qualify.html">qualification</a> is two
-     questions, not an examination of how you farm, and the crop pages are free to read whether you
-     ever write or not.</p>
+  <h3 style="margin-top:12px">Register as a grower</h3>
+  <p class="src">Qualification is two questions, not an examination of how you farm &mdash; both are
+     in the form below. The crop pages are free to read whether you ever write or not.</p>
+  {registration_form("grower")}
 
   <h3 style="margin-top:12px">What is already published about growing these crops</h3>
   <p>UC Cooperative Extension published a guide to Asian specialty vegetables in the Central Valley in
@@ -1927,25 +1678,6 @@ PRICE = [r"per\s*(lb|pound|kg|case|box|carton)\b", r"/\s*lb\b", r"price per", r"
          r"suggested price", r"target price", r"recommended price",
          r"you should charge", r"\bmarket rate\b"]
 
-def checked_class_note():
-    """Say what the six actually are, in the catalogue's own terms. Two are
-    gap crops; the rest the county names only inside an aggregate. Collapsing
-    the two into "gap crops" is the error this note exists to prevent."""
-    byname = {r["crop"]: r["crop_class"] for r in rows()}
-    g = [c for c in CHECKED_NO_TRIAL if byname.get(c) == "gap"]
-    o = [c for c in CHECKED_NO_TRIAL if byname.get(c) != "gap"]
-    bits = []
-    if g:
-        bits.append(f'{len(g)} of these ({", ".join(c.lower() for c in g)}) this '
-                    f'county reports in no line and no footnote')
-    if o:
-        bits.append(f'{len(o)} ({", ".join(c.split(" /")[0].lower() for c in o)}) '
-                    f'it does name, inside an aggregate line with no acreage and '
-                    f'no value of their own')
-    return (" and ".join(bits) + ". Being named is not being measured, and "
-            "neither is the same as an absence of extension data — which "
-            "is a separate search, and the one we are reporting here.")
-
 def text_of(html):
     t = re.sub(r"<script.*?</script>|<style.*?</style>", " ", html, flags=re.S)
     t = re.sub(r"<[^>]+>", " ", t)
@@ -2018,15 +1750,8 @@ def check(pages):
                 fails.append(f"{nm}: condition 5 — gap chip on a "
                              f"{r['crop_class']} crop")
 
-    # Condition 6 — never call a crop a gap crop unless crop_class says so.
-    byname = {r["crop"]: r["crop_class"] for r in rows()}
-    not_gap = [c for c in CHECKED_NO_TRIAL if byname.get(c) != "gap"]
-    for name, html in pages.items():
-        t = text_of(html)
-        if re.search(r"gap crops? we checked|the (six|\d+) gap crops", t, re.I) \
-           and not_gap:
-            fails.append(f"{name}: condition 6 — calls {len(not_gap)} non-gap "
-                         f"crop(s) a gap crop: {', '.join(not_gap)}")
+    # Condition 6 retired 2026-11-11 with CHECKED_NO_TRIAL — it guarded the
+    # one paragraph that named those seven crops, which no longer exists.
 
     # Condition 7 — an unqualified "f.o.b." is a defect. The abbreviation means
     # three different things: Incoterms FOB (maritime only; the road equivalent
@@ -2047,25 +1772,19 @@ def check(pages):
     # credibility page that asks for the membership has skipped the step that
     # earns it.
     ASK = "Email us"
-    for nm in ("buyers.html", "growers.html", "qualify.html"):
+    for nm in ("buyers.html", "growers.html"):
         if ASK not in text_of(pages[nm]):
             fails.append(f"{nm}: condition 8 — a direct-response surface with no ask")
-    for nm in ("catalogue.html", "inspect.html", "about.html"):
+    for nm in ("inspect.html", "about.html"):
         t = text_of(pages[nm])
         if ASK in t:
             fails.append(f"{nm}: condition 8 — a credibility surface carrying the ask")
         if "For Buyers" not in t and "For Growers" not in t:
             fails.append(f"{nm}: condition 8 — a credibility surface with no next step")
-    for nm, html in pages.items():
-        if not nm.startswith("crops/"):
-            continue
-        # the nav carries qualify.html on every page by design — strip the
-        # chrome before judging the page's own next step, or the check
-        # convicts the navigation.
-        body = re.sub(r"<nav.*?</nav>|<footer.*?</footer>", " ", html, flags=re.S)
-        if 'href="../qualify.html"' in body:
-            fails.append(f"{nm}: condition 8 — a product page pointing straight at the join")
-            break
+    # The product-page-chrome check (did a crop page point straight at
+    # Qualify, bypassing growers.html) retired 2026-11-11 with qualify.html
+    # itself -- there is no join page left for a product page to point at
+    # directly.
 
     # Vault annotation markers are a note-taking convention, not site copy.
     # One leaked into a shipped paragraph on the first prices build.
@@ -2100,11 +1819,10 @@ def check(pages):
 
 def main():
     rs = rows()
-    pages = {"index.html": home_page(), "catalogue.html": catalogue_page(rs),
+    pages = {"index.html": home_page(),
              "inspect.html": inspect_page(), "market.html": market_page(),
              "buyers.html": buyers_page(),
-             "growers.html": growers_page(), "about.html": about_page(),
-             "qualify.html": qualify_page(), "growing.html": growing_page()}
+             "growers.html": growers_page(), "about.html": about_page()}
     for r in rs:
         pages[f"crops/{slug(r['crop'])}.html"] = product_page(r)
 
