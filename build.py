@@ -231,9 +231,16 @@ def slug(name):
 
 def page(title, body, depth=0, desc=META_DESC, current=None):
     up = "../"*depth
-    nav = "".join(
-        f'<li><a href="{up}{h}"{" aria-current=\"page\"" if h==current else ""}>{esc(l)}</a></li>'
-        for h,l in NAV)
+    def nav_item(h, l):
+        # A backslash-escaped quote directly inside an f-string {} expression
+        # parses on 3.12 (this machine) but is a SyntaxError on 3.11 (the
+        # GitHub Actions runner) -- found 2026-11-12 when the first-ever
+        # build.py run on that runner failed on exactly this line. Computed
+        # as a plain variable first so the f-string's own {} never has to
+        # contain an escaped quote.
+        aria = ' aria-current="page"' if h == current else ''
+        return f'<li><a href="{up}{h}"{aria}>{esc(l)}</a></li>'
+    nav = "".join(nav_item(h, l) for h, l in NAV)
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -616,7 +623,7 @@ def product_page(r):
   {econ}
   {gap}
   <div class="note"><p><strong>{"Want this crop?" if r["crop_class"] != "gap" else "Thinking of growing this?"}</strong>
-     {'<a href="../buyers.html">For Buyers</a> says what the contract settles before price comes up. If you farm, <a href="../growers.html">For Growers</a> is the page for it.' if r["crop_class"] != "gap" else '<a href="../growers.html">For Growers</a> is the page for it \u2014 but read the caveat above first: nobody has published a trial for this crop in this valley.'}</p></div>
+     {'<a href="../buyers.html">For Buyers</a> says what the contract settles before price comes up. If you farm, <a href="../growers.html">For Growers</a> is the page for it.' if r["crop_class"] != "gap" else '<a href="../growers.html">For Growers</a> is the page for it — but read the caveat above first: nobody has published a trial for this crop in this valley.'}</p></div>
   <p class="src">Four things are deliberately not on this page yet, and it is worth saying which.
      <strong>Botanical name and native range:</strong> not published for this crop &mdash; the
      structured native-distribution source refuses automated access, and an occurrence record is not
