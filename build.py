@@ -911,6 +911,32 @@ def market_page():
     }
     cat_slugs = {slug(r["crop"]) for r in rows()}
 
+    # ── cuisine filter, v1 (2026-11-12) ──────────────────────────────────────
+    # Cuisine tags live on the catalogue's SPECIALTY/variety rows ("Eggplant,
+    # Chinese", "Eggplant, Thai"), not on the Market chart's commodity-level
+    # rows ("Eggplant") -- that's the catalogue's own ethnic-specialty focus,
+    # not a data gap. Rolling up by first word ("Eggplant, Chinese" ->
+    # "Eggplant") lets a commodity row inherit the union of its varieties'
+    # cuisines. Coverage is honestly thin right now (13 of 105 rows, as of
+    # the 130-row catalogue currently live) because most Market rows are
+    # mainstream commodities the catalogue never tags by cuisine -- untagged
+    # rows simply don't match any specific cuisine filter; "All" still shows
+    # them.
+    cuisines_by_firstword = {}
+    for r in rows():
+        if r.get("cuisines"):
+            fw = re.split(r"[ ,]", r["crop"])[0]
+            cuisines_by_firstword.setdefault(fw, set())
+            for c in r["cuisines"].split(";"):
+                cuisines_by_firstword[fw].add(c.strip())
+
+    def cuisines_for(display_name):
+        target = MARKET_TO_CATALOGUE_CROP.get(display_name, display_name)
+        fw = re.split(r"[ ,]", target)[0]
+        return sorted(cuisines_by_firstword.get(fw, set()))
+
+    all_cuisines = sorted({c for s in cuisines_by_firstword.values() for c in s})
+
     def crop_link(display_name):
         target = MARKET_TO_CATALOGUE_CROP.get(display_name, display_name)
         s = slug(target)
@@ -924,6 +950,25 @@ def market_page():
     # hard-coded here. The registry is the one place a display-name change
     # (e.g. resolving the three held-back collisions) gets made and logged.
 
+    def wholesale_per_lb_note(r):
+        """A per-lb figure next to retail's per-lb figure, so the two can be
+        compared directly -- the whole reason this column exists (Adrian,
+        2026-11-12). Computed from a real USDA-sourced package net weight
+        (enrich_price_chart_with_wholesale_per_lb.py), never shown when no
+        defensible weight exists for this pack -- no per-lb figure is more
+        honest than a guessed one. "by the lb", not "$X/lb" or "per lb" --
+        same PRICE-gate-safe phrasing retail_unit_label already uses; this is
+        a reported market figure, never a recommendation (Gate C)."""
+        lo, hi = r.get("wholesale_price_per_lb_low") or "", r.get("wholesale_price_per_lb_high") or ""
+        if not (lo or hi):
+            return ""
+        price = (f"{money2(lo)}&ndash;{money2(hi)}" if lo and hi and lo != hi
+                 else money2(hi or lo))
+        weight = r.get("wholesale_weight_lb", "")
+        return (f'<span class="src">{price} '
+                f'<span class="chip market">by the lb</span>'
+                f'<span class="chip market">{esc(weight)} lb pack</span></span>')
+
     def term_cell(r):
         lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
         if r.get("terminal_date") and (lo_t or hi_t):
@@ -935,7 +980,7 @@ def market_page():
                     f'<span class="chip market">{esc(r["terminal_pack"])}</span>'
                     f'<span class="chip market">CA origin</span>'
                     f'<span class="chip market">{esc(r["terminal_date"])}</span>'
-                    f'</span>')
+                    f'</span>{wholesale_per_lb_note(r)}')
         return '<span class="src">no California terminal quote found</span>'
 
     def retail_unit_label(unit):
@@ -1015,8 +1060,10 @@ def market_page():
             county_cell = (f'<span class="src">no county figure of its own &mdash; '
                            f'{esc(r["aggregate_context"])}</span>'
                            f'<span class="chips"><span class="chip market">{esc(status)}</span></span>')
-        return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}">
-  <td><span class="crop">{crop_link(r["display_name"])}</span></td>
+        cu = cuisines_for(r["display_name"])
+        cuisine_chips = "".join(f'<span class="chip market">{esc(c)}</span>' for c in cu)
+        return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}" data-cuisine="{esc(','.join(cu))}">
+  <td><span class="crop">{crop_link(r["display_name"])}</span>{f'<span class="chips">{cuisine_chips}</span>' if cu else ''}</td>
   <td>{county_cell}</td>
   <td>{term_cell(r)}</td>
   <td>{retail_cell(r)}</td></tr>"""
@@ -1044,6 +1091,9 @@ def market_page():
     <label for="mfr">Retail</label>
     <select id="mfr"><option value="">Any</option>
       <option value="yes">Quoted</option><option value="no">Not quoted</option></select>
+    <label for="mfc">Cuisine</label>
+    <select id="mfc"><option value="">Any</option>
+      {"".join(f'<option value="{esc(c)}">{esc(c.title())}</option>' for c in all_cuisines)}</select>
     <label for="mfsort">Sort</label>
     <select id="mfsort"><option value="">As listed</option>
       <option value="az">A&ndash;Z</option>
@@ -1062,6 +1112,7 @@ def market_page():
   var tb=document.getElementById('tb-market');
   var qse=document.getElementById('mfq'), sse=document.getElementById('mfs'),
       tse=document.getElementById('mft'), rse=document.getElementById('mfr'),
+      cse=document.getElementById('mfc'),
       ose=document.getElementById('mfsort'), cnt=document.getElementById('mcnt');
   var rows=[].slice.call(tb.rows), total=rows.length;
   var order=rows.slice();
@@ -1073,23 +1124,25 @@ def market_page():
     return m?parseFloat(m[1].replace(/,/g,'')):-1;
   }}
   function apply(){{
-    var q=qse.value.trim().toLowerCase(), s=sse.value, t=tse.value, r=rse.value, sort=ose.value, n=0;
+    var q=qse.value.trim().toLowerCase(), s=sse.value, t=tse.value, r=rse.value, c=cse.value, sort=ose.value, n=0;
     var sorted=order.slice();
     if(sort==='az') sorted.sort(function(a,b){{return cropName(a).localeCompare(cropName(b));}});
     if(sort==='acre-desc') sorted.sort(function(a,b){{return acreValue(b)-acreValue(a);}});
     sorted.forEach(function(tr){{ tb.appendChild(tr); }});
     rows.forEach(function(tr){{
       var name=cropName(tr).toLowerCase();
+      var cuisines=(tr.getAttribute('data-cuisine')||'').split(',');
       var ok=(!q||name.indexOf(q)>-1)
           && (!s||tr.getAttribute('data-status')===s)
           && (!t||tr.getAttribute('data-terminal')===t)
-          && (!r||tr.getAttribute('data-retail')===r);
+          && (!r||tr.getAttribute('data-retail')===r)
+          && (!c||cuisines.indexOf(c)>-1);
       tr.hidden=!ok; if(ok)n++;
     }});
     cnt.textContent=n+' of '+total+' ingredients';
   }}
   qse.addEventListener('input',apply);
-  [sse,tse,rse,ose].forEach(function(el){{el.addEventListener('change',apply);}});
+  [sse,tse,rse,cse,ose].forEach(function(el){{el.addEventListener('change',apply);}});
   apply();
 }})();
 </script>"""
