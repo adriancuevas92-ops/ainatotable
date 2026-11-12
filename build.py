@@ -961,7 +961,22 @@ def market_page():
                     f'<span class="chip market">SW region ad</span>'
                     f'<span class="chip market">week of {esc(r["retail_date"])}</span>'
                     f'</span>')
-        return '<span class="src">no Southwest U.S. retail ad found this week</span>'
+        # 2026-11-12 -- a second, clearly DIFFERENT retail reference: USDA
+        # ERS's national annual average (built for Procurement Intelligence's
+        # ingredient-cost work), used only where no Southwest weekly ad was
+        # ever found. Never shown as "SW region ad" or "week of" -- those
+        # chips describe a different instrument and would misstate this one.
+        lo2, hi2 = r.get("retail2_low") or "", r.get("retail2_high") or ""
+        if r.get("retail2_date") and (lo2 or hi2):
+            price = (f"{money2(lo2)}&ndash;{money2(hi2)}" if lo2 and hi2 and lo2 != hi2
+                     else money2(hi2 or lo2))
+            return (f'<span class="data">{price}</span>'
+                    f'<span class="chips">'
+                    f'<span class="chip market">by the lb</span>'
+                    f'<span class="chip market">USDA ERS national avg</span>'
+                    f'<span class="chip market">{esc(r["retail2_date"])}</span>'
+                    f'</span>')
+        return '<span class="src">no retail reference found</span>'
 
     def has_terminal(r):
         lo_t, hi_t = r.get("terminal_low") or "", r.get("terminal_high") or ""
@@ -969,7 +984,8 @@ def market_page():
 
     def has_retail(r):
         lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
-        return bool(r.get("retail_date") and (lo_r or hi_r))
+        lo2, hi2 = r.get("retail2_low") or "", r.get("retail2_high") or ""
+        return bool(r.get("retail_date") and (lo_r or hi_r)) or bool(r.get("retail2_date") and (lo2 or hi2))
 
     def market_row(r):
         status = r["status"]
@@ -1021,7 +1037,7 @@ def market_page():
   <div class="tbl"><table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre</th>
       <th>Terminal (wholesale)</th>
-      <th>Retail (regional)</th></tr></thead>
+      <th>Retail</th></tr></thead>
     <tbody id="tb-market">{"".join(market_row(r) for r in market)}</tbody>
   </table></div>
 </div></section>
@@ -1062,7 +1078,7 @@ def market_page():
 }})();
 </script>"""
     return page("Market — ʻĀina to Table", body, current="market.html",
-                desc="What an acre has commanded by crop, and what the market still does not say — every crop the county prices individually or only in aggregate, never confused with a terminal-market price.")
+                desc="What an acre has commanded by crop, and what the market still does not say — every crop the county prices individually or only in aggregate, never confused with a terminal-market price. The Retail column carries two different instruments, always labeled which: a Southwest U.S. weekly retail ad where one exists, or — only where it doesn't — a USDA ERS national annual average.")
 
 # ── For Buyers (C2b). Gate C condition 1 lives here. ──────────────────────────
 def buyers_page():
