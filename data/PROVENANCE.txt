@@ -1,0 +1,8 @@
+Which dated mart each committed copy came from.
+Written by tools/refresh_data.py; do not edit by hand.
+Data last changed: 2026-11-06
+
+crop_catalogue_v2.csv  <-  aina_to_table_crop_catalogue_v2_2026-11-05.csv
+price_per_acre_chart.csv  <-  fresno_price_per_acre_chart_2026-11-06.csv
+usda_terminal_market_by_zip3.csv  <-  usda_terminal_market_by_zip3_2026-11-04.csv
+usda_terminal_market_registry.csv  <-  usda_terminal_market_registry_2026-11-04.csv

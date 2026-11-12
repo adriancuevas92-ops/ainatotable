@@ -1,5 +1,14 @@
-site/
+# Build output. Regenerate with `python3 -I build.py` (dist/) and
+# `python3 -I preview.py` (preview/). Not committed, for the same reason
+# second-growth-site does not commit site/: a generated tree turns every
+# rebuild into a 340-file diff and the commit stops being readable.
+dist/
+preview/
+
+# Transient fetch artefact. fetch_prices.py drops the USDA report here while
+# parsing it; the durable copies live in data-engineering/raw/usda_terminal/,
+# keyed by report date, because the series cannot be refetched.
+src/*.pdf
+
 __pycache__/
 *.pyc
-logo-canvas/
-assets/logo/
