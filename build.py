@@ -1010,6 +1010,24 @@ def market_page():
         return (f'<span class="src">past {esc(weeks)} weeks (same region, same unit): '
                 f'{money2(lo_h)}&ndash;{money2(hi_h)}</span>')
 
+    def retail_per_lb_note(r):
+        """Only shown when the Southwest ad's own unit is NOT already per lb
+        (each, per bunch, or a sized pack) -- a real conversion happened and
+        is worth surfacing next to Wholesale's $/lb figure. Skipped when the
+        unit is already 'per lb' -- the primary price above is that figure,
+        a second identical line would be noise. Never shown when unresolved
+        (11 "each" rows -- Bell Pepper, Eggplant, etc. -- have no
+        authoritative per-item weight; see enrich_price_chart_with_retail_
+        per_lb.py). Same PRICE-gate-safe "by the lb" phrasing as Wholesale."""
+        if r.get("retail_unit") == "per lb":
+            return ""
+        lo, hi = r.get("retail_price_per_lb_low") or "", r.get("retail_price_per_lb_high") or ""
+        if not (lo or hi):
+            return ""
+        price = (f"{money2(lo)}&ndash;{money2(hi)}" if lo and hi and lo != hi
+                 else money2(hi or lo))
+        return f'<span class="src">{price} <span class="chip market">by the lb</span></span>'
+
     def retail_cell(r):
         lo_r, hi_r = r.get("retail_low") or "", r.get("retail_high") or ""
         if r.get("retail_date") and (lo_r or hi_r):
@@ -1021,7 +1039,8 @@ def market_page():
                     f'<span class="chip market">SW region ad</span>'
                     f'<span class="chip market">week of {esc(r["retail_date"])}</span>'
                     f'</span>'
-                    f'{retail_history_note(r)}')
+                    f'{retail_history_note(r)}'
+                    f'{retail_per_lb_note(r)}')
         # 2026-11-12 -- a second, clearly DIFFERENT retail reference: USDA
         # ERS's national annual average (built for Procurement Intelligence's
         # ingredient-cost work), used only where no Southwest weekly ad was
