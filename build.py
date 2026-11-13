@@ -704,7 +704,7 @@ def home_page():
      where we can show our work.</p>
   <p><strong>So this is an invitation, and it is open on both sides.</strong> If you want ingredients
      you can trace, or you hold ground that is earning nothing, the network is what makes the two of
-     you contractable to each other. <strong>We never buy the food. We qualify the land, publish what
+     you contractable to each other. <strong>We qualify the land, publish what
      is known, and settle the terms before anyone discusses price.</strong></p>
   <div class="cards">
     <div class="card"><h3>If you want the ingredients</h3>
@@ -773,8 +773,7 @@ def home_page():
      says so.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
   <h2 style="margin-top:28px">What we are, and what we are not</h2>
-  <p>Dues, not a commission. We never buy the food and we are never in the purchase path &mdash; which
-     is also what keeps a buyer&rsquo;s own record relief intact. We qualify a grower&rsquo;s capacity
+  <p>Dues, not a commission. We qualify a grower&rsquo;s capacity
      to contract. We do not inspect food and we do not certify it.</p>
 </div></section>"""
     return page("ʻĀina to Table — ingredients you can trace", body,
