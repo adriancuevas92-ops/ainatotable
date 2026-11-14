@@ -119,10 +119,10 @@ def registration_form(role):
         extra_fields = """
   <label>Parcel number or nearest cross-streets<input type="text" name="parcel"></label>
   <label>Roughly how many acres are sitting idle<input type="text" name="acres"></label>
-  <label class="chk"><input type="checkbox" name="has_land" required> I have the land &mdash; a
-    parcel, and ownership or a lease that lets me commit it for a season.</label>
+  <label class="chk"><input type="checkbox" name="has_land" required> I have the land. A
+    parcel, with ownership or a lease that lets me commit it for a season.</label>
   <label class="chk"><input type="checkbox" name="can_contract" required> I can enter into the
-    contract &mdash; sole proprietor or entity, either way.</label>"""
+    contract. Sole proprietor or entity, either way.</label>"""
         extra_js_collect = """
     if(fd.get('parcel')) lines.push('Parcel/cross-streets: '+fd.get('parcel'));
     if(fd.get('acres')) lines.push('Idle acres: '+fd.get('acres'));
@@ -135,10 +135,10 @@ def registration_form(role):
   <label>Email<input type="email" name="email" required></label>
   <label>Phone (optional)<input type="tel" name="phone"></label>
   {extra_fields}
-  <p class="src">Which of these are you {verb}? Check what applies &mdash; a handful is enough,
-     this is not a commitment.</p>
+  <p class="src">Which of these are you {verb}? Check what applies. A handful is enough.
+     This is not a commitment.</p>
   {checklist}
-  <label>Anything else &mdash; volume, timing, a crop not listed
+  <label>Anything else: volume, timing, a crop not listed
     <textarea name="notes" rows="3"></textarea></label>
   <button type="submit" class="btn">Email us your registration &rarr;</button>
   <div class="note" id="register-{role}-fallback" style="display:none">
@@ -162,7 +162,7 @@ def registration_form(role):
     lines.push('{verb.capitalize()}: '+(ing.length?ing.join(', '):'(none checked)'));
     if(fd.get('notes')) {{ lines.push(''); lines.push('Notes: '+fd.get('notes')); }}
     var body=lines.join('\\n');
-    var subject='ʻĀina to Table — {noun} registration: '+(fd.get('name')||'');
+    var subject='ʻĀina to Table {noun} registration: '+(fd.get('name')||'');
     document.getElementById('register-{role}-text').value=body;
     document.getElementById('register-{role}-fallback').style.display='flex';
     window.location.href='mailto:{EMAIL}?subject='+encodeURIComponent(subject)
@@ -191,7 +191,7 @@ def how_it_moves():
      than describe a lane that does not exist.</p>
   <p class="src">USDA AMS quotes produce truck rates per load for shipments in truckload volume to a
      single destination, and states that multi-pickup and multi-drop shipments are not included.
-     There is no Fresno terminal market &mdash; Los Angeles is the only one in California.</p>
+     There is no Fresno terminal market. Los Angeles is the only one in California.</p>
   <div class="note">
     <p><strong>Four things get settled in writing before anything is picked up</strong>, because each
        one is somebody&rsquo;s cost and all four are commonly left unassigned.</p>
@@ -200,7 +200,7 @@ def how_it_moves():
           the vehicle that turns up.</li>
       <li><strong>Who contracts the carrier and who pays.</strong> Separately stated, because under
           the produce trade&rsquo;s own f.o.b. term the buyer carries transit risk
-          <em>irrespective of how the shipment is billed</em> &mdash; so paying the freight and
+          <em>irrespective of how the shipment is billed</em>. Paying the freight and
           carrying the risk are two different questions.
           <span class="src">7 CFR &sect;46.43(i).</span></li>
       <li><strong>Who unloads.</strong> Federal law makes whoever requires the driver to help
@@ -218,8 +218,8 @@ META_DESC = ("Ingredients you can trace to the ground they came out of. The crop
 RELIEF_TLC = ("Under the rule as written, the party that assigns a traceability lot code is "
   "never the retail food establishment and never the restaurant. That assignment happens "
   "upstream of you.")
-RELIEF_BOUNDARY = ("That is what the rule says. It is not advice about your business, because "
-  "we do not know your sales, your suppliers or your product list — and all three change the answer.")
+RELIEF_BOUNDARY = ("That is what the rule says. It is not advice about your business. We do not "
+  "know your sales, your suppliers or your product list, and all three change the answer.")
 
 def esc(t):
     return (t.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;"))
@@ -257,15 +257,15 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 {body}
 </main>
 <footer><div class="wrap wide">
-  <p><strong>ʻĀina to Table</strong> — a network for ingredients you can trace to the ground they
+  <p><strong>ʻĀina to Table</strong> is a network for ingredients you can trace to the ground they
      came out of, operating in the Fresno region. It qualifies land, publishes what is known about
      each crop, and settles the terms of the transaction. It never buys the food.</p>
-  <p><strong>Contact</strong> &mdash; <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a><br>
+  <p><strong>Contact:</strong> <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a><br>
      <span class="src">That address reaches a person, not a form. If you are a Fresno market or a
      grower and something here is wrong, that is the most useful mail we can get.</span></p>
   <p><a href="{up}about.html">About</a></p>
   <p class="src">Crops and scale: UC Cooperative Extension Fresno County, 2000–2001.
-     Season: UCCE Fresno retail survey, 2010 — typical availability, not a live feed.
+     Season: UCCE Fresno retail survey, 2010. Typical availability, not a live feed.
      County reporting: Fresno County Agricultural Crop and Livestock Reports, 2019–2024.
      Establishment counts: US Bureau of Labor Statistics, QCEW, Fresno County, 2024.</p>
   <p class="src">We do not inspect food and we do not certify it. We do not grow anything in
@@ -350,11 +350,11 @@ MEASURE = {
    "Fresno County reports this crop on its own line, with its own harvested "
    "acreage and its own gross value."),
  "footnote_oriental": ("named", "Named under “Oriental Vegetables”",
-   "Fresno County names this crop — in the footnote to a single “Oriental "
+   "Fresno County names this crop only in the footnote to a single “Oriental "
    "Vegetables” line. The line carries the acreage and the value for all of "
    "them together; this crop has neither of its own."),
  "footnote_other": ("residual", "Named under “Other”",
-   "Fresno County names this crop — in the footnote to a single “Other” "
+   "Fresno County names this crop only in the footnote to a single “Other” "
    "vegetable line. That line carries one acreage and one value for every "
    "crop in it; this crop has neither of its own."),
  "footnote_fruit_other": ("residual", "Named under “Other” fruit",
@@ -378,13 +378,13 @@ MEASURE = {
 # words cannot carry it and a truncated version would overclaim.
 TRADE = {
  "commodity": ("Traded openly",
-   "Traded openly — this county reports it on its own line and the terminal "
+   "Traded openly. This county reports it on its own line and the terminal "
    "market quotes it. Price is most of the conversation."),
  "specialty": ("Few suppliers",
-   "Few suppliers — this county measures it only inside an aggregate line, so "
+   "Few suppliers. This county measures it only inside an aggregate line, so "
    "no published local acreage or value exists for it on its own."),
  "gap": ("Commission only",
-   "Nobody here reports growing it — this county names it in no line and no "
+   "Nobody here reports growing it. This county names it in no line and no "
    "footnote, so a buyer would be commissioning it rather than sourcing it."),
 }
 
@@ -459,12 +459,12 @@ def season_sentence(r):
                 'reach it, and we have found no other published Fresno source.')
     if r["window"] == "NOT IN 2010 MATRIX":
         return ('No season data exists for this crop. The 2010 retail survey did not cover it. '
-                'Not “unknown” — no published Fresno source has measured it.')
+                'Not “unknown”: no published Fresno source has measured it.')
     if r["special_orders_only"] == "yes":
         return 'Fresno specialty markets carried this on special order only, 2010.'
     if r["window"] == "Jan-Dec":
         return 'Typically available all twelve months. Source: UCCE Fresno retail survey, 2010.'
-    return (f'Typically available {r["window"]} — {r["months_available"]} months. '
+    return (f'Typically available {r["window"]}. {r["months_available"]} months. '
             f'Source: UCCE Fresno retail survey, 2010.')
 
 def is_gap(r):
@@ -503,8 +503,8 @@ def product_page(r):
         blk("County reporting", f"Inside the &ldquo;{esc(line)}&rdquo; line",
             esc(f"Fresno County reports {line.lower()} on its own line, with its "
                 f"own harvested acreage and its own gross value. It does not "
-                f"break this variety out separately — but unlike the crops "
-                f"it files under an aggregate, the supply here is published."))
+                f"break this variety out separately. Unlike the crops "
+                f"it files under an aggregate, though, the supply here is published."))
     else:
         blk("County reporting", esc(MEASURE[r["county_measurement"]][1]),
             esc(county_sentence(r)))
@@ -528,7 +528,7 @@ def product_page(r):
     if r["ucce_acres_2000"] and r["ucce_farmers_2000"]:
         blk("Scale, 2000", f'{r["ucce_acres_2000"]} acres across {r["ucce_farmers_2000"]} growers',
             f'{r["acres_per_farmer_2000"]} acres each, on average, across the 26 catalogue crops that '
-            f'carry both an acreage and a grower count. UCCE, 2000 — twenty-six years old. Read it as '
+            f'carry both an acreage and a grower count. UCCE, 2000. Twenty-six years old. Read it as '
             f'the shape of this crop’s production, not its current size.')
     elif r["ucce_acres_2000"]:
         blk("Scale, 2000", f'{r["ucce_acres_2000"]} acres county-wide',
@@ -542,7 +542,7 @@ def product_page(r):
         # statements carry opposite weight for a grower reading the page.
         blk("Scale, 2000", "Not surveyed",
             "The 2000 survey covered Asian specialty vegetables. It did not "
-            "cover this crop, so there is no 2000 figure to report — which is "
+            "cover this crop, so there is no 2000 figure to report. That is "
             "not the same as a figure of zero.")
     # 10b what the alternative cost — the figure ships as REPORTED, attributed
     # and dated, never converted into a target.
@@ -565,7 +565,7 @@ def product_page(r):
         if r["la_pack"]:
             bits.append('Pack as quoted: ' + r["la_pack"] + '.')
         bits.append('Wholesale, f.o.b. shipping point as USDA reports it '
-                    '(7 CFR \u00a746.43(i)) \u2014 the figure excludes freight.')
+                    '(7 CFR \u00a746.43(i)). The figure excludes freight.')
         if origin:
             bits.append('Origin quoted: ' + origin + '.')
         blk("What Los Angeles paid", amt,
@@ -576,7 +576,7 @@ def product_page(r):
     elif r["crop_class"] != "gap":
         blk("What Los Angeles paid", "Nothing published",
             "No terminal market report and no shipping-point report carries a "
-            "figure for this crop. Not a low one \u2014 none published at all.")
+            "figure for this crop. Not a low one: none published at all.")
     # 11 cuisines
     if r["cuisines"]:
         chips = " ".join(f'<span class="chip">{esc(c)}</span>' for c in r["cuisines"].split(";"))
@@ -597,7 +597,7 @@ def product_page(r):
     if r["ucce_guide_2001"] == "yes":
         practice = ('<div class="spec"><p class="lbl">How it generally grows</p>'
           '<p>UC Cooperative Extension covers this crop in <em>Guide to Asian Specialty Vegetables in '
-          'the Central Valley, CA</em>, September 2001 — identification and general culture.</p>'
+          'the Central Valley, CA</em>, September 2001. Identification and general culture.</p>'
           '<p class="src">That guide is not an agronomic manual. It says almost nothing about soil or '
           'climate per crop, and we will not pad it out with figures it does not contain. '
           'This is how the plant generally grows. It is not guidance for growing it here.</p></div>')
@@ -608,7 +608,7 @@ def product_page(r):
                         "No local production record of any kind." if r["local_status"].startswith("A ") else "",
                         season_sentence(r)]).strip()
         gap = ('<div class="absent-note"><p><span class="chip gap">Contractable</span></p>'
-          '<p class="cav"><strong>Agronomic viability not established for this region — see '
+          '<p class="cav"><strong>Agronomic viability not established for this region. See '
           'extension trial data.</strong></p>'
           f'<p>Why this is a gap: {esc(why)}</p>'
           '<p class="src">We show a gap and the source for each part of it. We do not tell anyone '
@@ -623,16 +623,16 @@ def product_page(r):
   {econ}
   {gap}
   <div class="note"><p><strong>{"Want this crop?" if r["crop_class"] != "gap" else "Thinking of growing this?"}</strong>
-     {'<a href="../buyers.html">For Buyers</a> says what the contract settles before price comes up. If you farm, <a href="../growers.html">For Growers</a> is the page for it.' if r["crop_class"] != "gap" else '<a href="../growers.html">For Growers</a> is the page for it — but read the caveat above first: nobody has published a trial for this crop in this valley.'}</p></div>
+     {'<a href="../buyers.html">For Buyers</a> says what the contract settles before price comes up. If you farm, <a href="../growers.html">For Growers</a> is the page for it.' if r["crop_class"] != "gap" else '<a href="../growers.html">For Growers</a> is the page for it. Read the caveat above first: nobody has published a trial for this crop in this valley.'}</p></div>
   <p class="src">Four things are deliberately not on this page yet, and it is worth saying which.
-     <strong>Botanical name and native range:</strong> not published for this crop &mdash; the
+     <strong>Botanical name and native range:</strong> not published for this crop. The
      structured native-distribution source refuses automated access, and an occurrence record is not
      a native range. <strong>Climate preference:</strong> the 2001 guide is a crop-identification
      leaflet, not an agronomic manual, and it carries almost nothing on soil or climate per crop; we
-     will not invent one. <strong>A photograph:</strong> none, by decision &mdash; a page with no
+     will not invent one. <strong>A photograph:</strong> none, by decision. A page with no
      photograph is a gap you will forgive, and a page with the wrong plant on it is not.</p>
 </div></section>"""
-    return page(f"{name} — ʻĀina to Table", body, depth=1,
+    return page(f"{name} · ʻĀina to Table", body, depth=1,
                 desc=f"{name}: season, county reporting, scale and sources.")
 
 # ── Home (C2c) ────────────────────────────────────────────────────────────────
@@ -642,12 +642,12 @@ def home_page():
   <span class="mk">{MARK.format(u="h")}</span>
   <p class="eyebrow">A network, not a middleman. Free information, and no product to buy first.</p>
   <h1>A quality ingredient is one you can trace to the ground it came out of.</h1>
-  <p>ʻĀina to Table exists to make that ordinary rather than exceptional &mdash; to put ingredients
+  <p>ʻĀina to Table exists to make that ordinary rather than exceptional. It puts ingredients
      grown nearby into the kitchens and pantries that want them, on terms both sides can hold each
      other to. <strong>Not as a premium category. As what quality ought to mean.</strong></p>
   <p><strong>Fresh ingredients taste different, and if you cook for a living you already know it.</strong>
      A tomato picked three days ago is not the same ingredient as one picked three weeks ago and held
-     in the channel &mdash; sugars convert, moisture goes, texture changes, and the aromatics that
+     in the channel. Sugars convert, moisture goes, texture changes, and the aromatics that
      made it worth buying are the first thing to leave. <strong>Nobody who has stood over a pan
      needs that argued.</strong></p>
   <div class="note">
@@ -670,7 +670,7 @@ def home_page():
   <div class="note">
     <p><strong>Here is how far the current arrangement is from that.</strong> On the day this page
      was last built, <strong>{S["sjv"]} crops in the Los Angeles wholesale report were quoted from
-     the San Joaquin Valley</strong> &mdash; grown here, trucked to Los Angeles, and priced there. A
+     the San Joaquin Valley.</strong> Grown here, trucked to Los Angeles, and priced there. A
      Fresno kitchen buying those is buying local produce that has made a round trip first.</p>
     <p class="src">Los Angeles Terminal Market reports (HC_FV020, HC_FV010), USDA Agricultural
      Marketing Service. The origin column on <a href="inspect.html">Inspect</a> names them.</p>
@@ -683,7 +683,7 @@ def home_page():
      acreage fell <strong>36.4%</strong>, while all county vegetable acreage fell
      <strong>15.2%</strong>.</p>
     <p class="src">That figure is about one line of the
-     county&rsquo;s report, not about this whole catalogue &mdash; the crops it names and measures
+     county&rsquo;s report, not about this whole catalogue: the crops it names and measures
      only in aggregate. It says nothing about the commodity crops this county reports on their own
      lines, and we do not extend it to them. Fresno County Agricultural Crop and Livestock Reports,
      2019&ndash;2024.</p>
@@ -714,7 +714,7 @@ def home_page():
       <p><a class="btn" href="buyers.html">Join as a buyer &rarr;</a></p></div>
     <div class="card"><h3>If you have the ground</h3>
       <p>A working farm with a block out of rotation, a few acres, a field corner. <strong>Qualifying
-         asks two questions</strong> &mdash; do you have the land, and can you enter into the
+         asks two questions:</strong> do you have the land, and can you enter into the
          contract. Not a test of how you farm.</p>
       <p><a class="btn" href="growers.html">Join as a grower &rarr;</a></p></div>
     <div class="card"><h3>Getting it there</h3>
@@ -731,6 +731,67 @@ def home_page():
 </div></section>
 
 <section class="band"><div class="wrap stack">
+  <p class="eyebrow">What scale costs</p>
+  <h2>The ground remembers who worked it. The supply chain never asks.</h2>
+  <div class="cards">
+    <div class="card"><h3>Fewer hands, fewer owners</h3>
+      <p>California had about <strong>4,000 processing-tomato growers in
+         the 1960s.</strong> Fewer than 600 by 1973. <strong>About 225
+         today.</strong> They still grow nearly all the tomatoes the country
+         eats. A handful of operations, each running 3,000 or more acres.</p>
+      <p class="src">Grist, compiling San Francisco Chronicle reporting on
+         California processing-tomato concentration.</p></div>
+    <div class="card"><h3>The hand leaves before the name does</h3>
+      <p>A processing-peach acre in the San Joaquin Valley costs
+         <strong>$4,437 in labor</strong> to grow. Pruned by hand. Thinned
+         by hand. Picked by hand. Labor is 45% of what that acre grosses.
+         The almonds replacing it cost <strong>$1,657</strong>. Shaken loose
+         by machine. Labor is 37% of the gross. For pistachios, 21%.
+         <strong>The crops losing ground needed a person. What replaces
+         them mostly doesn't.</strong></p>
+      <p class="src">UC Davis / UC Cooperative Extension sample cost-of-production
+         studies: processing peaches (2017), almonds (2024), pistachios
+         (2020), San Joaquin Valley.</p></div>
+    <div class="card"><h3>Pay erodes exactly where ownership consolidates</h3>
+      <p>Fresno County's meat and poultry processing paid <strong>2%
+         above</strong> the county average in 1990. It pays <strong>15%
+         below</strong> it now. The decline tracks the sector's own plant
+         count, year for year. Tulare County's dairy processors didn't
+         consolidate the same way. They kept a <strong>64% wage
+         premium</strong> the entire time.</p>
+      <p class="src">U.S. Bureau of Labor Statistics, Quarterly Census of
+         Employment and Wages (QCEW), Fresno and Tulare Counties,
+         1990&ndash;2025.</p></div>
+  </div>
+  <div class="note">
+    <p><strong>None of that shows up on a grade sheet.</strong> A tomato
+       from one of the 225 remaining farms still arrives red. It still
+       looks ripe. It was picked on a schedule set by a buyer who will
+       never meet the person who grew it. What it loses isn't freshness.
+       Inspect already makes that argument. <strong>What it loses is the
+       hand that grew it, and the ground it grew on.</strong> You can taste
+       when something was grown to be itself. You can taste when it was
+       grown to be interchangeable.</p>
+  </div>
+  <p><strong>Provenance is half of what this is for. The other half is who
+     it pulls toward this ground.</strong></p>
+  <p>Not just any grower. Not the big-ag mindset that treats a field as a
+     volume problem, solved with more machinery. This valley is also
+     running out of water it can legally pump. State law already requires
+     <strong>500,000 to 900,000 acres</strong> of San Joaquin Valley
+     farmland out of production by 2040. Growers are deciding what that
+     ground becomes right now, not someday.</p>
+  <p class="src">Public Policy Institute of California, &ldquo;SGMA-Ready
+     Crops as a Low-Water Alternative to Fallowing&rdquo; and &ldquo;Exploring
+     the Potential for Water-Limited Agriculture in the San Joaquin
+     Valley.&rdquo;</p>
+  <p><strong>That is the actual aim. A crop that rewards a hand instead of
+     a shift, on land that can't spare what a monoculture demands. A
+     premium ingredient, grown by someone who stayed long enough to be
+     good at it.</strong></p>
+</div></section>
+
+<section class="band"><div class="wrap stack">
   <p class="eyebrow">The problem</p>
   <h2>Local sourcing does not fail for one reason. It fails three ways, and any one of them stops
       the same order.</h2>
@@ -743,7 +804,7 @@ def home_page():
          assigns a traceability lot code. And if you buy direct from the farm that grew it, the record
          asked of you is a name and address, kept 180 days.</p></div>
     <div class="card"><h3>No single grower can underwrite a commitment</h3>
-      <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers &mdash; two and a half
+      <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers. Two and a half
          acres each, in UCCE&rsquo;s 2000 survey of that one crop. A weekly case commitment
          is not something a two-and-a-half-acre grower can make alone.</p></div>
   </div>
@@ -756,7 +817,7 @@ def home_page():
   <h2>The season does not taper. It falls off a cliff.</h2>
   <div class="note">
     <p><strong>Thirty-seven of the surveyed crops were available in November. Thirteen were available
-       in December</strong> &mdash; a sixty-five percent collapse in one month. If you plan on a
+       in December.</strong> A sixty-five percent collapse in one month. If you plan on a
        tapering season you will be short in December, not in February.</p>
     <p class="src">UC Cooperative Extension Fresno County retail survey, 2010. Typical availability,
        not a live feed, and sixteen years old. Counted from the matrix, not read from any
@@ -767,8 +828,8 @@ def home_page():
 <section class="band"><div class="wrap stack">
   <p class="eyebrow">The crops</p>
   <h2>What is actually known about each crop</h2>
-  <p>{S["total"]} crops &mdash; {S["commodity"]} commodity, {S["specialty"]} specialty,
-     {S["gap"]} unreported &mdash; each with its season, its scale in growers rather than acres,
+  <p>{S["total"]} crops in all: {S["commodity"]} commodity, {S["specialty"]} specialty,
+     {S["gap"]} unreported. Each with its season, its scale in growers rather than acres,
      and how this county reports it. Where the record is silent, the market
      says so.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
@@ -776,7 +837,7 @@ def home_page():
   <p>Dues, not a commission. We qualify a grower&rsquo;s capacity
      to contract. We do not inspect food and we do not certify it.</p>
 </div></section>"""
-    return page("ʻĀina to Table — ingredients you can trace", body,
+    return page("ʻĀina to Table · ingredients you can trace", body,
                 current="index.html")
 
 # ── Inspect (C2d) ─────────────────────────────────────────────────────────────
@@ -807,7 +868,7 @@ def inspect_page():
      Establishment counts: US Bureau of Labor Statistics, QCEW, Fresno County, 2024.</p>
   <p class="src"><strong>Both of the first two figures are about one line of the county&rsquo;s
      report, not about this whole catalogue.</strong> They are computed from
-     &ldquo;Oriental Vegetables&rdquo; &mdash; the {S["footnote"]} crops the county names only inside
+     &ldquo;Oriental Vegetables&rdquo;: the {S["footnote"]} crops the county names only inside
      an aggregate. They say nothing about the {S["commodity"]} commodity crops in this catalogue,
      which the county reports on their own lines, and we do not extend them to those crops.</p>
 
@@ -828,7 +889,7 @@ def inspect_page():
   <div class="spec"><p class="lbl">The clearest case</p>
     <p><strong>Jicama.</strong> Two-tenths of an acre county-wide in 2000, a published growing guide in
        2001, and still carried by Fresno specialty markets in the 2010 retail survey. Demand recorded,
-       supply trivial, agronomy already published &mdash; each with a date and an author on it.</p></div>
+       supply trivial, agronomy already published. Each one with a date and an author on it.</p></div>
   <p class="src">Two retail categories are too small for the federal government to publish without
      identifying the businesses in them. We recovered roughly thirty-five establishments by subtraction.
      A segment too small to be measured is a segment too small for anyone else to bother serving.</p>
@@ -858,12 +919,12 @@ def inspect_page():
     <p><strong>No causal story.</strong> We do not know whether the acreage decline is a supply story or
        a demand story. A premium argues against demand collapse. It does not prove a supply
        constraint.</p>
-    <p><strong>And the two sources this page leans on hardest are old</strong> &mdash; the grower survey
+    <p><strong>And the two sources this page leans on hardest are old.</strong> The grower survey
        is from 2000, the availability survey from 2010. They describe the shape of this production, not
        its current size.</p>
   </div>
 </div></section>"""
-    return page("Inspect — ʻĀina to Table", body, current="inspect.html",
+    return page("Inspect · ʻĀina to Table", body, current="inspect.html",
                 desc="What this market is actually doing, with every figure sourced, dated, and its gaps stated.")
 
 # ── Market (price per acre) ───────────────────────────────────────────────────
@@ -889,7 +950,7 @@ def market_page():
     if not rs:
         body = """<section class="band"><div class="wrap stack"><h1>Market</h1>
   <p>Not built yet.</p></div></section>"""
-        return page("Market — ʻĀina to Table", body, current="market.html")
+        return page("Market · ʻĀina to Table", body, current="market.html")
 
     # 2026-11-11 — Catalogue retired as a public destination; its crop pages
     # now recycle through Market instead (Adrian: "can the links be
@@ -1075,7 +1136,7 @@ def market_page():
                            f'<span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span>'
                            f'<span class="chip market">{esc(status)}</span></span>')
         else:
-            county_cell = (f'<span class="src">no county figure of its own &mdash; '
+            county_cell = (f'<span class="src">no county figure of its own: '
                            f'{esc(r["aggregate_context"])}</span>'
                            f'<span class="chips"><span class="chip market">{esc(status)}</span></span>')
         cu = cuisines_for(r["display_name"])
@@ -1164,8 +1225,8 @@ def market_page():
   apply();
 }})();
 </script>"""
-    return page("Market — ʻĀina to Table", body, current="market.html",
-                desc="What an acre has commanded by crop, and what the market still does not say — every crop the county prices individually or only in aggregate, never confused with a terminal-market price. The Retail column carries two different instruments, always labeled which: a Southwest U.S. weekly retail ad where one exists, or — only where it doesn't — a USDA ERS national annual average.")
+    return page("Market · ʻĀina to Table", body, current="market.html",
+                desc="What an acre has commanded by crop, and what the market still does not say. Every crop the county prices individually or only in aggregate, never confused with a terminal-market price. The Retail column carries two different instruments, always labeled which: a Southwest U.S. weekly retail ad where one exists, or, only where it doesn't, a USDA ERS national annual average.")
 
 # ── For Buyers (C2b). Gate C condition 1 lives here. ──────────────────────────
 def buyers_page():
@@ -1189,13 +1250,13 @@ def buyers_page():
   <p class="eyebrow">For Buyers</p>
   <h1>Order a variety and a week, not a grade.</h1>
   <p>A grade is the floor. It says nothing about which variety, or how many days ago the thing was
-     cut &mdash; and those are the two facts that decide what arrives in your kitchen. <strong>This
+     cut, and those are the two facts that decide what arrives in your kitchen. <strong>This
      network exists so you can ask for them and have the answer written down.</strong></p>
   <p>We publish which crops this county reports growing, which ones it reports only inside an
-     aggregate, and which ones it does not report at all &mdash; with the sources, before you tell us
+     aggregate, and which ones it does not report at all. The sources come with it, before you tell us
      anything about your business.</p>
-  <p class="src">Fresno County&rsquo;s food-retail universe is 287 establishments &mdash; of which
-     thirteen are fruit-and-vegetable markets, employing twenty-five people between them &mdash;
+  <p class="src">Fresno County&rsquo;s food-retail universe is 287 establishments. Thirteen
+     of those are fruit-and-vegetable markets, employing twenty-five people between them,
      alongside 508 full-service restaurants and 48 fresh-produce wholesalers. Two retail categories are
      too small for the federal government to publish without identifying the businesses in them; we
      recovered roughly thirty-five establishments by subtraction. A segment too small to be measured is
@@ -1216,32 +1277,32 @@ def buyers_page():
   <h3 style="margin-top:12px">Here is what grows here.</h3>
   <p>{S["total"]} crops, with each one&rsquo;s season, its scale in growers rather
      than acres, and how Fresno County reports it. {S["gap"]} of them the county does not
-     report in any form &mdash; which is the first thing worth knowing about them.</p>
+     report in any form. That is the first thing worth knowing about them.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
 
   <h3 style="margin-top:12px">Seasonality is the real constraint, and we are not going to pretend
       otherwise.</h3>
   <p>Of the 45 crops surveyed in Fresno specialty markets, 38 were available in October and 8 in
-     January. Only two &mdash; daikon and lemongrass &mdash; ran all twelve months. And the fall is not
-     gradual: availability holds through November at 37 crops, then drops to 13 in December &mdash; a
+     January. Only two, daikon and lemongrass, ran all twelve months. And the fall is not
+     gradual: availability holds through November at 37 crops, then drops to 13 in December. A
      65% collapse in a single month. If you plan on a tapering season you will be short in December,
      not in February.</p>
   <p class="src">UC Cooperative Extension Fresno County, specialty Asian retail market survey, 2010.
      Typical availability, not a live feed, and sixteen years old. No season data exists for any Mexican
-     specialty crop &mdash; the 2010 survey covered Hmong and Southeast Asian retail only, so cactus
+     specialty crop. The 2010 survey covered Hmong and Southeast Asian retail only, so cactus
      leaf, tomatillo, epazote, chipil&iacute;n, pepicha and purslane have no published season anywhere.
      We would rather tell you that than guess.</p>
 
   <h3 style="margin-top:12px">How to plan against a season like this</h3>
   <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
-    <li>Build your specification before your calendar. What a crop has to be &mdash; variety, size,
-        grade, pack &mdash; is contingent on the product itself and on the intended use at your
+    <li>Build your specification before your calendar. What a crop has to be, meaning variety, size,
+        grade, and pack, is contingent on the product itself and on the intended use at your
         facility. Settle that once and it survives every season.</li>
     <li>Treat November as the end of the season, not December.</li>
     <li>For the three crops that carry January, name your substitution in the contract rather than at
         the loading dock.</li>
     <li>Ask how many growers are behind a crop, not how many acres. Bok choy&rsquo;s 82 acres sit
-        behind 33 separate growers; Basil&rsquo;s 58 acres sit behind five &mdash; close to the same
+        behind 33 separate growers. Basil&rsquo;s 58 acres sit behind five: close to the same
         ground, a very different supply risk.</li>
     <li>For anything the county does not report, expect to contract it rather than buy it on the spot
         market.</li>
@@ -1251,8 +1312,8 @@ def buyers_page():
 
   <h3 style="margin-top:12px">We settle the terms before anyone talks about price.</h3>
   <p>One standard contract, the same for every member, covering five things and deliberately not a
-     sixth: the delivery term, named against Incoterms&reg; 2020 &mdash; who contracts carriage, which
-     is not the same as who arranges it &mdash; where risk of loss passes, who keeps which record and
+     sixth: the delivery term, named against Incoterms&reg; 2020 (who contracts carriage, which
+     is not the same as who arranges it), where risk of loss passes, who keeps which record and
      for how long, and the specification with what happens when a delivery misses it.</p>
   <p><strong>Not price.</strong> We standardise how a transaction works, never what it costs. What you
      pay is between you and the grower, every time.</p>
@@ -1266,16 +1327,16 @@ def buyers_page():
          and a dish that needs a crop with an eight-month window is a dish with a four-month hole in
          it.</p></div>
   </div>
-  <p class="src">The regulatory position is identical for both &mdash; &sect;1.1305(j) and
+  <p class="src">The regulatory position is identical for both. &sect;1.1305(j) and
      &sect;1.1345(b)(1) treat a retail food establishment and a restaurant alike.</p>
 
   <h3 style="margin-top:12px">What membership is</h3>
   <p>Dues, not a commission. We take no percentage of what you buy and we never appear in the purchase
      path. That is not modesty, it is the point: if a broker or a parent company buys the food, the
-     direct-from-farm record relief stops applying to you &mdash; FDA has said so expressly,
+     direct-from-farm record relief stops applying to you. FDA has said so expressly,
      <em>&ldquo;even if no third party ever takes physical possession of the food.&rdquo;</em> We never
      buy the food, so your position does not change by working with us.</p>
-  <p>We qualify a grower&rsquo;s capacity to take on a commercial contract &mdash; their scale, their
+  <p>We qualify a grower&rsquo;s capacity to take on a commercial contract: their scale, their
      terms, their records. We do not inspect food and we do not certify it. Nothing we do is a
      food-safety judgment.</p>
   <p class="src">Dues and terms are published once the network&rsquo;s structure is settled.</p>
@@ -1285,11 +1346,11 @@ def buyers_page():
      language the contract uses rather than general commercial wording.
      <strong>F.o.b.</strong> means the crop is placed free on board at the shipping point
      <strong>in suitable shipping condition</strong>, and the buyer carries the risk of damage and
-     delay in transit not caused by the seller &mdash; <em>irrespective of how the shipment is
+     delay in transit not caused by the seller, <em>irrespective of how the shipment is
      billed.</em> <span class="src">7 CFR &sect;46.43(i).</span></p>
   <p><strong>Suitable shipping condition</strong> is the clause that matters most and the one most
-     often left out: the crop, at the time of billing, is in a condition which &mdash; handled under
-     normal transportation service &mdash; will assure delivery without abnormal deterioration at the
+     often left out: the crop, at the time of billing, is in a condition which, handled under
+     normal transportation service, will assure delivery without abnormal deterioration at the
      contract destination the two parties agreed.
      <span class="src">7 CFR &sect;46.43(j); good-delivery tolerances at &sect;46.44.</span></p>
   <div class="note">
@@ -1305,13 +1366,13 @@ def buyers_page():
 
   <h3 style="margin-top:12px">Register as a buyer</h3>
   <p class="src"><strong>If the answer is that nobody here is growing what you check at the volume
-     you need, that is the answer you will get.</strong> We have nothing to sell yet &mdash; dues and
-     terms are published once the network&rsquo;s structure is settled &mdash; so the useful
+     you need, that is the answer you will get.</strong> We have nothing to sell yet. Dues and
+     terms are published once the network&rsquo;s structure is settled, so the useful
      conversation now is about what this county actually grows, and whether anything on these pages
      is wrong.</p>
   {registration_form("buyer")}
 </div></section>"""
-    return page("For Buyers — ʻĀina to Table", body, current="buyers.html",
+    return page("For Buyers · ʻĀina to Table", body, current="buyers.html",
                 desc="For kitchens and markets that want a specification rather than a grade: what local supply, the records and the terms actually look like.")
 
 # ── For Growers (C2e) ─────────────────────────────────────────────────────────
@@ -1320,8 +1381,8 @@ def growers_page():
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">For Growers</p>
   <h1>Ground that is earning nothing is still ground.</h1>
-  <p class="src">And the crops this county measures only in aggregate &mdash; the specialty line, not
-     its commodity rows &mdash; have earned a premium per acre in every one of the last six years,
+  <p class="src">And the crops this county measures only in aggregate (the specialty line, not
+     its commodity rows) have earned a premium per acre in every one of the last six years,
      while that same acreage has been going out of production faster than the sector around it. Both
      figures, and what they do and do not cover, are below.</p>
   <p>That is not encouragement. It is what six years of the county&rsquo;s own crop reports say, and the
@@ -1329,14 +1390,14 @@ def growers_page():
   <p>Asian specialty vegetables returned between 1.56 and 3.12 times the value per acre of the average
      Fresno County vegetable acre, in every one of the six years from 2019 to 2024. The worst year of
      the six was still 1.56 times. Over the same six years the acreage fell 36.4%, while all county
-     vegetable acreage fell 15.2% &mdash; it is going out of production nearly two and a half times
+     vegetable acreage fell 15.2%. It is going out of production nearly two and a half times
      faster than the sector around it.</p>
   <p class="src">Fresno County Agricultural Crop and Livestock Reports, 2019&ndash;2024. Each year
      cross-checked against the following year&rsquo;s comparative table; the 2019 figure is
      single-sourced. We do not know why it is leaving production, and we are not going to guess. A
      premium argues against demand collapse. It does not prove a supply constraint.</p>
   <p class="src"><strong>This figure is about one line of the county&rsquo;s report, not about this
-     whole catalogue.</strong> It is the &ldquo;Oriental Vegetables&rdquo; line &mdash; the crops the
+     whole catalogue.</strong> It is the &ldquo;Oriental Vegetables&rdquo; line: the crops the
      county names in that footnote and measures only in aggregate. It says nothing about the
      catalogue&rsquo;s commodity crops, which the county reports on their own lines, and we do not
      extend it to them.</p>
@@ -1351,28 +1412,28 @@ def growers_page():
      figures FDA <em>has</em> published, reproducing them to within 0.033%.</span></p>
   <div class="note">
     <p><strong>And here is the part that catches people.</strong> Two different rules both say
-       &ldquo;$25,000&rdquo; in their text, and they adjust from different base years &mdash; one from
+       &ldquo;$25,000&rdquo; in their text, and they adjust from different base years: one from
        2020, one from 2011. The traceability figure lands near <strong>$29,800</strong>. The Produce
        Safety figure, which FDA does publish, is <strong>$34,324</strong>. A farm at $32,000 is under
        one and over the other.</p>
     <p class="src">21 CFR &sect;1.1305(a), base year 2020, computed &middot; 21 CFR &sect;112.4(a),
        base year 2011, FDA-published.</p>
     <p>Which of those applies to you depends on what you grow, what you sell it as, and what your
-       three-year average is. That is your arithmetic, not ours &mdash; but now you know which two
+       three-year average is. That is your arithmetic, not ours. But now you know which two
        numbers to do it against.</p>
   </div>
 
   <h3 style="margin-top:12px">Two and a half acres cannot serve a commercial contract. The county&rsquo;s
       own survey counted thirty-three growers on a single crop.</h3>
-  <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers &mdash; two and a half acres
+  <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers. Two and a half acres
      each, in UCCE&rsquo;s 2000 survey of that one crop.</p>
   <p class="src">Four crops in our catalogue carry both an acreage and a grower count from the 2000
      survey, which is twenty-six years old, and Bok choy is the smallest-per-grower of them. Read it as
-     the shape of this production, not its current size &mdash; and as how thin that specific survey
+     the shape of this production, not its current size, and as how thin that specific survey
      cut now is against a catalogue this much narrower than the one it was first read against.</p>
   <p>A buyer asking for weekly case volume is asking for something no two-acre grower can promise alone
-     and no single grower should have to. The network is how that commitment gets underwritten &mdash;
-     not by us buying it, but by enough qualified growers standing behind one specification.</p>
+     and no single grower should have to. The network is how that commitment gets underwritten.
+     Not by us buying it, but by enough qualified growers standing behind one specification.</p>
 
   <h3 style="margin-top:12px">Where the record has holes</h3>
   <p>{S["absent_all"]} crops that Fresno markets buy are named by this county in no line and no
@@ -1383,7 +1444,7 @@ def growers_page():
     <p><strong>We will show you every hole in the record and the source for each one. We will not tell
        you to plant anything.</strong> For the gap crops we have checked we found no extension trial in
        this valley, and a recommendation without one is somebody else&rsquo;s money at risk.</p>
-    <p class="src">Agronomic viability not established for this region &mdash; see extension trial
+    <p class="src">Agronomic viability not established for this region. See extension trial
        data.</p>
   </div>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
@@ -1393,8 +1454,8 @@ def growers_page():
   <p>Roughly half the production value of fruit, nut and berry farms in this country is already under
      contract, and on the farms that use them it is almost all of it. None of this is new to you.
      <span class="src">USDA Economic Research Service.</span></p>
-  <p><strong>What differs is which kind of contract this is.</strong> It is not a production contract
-     &mdash; nobody owns your crop while it is in the ground, nobody supplies your inputs, and
+  <p><strong>What differs is which kind of contract this is.</strong> It is not a production contract.
+     Nobody owns your crop while it is in the ground, nobody supplies your inputs, and
      nothing ties you to one buyer through equipment only they can use. It is a marketing contract
      <em>between you and the buyer</em>, on published terms neither of us can quietly change.
      <strong>We are not a party to it and we never buy your crop.</strong></p>
@@ -1403,7 +1464,7 @@ def growers_page():
 
   <h3 style="margin-top:12px">And the part that actually matters: getting paid</h3>
   <p>The contract states when payment is due and what condition on arrival means, in the produce
-     trade&rsquo;s own terms. <strong>Suitable shipping condition</strong> is the test &mdash; that
+     trade&rsquo;s own terms. <strong>Suitable shipping condition</strong> is the test: that
      the crop, at the time of billing, will arrive at the agreed destination without abnormal
      deterioration if it is handled normally in transit.
      <span class="src">7 CFR &sect;46.43(j); tolerances at &sect;46.44. The clause needs an agreed
@@ -1414,18 +1475,18 @@ def growers_page():
   {how_it_moves()}
 
   <h3 style="margin-top:12px">Register as a grower</h3>
-  <p class="src">Qualification is two questions, not an examination of how you farm &mdash; both are
+  <p class="src">Qualification is two questions, not an examination of how you farm. Both are
      in the form below. The crop pages are free to read whether you ever write or not.</p>
   {registration_form("grower")}
 
   <h3 style="margin-top:12px">What is already published about growing these crops</h3>
   <p>UC Cooperative Extension published a guide to Asian specialty vegetables in the Central Valley in
-     2001, and seven cost-and-return studies in 2005. Those seven cover twelve of these crops &mdash;
+     2001, and seven cost-and-return studies in 2005. Those seven cover twelve of these crops:
      one study covers moqua and opo together, one covers all three eggplants, and bitter melon and
      sinqua each appear here as two entries. Both sources are public, both are on the crop pages, and
      neither is ours.</p>
   <p class="src">The 2001 guide identifies crops and describes general culture. It is not an agronomic
-     manual &mdash; it says almost nothing about soil or climate per crop, and we will not pad it out
+     manual. It says almost nothing about soil or climate per crop, and we will not pad it out
      with figures it does not contain. The 2005 cost studies carry per-acre costs and returns; they are
      twenty-one years old and we do not publish their figures until they have been re-verified and
      adjusted. We would rather tell you the study exists than quote a number from it.</p>
@@ -1433,21 +1494,21 @@ def growers_page():
   <h3 style="margin-top:12px">What qualification means, and what it does not</h3>
   <p>We qualify your capacity to take on a commercial contract: your scale, the terms you can meet, the
      records you already keep. It is a statement that you can transact, within stated bounds.
-     Qualifying, not exclusionary &mdash; the criteria are published, they are the same for everyone,
+     Qualifying, not exclusionary. The criteria are published, they are the same for everyone,
      and a decision can be appealed.</p>
   <p><strong>It is not a food-safety judgment.</strong> We do not inspect your food, we do not certify
      it, and nothing we issue says anything about it. Any buyer who reads our qualification as a food
      certification has read it wrong, and we would rather say so here than correct it later.</p>
-  <p class="src">Dues, not a commission. We never buy your crop and we are never in the purchase path
-     &mdash; which is also what keeps your buyer&rsquo;s own record relief intact. The contract settles
+  <p class="src">Dues, not a commission. We never buy your crop and we are never in the purchase path.
+     That is also what keeps your buyer&rsquo;s own record relief intact. The contract settles
      delivery, risk, records, specification and remedies. It never settles price. What you sell for is
      between you and your buyer, every time. Dues and terms are published once the network&rsquo;s
      structure is settled.</p>
   <h3 style="margin-top:12px">Getting in touch</h3>
-  <p>hello@ainatotable.com &mdash; one address, and it reaches a person rather than a form.</p>
+  <p>hello@ainatotable.com. One address, and it reaches a person rather than a form.</p>
   <p class="src">We have nothing to sell yet: dues and terms are published once the network&rsquo;s structure is settled. Until then the useful conversation is about what this county actually grows, and whether anything on these pages is wrong.</p>
 </div></section>"""
-    return page("For Growers — ʻĀina to Table", body, current="growers.html",
+    return page("For Growers · ʻĀina to Table", body, current="growers.html",
                 desc="For anyone holding ground that is earning nothing: the thresholds, the gaps, and the two questions qualifying actually asks.")
 
 # ── About (C2f) ───────────────────────────────────────────────────────────────
@@ -1458,8 +1519,8 @@ def about_page():
   <p><strong>A network built so that an ingredient you can trace to the ground it came out of is the
      ordinary thing to buy rather than the exceptional one.</strong> ʻĀina to Table operates in the
      Fresno region, is separate from any one grower, and is named separately from any farm.</p>
-  <p>Concretely: <strong>it qualifies land</strong> &mdash; that the ground is real and committable
-     and that there is a party who can contract &mdash; <strong>publishes what is known about each
+  <p>Concretely: <strong>it qualifies land</strong> (that the ground is real and committable
+     and that there is a party who can contract), <strong>publishes what is known about each
      crop, and settles the terms of the transaction in the produce trade&rsquo;s own language.</strong>
      <strong>It never buys the food.</strong></p>
   <p>Dues, not a commission. The catalogue, the market conditions, the soil-health material and the
@@ -1470,14 +1531,14 @@ def about_page():
   <div class="cards">
     <div class="card">
       <p style="color:var(--ink);font-size:1.0625rem"><strong>Labor should share in the profit of the
-         food it grows &mdash; not just be paid a wage to produce something someone else profits
+         food it grows. Not just be paid a wage to produce something someone else profits
          from.</strong></p>
       <p>That is also the legal structure. Growers acting together on terms need a form that permits it,
          and an association of agricultural producers is the one this network is being built in.</p>
     </div>
     <div class="card">
       <p style="color:var(--ink);font-size:1.0625rem"><strong>Buyers deserve a real relationship with
-         where their ingredients come from &mdash; not an anonymous line in a distributor&rsquo;s
+         where their ingredients come from. Not an anonymous line in a distributor&rsquo;s
          truck.</strong></p>
       <p>There are 48 fresh-produce wholesalers standing between this county&rsquo;s buyers and its
          farms. That sentence was written before anyone counted them.</p>
@@ -1499,11 +1560,11 @@ def about_page():
 
   <h3 style="margin-top:12px">What the dues are, and what they are not</h3>
   <p>Dues, not a commission. Nothing we are paid moves with the price or the volume of what changes
-     hands &mdash; which is the whole reason we can publish a wholesale figure that argues against
+     hands. That is the whole reason we can publish a wholesale figure that argues against
      us.</p>
   <div class="note">
     <p><strong>What a member owns.</strong> The qualification record is the member&rsquo;s, not ours.
-       It describes their operation, so it belongs to them and it travels &mdash; to any buyer,
+       It describes their operation, so it belongs to them and it travels: to any buyer,
        including one who has never heard of us.</p>
     <p><strong>What a member controls.</strong> Who they contract with, at what price, on what
        volume. We are not a party to the contract and we do not negotiate it.</p>
@@ -1512,12 +1573,12 @@ def about_page():
        at their expense, because our side of it does not move with their volume.</p>
   </div>
   <p class="src">Three of the things on this site are free and will stay free: the catalogue, the
-     market conditions, and the reading of the federal thresholds. <strong>They are not the offer
-     &mdash; they are what we can show before anyone owes us anything.</strong> What membership adds
+     market conditions, and the reading of the federal thresholds. <strong>They are not the offer.
+     They are what we can show before anyone owes us anything.</strong> What membership adds
      is the qualification record, the published contract, somewhere to go when a load arrives out of
      condition, and the growers who have been through the same audit.</p>
 </div></section>"""
-    return page("About — ʻĀina to Table", body,
+    return page("About · ʻĀina to Table", body,
                 desc="ʻĀina to Table is a network for ingredients you can trace to the ground they came out of. It qualifies land, publishes what is known, and never buys the food.")
 
 # ⭐ Prices now come from the catalogue itself, not from a separate 16-crop
@@ -1577,7 +1638,7 @@ def market_section():
   <h2 style="margin-top:28px" id="your-market">Which market is your alternative?</h2>
   <p>The figures above are Los Angeles, because that is where this network is being built. The same
      reports exist for nine other cities. <strong>Put in a postcode and this will tell you which one
-     is nearest you &mdash; and whether it is close enough to mean anything.</strong></p>
+     is nearest you, and whether it is close enough to mean anything.</strong></p>
   <div class="tools">
     <label for="zq">Postcode</label>
     <input id="zq" inputmode="numeric" maxlength="5" placeholder="e.g. 93701"
@@ -1588,7 +1649,7 @@ def market_section():
   <div class="note" id="zans" hidden></div>
   <p class="src"><strong>What this does and does not do.</strong> It names the market whose published
      report is closest to you, and how far away it is. <strong>It does not price this catalogue
-     against that market</strong> &mdash; the crop-by-crop matching above is Los Angeles only. And it
+     against that market.</strong> The crop-by-crop matching above is Los Angeles only. And it
      answers at three-digit postcode granularity, where about a quarter of areas span more than one
      market, which is why you get a range rather than a single number.</p>
 
@@ -1629,7 +1690,7 @@ def market_section():
     var b=BANDS[r[3]]||BANDS.n, city=CITY[r[0]]||r[0],
         rng=(r[1]===r[2])?(r[1]+' miles'):(r[1]+'\u2013'+r[2]+' miles');
     lab.textContent='Postcode area '+v.slice(0,3)+'.';
-    out.innerHTML='<p><strong>Nearest reporting market: '+city+'</strong> &mdash; '+rng+' away.</p>'
+    out.innerHTML='<p><strong>Nearest reporting market: '+city+'</strong>. '+rng+' away.</p>'
       +'<p>'+b[0]+'</p>'
       +'<p class="src">Reports '+r[0]+'_FV020 (vegetables) and '+r[0]+'_FV010 (fruit), '
       +'USDA Agricultural Marketing Service. Distance is to the market city, not to its own dock.</p>';
@@ -1714,9 +1775,9 @@ def price_section():
   </table></div>
   <p class="src">Los Angeles Terminal Market Vegetables Prices (HC_FV020) and Fruit Prices
      (HC_FV010), USDA Agricultural Marketing Service, {esc(date)}. Wholesale, f.o.b. shipping point
-     as USDA reports it (7 CFR &sect;46.43(i)) &mdash; the figure excludes freight. <strong>{len(pr)} of the {n_total} crops in this catalogue appear in
+     as USDA reports it (7 CFR &sect;46.43(i)). The figure excludes freight. <strong>{len(pr)} of the {n_total} crops in this catalogue appear in
      those two reports.</strong> Where a crop is quoted under a broader commodity name, the name the
-     report used is shown beside it, and a crop is only priced from a block that names it &mdash; a
+     report used is shown beside it, and a crop is only priced from a block that names it. A
      generic price is not treated as a specialty price.</p>
   <div class="note">
     <p><strong>Read this as the price of the alternative, not as a local price and not as a
@@ -1725,7 +1786,7 @@ def price_section():
        figure we are suggesting anyone trade at. We publish it because it is public and because the
        people on the other side of the table already know it.</p>
     <p><strong>And look at the origin column.</strong> {len(sjv)} of these were quoted from the
-       San Joaquin Valley &mdash; this valley: {esc(", ".join(sjv))}. Grown here, trucked to Los
+       San Joaquin Valley, this valley: {esc(", ".join(sjv))}. Grown here, trucked to Los
        Angeles, and priced there. That is the gap this network exists to close, with a dollar figure
        on it.</p>
     <p><strong>{n_total - len(pr)} of the {n_total} have no published price anywhere.</strong> No terminal market
