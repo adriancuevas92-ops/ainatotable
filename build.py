@@ -659,27 +659,14 @@ def home_page():
     <div class="slide" style="background-image:url(images/homepage-slideshow/07-tomato-loading-britain-1914.jpg)"></div>
   </div>
   <div class="wrap stack">
-  <p class="eyebrow">A qualifying network, paid in dues. Behind the scenes, it connects growers and
-     food creators to what actually gets a product to market.</p>
-  <h1>A quality ingredient is one you can trace to the ground it came out of.</h1>
-  <p>ʻĀina to Table exists to make that ordinary rather than exceptional. It puts ingredients
-     grown nearby into the kitchens and pantries that want them, on terms both sides can hold each
-     other to. <strong>As what quality ought to mean, every time, as the standard rather than the
-     upsell.</strong></p>
+  <h1>A network for growers and food creators.</h1>
   <div class="note">
-    <p class="eyebrow">The reason</p>
-    <p><strong>Food does more than keep you alive.</strong> It can taste good enough to remember on
-       purpose. And it carries forward whatever someone decided was worth passing on, recipe by
-       recipe, person to person. Most of what gets sold today is only asked to do the first of
-       those.</p>
-    <p style="font-style:italic">&ldquo;Food can be life sustaining, nourish our soul, and pass
-       tradition all at the same time.&rdquo;</p>
-    <p>This network exists for the third one as much as the first. A fresh, local ingredient is
-       what lets someone make the thing that was actually handed down to them, instead of the
-       nearest commodity substitute. Easing that one connection, between the person who grows it
-       and the person who is going to turn it into something that matters to someone, is the whole
-       purpose of what we built.</p>
+    <p style="font-style:italic">&ldquo;Through flavors, techniques, and shared meals, culinary
+       traditions connect generations, carrying stories of place, community, and creativity.&rdquo;</p>
+    <p class="src">UNESCO, <em>Forever Flavors: Stories of Food, Memory and Living Heritage</em>, 2026.</p>
   </div>
+  <p><strong>Food does more than feed you.</strong> It&rsquo;s how a tradition survives the person
+     who started it. This is the network behind that happening on purpose.</p>
   <p><strong>Fresh ingredients taste different, and if you cook for a living you already know it.</strong>
      A tomato picked three days ago is not the same ingredient as one picked three weeks ago and held
      in the channel. Sugars convert, moisture goes, texture changes, and the aromatics that
