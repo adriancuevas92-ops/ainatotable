@@ -72,12 +72,28 @@ marker inside a JavaScript comment. See the Decision Log for both.
 `main` is ainatotable.com. The Pages deploy runs on push to `main`, so **merging
 publishes**. A branch push deploys nothing.
 
-That makes the pull request the gate, and two things must close on it before a merge:
+That makes the pull request the gate — **mechanically enforced since 2026-11-19**,
+not only by convention. Branch protection on `main` requires a pull request before
+merging and requires `.github/workflows/pr-check.yml`'s `build` job (the same
+`build.py` gate, run against the PR's branch) to pass first. A direct push to `main`
+is rejected by GitHub itself, including for the repo owner — there is no bypass.
+
+Two things should still close on a PR before merging, same as before the gate became
+mechanical:
 
 - Adrian's standing instruction to confirm messaging and strategy before content ships.
 - The PACA broker question with Legal & Ethics — `7 U.S.C. §499a(b)(7)` has no
   possession and no title element, and whether it reaches this venture is unresolved.
   It is recorded as blocking the public copy.
+
+**Why this exists:** on 2026-11-19 a content change went straight to `main` on
+Adrian's own explicit instruction to deploy it, which is a legitimate way to
+authorize one specific change, but it meant the repo's own documented PR
+convention above was bypassed procedurally rather than overridden deliberately,
+and a separate, unrelated stale-data failure was only caught after the push, at
+deploy time. Branch protection closes both gaps going forward: the convention is
+no longer optional, and a build failure is visible on the PR instead of after a
+merge already happened.
 
 The custom domain is held in repo settings, not a tracked `CNAME` file, so it survives
 an Actions deploy without anything in `dist/`.
