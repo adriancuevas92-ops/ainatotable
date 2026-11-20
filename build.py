@@ -37,6 +37,14 @@ MART = os.path.join(DATA, "crop_catalogue_v2.csv")
 MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
 # ── the mark, from the locked masters (viewBox and geometry unchanged) ─────────
+# 🔴 RETIRED FROM USE, 2026-11-19 — finishing [[2026-11-07 - Symbol Eliminated;
+# Wordmark-Only Going Forward]], a decision logged twelve days earlier that was
+# never actually carried into this file: the mark kept rendering in the nav
+# lockup and the Home hero the whole time. Both usages removed below. The
+# constant itself is kept, not deleted, per the vault's own asset-provenance
+# rule — nothing currently calls it. `.lockup svg` and `.hero .mk` in
+# src/site.css are now dead rules for the same reason, left in place rather
+# than silently stripped.
 MARK = ('<svg viewBox="-1.2199 -1.2859 2.484 2.484" aria-hidden="true">'
  '<defs><mask id="mk{u}" maskUnits="userSpaceOnUse" x="-1.2199" y="-1.2859" width="2.484" height="2.484">'
  '<rect x="-1.2199" y="-1.2859" width="2.484" height="2.484" fill="#fff"/>'
@@ -250,7 +258,7 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <nav><div class="wrap wide">
-  <a class="lockup" href="{up}index.html">{MARK.format(u="n")}<span>ʻĀina to Table</span></a>
+  <a class="lockup" href="{up}index.html"><span>ʻĀina to Table</span></a>
   <ul>{nav}</ul>
 </div></nav>
 <main id="main">
@@ -641,7 +649,6 @@ def product_page(r):
 def home_page():
     S = stats()
     body = f"""<section class="hero"><div class="wrap stack">
-  <span class="mk">{MARK.format(u="h")}</span>
   <p class="eyebrow">A qualifying network, paid in dues. Free, real information, and no product to
      buy first.</p>
   <h1>A quality ingredient is one you can trace to the ground it came out of.</h1>
