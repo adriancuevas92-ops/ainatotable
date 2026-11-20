@@ -48,8 +48,24 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 /* The hero is a flat surface. There is no photography on this property, by
    decision: the six existing images were South Kona and retired with Origin,
    and no crop photography exists. Decision Log 2026-11-03. */
-.hero{background:var(--surface-dark);color:var(--on-dark-soft)}
-.hero>.wrap{padding-block:64px}
+.hero{background:var(--surface-dark);color:var(--on-dark-soft);position:relative;overflow:hidden}
+.hero-slideshow{position:absolute;inset:0;z-index:0}
+.hero-slideshow .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
+  animation:hero-slide-cycle 28s infinite}
+.hero-slideshow .slide:nth-child(1){animation-delay:0s}
+.hero-slideshow .slide:nth-child(2){animation-delay:7s}
+.hero-slideshow .slide:nth-child(3){animation-delay:14s}
+.hero-slideshow .slide:nth-child(4){animation-delay:21s}
+.hero-slideshow::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(20,16,12,.62),rgba(20,16,12,.78));}
+@keyframes hero-slide-cycle{
+  0%{opacity:0} 4%{opacity:1} 21%{opacity:1} 25%{opacity:0} 100%{opacity:0}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-slideshow .slide{animation:none;opacity:0}
+  .hero-slideshow .slide:nth-child(1){opacity:1}
+}
+.hero>.wrap{padding-block:64px;position:relative;z-index:2}
 .hero h1{font-size:2.441rem;color:var(--on-dark)}
 .hero .eyebrow{color:var(--on-dark-soft)}
 .hero p{color:var(--on-dark-soft);max-width:60ch}

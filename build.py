@@ -648,7 +648,14 @@ def product_page(r):
 # ── Home (C2c) ────────────────────────────────────────────────────────────────
 def home_page():
     S = stats()
-    body = f"""<section class="hero"><div class="wrap stack">
+    body = f"""<section class="hero">
+  <div class="hero-slideshow" aria-hidden="true">
+    <div class="slide" style="background-image:url(images/homepage-slideshow/01-beet-laborers-lunch-stockton-1943.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/02-sugar-beet-harvest.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/03-mission-farms-meal.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/04-sierra-leone-farm-meal-1934.jpg)"></div>
+  </div>
+  <div class="wrap stack">
   <p class="eyebrow">A qualifying network, paid in dues. Free, real information, and no product to
      buy first.</p>
   <h1>A quality ingredient is one you can trace to the ground it came out of.</h1>
@@ -2051,6 +2058,11 @@ def main():
     for css in ("tokens.css", "site.css"):
         shutil.copy(os.path.join(ROOT, "src", css), os.path.join(DIST, css))
     shutil.copytree(os.path.join(ROOT, "fonts"), os.path.join(DIST, "fonts"))
+    shutil.copytree(
+        os.path.join(ROOT, "images", "homepage-slideshow"),
+        os.path.join(DIST, "images", "homepage-slideshow"),
+        ignore=shutil.ignore_patterns("CREDITS.md"),
+    )
 
     slugs = [slug(r["crop"]) for r in rs]
     assert len(set(slugs)) == len(slugs), "slug collision"
