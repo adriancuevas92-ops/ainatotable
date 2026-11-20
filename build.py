@@ -277,10 +277,8 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
      Season: UCCE Fresno retail survey, 2010. Typical availability, not a live feed.
      County reporting: Fresno County Agricultural Crop and Livestock Reports, 2019–2024.
      Establishment counts: US Bureau of Labor Statistics, QCEW, Fresno County, 2024.</p>
-  <p class="src">It qualifies a grower&rsquo;s capacity to contract. Inspecting and certifying food
-     stays with the agencies built to do that. Its own role stops at the paperwork and the standard:
-     the one thing it holds to without exception is staying out of the purchase path between grower
-     and buyer, which is what keeps a buyer&rsquo;s own direct-from-farm record relief intact.</p>
+  <p class="src">Staying out of the purchase path between grower and buyer is what keeps a
+     buyer&rsquo;s own direct-from-farm record relief intact.</p>
 </div></footer>
 </body></html>
 """
@@ -710,8 +708,8 @@ def home_page():
   <p class="src">California Department of Food and Agriculture, California Agricultural Production
      Statistics &middot; Fresno County Agricultural Crop and Livestock Report, 2024.</p>
   <p>If you want ingredients you can trace, or you&rsquo;re holding ground that&rsquo;s earning
-     nothing. <strong>We make the two of you contractable to each other.</strong> We qualify
-     the land, publish what&rsquo;s known, and settle the terms before price.</p>
+     nothing, the land gets qualified and the terms get settled before price is ever on the
+     table.</p>
   <div class="note">
     <p><strong>Tell us what you&rsquo;re looking for.</strong></p>
     <p style="display:flex;gap:12px;flex-wrap:wrap">
@@ -790,15 +788,16 @@ def home_page():
          specialty crop inside an undifferentiated residual with no acreage and no value at all.</p></div>
     <div class="card"><h3>Neither side knows which rule applies</h3>
       <p>Under the rule as written, a retail food establishment or restaurant is never the party that
-         assigns a traceability lot code. And if you buy direct from the farm that grew it, the record
-         asked of you is a name and address, kept 180 days.</p></div>
+         assigns a traceability lot code. <span class="src">21 CFR &sect;1.1345(b)(1)</span> And if you
+         buy direct from the farm that grew it, the record asked of you is a name and address, kept
+         180 days. <span class="src">21 CFR &sect;1.1305(j)</span></p></div>
     <div class="card"><h3>No single grower can underwrite a commitment</h3>
       <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers. Two and a half
          acres each, in UCCE&rsquo;s 2000 survey of that one crop. A weekly case commitment
          is not something a two-and-a-half-acre grower can make alone.</p></div>
   </div>
-  <p class="src">The catalogue, the standard contract and the qualified network are those three fixes,
-     in that order.</p>
+  <p class="src">The catalogue, the standard contract and more than one grower&rsquo;s acreage
+     standing behind the same commitment are those three fixes, in that order.</p>
 </div></section>
 
 <section class="band"><div class="wrap stack">
@@ -822,11 +821,7 @@ def home_page():
      and how this county reports it. Where the record is silent, the market
      says so.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
-  <h2 style="margin-top:28px">What membership actually is</h2>
-  <p>What gets checked is a grower&rsquo;s capacity to contract. Inspecting and certifying food is
-     somebody else&rsquo;s job, not this network&rsquo;s.</p>
-  <p>What it is for is simpler than either list: making sure the hand that grows something and the
-     hand that turns it into something are never more than one honest connection apart.</p>
+  <p style="margin-top:28px">That address reaches someone who can act on it.</p>
 </div></section>"""
     return page("ʻĀina to Table · ingredients you can trace", body,
                 current="index.html")
