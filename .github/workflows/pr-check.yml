@@ -1,0 +1,28 @@
+name: Check build (PR gate)
+
+# Runs the gate (build.py) against every pull request targeting main, so a
+# Gate C violation or stale-price failure is visible on the PR before anyone
+# merges, not discovered after a push already triggered deploy.yml's own
+# build-and-deploy run. Added 2026-11-19 after a direct push to main went out
+# with content Adrian had already approved, but the repo's own PR convention
+# (documented in README.md's "Deploying" section and deploy.yml's header
+# comment) was bypassed procedurally, and the unrelated stale-data failure
+# that followed was only caught post-push. Branch protection on main requires
+# this workflow's "build" job to pass before a merge is allowed, which is what
+# makes "the gate is the PR" true mechanically instead of only by convention.
+on:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 -I build.py
