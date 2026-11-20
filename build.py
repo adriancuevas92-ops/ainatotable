@@ -64,7 +64,7 @@ MARK = ('<svg viewBox="-1.2199 -1.2859 2.484 2.484" aria-hidden="true">'
 
 NAV = [("index.html","Home"),("inspect.html","Inspect"),
        ("market.html","Market"),
-       ("buyers.html","For Buyers"),("growers.html","For Growers")]
+       ("how-it-works.html","How it works"),("about.html","About")]
 
 # ⭐ The one contact route, and it is shown as TEXT as well as linked. A mailto
 # is unreliable for many readers and the page cannot tell whether it worked, so
@@ -663,16 +663,22 @@ def home_page():
     <div class="slide" style="background-image:url(images/homepage-slideshow/11-strawberry-field-harvest.jpg)"></div>
   </div>
   <div class="wrap stack">
-  <h1>A network for growers and food creators.</h1>
+  <h1>Some things are worth looking for.</h1>
+  <p>A grade tells you a category. It doesn&rsquo;t tell you who grew it, when it was picked, or
+     why it tastes like something instead of nothing.</p>
   <div class="note">
     <p style="font-style:italic">&ldquo;Through flavors, techniques, and shared meals, culinary
        traditions connect generations, carrying stories of place, community, and creativity.&rdquo;</p>
     <p class="src">UNESCO, <em>Forever Flavors: Stories of Food, Memory and Living Heritage</em>, 2026.</p>
   </div>
-  <p><strong>Food does more than feed you.</strong> It&rsquo;s how a tradition survives the person
-     who started it. This is the network behind that happening on purpose.</p>
-  <p><strong>A grade is the floor.</strong> It doesn&rsquo;t say how many days ago something was
-     cut, who grew it, or what to expect when it arrives. We publish all three.</p>
+  <p>Food is one of the few things that carries a tradition forward without anyone having to explain
+     it. A recipe survives as long as someone keeps growing what it calls for, and a crop survives
+     as long as someone can still make a living growing it. Most of the Central Valley&rsquo;s
+     ingredients never get the chance to be known this way. They get sorted into a grade and sold as
+     a category instead of a thing with a name.</p>
+  <p>That isn&rsquo;t a complaint about farming. It&rsquo;s what happens when scale decides what an
+     ingredient is worth instead of the ingredient itself. The numbers that follow are part of the
+     same argument, not a separate one.</p>
   <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
     <li><strong>A specification, not a grade.</strong> Variety, size, harvest window.</li>
     <li><strong>Less handling, written into the contract.</strong> Not promised. Measured
@@ -706,28 +712,18 @@ def home_page():
   <p>If you want ingredients you can trace, or you&rsquo;re holding ground that&rsquo;s earning
      nothing. <strong>We make the two of you contractable to each other.</strong> We qualify
      the land, publish what&rsquo;s known, and settle the terms before price.</p>
-  <div class="cards">
-    <div class="card"><h3>If you want the ingredients</h3>
-      <p>Restaurants, markets, and anyone filling a pantry on purpose. <strong>Ask for a variety and
-         a week rather than a grade</strong>, and have condition on arrival settled in writing before
-         price comes up.</p>
-      <p><a class="btn" href="buyers.html">Join as a buyer &rarr;</a></p></div>
-    <div class="card"><h3>If you have the ground</h3>
-      <p>A working farm with a block out of rotation, a few acres, a field corner. <strong>Qualifying
-         asks two questions:</strong> do you have the land, and can you enter into the
-         contract. Not a test of how you farm.</p>
-      <p><a class="btn" href="growers.html">Join as a grower &rarr;</a></p></div>
-    <div class="card"><h3>Getting it there</h3>
-      <p>Several stops, a few pallets each, one fixed day, inside one county. Who pre-cools, who
-         pays and who unloads are settled in writing first.</p>
-      <p><a class="btn" href="buyers.html#how-it-moves">How a load is shaped &rarr;</a></p></div>
+  <div class="note">
+    <p><strong>Tell us what you&rsquo;re looking for.</strong></p>
+    <p style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="buyers.html">A crop, by name and not by grade &rarr;</a>
+      <a class="btn" href="buyers.html">A direct line to a grower for your kitchen &rarr;</a>
+      <a class="btn" href="growers.html">A next step for something you already grow &rarr;</a>
+    </p>
   </div>
   <p style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
-    <a class="btn" href="market.html">Open the market &rarr;</a>
+    <a class="btn ghost" href="market.html">Open the market &rarr;</a>
     <a class="btn ghost" href="inspect.html">See what the market is doing &rarr;</a>
   </p>
-  <p class="src" style="color:var(--on-dark-soft)">Growing already? The ground you are farming earns
-     more per acre than almost anything else in this county. <a href="growers.html">For Growers &rarr;</a></p>
 </div></section>
 
 <section class="band"><div class="wrap stack">
@@ -1505,6 +1501,51 @@ def growers_page():
     return page("For Growers · ʻĀina to Table", body, current="growers.html",
                 desc="For anyone holding ground that is earning nothing: the thresholds, the gaps, and the two questions qualifying actually asks.")
 
+# ── How it works ──────────────────────────────────────────────────────────────
+# ⭐ Added 2026-11-20, replacing "For Buyers"/"For Growers" as the top-nav
+# destination after a working session concluded the home page (and the nav)
+# should not fork into two audiences at the first click. This page explains
+# the relationship rather than pitching a role, per that direction — every
+# claim on it is reused, word for word or near it, from copy already approved
+# and already live elsewhere (the home page, buyers.html, growers.html,
+# how_it_moves()). Nothing new is asserted here. buyers.html and growers.html
+# are not retired -- they still carry the role-specific detail (compliance
+# relief, parcel/acreage questions, registration) and are reached from the
+# three options below, from the home page, and directly from crop pages.
+def how_it_works_page():
+    body = f"""<section class="band"><div class="wrap stack">
+  <p class="eyebrow">How it works</p>
+  <h1>We qualify the land, publish what&rsquo;s known, and settle the terms before price.</h1>
+  <p>That holds the same way for everyone who deals with this network, whichever side of the
+     transaction they&rsquo;re on. What gets checked is a grower&rsquo;s capacity to contract.
+     Inspecting and certifying food is somebody else&rsquo;s job, not this network&rsquo;s.</p>
+  <p>What it is for is simpler than a list of roles: making sure the hand that grows something and
+     the hand that turns it into something are never more than one honest connection apart.</p>
+
+  {how_it_moves()}
+
+  <h3 style="margin-top:20px">What membership is</h3>
+  <p>This membership never takes a cut of what you buy or sell, and stays outside the purchase path
+     between grower and buyer. The farm sells to the buyer directly; membership does not change
+     that. What it checks is a grower&rsquo;s capacity to take on a commercial contract: their
+     scale, their terms, their records. Terms are published once the network&rsquo;s structure is
+     settled.</p>
+
+  <h3 style="margin-top:20px">Where this goes next</h3>
+  <div class="cards">
+    <div class="card"><h3>Sourcing a crop, or sourcing for a kitchen</h3>
+      <p>What grows here, the season it keeps, and how to put a specification and a delivery term in
+         writing before price comes up.</p>
+      <p><a class="btn" href="buyers.html">For Buyers &rarr;</a></p></div>
+    <div class="card"><h3>Adding a step before you go to market</h3>
+      <p>What qualifying actually checks, the thresholds that may or may not reach your farm, and
+         what the contract settles.</p>
+      <p><a class="btn" href="growers.html">For Growers &rarr;</a></p></div>
+  </div>
+</div></section>"""
+    return page("How it works · ʻĀina to Table", body, current="how-it-works.html",
+                desc="How ʻĀina to Table qualifies growers, publishes what's known about each crop, and settles the terms of a transaction before price, for whoever is on either side of it.")
+
 # ── About (C2f) ───────────────────────────────────────────────────────────────
 def about_page():
     body = """<section class="band"><div class="wrap stack">
@@ -1570,6 +1611,7 @@ def about_page():
      show before anyone owes us anything, the whole case made in the open.</strong> What membership
      adds is the qualification record, the published contract, somewhere to go when a load arrives
      out of condition, and the growers who have been through the same audit.</p>
+  <p><a class="btn" href="how-it-works.html">How it works &rarr;</a></p>
 </div></section>"""
     return page("About · ʻĀina to Table", body,
                 desc="ʻĀina to Table is a network for ingredients you can trace to the ground they came out of. It qualifies land, publishes what is known, and never buys the food.")
@@ -1961,7 +2003,7 @@ def check(pages):
         t = text_of(pages[nm])
         if ASK in t:
             fails.append(f"{nm}: condition 8 — a credibility surface carrying the ask")
-        if "For Buyers" not in t and "For Growers" not in t:
+        if "For Buyers" not in t and "For Growers" not in t and "How it works" not in t:
             fails.append(f"{nm}: condition 8 — a credibility surface with no next step")
     # The product-page-chrome check (did a crop page point straight at
     # Qualify, bypassing growers.html) retired 2026-11-11 with qualify.html
@@ -2004,7 +2046,8 @@ def main():
     pages = {"index.html": home_page(),
              "inspect.html": inspect_page(), "market.html": market_page(),
              "buyers.html": buyers_page(),
-             "growers.html": growers_page(), "about.html": about_page()}
+             "growers.html": growers_page(), "about.html": about_page(),
+             "how-it-works.html": how_it_works_page()}
     for r in rs:
         pages[f"crops/{slug(r['crop'])}.html"] = product_page(r)
 
