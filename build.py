@@ -259,7 +259,8 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 <footer><div class="wrap wide">
   <p><strong>ʻĀina to Table</strong> is a network for ingredients you can trace to the ground they
      came out of, operating in the Fresno region. It qualifies land, publishes what is known about
-     each crop, and settles the terms of the transaction. It never buys the food.</p>
+     each crop, and settles the terms of the transaction between the grower and the buyer who deal
+     directly with one another.</p>
   <p><strong>Contact:</strong> <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a><br>
      <span class="src">That address reaches a person, not a form. If you are a Fresno market or a
      grower and something here is wrong, that is the most useful mail we can get.</span></p>
@@ -268,9 +269,10 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
      Season: UCCE Fresno retail survey, 2010. Typical availability, not a live feed.
      County reporting: Fresno County Agricultural Crop and Livestock Reports, 2019–2024.
      Establishment counts: US Bureau of Labor Statistics, QCEW, Fresno County, 2024.</p>
-  <p class="src">We do not inspect food and we do not certify it. We do not grow anything in
-     Fresno County. We never buy it, sell it, take possession of it, negotiate its price or appear
-     in the purchase path.</p>
+  <p class="src">It qualifies a grower&rsquo;s capacity to contract. Inspecting and certifying food
+     stays with the agencies built to do that. Its own role stops at the paperwork and the standard:
+     the one thing it holds to without exception is staying out of the purchase path between grower
+     and buyer, which is what keeps a buyer&rsquo;s own direct-from-farm record relief intact.</p>
 </div></footer>
 </body></html>
 """
@@ -640,11 +642,27 @@ def home_page():
     S = stats()
     body = f"""<section class="hero"><div class="wrap stack">
   <span class="mk">{MARK.format(u="h")}</span>
-  <p class="eyebrow">A network, not a middleman. Free information, and no product to buy first.</p>
+  <p class="eyebrow">A qualifying network, paid in dues. Free, real information, and no product to
+     buy first.</p>
   <h1>A quality ingredient is one you can trace to the ground it came out of.</h1>
   <p>ʻĀina to Table exists to make that ordinary rather than exceptional. It puts ingredients
      grown nearby into the kitchens and pantries that want them, on terms both sides can hold each
-     other to. <strong>Not as a premium category. As what quality ought to mean.</strong></p>
+     other to. <strong>As what quality ought to mean, every time, as the standard rather than the
+     upsell.</strong></p>
+  <div class="note">
+    <p class="eyebrow">The reason</p>
+    <p><strong>Food does more than keep you alive.</strong> It can taste good enough to remember on
+       purpose. And it carries forward whatever someone decided was worth passing on, recipe by
+       recipe, person to person. Most of what gets sold today is only asked to do the first of
+       those.</p>
+    <p style="font-style:italic">&ldquo;Food can be life sustaining, nourish our soul, and pass
+       tradition all at the same time.&rdquo;</p>
+    <p>This network exists for the third one as much as the first. A fresh, local ingredient is
+       what lets someone make the thing that was actually handed down to them, instead of the
+       nearest commodity substitute. Easing that one connection, between the person who grows it
+       and the person who is going to turn it into something that matters to someone, is the whole
+       purpose of what we built.</p>
+  </div>
   <p><strong>Fresh ingredients taste different, and if you cook for a living you already know it.</strong>
      A tomato picked three days ago is not the same ingredient as one picked three weeks ago and held
      in the channel. Sugars convert, moisture goes, texture changes, and the aromatics that
@@ -833,9 +851,12 @@ def home_page():
      and how this county reports it. Where the record is silent, the market
      says so.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
-  <h2 style="margin-top:28px">What we are, and what we are not</h2>
-  <p>Dues, not a commission. We qualify a grower&rsquo;s capacity
-     to contract. We do not inspect food and we do not certify it.</p>
+  <h2 style="margin-top:28px">What membership actually is</h2>
+  <p>Dues fund it, set independent of any sale&rsquo;s price or volume. What gets checked is a
+     grower&rsquo;s capacity to contract. Inspecting and certifying food is somebody else&rsquo;s
+     job, not this network&rsquo;s.</p>
+  <p>What it is for is simpler than either list: making sure the hand that grows something and the
+     hand that turns it into something are never more than one honest connection apart.</p>
 </div></section>"""
     return page("ʻĀina to Table · ingredients you can trace", body,
                 current="index.html")
@@ -1331,14 +1352,14 @@ def buyers_page():
      &sect;1.1345(b)(1) treat a retail food establishment and a restaurant alike.</p>
 
   <h3 style="margin-top:12px">What membership is</h3>
-  <p>Dues, not a commission. We take no percentage of what you buy and we never appear in the purchase
-     path. That is not modesty, it is the point: if a broker or a parent company buys the food, the
-     direct-from-farm record relief stops applying to you. FDA has said so expressly,
-     <em>&ldquo;even if no third party ever takes physical possession of the food.&rdquo;</em> We never
-     buy the food, so your position does not change by working with us.</p>
-  <p>We qualify a grower&rsquo;s capacity to take on a commercial contract: their scale, their
-     terms, their records. We do not inspect food and we do not certify it. Nothing we do is a
-     food-safety judgment.</p>
+  <p>Dues, set independent of any sale&rsquo;s price or volume. That independence is the point, not
+     a courtesy: if a broker or a parent company buys the food, the direct-from-farm record relief
+     stops applying to you, and FDA has said so expressly, <em>&ldquo;even if no third party ever
+     takes physical possession of the food.&rdquo;</em> The farm sells to you directly, and
+     membership stays outside that sale, so your position does not change by working with us.</p>
+  <p>What gets checked is a grower&rsquo;s capacity to take on a commercial contract: their scale,
+     their terms, their records. Inspecting and certifying food is somebody else&rsquo;s standard to
+     set, and nothing here is a food-safety judgment.</p>
   <p class="src">Dues and terms are published once the network&rsquo;s structure is settled.</p>
 
   <h3 style="margin-top:12px">What the contract settles, in the terms this trade already uses</h3>
@@ -1454,11 +1475,11 @@ def growers_page():
   <p>Roughly half the production value of fruit, nut and berry farms in this country is already under
      contract, and on the farms that use them it is almost all of it. None of this is new to you.
      <span class="src">USDA Economic Research Service.</span></p>
-  <p><strong>What differs is which kind of contract this is.</strong> It is not a production contract.
-     Nobody owns your crop while it is in the ground, nobody supplies your inputs, and
-     nothing ties you to one buyer through equipment only they can use. It is a marketing contract
-     <em>between you and the buyer</em>, on published terms neither of us can quietly change.
-     <strong>We are not a party to it and we never buy your crop.</strong></p>
+  <p><strong>What differs is which kind of contract this is.</strong> It is a marketing contract,
+     between you and the buyer, on published terms neither of us can quietly change. You keep your
+     crop while it is in the ground, you source your own inputs, and nothing ties you to one buyer
+     through equipment only they can use. <strong>The buyer is the only party to it, and the only
+     one who ever buys your crop.</strong></p>
   <p class="src">Worth saying plainly, because &ldquo;contract&rdquo; usually means the other kind,
      and the other kind is the one worth being careful about.</p>
 
@@ -1491,17 +1512,17 @@ def growers_page():
      twenty-one years old and we do not publish their figures until they have been re-verified and
      adjusted. We would rather tell you the study exists than quote a number from it.</p>
 
-  <h3 style="margin-top:12px">What qualification means, and what it does not</h3>
+  <h3 style="margin-top:12px">What qualification actually means</h3>
   <p>We qualify your capacity to take on a commercial contract: your scale, the terms you can meet, the
-     records you already keep. It is a statement that you can transact, within stated bounds.
-     Qualifying, not exclusionary. The criteria are published, they are the same for everyone,
-     and a decision can be appealed.</p>
-  <p><strong>It is not a food-safety judgment.</strong> We do not inspect your food, we do not certify
-     it, and nothing we issue says anything about it. Any buyer who reads our qualification as a food
-     certification has read it wrong, and we would rather say so here than correct it later.</p>
-  <p class="src">Dues, not a commission. We never buy your crop and we are never in the purchase path.
-     That is also what keeps your buyer&rsquo;s own record relief intact. The contract settles
-     delivery, risk, records, specification and remedies. It never settles price. What you sell for is
+     records you already keep. It is a statement that you can transact, within stated bounds, on
+     criteria that are published, the same for everyone, and open to appeal.</p>
+  <p><strong>It is a capacity check, nothing more.</strong> Food safety stays with the agencies built
+     for it; what we issue speaks only to whether you can take on the contract. Any buyer who reads
+     our qualification as a food certification has read it wrong, and we would rather say so here
+     than correct it later.</p>
+  <p class="src">Dues, set independent of any sale&rsquo;s price or volume, and paid outside the
+     purchase path. That is also what keeps your buyer&rsquo;s own record relief intact. The
+     contract settles delivery, risk, records, specification and remedies. What you sell for stays
      between you and your buyer, every time. Dues and terms are published once the network&rsquo;s
      structure is settled.</p>
   <h3 style="margin-top:12px">Getting in touch</h3>
@@ -1521,11 +1542,11 @@ def about_page():
      Fresno region, is separate from any one grower, and is named separately from any farm.</p>
   <p>Concretely: <strong>it qualifies land</strong> (that the ground is real and committable
      and that there is a party who can contract), <strong>publishes what is known about each
-     crop, and settles the terms of the transaction in the produce trade&rsquo;s own language.</strong>
-     <strong>It never buys the food.</strong></p>
-  <p>Dues, not a commission. The catalogue, the market conditions, the soil-health material and the
-     compliance reading are free and complete on their own, whether or not anyone ever becomes a
-     member.</p>
+     crop, and settles the terms of the transaction in the produce trade&rsquo;s own language, so
+     the grower and the buyer deal directly with one another.</strong></p>
+  <p>Dues fund it, set independent of any sale&rsquo;s price or volume. The catalogue, the market
+     conditions, the soil-health material and the compliance reading are free and complete on their
+     own, whether or not anyone ever becomes a member.</p>
 
   <h3 style="margin-top:12px">Two ideas this is built on</h3>
   <div class="cards">
@@ -1550,33 +1571,33 @@ def about_page():
      standing behind one specification that a buyer can be promised weekly volume nobody could promise
      individually.</p>
 
-  <h3 style="margin-top:12px">What we are not</h3>
-  <p>We do not inspect food and we do not certify it. We do not grow anything in Fresno County.
-     <strong>We never buy it, sell it, take possession of it, negotiate its price, or appear in the
-     purchase path.</strong></p>
-  <p class="src">Stated as conduct rather than as a category, deliberately. What we do is describable
-     without claiming a label, and a label would be a claim about regulatory status that is not ours
-     to make.</p>
+  <h3 style="margin-top:12px">What this holds to, without exception</h3>
+  <p>Food inspection and certification stay with the agencies built for them, and growing stays with
+     the growers. <strong>The one line held without exception is staying out of the purchase path:
+     this network takes no possession of a crop, sets none of its price, and negotiates
+     nothing.</strong></p>
+  <p class="src">Stated as conduct, deliberately, rather than as a category. What it does is
+     describable on its own terms, and a regulatory label would be a claim about status that is not
+     ours to make.</p>
 
-  <h3 style="margin-top:12px">What the dues are, and what they are not</h3>
-  <p>Dues, not a commission. Nothing we are paid moves with the price or the volume of what changes
-     hands. That is the whole reason we can publish a wholesale figure that argues against
-     us.</p>
+  <h3 style="margin-top:12px">What the dues actually fund</h3>
+  <p>Dues, set independent of the price or the volume of what changes hands. That is the whole
+     reason we can publish a wholesale figure that argues against us.</p>
   <div class="note">
-    <p><strong>What a member owns.</strong> The qualification record is the member&rsquo;s, not ours.
-       It describes their operation, so it belongs to them and it travels: to any buyer,
-       including one who has never heard of us.</p>
+    <p><strong>What a member owns.</strong> The qualification record is the member&rsquo;s own. It
+       describes their operation, so it belongs to them and it travels: to any buyer, including one
+       who has never heard of us.</p>
     <p><strong>What a member controls.</strong> Who they contract with, at what price, on what
-       volume. We are not a party to the contract and we do not negotiate it.</p>
+       volume. The buyer and grower settle that between themselves; this network stays outside it.</p>
     <p><strong>How the benefit tracks use.</strong> The more ground a member commits and the more
-       buyers read their record, the more the membership is worth to them. It does not accrue to us
-       at their expense, because our side of it does not move with their volume.</p>
+       buyers read their record, the more the membership is worth to them, on their own terms,
+       because the dues side of it never moves with their volume.</p>
   </div>
   <p class="src">Three of the things on this site are free and will stay free: the catalogue, the
-     market conditions, and the reading of the federal thresholds. <strong>They are not the offer.
-     They are what we can show before anyone owes us anything.</strong> What membership adds
-     is the qualification record, the published contract, somewhere to go when a load arrives out of
-     condition, and the growers who have been through the same audit.</p>
+     market conditions, and the reading of the federal thresholds. <strong>They are what we can
+     show before anyone owes us anything, the whole case made in the open.</strong> What membership
+     adds is the qualification record, the published contract, somewhere to go when a load arrives
+     out of condition, and the growers who have been through the same audit.</p>
 </div></section>"""
     return page("About · ʻĀina to Table", body,
                 desc="ʻĀina to Table is a network for ingredients you can trace to the ground they came out of. It qualifies land, publishes what is known, and never buys the food.")
@@ -1830,6 +1851,18 @@ FORBIDDEN = [
     # or a wholesaler" — three legal categories, one of which is live.
     (r"not a (distributor|broker|wholesaler|dealer|commission merchant)",
      "describe conduct, not a regulatory category"),
+    # 🔴 Added 2026-11-19, Adrian's direct instruction: stop leading identity
+    # with negation. "What we are not" / "Dues, not a commission" as a
+    # heading-level self-description is a different failure from the
+    # regulatory-category one above, but the same family — this generalizes
+    # it. A conduct-level negation that answers a specific legal test (e.g.
+    # "stays out of the purchase path", tied to the buyer's §1.1305(j)
+    # exemption) is NOT what this blocks — those still ship, restated to lead
+    # positive where possible, per [[Decision Log 2026-11-19 - Brand Voice,
+    # Negation and the Purchase-Path Exception]] (Brand & Design vault).
+    (r"what (we|they|it) (are|is) not\b", "brand voice: lead with what it is, not what it isn't"),
+    (r"\band what (it|they|we) (is|are) not\b", "brand voice: lead with what it is, not what it isn't"),
+    (r"\bnot a commission\b", "brand voice: state the dues mechanism positively (independent of price/volume)"),
     # 🔴 Added 2026-11-04 with soil testing. A soil test establishes what the
     # soil IS, never what a crop WILL DO. For the uncounted crops no trial has
     # been published in this valley, so a suitability finding has no basis —
