@@ -63,8 +63,7 @@ MARK = ('<svg viewBox="-1.2199 -1.2859 2.484 2.484" aria-hidden="true">'
  '<ellipse cx="0.5386" cy="-0.7985" rx="0.135" ry="0.1242"/></g></svg>')
 
 NAV = [("index.html","Home"),("inspect.html","Inspect"),
-       ("market.html","Market"),
-       ("how-it-works.html","How it works"),("about.html","About")]
+       ("market.html","Market"),("about.html","About")]
 
 # ⭐ The one contact route, and it is shown as TEXT as well as linked. A mailto
 # is unreliable for many readers and the page cannot tell whether it worked, so
@@ -488,6 +487,7 @@ def is_specialty(r):
 # ── product page ──────────────────────────────────────────────────────────────
 def product_page(r):
     name = r["crop"]
+    S = stats()
     blocks = []
     def blk(lbl, val, cav=None):
         c = f'<p class="cav">{cav}</p>' if cav else ""
@@ -595,6 +595,13 @@ def product_page(r):
         p = (f'About {r["protein_g_per_100g_est"]} g protein per 100 g. Estimated from UCCE’s own '
              f'nutrition table, normalised to 100 g. Approximate.') if r["protein_g_per_100g_est"] else None
         blk("Plant-forward role", v, p)
+    # ⭐ Added 2026-11-20, Adrian's instruction following the expert panel: a
+    # credibility KPI tying this one crop back to the catalogue's full scale,
+    # computed from stats() — the same figures Home and Inspect already cite
+    # — never a new or separately-sourced number.
+    blk("Catalogue coverage", f'1 of {S["total"]} crops tracked',
+        f'{S["commodity"]} commodity, {S["specialty"]} specialty, {S["gap"]} with no local '
+        f'record at all. See <a href="../market.html">Market</a> for the full set.')
     # economics — the restraint, rendered only where a study exists
     econ = ""
     if r["ucce_cost_study"] == "yes":
@@ -874,11 +881,10 @@ def inspect_page():
      undifferentiated &ldquo;other&rdquo; line with no acreage and no value of their own.</p>
   <div class="spec"><p class="lbl">The clearest case</p>
     <p><strong>Jicama.</strong> Two-tenths of an acre county-wide in 2000, a published growing guide in
-       2001, and still carried by Fresno specialty markets in the 2010 retail survey. Demand recorded,
-       supply trivial, agronomy already published. Each one with a date and an author on it.</p></div>
+       2001, and still carried by Fresno specialty markets in the 2010 retail survey.</p></div>
   <p class="src">Two retail categories are too small for the federal government to publish without
-     identifying the businesses in them. We recovered roughly thirty-five establishments by subtraction.
-     A segment too small to be measured is a segment too small for anyone else to bother serving.</p>
+     identifying the businesses in them. We recovered roughly thirty-five establishments by
+     subtraction.</p>
 
   {price_section()}
   {market_section()}
@@ -1141,8 +1147,16 @@ def market_page():
     few_unpriced = [r for r in few if not r.get("terminal_date")]
     market = openly + few_priced + few_unpriced
 
+    mk_all = market_rows()
+    n_live_mk = sum(1 for m in mk_all if m["status"] == "live")
+    n_priced = sum(1 for r in market if has_terminal(r) or has_retail(r))
     body = f"""<section class="band market-floor"><div class="wrap wide stack">
   <h1 class="market-title">Market</h1>
+  <p class="src"><strong>Coverage:</strong> <span class="chips">
+    <span class="chip market">{len(market)} crops tracked</span>
+    <span class="chip market">{n_priced} with a live price quote</span>
+    <span class="chip market">{n_live_mk} of {len(mk_all)} terminal markets reporting</span>
+    <span class="chip market">2019&ndash;2024 county data</span></span></p>
   <div class="tools">
     <label for="mfq">Find</label>
     <input type="text" id="mfq" placeholder="Ingredient name">
@@ -1296,7 +1310,7 @@ def buyers_page():
   <p class="src">None of this is a recommendation about what to buy or what to pay. It is how the
      published record behaves.</p>
 
-  <h3 style="margin-top:12px">We settle the terms before anyone talks about price.</h3>
+  <h3 style="margin-top:12px">The terms get settled before anyone talks about price.</h3>
   <p>One standard contract, the same for every member, covering five things and deliberately not a
      sixth: the delivery term, named against Incoterms&reg; 2020 (who contracts carriage, which
      is not the same as who arranges it), where risk of loss passes, who keeps which record and
@@ -1477,8 +1491,8 @@ def growers_page():
      adjusted. We would rather tell you the study exists than quote a number from it.</p>
 
   <h3 style="margin-top:12px">What qualification actually means</h3>
-  <p>We qualify your capacity to take on a commercial contract: your scale, the terms you can meet, the
-     records you already keep. It is a statement that you can transact, within stated bounds, on
+  <p>Your capacity to take on a commercial contract gets qualified: your scale, the terms you can meet,
+     the records you already keep. It is a statement that you can transact, within stated bounds, on
      criteria that are published, the same for everyone, and open to appeal.</p>
   <p><strong>It is a capacity check, nothing more.</strong> Food safety stays with the agencies built
      for it; what we issue speaks only to whether you can take on the contract. Any buyer who reads
@@ -1496,50 +1510,22 @@ def growers_page():
     return page("For Growers · ʻĀina to Table", body, current="growers.html",
                 desc="For anyone holding ground that is earning nothing: the thresholds, the gaps, and the two questions qualifying actually asks.")
 
-# ── How it works ──────────────────────────────────────────────────────────────
-# ⭐ Added 2026-11-20, replacing "For Buyers"/"For Growers" as the top-nav
-# destination after a working session concluded the home page (and the nav)
-# should not fork into two audiences at the first click. This page explains
-# the relationship rather than pitching a role, per that direction — every
-# claim on it is reused, word for word or near it, from copy already approved
-# and already live elsewhere (the home page, buyers.html, growers.html,
-# how_it_moves()). Nothing new is asserted here. buyers.html and growers.html
-# are not retired -- they still carry the role-specific detail (compliance
-# relief, parcel/acreage questions, registration) and are reached from the
-# three options below, from the home page, and directly from crop pages.
-def how_it_works_page():
-    body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow">How it works</p>
-  <h1>We qualify the land, publish what&rsquo;s known, and settle the terms before price.</h1>
-  <p>That holds the same way for everyone who deals with this network, whichever side of the
-     transaction they&rsquo;re on. What gets checked is a grower&rsquo;s capacity to contract.
-     Inspecting and certifying food is somebody else&rsquo;s job, not this network&rsquo;s.</p>
-  <p>What it is for is simpler than a list of roles: making sure the hand that grows something and
-     the hand that turns it into something are never more than one honest connection apart.</p>
-
-  {how_it_moves()}
-
-  <h3 style="margin-top:20px">What membership is</h3>
-  <p>This membership never takes a cut of what you buy or sell, and stays outside the purchase path
-     between grower and buyer. The farm sells to the buyer directly; membership does not change
-     that. What it checks is a grower&rsquo;s capacity to take on a commercial contract: their
-     scale, their terms, their records. Terms are published once the network&rsquo;s structure is
-     settled.</p>
-
-  <h3 style="margin-top:20px">Where this goes next</h3>
-  <div class="cards">
-    <div class="card"><h3>Sourcing a crop, or sourcing for a kitchen</h3>
-      <p>What grows here, the season it keeps, and how to put a specification and a delivery term in
-         writing before price comes up.</p>
-      <p><a class="btn" href="buyers.html">For Buyers &rarr;</a></p></div>
-    <div class="card"><h3>Adding a step before you go to market</h3>
-      <p>What qualifying actually checks, the thresholds that may or may not reach your farm, and
-         what the contract settles.</p>
-      <p><a class="btn" href="growers.html">For Growers &rarr;</a></p></div>
-  </div>
-</div></section>"""
-    return page("How it works · ʻĀina to Table", body, current="how-it-works.html",
-                desc="How ʻĀina to Table qualifies growers, publishes what's known about each crop, and settles the terms of a transaction before price, for whoever is on either side of it.")
+# ── How it works — RETIRED 2026-11-20 ─────────────────────────────────────────
+# Built in PR #18 the same day the "reference, not a pitch" posture was first
+# named internally, but before the audit that operationalized it existed. The
+# panel run against it the same evening found its own H1 ("We qualify the
+# land, publish what's known, and settle the terms before price") to be the
+# identical capability-claim sentence structure PR #19 had just cut from
+# Home's CTA for being "the clearest capability claim on the page, first
+# person plural" — carried over unedited because that audit scoped itself to
+# Home alone. Adrian's call, Seat 5 of that panel: a reference-arm site
+# doesn't publish a page explaining how to become a client at all; the
+# relationship is discovered through the research, not pre-explained in a
+# nav-level destination. Its one load-bearing fact (outside the purchase
+# path) was already live on the footer and About before this page existed,
+# and still is — nothing it carried is lost by removing it.
+# See Decision Log: 2026-11-20 - Expert Panel - Site Voice, Over-Explanation,
+# Inspect vs Market, and the How It Works Contradiction.
 
 # ── About (C2f) ───────────────────────────────────────────────────────────────
 def about_page():
@@ -1549,10 +1535,10 @@ def about_page():
   <p><strong>A network built so that an ingredient you can trace to the ground it came out of is the
      ordinary thing to buy rather than the exceptional one.</strong> ʻĀina to Table operates in the
      Fresno region, is separate from any one grower, and is named separately from any farm.</p>
-  <p>Concretely: <strong>it qualifies land</strong> (that the ground is real and committable
-     and that there is a party who can contract), <strong>publishes what is known about each
-     crop, and settles the terms of the transaction in the produce trade&rsquo;s own language, so
-     the grower and the buyer deal directly with one another.</strong></p>
+  <p>Concretely: <strong>land gets qualified</strong> (the ground is real and committable
+     and there is a party who can contract), <strong>what is known about each crop gets
+     published, and the terms of the transaction get settled in the produce trade&rsquo;s own
+     language, so the grower and the buyer deal directly with one another.</strong></p>
   <p>The catalogue, the market conditions, the soil-health material and the compliance reading are
      free and complete on their own, whether or not anyone ever becomes a member.</p>
 
@@ -1570,7 +1556,7 @@ def about_page():
          where their ingredients come from. Not an anonymous line in a distributor&rsquo;s
          truck.</strong></p>
       <p>There are 48 fresh-produce wholesalers standing between this county&rsquo;s buyers and its
-         farms. That sentence was written before anyone counted them.</p>
+         farms.</p>
     </div>
   </div>
 
@@ -1589,8 +1575,8 @@ def about_page():
      ours to make.</p>
 
   <h3 style="margin-top:12px">What membership protects</h3>
-  <p>It never moves with the price or the volume of what changes hands. That is the whole
-     reason we can publish a wholesale figure that argues against us.</p>
+  <p>It never moves with the price or the volume of what changes hands. That is why a wholesale
+     figure that argues against membership is published here anyway.</p>
   <div class="note">
     <p><strong>What a member owns.</strong> The qualification record is the member&rsquo;s own. It
        describes their operation, so it belongs to them and it travels: to any buyer, including one
@@ -1606,7 +1592,9 @@ def about_page():
      show before anyone owes us anything, the whole case made in the open.</strong> What membership
      adds is the qualification record, the published contract, somewhere to go when a load arrives
      out of condition, and the growers who have been through the same audit.</p>
-  <p><a class="btn" href="how-it-works.html">How it works &rarr;</a></p>
+  <p style="display:flex;gap:12px;flex-wrap:wrap">
+     <a class="btn" href="buyers.html">For Buyers &rarr;</a>
+     <a class="btn" href="growers.html">For Growers &rarr;</a></p>
 </div></section>"""
     return page("About · ʻĀina to Table", body,
                 desc="ʻĀina to Table is a network for ingredients you can trace to the ground they came out of. It qualifies land, publishes what is known, and never buys the food.")
@@ -1887,6 +1875,21 @@ FORBIDDEN = [
      "a soil or irrigation result is not a crop-suitability finding"),
     (r"(suitable|suited|ideal|perfect) (for growing|conditions for)",
      "a soil or irrigation result is not a crop-suitability finding"),
+    # 🔴 Added 2026-11-20, from the posture audit and the panel that followed
+    # it (Decision Log: Site Posture Audit - Reference Not a Pitch; Expert
+    # Panel - Site Voice...). The organization is never the grammatical
+    # subject of a capability claim — "we qualify," "we settle," "the network
+    # checks." The How It Works page shipped the first of these the same day
+    # it was named as a rule, because the audit that found it only checked
+    # Home. This makes the next instance a build failure, not a later find.
+    # Conduct-level negations tied to a specific legal test ("takes no
+    # possession," "stays outside the purchase path") are a different,
+    # protected family — see the "what we are not" patterns above — and use
+    # different verbs, so they do not trip this.
+    (r"\bwe (qualify|settle|vet|certify)\b",
+     "posture: the organization is not the grammatical subject of a capability claim"),
+    (r"\b(this|the) network (qualifies|settles|vets|certifies)\b",
+     "posture: the organization is not the grammatical subject of a capability claim"),
 ]
 PRICE = [r"per\s*(lb|pound|kg|case|box|carton)\b", r"/\s*lb\b", r"price per", r"\bwholesale price",
          r"\$\s?\d+(\.\d{2})?\s*(each|per|/)",
@@ -1998,7 +2001,7 @@ def check(pages):
         t = text_of(pages[nm])
         if ASK in t:
             fails.append(f"{nm}: condition 8 — a credibility surface carrying the ask")
-        if "For Buyers" not in t and "For Growers" not in t and "How it works" not in t:
+        if "For Buyers" not in t and "For Growers" not in t:
             fails.append(f"{nm}: condition 8 — a credibility surface with no next step")
     # The product-page-chrome check (did a crop page point straight at
     # Qualify, bypassing growers.html) retired 2026-11-11 with qualify.html
@@ -2041,8 +2044,7 @@ def main():
     pages = {"index.html": home_page(),
              "inspect.html": inspect_page(), "market.html": market_page(),
              "buyers.html": buyers_page(),
-             "growers.html": growers_page(), "about.html": about_page(),
-             "how-it-works.html": how_it_works_page()}
+             "growers.html": growers_page(), "about.html": about_page()}
     for r in rs:
         pages[f"crops/{slug(r['crop'])}.html"] = product_page(r)
 
