@@ -667,67 +667,41 @@ def home_page():
   </div>
   <p><strong>Food does more than feed you.</strong> It&rsquo;s how a tradition survives the person
      who started it. This is the network behind that happening on purpose.</p>
-  <p><strong>Fresh ingredients taste different, and if you cook for a living you already know it.</strong>
-     A tomato picked three days ago is not the same ingredient as one picked three weeks ago and held
-     in the channel. Sugars convert, moisture goes, texture changes, and the aromatics that
-     made it worth buying are the first thing to leave. <strong>Nobody who has stood over a pan
-     needs that argued.</strong></p>
-  <div class="note">
-    <p><strong>The problem was never the knowing. It is that knowing does not help you buy.</strong></p>
-    <p>You can taste the difference and still have no way to <em>order</em> it, because the channel
-       does not sell on it. <strong>It sells a grade, and a grade says nothing about how many days
-       ago the thing was cut.</strong> Ask for a variety, a size and a harvest window and you are
-       asking a question the wholesale channel has no field for.</p>
-  </div>
-  <p><strong>So the network is built to carry what a grade cannot.</strong></p>
+  <p><strong>A grade is the floor.</strong> It doesn&rsquo;t say how many days ago something was
+     cut, who grew it, or what to expect when it arrives. We publish all three.</p>
   <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
-    <li><strong>A specification instead of a grade.</strong> A grower can be asked for a variety, a
-        size and a harvest window. <strong>A grade is the floor, not the thing you asked for.</strong></li>
-    <li><strong>Less time and less handling, as a term rather than a hope.</strong> Condition on
-        arrival is written into the contract in the produce trade&rsquo;s own language, with an agreed
-        destination to measure it against.</li>
-    <li><strong>Provenance you can actually name.</strong> Not a region or a brand. A field, and the
-        person who farms it.</li>
+    <li><strong>A specification, not a grade.</strong> Variety, size, harvest window.</li>
+    <li><strong>Less handling, written into the contract.</strong> Not promised. Measured
+        against an agreed destination.</li>
+    <li><strong>Provenance you can name.</strong> A field, and the person who farms it.</li>
   </ul>
   <div class="note">
-    <p><strong>Here is how far the current arrangement is from that.</strong> On the day this page
-     was last built, <strong>{S["sjv"]} crops in the Los Angeles wholesale report were quoted from
-     the San Joaquin Valley.</strong> Grown here, trucked to Los Angeles, and priced there. A
-     Fresno kitchen buying those is buying local produce that has made a round trip first.</p>
+    <p><strong>{S["sjv"]} crops in the Los Angeles wholesale report were quoted from the San
+     Joaquin Valley</strong> the day this page was last built. Grown here. Trucked to Los Angeles.
+     Priced there. A Fresno kitchen buying those paid for a round trip.</p>
     <p class="src">Los Angeles Terminal Market reports (HC_FV020, HC_FV010), USDA Agricultural
      Marketing Service. The origin column on <a href="inspect.html">Inspect</a> names them.</p>
   </div>
   <div class="note">
-    <p><strong>And the premium is real, measured, and leaving.</strong>
-     The crops inside the county&rsquo;s &ldquo;Oriental Vegetables&rdquo; line earned between
-     <strong>1.56&times; and 3.12&times;</strong> the value per acre of the average Fresno County
-     vegetable acre, in every one of the six years 2019&ndash;2024. Over those same six years that
-     acreage fell <strong>36.4%</strong>, while all county vegetable acreage fell
-     <strong>15.2%</strong>.</p>
-    <p class="src">That figure is about one line of the
-     county&rsquo;s report, not about this whole catalogue: the crops it names and measures
-     only in aggregate. It says nothing about the commodity crops this county reports on their own
-     lines, and we do not extend it to them. Fresno County Agricultural Crop and Livestock Reports,
-     2019&ndash;2024.</p>
+    <p><strong>The premium is real, and it&rsquo;s leaving.</strong>
+     The county&rsquo;s &ldquo;Oriental Vegetables&rdquo; line earned
+     <strong>1.56&times; to 3.12&times;</strong> the value per acre of the average Fresno County
+     vegetable acre, every year 2019&ndash;2024. That acreage fell <strong>36.4%</strong> over the
+     same six years. County vegetable acreage overall fell <strong>15.2%</strong>.</p>
+    <p class="src">One line of the county&rsquo;s report, not the whole catalogue; we do not
+     extend it to the commodity crops reported on their own lines. Fresno County Agricultural
+     Crop and Livestock Reports, 2019&ndash;2024.</p>
   </div>
   <h3 style="margin-top:20px">Why it is not already the standard</h3>
-  <p>Not for want of ground. California grows <strong>nearly half the country&rsquo;s vegetables and
-     over three-quarters of its fruits and nuts</strong>, and Fresno County alone turned out
-     <strong>$9.03 billion</strong> across more than 300 commodities last year. <strong>The scale is
-     the achievement and it is also the obstacle:</strong> a market built to move volume prices
-     everything as volume, so the land that made it valuable has no quote for three good acres or a
-     field corner out of production.</p>
+  <p>Not for want of ground. California grows half the country&rsquo;s vegetables, three
+     quarters of its fruit and nuts. <strong>The scale that makes this valley valuable is the
+     same scale that prices everything as volume</strong>, with no quote for three good acres or
+     a field corner out of production.</p>
   <p class="src">California Department of Food and Agriculture, California Agricultural Production
-     Statistics &middot; Fresno County Agricultural Crop and Livestock Report, 2024. Those figures
-     are California and this county, and <strong>the argument does not rest on them.</strong> It
-     rests on three things true almost everywhere: <strong>produce degrades between the ground and
-     the plate, commodity channels price volume rather than specification, and somebody nearby is
-     always holding ground that is earning nothing.</strong> We are starting here because this is
-     where we can show our work.</p>
-  <p><strong>So this is an invitation, and it is open on both sides.</strong> If you want ingredients
-     you can trace, or you hold ground that is earning nothing, the network is what makes the two of
-     you contractable to each other. <strong>We qualify the land, publish what
-     is known, and settle the terms before anyone discusses price.</strong></p>
+     Statistics &middot; Fresno County Agricultural Crop and Livestock Report, 2024.</p>
+  <p>If you want ingredients you can trace, or you&rsquo;re holding ground that&rsquo;s earning
+     nothing. <strong>We make the two of you contractable to each other.</strong> We qualify
+     the land, publish what&rsquo;s known, and settle the terms before price.</p>
   <div class="cards">
     <div class="card"><h3>If you want the ingredients</h3>
       <p>Restaurants, markets, and anyone filling a pantry on purpose. <strong>Ask for a variety and
@@ -789,28 +763,21 @@ def home_page():
     <p><strong>None of that shows up on a grade sheet.</strong> A tomato
        from one of the 225 remaining farms still arrives red. It still
        looks ripe. It was picked on a schedule set by a buyer who will
-       never meet the person who grew it. What it loses isn't freshness.
-       Inspect already makes that argument. <strong>What it loses is the
+       never meet the person who grew it. <strong>What it loses is the
        hand that grew it, and the ground it grew on.</strong> You can taste
        when something was grown to be itself. You can taste when it was
        grown to be interchangeable.</p>
   </div>
-  <p><strong>Provenance is half of what this is for. The other half is who
-     it pulls toward this ground.</strong></p>
-  <p>Not just any grower. Not the big-ag mindset that treats a field as a
-     volume problem, solved with more machinery. This valley is also
-     running out of water it can legally pump. State law already requires
-     <strong>500,000 to 900,000 acres</strong> of San Joaquin Valley
-     farmland out of production by 2040. Growers are deciding what that
-     ground becomes right now, not someday.</p>
+  <p>This valley is also running out of water it can legally pump. State
+     law already requires <strong>500,000 to 900,000 acres</strong> of San
+     Joaquin Valley farmland out of production by 2040. <strong>Growers are
+     deciding what that ground becomes right now, not someday.</strong></p>
   <p class="src">Public Policy Institute of California, &ldquo;SGMA-Ready
      Crops as a Low-Water Alternative to Fallowing&rdquo; and &ldquo;Exploring
      the Potential for Water-Limited Agriculture in the San Joaquin
      Valley.&rdquo;</p>
-  <p><strong>That is the actual aim. A crop that rewards a hand instead of
-     a shift, on land that can't spare what a monoculture demands. A
-     premium ingredient, grown by someone who stayed long enough to be
-     good at it.</strong></p>
+  <p><strong>A crop that rewards a hand instead of a shift, on land that
+     can&rsquo;t spare what a monoculture demands.</strong></p>
 </div></section>
 
 <section class="band"><div class="wrap stack">
