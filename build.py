@@ -77,6 +77,18 @@ def registration_form(role):
     sourcing or selling. This is the fix, on both For Buyers and For
     Growers: role is "buyer" or "grower".
 
+    ⭐ Reframed 2026-11-20, after the round-two panel traced the site's
+    remaining pitch-shaped structure to this form's own "Register as a
+    ___" framing. Adrian's own clarification: the form was never meant to
+    read as registering for a service — it is "just a data capture
+    situation" whose eventual use is a newsletter or instructional
+    material, not a membership. Surrounding headings and the button copy
+    were rewritten away from "registration" language; the form's actual
+    mechanism did NOT change — see the no-stored-list note below, still
+    true today. When a real mailing list / newsletter mechanism gets
+    built, it is new work with its own consent and privacy-policy
+    requirements, not an extension of this function as it stands.
+
     ⭐ Retires contact_block() (the site's previous one-size "Email us"
     mailto helper, now unused — removed rather than left dead). Its
     standing promise carries forward unchanged: "it reaches a person, not
@@ -147,7 +159,7 @@ def registration_form(role):
   {checklist}
   <label>Anything else: volume, timing, a crop not listed
     <textarea name="notes" rows="3"></textarea></label>
-  <button type="submit" class="btn">Email us your registration &rarr;</button>
+  <button type="submit" class="btn">Email us what you&rsquo;re {verb} &rarr;</button>
   <div class="note" id="register-{role}-fallback" style="display:none">
     <p><strong>If your email program did not open, copy this and send it to {EMAIL}.</strong></p>
     <textarea id="register-{role}-text" rows="8" readonly></textarea>
@@ -169,7 +181,7 @@ def registration_form(role):
     lines.push('{verb.capitalize()}: '+(ing.length?ing.join(', '):'(none checked)'));
     if(fd.get('notes')) {{ lines.push(''); lines.push('Notes: '+fd.get('notes')); }}
     var body=lines.join('\\n');
-    var subject='ʻĀina to Table {noun} registration: '+(fd.get('name')||'');
+    var subject='ʻĀina to Table ({noun}): '+(fd.get('name')||'');
     document.getElementById('register-{role}-text').value=body;
     document.getElementById('register-{role}-fallback').style.display='flex';
     window.location.href='mailto:{EMAIL}?subject='+encodeURIComponent(subject)
@@ -1364,11 +1376,11 @@ def buyers_page():
 
   {how_it_moves()}
 
-  <h3 style="margin-top:12px">Register as a buyer</h3>
-  <p class="src"><strong>If the answer is that nobody here is growing what you check at the volume
-     you need, that is the answer you will get.</strong> Terms publish once the
-     network&rsquo;s structure is settled. Until then, the useful conversation is about what
-     this county actually grows, and whether anything on these pages is wrong.</p>
+  <h3 style="margin-top:12px">Hear what gets published next</h3>
+  <p class="src">This is not a registration, and nothing here is live to join yet. Say what you are
+     sourcing and you will hear when something relevant is published &mdash; a new crop, a term, or
+     anything else worth sending. <strong>If the answer turns out to be that nobody here is growing
+     what you check at the volume you need, that is the answer you will get, too.</strong></p>
   {registration_form("buyer")}
 </div></section>"""
     return page("For Buyers · ʻĀina to Table", body, current="buyers.html",
@@ -1473,9 +1485,10 @@ def growers_page():
 
   {how_it_moves()}
 
-  <h3 style="margin-top:12px">Register as a grower</h3>
-  <p class="src">Qualification is two questions, not an examination of how you farm. Both are
-     in the form below. The crop pages are free to read whether you ever write or not.</p>
+  <h3 style="margin-top:12px">Hear what gets published next</h3>
+  <p class="src">This is not a registration either. Two of the questions below &mdash; land, and
+     whether you can enter a contract &mdash; are there so anything sent to you is relevant, not to
+     screen anyone out. The crop pages stay free to read whether you ever write in or not.</p>
   {registration_form("grower")}
 
   <h3 style="margin-top:12px">What is already published about growing these crops</h3>
