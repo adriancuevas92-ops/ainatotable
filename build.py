@@ -265,9 +265,9 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 </main>
 <footer><div class="wrap wide">
   <p><strong>ʻĀina to Table</strong> is a network for ingredients you can trace to the ground they
-     came out of, operating in the Fresno region. It qualifies land, publishes what is known about
-     each crop, and settles the terms of the transaction between the grower and the buyer who deal
-     directly with one another.</p>
+     came out of, operating in the Fresno region. Land gets qualified, what is known about each crop
+     gets published, and the terms of the transaction get settled between the grower and the buyer
+     who deal directly with one another.</p>
   <p><strong>Contact:</strong> <a href="mailto:hello@ainatotable.com">hello@ainatotable.com</a><br>
      <span class="src">That address reaches a person, not a form. If you are a Fresno market or a
      grower and something here is wrong, that is the most useful mail we can get.</span></p>
@@ -1597,7 +1597,7 @@ def about_page():
      <a class="btn" href="growers.html">For Growers &rarr;</a></p>
 </div></section>"""
     return page("About · ʻĀina to Table", body,
-                desc="ʻĀina to Table is a network for ingredients you can trace to the ground they came out of. It qualifies land, publishes what is known, and never buys the food.")
+                desc="ʻĀina to Table is a network for ingredients you can trace to the ground they came out of. Land gets qualified, what is known gets published, and the food is never bought.")
 
 # ⭐ Prices now come from the catalogue itself, not from a separate 16-crop
 # mart. The LA pass used to DROP a reported block that matched a crop already
