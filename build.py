@@ -657,6 +657,10 @@ def home_page():
     <div class="slide" style="background-image:url(images/homepage-slideshow/05-orange-pickers-santa-ana-1900.jpg)"></div>
     <div class="slide" style="background-image:url(images/homepage-slideshow/06-tortillas-hacienda-chichen-1923.jpg)"></div>
     <div class="slide" style="background-image:url(images/homepage-slideshow/07-tomato-loading-britain-1914.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/08-apple-packing-line.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/09-vegetable-market-vendor.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/10-chef-commercial-kitchen.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/11-strawberry-field-harvest.jpg)"></div>
   </div>
   <div class="wrap stack">
   <h1>A network for growers and food creators.</h1>
@@ -823,9 +827,8 @@ def home_page():
      says so.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
   <h2 style="margin-top:28px">What membership actually is</h2>
-  <p>Dues fund it, set independent of any sale&rsquo;s price or volume. What gets checked is a
-     grower&rsquo;s capacity to contract. Inspecting and certifying food is somebody else&rsquo;s
-     job, not this network&rsquo;s.</p>
+  <p>What gets checked is a grower&rsquo;s capacity to contract. Inspecting and certifying food is
+     somebody else&rsquo;s job, not this network&rsquo;s.</p>
   <p>What it is for is simpler than either list: making sure the hand that grows something and the
      hand that turns it into something are never more than one honest connection apart.</p>
 </div></section>"""
@@ -1323,15 +1326,15 @@ def buyers_page():
      &sect;1.1345(b)(1) treat a retail food establishment and a restaurant alike.</p>
 
   <h3 style="margin-top:12px">What membership is</h3>
-  <p>Dues, set independent of any sale&rsquo;s price or volume. That independence is the point, not
-     a courtesy: if a broker or a parent company buys the food, the direct-from-farm record relief
+  <p>This membership never takes a cut of what you buy or sell. That&rsquo;s the point, not a
+     courtesy: if a broker or a parent company buys the food, the direct-from-farm record relief
      stops applying to you, and FDA has said so expressly, <em>&ldquo;even if no third party ever
      takes physical possession of the food.&rdquo;</em> The farm sells to you directly, and
      membership stays outside that sale, so your position does not change by working with us.</p>
   <p>What gets checked is a grower&rsquo;s capacity to take on a commercial contract: their scale,
      their terms, their records. Inspecting and certifying food is somebody else&rsquo;s standard to
      set, and nothing here is a food-safety judgment.</p>
-  <p class="src">Dues and terms are published once the network&rsquo;s structure is settled.</p>
+  <p class="src">Terms are published once the network&rsquo;s structure is settled.</p>
 
   <h3 style="margin-top:12px">What the contract settles, in the terms this trade already uses</h3>
   <p>The produce trade has its own delivery terms, written into federal regulation, so that is the
@@ -1358,8 +1361,8 @@ def buyers_page():
 
   <h3 style="margin-top:12px">Register as a buyer</h3>
   <p class="src"><strong>If the answer is that nobody here is growing what you check at the volume
-     you need, that is the answer you will get.</strong> Dues and terms publish once the
-     network&rsquo;s structure is settled — until then, the useful conversation is about what
+     you need, that is the answer you will get.</strong> Terms publish once the
+     network&rsquo;s structure is settled. Until then, the useful conversation is about what
      this county actually grows, and whether anything on these pages is wrong.</p>
   {registration_form("buyer")}
 </div></section>"""
@@ -1490,14 +1493,14 @@ def growers_page():
      for it; what we issue speaks only to whether you can take on the contract. Any buyer who reads
      our qualification as a food certification has read it wrong, and we would rather say so here
      than correct it later.</p>
-  <p class="src">Dues, set independent of any sale&rsquo;s price or volume, and paid outside the
+  <p class="src">This membership never takes a cut of what you sell, and stays outside the
      purchase path. That is also what keeps your buyer&rsquo;s own record relief intact. The
      contract settles delivery, risk, records, specification and remedies. What you sell for stays
-     between you and your buyer, every time. Dues and terms are published once the network&rsquo;s
+     between you and your buyer, every time. Terms are published once the network&rsquo;s
      structure is settled.</p>
   <h3 style="margin-top:12px">Getting in touch</h3>
   <p>hello@ainatotable.com. One address, and it reaches a person rather than a form.</p>
-  <p class="src">Dues and terms publish once the network&rsquo;s structure is settled. Until then the useful conversation is about what this county actually grows, and whether anything on these pages is wrong.</p>
+  <p class="src">Terms publish once the network&rsquo;s structure is settled. Until then the useful conversation is about what this county actually grows, and whether anything on these pages is wrong.</p>
 </div></section>"""
     return page("For Growers · ʻĀina to Table", body, current="growers.html",
                 desc="For anyone holding ground that is earning nothing: the thresholds, the gaps, and the two questions qualifying actually asks.")
@@ -1514,9 +1517,8 @@ def about_page():
      and that there is a party who can contract), <strong>publishes what is known about each
      crop, and settles the terms of the transaction in the produce trade&rsquo;s own language, so
      the grower and the buyer deal directly with one another.</strong></p>
-  <p>Dues fund it, set independent of any sale&rsquo;s price or volume. The catalogue, the market
-     conditions, the soil-health material and the compliance reading are free and complete on their
-     own, whether or not anyone ever becomes a member.</p>
+  <p>The catalogue, the market conditions, the soil-health material and the compliance reading are
+     free and complete on their own, whether or not anyone ever becomes a member.</p>
 
   <h3 style="margin-top:12px">Two ideas this is built on</h3>
   <div class="cards">
@@ -1550,8 +1552,8 @@ def about_page():
      describable on its own terms, and a regulatory label would be a claim about status that is not
      ours to make.</p>
 
-  <h3 style="margin-top:12px">What the dues actually fund</h3>
-  <p>Dues, set independent of the price or the volume of what changes hands. That is the whole
+  <h3 style="margin-top:12px">What membership protects</h3>
+  <p>It never moves with the price or the volume of what changes hands. That is the whole
      reason we can publish a wholesale figure that argues against us.</p>
   <div class="note">
     <p><strong>What a member owns.</strong> The qualification record is the member&rsquo;s own. It
@@ -1561,7 +1563,7 @@ def about_page():
        volume. The buyer and grower settle that between themselves; this network stays outside it.</p>
     <p><strong>How the benefit tracks use.</strong> The more ground a member commits and the more
        buyers read their record, the more the membership is worth to them, on their own terms,
-       because the dues side of it never moves with their volume.</p>
+       because our side of it never moves with their volume.</p>
   </div>
   <p class="src">Three of the things on this site are free and will stay free: the catalogue, the
      market conditions, and the reading of the federal thresholds. <strong>They are what we can
@@ -1832,7 +1834,13 @@ FORBIDDEN = [
     # Negation and the Purchase-Path Exception]] (Brand & Design vault).
     (r"what (we|they|it) (are|is) not\b", "brand voice: lead with what it is, not what it isn't"),
     (r"\band what (it|they|we) (is|are) not\b", "brand voice: lead with what it is, not what it isn't"),
-    (r"\bnot a commission\b", "brand voice: state the dues mechanism positively (independent of price/volume)"),
+    (r"\bnot a commission\b", "brand voice: state the revenue independence positively, without naming the mechanism"),
+    # 🔴 Added 2026-11-19, Adrian's direct instruction: "remove all
+    # messaging about paying dues." The payment mechanism itself is
+    # unchanged -- only talking about it in public copy is. Where the
+    # underlying legal fact (never a cut of price/volume, never in the
+    # purchase path) still needs to ship, state it without naming "dues".
+    (r"\bdues\b", "brand voice: don't name the payment mechanism in public copy"),
     # 🔴 Added 2026-11-04 with soil testing. A soil test establishes what the
     # soil IS, never what a crop WILL DO. For the uncounted crops no trial has
     # been published in this valley, so a suitability finding has no basis —
