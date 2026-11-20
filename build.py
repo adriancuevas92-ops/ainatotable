@@ -659,8 +659,8 @@ def home_page():
     <div class="slide" style="background-image:url(images/homepage-slideshow/07-tomato-loading-britain-1914.jpg)"></div>
   </div>
   <div class="wrap stack">
-  <p class="eyebrow">A qualifying network, paid in dues. Free, real information, and no product to
-     buy first.</p>
+  <p class="eyebrow">A qualifying network, paid in dues. Behind the scenes, it connects growers and
+     food creators to what actually gets a product to market.</p>
   <h1>A quality ingredient is one you can trace to the ground it came out of.</h1>
   <p>ʻĀina to Table exists to make that ordinary rather than exceptional. It puts ingredients
      grown nearby into the kitchens and pantries that want them, on terms both sides can hold each
@@ -1404,10 +1404,9 @@ def buyers_page():
 
   <h3 style="margin-top:12px">Register as a buyer</h3>
   <p class="src"><strong>If the answer is that nobody here is growing what you check at the volume
-     you need, that is the answer you will get.</strong> We have nothing to sell yet. Dues and
-     terms are published once the network&rsquo;s structure is settled, so the useful
-     conversation now is about what this county actually grows, and whether anything on these pages
-     is wrong.</p>
+     you need, that is the answer you will get.</strong> Dues and terms publish once the
+     network&rsquo;s structure is settled — until then, the useful conversation is about what
+     this county actually grows, and whether anything on these pages is wrong.</p>
   {registration_form("buyer")}
 </div></section>"""
     return page("For Buyers · ʻĀina to Table", body, current="buyers.html",
@@ -1544,7 +1543,7 @@ def growers_page():
      structure is settled.</p>
   <h3 style="margin-top:12px">Getting in touch</h3>
   <p>hello@ainatotable.com. One address, and it reaches a person rather than a form.</p>
-  <p class="src">We have nothing to sell yet: dues and terms are published once the network&rsquo;s structure is settled. Until then the useful conversation is about what this county actually grows, and whether anything on these pages is wrong.</p>
+  <p class="src">Dues and terms publish once the network&rsquo;s structure is settled. Until then the useful conversation is about what this county actually grows, and whether anything on these pages is wrong.</p>
 </div></section>"""
     return page("For Growers · ʻĀina to Table", body, current="growers.html",
                 desc="For anyone holding ground that is earning nothing: the thresholds, the gaps, and the two questions qualifying actually asks.")
