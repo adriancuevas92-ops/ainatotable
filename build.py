@@ -654,6 +654,9 @@ def home_page():
     <div class="slide" style="background-image:url(images/homepage-slideshow/02-sugar-beet-harvest.jpg)"></div>
     <div class="slide" style="background-image:url(images/homepage-slideshow/03-mission-farms-meal.jpg)"></div>
     <div class="slide" style="background-image:url(images/homepage-slideshow/04-sierra-leone-farm-meal-1934.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/05-orange-pickers-santa-ana-1900.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/06-tortillas-hacienda-chichen-1923.jpg)"></div>
+    <div class="slide" style="background-image:url(images/homepage-slideshow/07-tomato-loading-britain-1914.jpg)"></div>
   </div>
   <div class="wrap stack">
   <p class="eyebrow">A qualifying network, paid in dues. Free, real information, and no product to
