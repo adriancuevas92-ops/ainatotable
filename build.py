@@ -839,7 +839,6 @@ def home_page():
      and how this county reports it. Where the record is silent, the market
      says so.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
-  <p style="margin-top:28px">That address reaches someone who can act on it.</p>
 </div></section>"""
     return page("ʻĀina to Table · ingredients you can trace", body,
                 current="index.html")
@@ -1438,8 +1437,8 @@ def growers_page():
       own survey counted thirty-three growers on a single crop.</h3>
   <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers. Two and a half acres
      each, in UCCE&rsquo;s 2000 survey of that one crop.</p>
-  <p class="src">Four crops in our catalogue carry both an acreage and a grower count from the 2000
-     survey, which is twenty-six years old, and Bok choy is the smallest-per-grower of them. Read it as
+  <p class="src">Twenty-six crops in the catalogue carry both an acreage and a grower count from the
+     2000 survey, now twenty-six years old, and Bok choy is the smallest-per-grower of them. Read it as
      the shape of this production, not its current size, and as how thin that specific survey
      cut now is against a catalogue this much narrower than the one it was first read against.</p>
   <p>A buyer asking for weekly case volume is asking for something no two-acre grower can promise alone
@@ -1552,7 +1551,7 @@ def about_page():
      and there is a party who can contract), <strong>what is known about each crop gets
      published, and the terms of the transaction get settled in the produce trade&rsquo;s own
      language, so the grower and the buyer deal directly with one another.</strong></p>
-  <p>The catalogue, the market conditions, the soil-health material and the compliance reading are
+  <p>The catalogue, the market conditions and the compliance reading are
      free and complete on their own, whether or not anyone ever becomes a member.</p>
 
   <h3 style="margin-top:12px">Two ideas this is built on</h3>
