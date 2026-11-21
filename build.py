@@ -1252,9 +1252,10 @@ def buyers_page():
      <em>ornamental</em> and <em>nursery</em> appear nowhere in its 178 pages.</p>
   <div class="note">
     <p><strong>{RELIEF_BOUNDARY}</strong></p>
-    <p>The compliance date in the Code of Federal Regulations is still 20 January 2026. A proposed rule
-       would extend it and an appropriations restriction limits enforcement. Neither has changed the
-       date in the CFR, and we will not say otherwise.</p>
+    <p>The compliance date has moved. The original date was 20 January 2026. An appropriations act bars
+       FDA from enforcing the rule before 20 July 2028, and FDA&rsquo;s own current guidance now treats
+       that date as the compliance date.
+       <span class="src">FDA, FSMA Inflation Adjusted Cut-Offs, content current as of 13 May 2026.</span></p>
   </div>"""
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">For Buyers</p>
