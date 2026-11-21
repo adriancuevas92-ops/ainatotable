@@ -207,8 +207,8 @@ def how_it_moves():
       what</h3>
   <p>A load out of this network is a route, not a truckload. Several stops, a few pallets at each,
      on a fixed day of the week, inside one county. That is a different shape from the
-     single-destination truckload the national rate reports describe, and we would rather say so
-     than describe a lane that does not exist.</p>
+     single-destination truckload the national rate reports describe. There is no such lane to
+     quote.</p>
   <p class="src">USDA AMS quotes produce truck rates per load for shipments in truckload volume to a
      single destination, and states that multi-pickup and multi-drop shipments are not included.
      There is no Fresno terminal market. Los Angeles is the only one in California.</p>
@@ -853,7 +853,7 @@ def inspect_page():
   <p class="eyebrow">Market Analysis</p>
   <h1>Central Valley Market Analysis</h1>
   <p>The dollars behind the catalogue, computed from six years of the county&rsquo;s own crop
-     reports. Every figure here is public, sourced and dated; where the arithmetic is ours, we say so.</p>
+     reports. Every figure here is public, sourced and dated.</p>
   <div class="blocks">
     <div class="blk"><p class="lbl">Specialty-crop premium, per acre</p>
       <p class="val">1.56&times;&ndash;3.12&times;</p>
@@ -890,8 +890,8 @@ def inspect_page():
   <h2 style="margin-top:28px">What we cannot tell you, and why</h2>
   <div class="note">
     <p><strong>No dollar market size.</strong> The federal data that counts these establishments carries
-       no sales figures, and the only published sales ratios for this sector are from 1997 and 2002. We
-       would rather refuse the number than estimate it and have you plan against it.</p>
+       no sales figures, and the only published sales ratios for this sector are from 1997 and
+       2002 — too old to apply here.</p>
     <p><strong>No prices of our own, and no yields or returns.</strong> The wholesale figures above
        are USDA&rsquo;s, republished. What we do not have is what a crop costs to grow here or returns
        here: the only published economics for that are UC cost studies from 2005, and they have not
@@ -1279,8 +1279,7 @@ def buyers_page():
      report in any form. That is the first thing worth knowing about them.</p>
   <p><a class="btn" href="market.html">Open the market &rarr;</a></p>
 
-  <h3 style="margin-top:12px">Seasonality is the real constraint, and we are not going to pretend
-      otherwise.</h3>
+  <h3 style="margin-top:12px">Seasonality is the real constraint.</h3>
   <p>Of the 45 crops surveyed in Fresno specialty markets, 38 were available in October and 8 in
      January. Only two ran all twelve months. And the fall is not
      gradual: availability holds through November at 37 crops, then drops to 13 in December. A
@@ -1289,8 +1288,7 @@ def buyers_page():
   <p class="src">UC Cooperative Extension Fresno County, specialty Asian retail market survey, 2010.
      Typical availability, not a live feed, and sixteen years old. No season data exists for any Mexican
      specialty crop. The 2010 survey covered Hmong and Southeast Asian retail only, so cactus
-     leaf, tomatillo, epazote, chipil&iacute;n, pepicha and purslane have no published season anywhere.
-     We would rather tell you that than guess.</p>
+     leaf, tomatillo, epazote, chipil&iacute;n, pepicha and purslane have no published season anywhere.</p>
 
   <h3 style="margin-top:12px">How to plan against a season like this</h3>
   <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
@@ -1392,7 +1390,7 @@ def growers_page():
      faster than the sector around it.</p>
   <p class="src">Fresno County Agricultural Crop and Livestock Reports, 2019&ndash;2024. Each year
      cross-checked against the following year&rsquo;s comparative table; the 2019 figure is
-     single-sourced. We do not know why it is leaving production, and we are not going to guess. A
+     single-sourced. We do not know why it is leaving production. A
      premium argues against demand collapse. It does not prove a supply constraint.</p>
   <p class="src"><strong>This figure is about one line of the county&rsquo;s report, not about this
      whole catalogue.</strong> It is the &ldquo;Oriental Vegetables&rdquo; line: the crops the
@@ -1488,7 +1486,7 @@ def growers_page():
      manual. It says almost nothing about soil or climate per crop, and we will not pad it out
      with figures it does not contain. The 2005 cost studies carry per-acre costs and returns; they are
      twenty-one years old and we do not publish their figures until they have been re-verified and
-     adjusted. We would rather tell you the study exists than quote a number from it.</p>
+     adjusted.</p>
 
   <h3 style="margin-top:12px">What qualification actually means</h3>
   <p>Your capacity to take on a commercial contract gets qualified: your scale, the terms you can meet,
@@ -1496,8 +1494,7 @@ def growers_page():
      criteria that are published, the same for everyone, and open to appeal.</p>
   <p><strong>It is a capacity check, nothing more.</strong> Food safety stays with the agencies built
      for it; the qualification record speaks only to whether you can take on the contract. Any buyer who reads
-     our qualification as a food certification has read it wrong, and we would rather say so here
-     than correct it later.</p>
+     our qualification as a food certification has read it wrong.</p>
   <p class="src">This membership never takes a cut of what you sell, and stays outside the
      purchase path. That is also what keeps your buyer&rsquo;s own record relief intact. The
      contract settles delivery, risk, records, specification and remedies. What you sell for stays
@@ -1692,7 +1689,7 @@ def market_section():
     d:["A buyer here can realistically source from this market, so its published price is a real alternative to buying locally.","direct"],
     f:["Reachable, but freight and a day in transit sit between you and that price. Treat it as the alternative plus the cost of getting it to you.","freight"],
     r:["Too far to be your alternative. Read it as a national reference point, not as your option.","reference"],
-    n:["<strong>No live terminal market is near enough to describe your alternative, and we are not going to pretend otherwise.</strong> The nearest reporting one is listed, with the distance, so you can see why.","none"]
+    n:["<strong>No live terminal market is near enough to describe your alternative.</strong> The nearest reporting one is listed, with the distance, so you can see why.","none"]
   }};
   var q=document.getElementById('zq'), out=document.getElementById('zans'),
       lab=document.getElementById('zout'), CITY={{}};
