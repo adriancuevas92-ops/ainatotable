@@ -50,15 +50,15 @@
   --sage:  #888E7E;  /* page 3.34 large · panel 2.29 FAIL · dark 4.19 large  */
 
   /* ---- CATALOGUE SEMANTICS ----------------------------------------------- */
-  /* Fills, not text. Every one still ships a text label — colour never
-     carries meaning alone. The 2010 UCCE matrix lost its meaning to exactly
-     that and the rule exists because of it.                                  */
-  --season-peak:     #B7603C;
-  --season-shoulder: #DCBFA6;
-  --season-none:     #D6CCB6;
-  --gap-contractable: #B7603C;
-  --gap-input-limited:#897D55;
-  --gap-blocked:      #4F4A3F;
+  /* season-peak/shoulder/none and gap-contractable/input-limited/blocked
+     REMOVED 2026-11-21, round-six panel: all six were unused. The season
+     tokens styled season_cell()'s dot strip, which main() never called; the
+     gap tokens implied a three-tier severity read is_gap() never built.
+     Adrian's call on both: delete rather than wire up. Left here as a
+     one-line record rather than silently vanishing from history. The rule
+     these existed to serve stays true of what actually ships: colour never
+     carries meaning alone, every chip ships its own text label, and the
+     2010 UCCE matrix lost its meaning to exactly that once already.         */
   /* 🔴 Chip TEXT is always --ink-soft. Only the chip BORDER carries the class
      colour — --earth and --moss cannot pass body text on panel.              */
 
