@@ -63,12 +63,32 @@
                             borders the old --earth token carried (5.67 on
                             panel, comfortably clears body text there too).
                             6.79 on page · 5.67 on panel · on-dark text on
-                            this as a fill: 6.93 — light grounds only. 2.09
-                            on surface-dark, which is why Market's existing
-                            dark trading-floor header row (a separate,
-                            already-locked 2026-11-06 design) keeps its own
-                            on-dark header treatment rather than taking this
-                            colour unverified onto a surface it fails on.      */
+                            this as a fill: 6.93. Market's trading floor no
+                            longer needs its own exception to this -- see
+                            --accent-bright below, 2026-11-21: the floor
+                            itself went light, so the ordinary light-ground
+                            --highlight header now applies there too.         */
+
+  /* ---- BRIGHT GREEN, Kalshi reference ---------------------------------------- */
+  /* Adrian, 2026-11-21, after the first Market pass: "The Market chart is too
+     dark... I would rather use a brighter green tone then the dark blue tone
+     you've applied... I want the site to eventually have the sterile look of
+     Kalshi with the pops of colors." Checked kalshi.com directly rather than
+     guess at "sterile": it is almost entirely white, with a vivid green used
+     only as small pops (brand mark, buy buttons, up-indicators, a thin accent
+     bar) and thin light-gray horizontal dividers between rows -- never a large
+     dark fill. This retires Market's dark "Chalkboard Stall" surface
+     (2026-11-06) in favour of that same light-plus-pop pattern; the trading
+     floor keeps its own identity through this accent and a visible top bar,
+     not through a colour field.                                              */
+  --accent-bright: #008F63;      /* 3.73 on page · 2.93 on panel -- a visible
+                                    accent bar/border, not body text.
+                                    Dark ink on this as a fill: 7.47 -- use
+                                    dark text on bright-green chips, never
+                                    white, the same way Kalshi's own pill
+                                    badges pair a vivid fill with dark text. */
+  --accent-bright-tint: #DCF2EA; /* pale mint for a hover/zebra row -- a pop
+                                    of tint, not a saturated fill.            */
 
   /* ---- BORDERS, NON-TEXT ----------------------------------------------------- */
   --border-soft:      #8FA8AB;  /* replaces --moss's role: .note border on light
