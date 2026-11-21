@@ -458,13 +458,15 @@ def window_label(r):
     return {"Jan-Dec":"Year-round","NOT IN 2010 MATRIX":"No data",
             "special orders only":"Special order only"}.get(w, w or "No data")
 
-def season_cell(r):
-    marks = [r[m] for m in MONTHS]
-    if not any(marks):
-        return f'<span class="win show">{esc(window_label(r))}</span>'
-    strip = "".join('<i class="dk"></i>' if v=="S" else ('<i class="lt"></i>' if v=="P" else '<i></i>')
-                    for v in marks)
-    return f'<span class="strip">{strip}</span><span class="win">{esc(window_label(r))}</span>'
+# season_cell() REMOVED 2026-11-21, round-six panel: it rendered a
+# colour-only dot strip (dk/lt marks with no text alternative -- tokens.css's
+# own comment on those two marks exists to warn against exactly that) with
+# aria-label support added and then found, by checking the rendered dist/
+# output rather than assuming, that nothing in main() ever called it -- a
+# leftover from an earlier crop-index design, superseded by product_page()'s
+# text blocks (season_sentence()/window_label(), still live). Adrian's call:
+# delete rather than fix a function nothing renders. Left as a one-line
+# record rather than silently vanishing from history.
 
 def season_sentence(r):
     if not r["window"]:

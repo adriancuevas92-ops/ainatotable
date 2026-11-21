@@ -188,20 +188,15 @@ td a{font-weight:600}
    same .tools component the catalogue page already uses, not a new one. */
 .tools input[type=text]{font:inherit;font-size:.875rem;padding:6px 10px;border:1px solid var(--line);
       border-radius:var(--radius);background:var(--page);color:var(--ink)}
-/* Two marks, deliberately NOT named: the 2010 source defines neither. */
-.strip{display:flex;gap:1px}
-.strip i{width:14px;height:20px;display:block;background:#D6CCB6}
-.strip i.dk{background:var(--earth)}
-.strip i.lt{background:#DCBFA6}
-.win{font-size:.9375rem;color:var(--ink-soft);display:none}
-/* Market page range bar — REMOVED 2026-11-05, Adrian: the dollar range
+/* .strip / .win REMOVED 2026-11-21, round-six panel: styled season_cell()'s
+   dot strip, which build.py's main() never called -- see the one-line
+   record left in build.py next to where that function was. Left here too
+   rather than silently vanishing from history.
+   Market page range bar — REMOVED 2026-11-05, Adrian: the dollar range
    already speaks for itself as text. See Brand Decision Log,
    "Market Page Range Bar Dropped". Left here as a one-line record rather
    than silently vanishing from history. */
-/* A crop with NO marks must never render as an empty strip: an empty strip is
-   indistinguishable from "special order only", and they mean different things. */
-.win.show{display:block;font-weight:600}
-@media(max-width:640px){.strip{display:none}.win{display:block}table{min-width:0}}
+@media(max-width:640px){table{min-width:0}}
 
 /* product page */
 .crop-head{display:flex;flex-direction:column;gap:6px}
