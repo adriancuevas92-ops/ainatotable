@@ -649,8 +649,8 @@ def product_page(r):
   {practice}
   {econ}
   {gap}
-  <div class="note"><p><strong>{"Want this crop?" if r["crop_class"] != "gap" else "Thinking of growing this?"}</strong>
-     {'<a href="../buyers.html">For Buyers</a> says what the contract settles before price comes up. If you farm, <a href="../growers.html">For Growers</a> is the page for it.' if r["crop_class"] != "gap" else '<a href="../growers.html">For Growers</a> is the page for it. Read the caveat above first: nobody has published a trial for this crop in this valley.'}</p></div>
+  <div class="note"><p><strong>Next step.</strong>
+     {'<a href="../buyers.html">For Buyers</a> says what the contract settles before price comes up. <a href="../growers.html">For Growers</a> is the page for anyone who farms this.' if r["crop_class"] != "gap" else '<a href="../growers.html">For Growers</a> is the page for it. Read the caveat above first: nobody has published a trial for this crop in this valley.'}</p></div>
   <p class="src">Four things are deliberately not on this page yet, and it is worth saying which.
      <strong>Botanical name and native range:</strong> not published for this crop. The
      structured native-distribution source refuses automated access, and an occurrence record is not
