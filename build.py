@@ -17,6 +17,7 @@ A violation fails the build.
 Usage: python3 -I build.py
 """
 import csv, datetime, io, os, re, shutil, sys, unicodedata
+from collections import Counter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
@@ -1955,7 +1956,7 @@ def text_of(html):
         t = t.replace(a,b)
     return re.sub(r"\s+"," ",t)
 
-def check(pages):
+def check(pages, rs):
     fails = []
     for name, html in pages.items():
         t = text_of(html)
@@ -2083,6 +2084,16 @@ def check(pages):
     for name, html in pages.items():
         if "ʻĀina" not in html:
             fails.append(f"{name}: the name has lost its ʻokina or kahakō")
+
+    # 🔴 Round-eight panel: moved here from a bare assert in main() that ran
+    # AFTER dist/ was already rewritten -- a collision would have crashed
+    # with a raw traceback instead of this gate's own clean failure message,
+    # leaving a corrupted dist/ behind rather than an untouched one. Checked
+    # here, before any write, same as every other condition in this function.
+    slugs = [slug(r["crop"]) for r in rs]
+    if len(set(slugs)) != len(slugs):
+        dupes = [s for s, n in Counter(slugs).items() if n > 1]
+        fails.append(f"slug collision: {', '.join(dupes)} each produced by more than one crop name")
     return fails
 
 def main():
@@ -2094,7 +2105,7 @@ def main():
     for r in rs:
         pages[f"crops/{slug(r['crop'])}.html"] = product_page(r)
 
-    fails = check(pages)
+    fails = check(pages, rs)
     if fails:
         print("BUILD FAILED — Gate C conditions:")
         for f in fails: print("  ✗", f)
@@ -2115,7 +2126,6 @@ def main():
     )
 
     slugs = [slug(r["crop"]) for r in rs]
-    assert len(set(slugs)) == len(slugs), "slug collision"
     print(f"BUILD OK — {len(pages)} pages ({len(rs)} product pages), "
           f"{len(set(slugs))} unique slugs, Gate C conditions all pass")
     return 0
