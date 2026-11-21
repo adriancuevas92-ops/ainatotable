@@ -1254,13 +1254,17 @@ def buyers_page():
   <p>We publish which crops this county reports growing, which ones it reports only inside an
      aggregate, and which ones it does not report at all. The sources come with it, before you tell us
      anything about your business.</p>
-  <p class="src">Fresno County&rsquo;s food-retail universe is 287 establishments. Thirteen
-     of those are fruit-and-vegetable markets, employing twenty-five people between them,
-     alongside 508 full-service restaurants and 48 fresh-produce wholesalers. Two retail categories are
-     too small for the federal government to publish without identifying the businesses in them; we
-     recovered roughly thirty-five establishments by subtraction. A segment too small to be measured is
-     a segment too small for anyone else to bother serving.
-     <br>US Bureau of Labor Statistics, QCEW, Fresno County, 2024.</p>
+  <div class="blocks">
+    <div class="blk"><p class="lbl">The buying universe</p>
+      <p class="val">287 retail &middot; 508 restaurants &middot; 48 wholesalers</p>
+      <p class="cav">Thirteen of the 287 retail establishments are fruit-and-vegetable markets,
+         employing twenty-five people in total. US Bureau of Labor Statistics, QCEW, Fresno
+         County, 2024.</p></div>
+  </div>
+  <p class="src">Two retail categories are too small for the federal government to publish without
+     identifying the businesses in them; we recovered roughly thirty-five establishments by
+     subtraction. A segment too small to be measured is a segment too small for anyone else to
+     bother serving.</p>
 
 {relief}
 
@@ -1383,11 +1387,16 @@ def growers_page():
      figures, and what they do and do not cover, are below.</p>
   <p>That is not encouragement. It is what six years of the county&rsquo;s own crop reports say, and the
      second half of it is the part nobody mentions.</p>
-  <p>Asian specialty vegetables returned between 1.56 and 3.12 times the value per acre of the average
-     Fresno County vegetable acre, in every one of the six years from 2019 to 2024. The worst year of
-     the six was still 1.56 times. Over the same six years the acreage fell 36.4%, while all county
-     vegetable acreage fell 15.2%. It is going out of production nearly two and a half times
-     faster than the sector around it.</p>
+  <div class="blocks">
+    <div class="blk"><p class="lbl">Specialty-crop premium, per acre</p>
+      <p class="val">1.56&times;&ndash;3.12&times;</p>
+      <p class="cav">the average Fresno County vegetable acre, every year 2019&ndash;2024. The
+         worst year of the six was still 1.56&times;.</p></div>
+    <div class="blk"><p class="lbl">Same acreage, six-year change</p>
+      <p class="val">&minus;36.4%</p>
+      <p class="cav">while all county vegetable acreage fell 15.2%. Nearly two and a half times
+         faster than the sector around it.</p></div>
+  </div>
   <p class="src">Fresno County Agricultural Crop and Livestock Reports, 2019&ndash;2024. Each year
      cross-checked against the following year&rsquo;s comparative table; the 2019 figure is
      single-sourced. We do not know why it is leaving production. A
@@ -1421,8 +1430,12 @@ def growers_page():
 
   <h3 style="margin-top:12px">Two and a half acres cannot serve a commercial contract. The county&rsquo;s
       own survey counted thirty-three growers on a single crop.</h3>
-  <p>Bok choy was grown on 82.4 acres in this county by 33 separate growers. Two and a half acres
-     each, in UCCE&rsquo;s 2000 survey of that one crop.</p>
+  <div class="blocks">
+    <div class="blk"><p class="lbl">No single grower can carry this alone</p>
+      <p class="val">82.4 acres &middot; 33 growers</p>
+      <p class="cav">Bok choy, UCCE&rsquo;s 2000 survey of that one crop. Two and a half acres
+         each, on average.</p></div>
+  </div>
   <p class="src">Twenty-six crops in the catalogue carry both an acreage and a grower count from the
      2000 survey, now twenty-six years old, and Bok choy is the smallest-per-grower of them. Read it as
      the shape of this production, not its current size, and as how thin that specific survey
