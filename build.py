@@ -1259,7 +1259,8 @@ def buyers_page():
   </div>"""
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">For Buyers</p>
-  <h1>Order a variety and a week, not a grade.</h1>
+  <h1>A grade decides a category. A variety and a week decide what arrives.</h1>
+  <p class="src"><a href="#next-step">Jump to what gets published next &darr;</a></p>
   <p>A grade is the floor. It says nothing about which variety, or how many days ago the thing was
      cut, and those are the two facts that decide what arrives in your kitchen. <strong>This
      network exists so you can ask for them and have the answer written down.</strong></p>
@@ -1326,7 +1327,7 @@ def buyers_page():
      sixth: the delivery term, named against Incoterms&reg; 2020 (who contracts carriage, which
      is not the same as who arranges it), where risk of loss passes, who keeps which record and
      for how long, and the specification with what happens when a delivery misses it.</p>
-  <p><strong>Not price.</strong> We standardise how a transaction works, never what it costs. What you
+  <p><strong>Not price.</strong> How a transaction works is standardised. What it costs never is. What you
      pay is between you and the grower, every time.</p>
   <div class="cards">
     <div class="card"><h3>Retail continuity</h3>
@@ -1374,7 +1375,7 @@ def buyers_page():
 
   {how_it_moves()}
 
-  <h3 style="margin-top:12px">Hear what gets published next</h3>
+  <h3 id="next-step" style="margin-top:12px">Hear what gets published next</h3>
   <p class="src">This is not a registration, and nothing here is live to join yet. Say what you are
      sourcing and you will hear when something relevant is published &mdash; a new crop, a term, or
      anything else worth sending. <strong>If the answer turns out to be that nobody here is growing
@@ -1390,6 +1391,7 @@ def growers_page():
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">For Growers</p>
   <h1>Ground that is earning nothing is still ground.</h1>
+  <p class="src"><a href="#next-step">Jump to what gets published next &darr;</a></p>
   <p class="src">And the crops this county measures only in aggregate (the specialty line, not
      its commodity rows) have earned a premium per acre in every one of the last six years,
      while that same acreage has been going out of production faster than the sector around it. Both
@@ -1483,7 +1485,7 @@ def growers_page():
 
   {how_it_moves()}
 
-  <h3 style="margin-top:12px">Hear what gets published next</h3>
+  <h3 id="next-step" style="margin-top:12px">Hear what gets published next</h3>
   <p class="src">This is not a registration either. Two of the questions below &mdash; land, and
      whether you can enter a contract &mdash; are there so anything sent to you is relevant, not to
      screen anyone out. The crop pages stay free to read whether you ever write in or not.</p>
@@ -1900,6 +1902,20 @@ FORBIDDEN = [
     (r"\bwe (qualify|settle|vet|certify)\b",
      "posture: the organization is not the grammatical subject of a capability claim"),
     (r"\b(this|the) network (qualifies|settles|vets|certifies)\b",
+     "posture: the organization is not the grammatical subject of a capability claim"),
+    # 🔴 Added 2026-11-20, round-three panel: "We standardise how a
+    # transaction works" shipped through three sweeps that were specifically
+    # looking for this pattern, because the check above only matched four
+    # verbs. Same family, wider verb list — standardise/structure/
+    # administer/run/operate/manage/handle/control are all capability verbs
+    # a business performs on a grower's or buyer's behalf, same as
+    # qualify/settle/vet/certify. Still does not touch the protected
+    # epistemic-verb family ("we publish," "we computed," "we do not know") —
+    # those describe the compilers' own research conduct, not a claim about
+    # what the organization does to a grower or buyer.
+    (r"\bwe (standardise|standardize|structure|administer|run|operate|manage|handle|control)\b",
+     "posture: the organization is not the grammatical subject of a capability claim"),
+    (r"\b(this|the) network (standardises|standardizes|structures|administers|runs|operates|manages|handles|controls)\b",
      "posture: the organization is not the grammatical subject of a capability claim"),
 ]
 PRICE = [r"per\s*(lb|pound|kg|case|box|carton)\b", r"/\s*lb\b", r"price per", r"\bwholesale price",
