@@ -1302,7 +1302,7 @@ def buyers_page():
   <h3 style="margin-top:12px">Seasonality is the real constraint, and we are not going to pretend
       otherwise.</h3>
   <p>Of the 45 crops surveyed in Fresno specialty markets, 38 were available in October and 8 in
-     January. Only two, daikon and lemongrass, ran all twelve months. And the fall is not
+     January. Only two ran all twelve months. And the fall is not
      gradual: availability holds through November at 37 crops, then drops to 13 in December. A
      65% collapse in a single month. If you plan on a tapering season you will be short in December,
      not in February.</p>
