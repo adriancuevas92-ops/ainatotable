@@ -730,7 +730,6 @@ def home_page():
      nothing, the land gets qualified and the terms get settled before price is ever on the
      table.</p>
   <div class="note">
-    <p><strong>Tell us what you&rsquo;re looking for.</strong></p>
     <p style="display:flex;gap:12px;flex-wrap:wrap">
       <a class="btn" href="buyers.html">A crop, by name and not by grade &rarr;</a>
       <a class="btn" href="buyers.html">A direct line to a grower for your kitchen &rarr;</a>
@@ -1330,14 +1329,13 @@ def buyers_page():
   <p><strong>Not price.</strong> We standardise how a transaction works, never what it costs. What you
      pay is between you and the grower, every time.</p>
   <div class="cards">
-    <div class="card"><h3>If you resell it</h3>
-      <p>Your problem is shelf continuity: the crops your customers ask for that you cannot reliably
-         get. Thirteen fruit-and-vegetable markets exist in this county, so &ldquo;the market&rdquo; for
-         these crops is a room, not a sector.</p></div>
-    <div class="card"><h3>If you cook it</h3>
-      <p>Your problem is a menu written against availability. 508 full-service restaurants operate here,
-         and a dish that needs a crop with an eight-month window is a dish with a four-month hole in
-         it.</p></div>
+    <div class="card"><h3>Retail continuity</h3>
+      <p>Thirteen fruit-and-vegetable markets exist in this county, so &ldquo;the market&rdquo; for
+         these crops is a room, not a sector. Shelf continuity for a crop a customer asks for by name
+         tracks a specific grower, not a category.</p></div>
+    <div class="card"><h3>Menu availability</h3>
+      <p>508 full-service restaurants operate here. A dish built on a crop with an eight-month window
+         needs a named substitution for the other four, not an assumption the season runs long.</p></div>
   </div>
   <p class="src">The regulatory position is identical for both. &sect;1.1305(j) and
      &sect;1.1345(b)(1) treat a retail food establishment and a restaurant alike.</p>
