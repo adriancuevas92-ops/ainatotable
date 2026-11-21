@@ -741,7 +741,7 @@ def home_page():
   </div>
   <p style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
     <a class="btn ghost" href="market.html">Open the market &rarr;</a>
-    <a class="btn ghost" href="inspect.html">See what the market is doing &rarr;</a>
+    <a class="btn ghost" href="inspect.html">Read the market analysis &rarr;</a>
   </p>
 </div></section>
 
@@ -1455,8 +1455,8 @@ def growers_page():
      crop while it is in the ground, you source your own inputs, and nothing ties you to one buyer
      through equipment only they can use. <strong>The buyer is the only party to it, and the only
      one who ever buys your crop.</strong></p>
-  <p class="src">Worth saying plainly, because &ldquo;contract&rdquo; usually means the other kind,
-     and the other kind is the one worth being careful about.</p>
+  <p class="src">&ldquo;Contract&rdquo; usually means the other kind, and the other kind is the one
+     worth being careful about.</p>
 
   <h3 style="margin-top:12px">And the part that actually matters: getting paid</h3>
   <p>The contract states when payment is due and what condition on arrival means, in the produce
