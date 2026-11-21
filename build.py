@@ -1139,13 +1139,20 @@ def market_page():
                            f' ({esc(r["latest_data_year"])})</span>'
                            f'<span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span>'
                            f'<span class="chip market">{esc(status)}</span></span>')
+            # 🔴 Round-seven panel: carries the real float for the JS "high to
+            # low" sort to read directly, so it never again has to regex a
+            # number back out of currency-formatted text (which previously
+            # grabbed `lo`, not `latest` -- the figure this attribute names
+            # and the one the Python default sort below already uses).
+            acre_attr = f' data-acre="{latest}"'
         else:
             county_cell = (f'<span class="src">no county figure of its own: '
                            f'{esc(r["aggregate_context"])}</span>'
                            f'<span class="chips"><span class="chip market">{esc(status)}</span></span>')
+            acre_attr = ""
         cu = cuisines_for(r["display_name"])
         cuisine_chips = "".join(f'<span class="chip market">{esc(c)}</span>' for c in cu)
-        return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}" data-cuisine="{esc(','.join(cu))}">
+        return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}" data-cuisine="{esc(','.join(cu))}"{acre_attr}>
   <td><span class="crop">{crop_link(r["display_name"])}</span>{f'<span class="chips">{cuisine_chips}</span>' if cu else ''}</td>
   <td>{county_cell}</td>
   <td>{term_cell(r)}</td>
@@ -1209,10 +1216,8 @@ def market_page():
   var order=rows.slice();
   function cropName(tr){{var el=tr.querySelector('.crop'); return el?el.textContent:'';}}
   function acreValue(tr){{
-    var el=tr.querySelector('td:nth-child(2) .data');
-    if(!el) return -1;
-    var m=/\\$([\\d,]+(?:\\.\\d+)?)/.exec(el.textContent);
-    return m?parseFloat(m[1].replace(/,/g,'')):-1;
+    var v=tr.getAttribute('data-acre');
+    return v?parseFloat(v):-1;
   }}
   function apply(){{
     var q=qse.value.trim().toLowerCase(), s=sse.value, t=tse.value, r=rse.value, c=cse.value, sort=ose.value, n=0;
