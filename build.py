@@ -850,24 +850,24 @@ def home_page():
 def inspect_page():
     S = stats()
     body = f"""<section class="band wide"><div class="wrap wide stack">
-  <p class="eyebrow">Inspect</p>
-  <h1>What this market is actually doing</h1>
-  <p>Every figure here is public, sourced and dated. Nothing on this page is ours except the
-     arithmetic, and where the arithmetic is ours we say so.</p>
-  <div class="cards">
-    <div class="card"><h3>The specialty crops are worth more per acre</h3>
-      <p>Between <strong>1.56&times; and 3.12&times;</strong> the value per acre of the average Fresno
-         County vegetable acre, in every one of the six years 2019&ndash;2024. The weakest of the six
-         was still 1.56&times;.</p>
-      <p class="src">The county&rsquo;s &ldquo;Oriental Vegetables&rdquo; line.</p></div>
-    <div class="card"><h3>And that acreage is going away</h3>
-      <p>Over the same six years it fell <strong>36.4%</strong>, while all county vegetable acreage fell
-         <strong>15.2%</strong>. Nearly two and a half times faster than the sector around it.</p>
-      <p class="src">The same line.</p></div>
-    <div class="card"><h3>The buying universe is small</h3>
-      <p><strong>287</strong> food-retail establishments and <strong>508</strong> full-service
-         restaurants, with <strong>48</strong> produce wholesalers between them and the farms. Thirteen
-         of the 287 are fruit-and-vegetable markets, employing twenty-five people in total.</p></div>
+  <p class="eyebrow">Market Analysis</p>
+  <h1>Central Valley Market Analysis</h1>
+  <p>The dollars behind the catalogue, computed from six years of the county&rsquo;s own crop
+     reports. Every figure here is public, sourced and dated; where the arithmetic is ours, we say so.</p>
+  <div class="blocks">
+    <div class="blk"><p class="lbl">Specialty-crop premium, per acre</p>
+      <p class="val">1.56&times;&ndash;3.12&times;</p>
+      <p class="cav">the average Fresno County vegetable acre, every year 2019&ndash;2024. The
+         weakest of the six was still 1.56&times;. The county&rsquo;s &ldquo;Oriental
+         Vegetables&rdquo; line.</p></div>
+    <div class="blk"><p class="lbl">Same acreage, six-year change</p>
+      <p class="val">&minus;36.4%</p>
+      <p class="cav">while all county vegetable acreage fell 15.2%. Nearly two and a half times
+         faster than the sector around it. The same line.</p></div>
+    <div class="blk"><p class="lbl">The buying universe</p>
+      <p class="val">287 retail &middot; 508 restaurants &middot; 48 wholesalers</p>
+      <p class="cav">Thirteen of the 287 retail establishments are fruit-and-vegetable markets,
+         employing twenty-five people in total.</p></div>
   </div>
   <p class="src">Fresno County Agricultural Crop and Livestock Reports, 2019&ndash;2024, each year
      cross-checked against the next year&rsquo;s comparative table; the 2019 row is single-sourced.
@@ -908,8 +908,8 @@ def inspect_page():
        its current size.</p>
   </div>
 </div></section>"""
-    return page("Inspect · ʻĀina to Table", body, current="inspect.html",
-                desc="What this market is actually doing, with every figure sourced, dated, and its gaps stated.")
+    return page("Central Valley Market Analysis · ʻĀina to Table", body, current="inspect.html",
+                desc="The dollars behind the catalogue: specialty-crop premium, acreage decline and the buying universe, every figure sourced, dated, and its gaps stated.")
 
 # ── Market (price per acre) ───────────────────────────────────────────────────
 PRICE_CHART = os.path.join(DATA, "price_per_acre_chart.csv")
