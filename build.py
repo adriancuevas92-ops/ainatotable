@@ -1507,7 +1507,7 @@ def growers_page():
      the records you already keep. It is a statement that you can transact, within stated bounds, on
      criteria that are published, the same for everyone, and open to appeal.</p>
   <p><strong>It is a capacity check, nothing more.</strong> Food safety stays with the agencies built
-     for it; what we issue speaks only to whether you can take on the contract. Any buyer who reads
+     for it; the qualification record speaks only to whether you can take on the contract. Any buyer who reads
      our qualification as a food certification has read it wrong, and we would rather say so here
      than correct it later.</p>
   <p class="src">This membership never takes a cut of what you sell, and stays outside the
@@ -1915,6 +1915,18 @@ FORBIDDEN = [
     (r"\bwe (standardise|standardize|structure|administer|run|operate|manage|handle|control)\b",
      "posture: the organization is not the grammatical subject of a capability claim"),
     (r"\b(this|the) network (standardises|standardizes|structures|administers|runs|operates|manages|handles|controls)\b",
+     "posture: the organization is not the grammatical subject of a capability claim"),
+    # 🔴 Added 2026-11-21, round-four panel: "what we issue speaks only to
+    # whether you can take on the contract" shipped on growers.html through
+    # three prior sweeps of this exact check, because "issue" was never on
+    # either verb list above. Third instance of the same miss (after
+    # qualify/settle/vet/certify, then standardise/structure/administer/...).
+    # Adrian's call after the panel named this as a recurring pattern: keep
+    # patching verb-by-verb as each instance surfaces, rather than rebuilding
+    # this into a whitelist of safe epistemic verbs.
+    (r"\bwe issue\b",
+     "posture: the organization is not the grammatical subject of a capability claim"),
+    (r"\b(this|the) network issues\b",
      "posture: the organization is not the grammatical subject of a capability claim"),
 ]
 PRICE = [r"per\s*(lb|pound|kg|case|box|carton)\b", r"/\s*lb\b", r"price per", r"\bwholesale price",
