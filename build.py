@@ -17,6 +17,7 @@ A violation fails the build.
 Usage: python3 -I build.py
 """
 import csv, datetime, io, os, re, shutil, sys, unicodedata
+from collections import Counter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
@@ -876,27 +877,6 @@ def inspect_page():
      &ldquo;Oriental Vegetables&rdquo;: the {S["footnote"]} crops the county names only inside
      an aggregate. They say nothing about the {S["commodity"]} commodity crops in this catalogue,
      which the county reports on their own lines, and we do not extend them to those crops.</p>
-
-  <h2 style="margin-top:28px">Thirty-eight crops in October. Eight in January.</h2>
-  <p>Of the 45 crops surveyed in Fresno specialty markets, 38 were available in October and 8 in
-     January. Only daikon and lemongrass ran all twelve months. And the fall is abrupt: 37 crops in
-     November, 13 in December. Sixty-five percent in one month.</p>
-  <p class="src">UC Cooperative Extension Fresno County, specialty Asian retail market survey, 2010.
-     Typical availability, not a live feed, and sixteen years old. The survey marked two kinds of
-     availability and defined neither; no season data exists for any Mexican specialty crop, because
-     the 2010 survey covered Hmong and Southeast Asian retail only.</p>
-
-  <h2 style="margin-top:28px">The county does not break out a single herb</h2>
-  <p>Thirty-two Asian specialty crops appear in the county&rsquo;s reports as one line.
-     {S["absent_all"]} of the crops Fresno markets buy are named in no line and no footnote of any
-     report from 2020 to 2024. {S["footnote"] - 32} more sit inside an
-     undifferentiated &ldquo;other&rdquo; line with no acreage and no value of their own.</p>
-  <div class="spec"><p class="lbl">The clearest case</p>
-    <p><strong>Jicama.</strong> Two-tenths of an acre county-wide in 2000, a published growing guide in
-       2001, and still carried by Fresno specialty markets in the 2010 retail survey.</p></div>
-  <p class="src">Two retail categories are too small for the federal government to publish without
-     identifying the businesses in them. We recovered roughly thirty-five establishments by
-     subtraction.</p>
 
   {price_section()}
   {market_section()}
@@ -1955,7 +1935,7 @@ def text_of(html):
         t = t.replace(a,b)
     return re.sub(r"\s+"," ",t)
 
-def check(pages):
+def check(pages, rs):
     fails = []
     for name, html in pages.items():
         t = text_of(html)
@@ -2083,6 +2063,16 @@ def check(pages):
     for name, html in pages.items():
         if "ʻĀina" not in html:
             fails.append(f"{name}: the name has lost its ʻokina or kahakō")
+
+    # 🔴 Round-eight panel: moved here from a bare assert in main() that ran
+    # AFTER dist/ was already rewritten -- a collision would have crashed
+    # with a raw traceback instead of this gate's own clean failure message,
+    # leaving a corrupted dist/ behind rather than an untouched one. Checked
+    # here, before any write, same as every other condition in this function.
+    slugs = [slug(r["crop"]) for r in rs]
+    if len(set(slugs)) != len(slugs):
+        dupes = [s for s, n in Counter(slugs).items() if n > 1]
+        fails.append(f"slug collision: {', '.join(dupes)} each produced by more than one crop name")
     return fails
 
 def main():
@@ -2094,7 +2084,7 @@ def main():
     for r in rs:
         pages[f"crops/{slug(r['crop'])}.html"] = product_page(r)
 
-    fails = check(pages)
+    fails = check(pages, rs)
     if fails:
         print("BUILD FAILED — Gate C conditions:")
         for f in fails: print("  ✗", f)
@@ -2115,7 +2105,6 @@ def main():
     )
 
     slugs = [slug(r["crop"]) for r in rs]
-    assert len(set(slugs)) == len(slugs), "slug collision"
     print(f"BUILD OK — {len(pages)} pages ({len(rs)} product pages), "
           f"{len(set(slugs))} unique slugs, Gate C conditions all pass")
     return 0
