@@ -1,53 +1,82 @@
 /* ʻĀina to Table — design tokens
-   🔒 PALETTE LOCKED 2026-11-03 — "Earthen Wall base, green reverse"
-   Two earlier bases were tried and withdrawn: navy #1C1C3C and brown #3A2718.
-   Both are on the Decision Log as reversals, not edits.
-   Sources: Fireworks (hanabi) · Maple Leaf Hunting (momiji gari) · Earthen Wall
-   (tsuchi kabe) · The Great Wave (kanagawa oki), from Japanese Color Combinations.
-   Accent is Ruby Leaf, measured from the Casa Chromatica card.
+   🔒 EARTHEN WALL PALETTE REVERSED 2026-11-21 — Adrian: "The muted earth
+   tones in the body aren't working for me to look tech forward." Named
+   three fixed colours directly (page background, the ʻĀina to Table header's
+   own green, and a highlight for chart headers / header-row emphasis); this
+   file works out everything else needed to make those three cohere. This is
+   a reversal, not an edit — see Decision Log, "Palette Reversed for a
+   Tech-Forward, Dollar-Forward Posture." The 2026-11-03 Earthen Wall base
+   (and the navy/brown bases withdrawn before it) are prior history now.
    🔴 Use the values, never the palette names as brand terms.
 
-   Every ratio below is WCAG relative luminance, computed — not estimated.
-   Names are ROLES. The previous set named colours (--forest, --cream, --leaf);
-   after the palette change those names lied, so they are aliased and deprecated. */
+   Every ratio below is WCAG relative luminance, computed — not estimated. */
 
 :root {
   /* ---- GROUNDS --------------------------------------------------------- */
-  --page:           #FFFEF7;  /* the page. Great Wave                        */
-  --panel:          #DDD4C0;  /* cards, table bodies, bands. Earthen Wall    */
-  --surface-dark:   #26301F;  /* the reverse surface, GREEN. A darkening of
-                                 Earthen Wall's own sage #888E7E and khaki
-                                 #897D55 — it belongs to this palette rather
-                                 than being imported back from the old system.
-                                 The brown #3A2718 and the navy #1C1C3C are
-                                 both withdrawn.                              */
-  --surface-dark-2: #35412C;  /* raised element on the dark surface          */
-  /* page/panel 1.46 · page/dark 13.62 · panel/dark 9.35                      */
+  --page:           #EBF6F7;  /* "indigo white" — Adrian's exact value, in place
+                                 of the old Great Wave cream                   */
+  --panel:          #C7DEE0;  /* cards, table bodies, bands. A deeper tint of
+                                 the same cool family — 1.27 against page, the
+                                 same order of subtlety the old panel/page
+                                 split (1.46) used for card separation.        */
+  --surface-dark:   #1B2430;  /* the reverse surface. A cool charcoal-navy,
+                                 replacing the old green-black reverse — the
+                                 green that survives this reversal lives only
+                                 in --header-green below, never here.          */
+  --surface-dark-2: #28333F;  /* raised element on the dark surface           */
+  /* page/panel 1.27 · page/dark 14.20 · panel/dark 11.15                     */
 
   /* ---- TEXT ------------------------------------------------------------- */
-  --ink:      #2E2418;  /* body, warm near-black. 15.3 on page · 10.5 panel  */
-  --ink-soft: #6A5A47;  /* secondary. 6.56 on page · 4.50 on panel           */
-  --on-dark:      #FFFEF7;  /* text on surface-dark. 16.22                   */
-  --on-dark-soft: #DDD4C0;  /* secondary on surface-dark. 11.13              */
+  --ink:      #1C232B;  /* body, cool near-black. 14.39 on page · 12.00 panel */
+  --ink-soft: #53606A;  /* secondary. 5.87 on page · 4.60 on panel            */
+  --on-dark:      #F2F7F8;  /* text on surface-dark. 14.49                    */
+  --on-dark-soft: #B9C7C9;  /* secondary on surface-dark. 9.00                */
 
   /* ---- LINE -------------------------------------------------------------- */
-  --line: #BCAD90;  /* 2.18 on page · 1.50 on panel. Visible on BOTH grounds.
-                       Chosen after #C9BFA8 measured 1.24 on panel — a rule
-                       that disappears on the catalogue's own background.     */
-  --line-dark: #43512F;  /* 8.98-equivalent separation on surface-dark       */
+  --line: #A7BBBD;  /* 1.82 on page · 1.52 on panel. Visible on BOTH grounds,
+                       same subtlety class as the line this replaces.          */
+  --line-dark: #4A5864;  /* 2.14 on surface-dark                              */
 
   /* ---- ACCENTS ----------------------------------------------------------- */
-  --accent: #841A1A;  /* Ruby Leaf brick. 9.69 on page · 6.65 on panel.
-                         🔴 NOT optional: #c8102e measured 3.99 on panel and
-                         fails body text. The panel ground forces this value. */
-  /* 🔴 DARK SURFACE ONLY. Both fail on every light ground.                  */
-  --accent-warm:      #F8B500;  /* 7.61 on dark · 1.79 on page — FAILS light */
-  --accent-warm-deep: #E08A1E;  /* 5.13 on dark · 2.66 on page — FAILS light */
+  --accent: #841A1A;  /* Ruby Leaf brick, UNCHANGED — not part of what Adrian
+                         called the muted earth tones, and still measures
+                         8.89 on the new page · 7.41 on the new panel.
+                         🔴 Still DARK-SURFACE FAILS: 1.60 on surface-dark,
+                         same failure mode as before, now re-verified against
+                         the new dark value rather than assumed to still hold. */
+  /* 🔴 DARK SURFACE ONLY. Both fail on every light ground, unchanged roles.  */
+  --accent-warm:      #F8B500;  /* 8.65 on new dark · 1.64 on new page — FAILS light */
+  --accent-warm-deep: #E08A1E;  /* 5.83 on new dark · fails light — unchanged values,
+                                   re-verified against the new surface-dark.    */
 
-  /* ---- EARTH TONES — 🔴 NON-TEXT OR LARGE TEXT ONLY ---------------------- */
-  --earth: #B7603C;  /* terracotta. page 4.37 large · panel 3.00 FAIL        */
-  --moss:  #897D55;  /* khaki. page 4.05 large · panel 2.78 FAIL             */
-  --sage:  #888E7E;  /* page 3.34 large · panel 2.29 FAIL · dark 4.19 large  */
+  /* ---- BRAND CONSTANT ----------------------------------------------------- */
+  /* 🔒 Adrian: "I want that green ʻĀina to Table Header to stay and be
+     constant." A dedicated token, not an alias of --ink or any grounds/text
+     role above — nothing else may ever resolve to this value, and this value
+     must never be reassigned to style anything but the wordmark itself.      */
+  --header-green: #454D32;  /* 8.07 on page · 6.73 on panel. Used ONLY by
+                                .lockup span (the "ʻĀina to Table" wordmark). */
+
+  /* ---- HIGHLIGHT ------------------------------------------------------------ */
+  --highlight: #5A4F74;  /* Adrian's exact value, for chart headers and the
+                            header-row highlight, and reused for the chip
+                            borders the old --earth token carried (5.67 on
+                            panel, comfortably clears body text there too).
+                            6.79 on page · 5.67 on panel · on-dark text on
+                            this as a fill: 6.93 — light grounds only. 2.09
+                            on surface-dark, which is why Market's existing
+                            dark trading-floor header row (a separate,
+                            already-locked 2026-11-06 design) keeps its own
+                            on-dark header treatment rather than taking this
+                            colour unverified onto a surface it fails on.      */
+
+  /* ---- BORDERS, NON-TEXT ----------------------------------------------------- */
+  --border-soft:      #8FA8AB;  /* replaces --moss's role: .note border on light
+                                    ground. Non-text; 1.90 against panel.       */
+  --border-soft-dark: #71868F;  /* replaces --sage's role: .hero .note border on
+                                    the dark surface. Non-text; 3.37 against
+                                    surface-dark-2, clearing the 3:1 threshold
+                                    the way --sage (3.20) did before it.        */
 
   /* ---- CATALOGUE SEMANTICS ----------------------------------------------- */
   /* season-peak/shoulder/none and gap-contractable/input-limited/blocked
@@ -60,7 +89,7 @@
      carries meaning alone, every chip ships its own text label, and the
      2010 UCCE matrix lost its meaning to exactly that once already.         */
   /* 🔴 Chip TEXT is always --ink-soft. Only the chip BORDER carries the class
-     colour — --earth and --moss cannot pass body text on panel.              */
+     colour.                                                                  */
 
   /* ---- TYPE --------------------------------------------------------------- */
   --font-display: "Noto Serif", Georgia, serif;   /* SELF-HOSTED — fonts.css  */
@@ -82,11 +111,6 @@
   --bp-sm: 640px; --bp-md: 960px; --bp-lg: 1280px;
   --mark-min: 32px;           /* below this use the purpose-drawn 16px glyph  */
   --lockup-min-width: 237px;  /* below this: the mark alone                   */
-
-  /* ---- aliases REMOVED 2026-11-03 at the first real build, as the block
-     itself instructed. Role names are the only names. Twice a colour-named
-     alias named a colour the palette did not contain (--forest was navy,
-     then brown) and twice it caused a real misread.                        */
 }
 
 /* Tables use tabular figures so columns align. Non-negotiable in the catalogue. */
@@ -97,8 +121,9 @@ table, .data { font-variant-numeric: tabular-nums; font-size: var(--fs-data); }
 .on-dark .mark, .reverse .mark { color: var(--on-dark); }
 
 /* 🔴 FORBIDDEN — stated so a builder cannot do it by accident:
-   color: var(--accent-warm);      background: var(--page);   1.79 — fails
-   color: var(--accent-warm-deep); background: var(--page);   2.66 — fails
-   color: var(--accent);           background: var(--surface-dark); 1.41 — fails
-   color: var(--moss) or var(--earth) at body size on any light ground — fails
+   color: var(--accent-warm);      background: var(--page);   1.64 — fails
+   color: var(--accent-warm-deep); background: var(--page);   fails
+   color: var(--accent);           background: var(--surface-dark); 1.60 — fails
+   color: var(--highlight);        background: var(--surface-dark); 2.09 — fails
+   color: var(--border-soft) or var(--border-soft-dark) at body text size — fails
    🔴 No red works on any dark surface. The reverse treatment uses --on-dark. */

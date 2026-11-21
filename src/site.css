@@ -1,7 +1,7 @@
 /* ʻĀina to Table — public surface layout.
    Role-named tokens only; the colour-named aliases were removed at this build.
-   Single-theme by deliberate choice: the palette is locked and measured, and a
-   page that recoloured to the viewer's OS would not be the thing that was locked. */
+   Single-theme by deliberate choice: the palette is measured, not guessed, and a
+   page that recoloured to the viewer's OS would not be the thing that was measured. */
 
 @font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url("fonts/Inter-400.woff2") format("woff2")}
 @font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url("fonts/Inter-500.woff2") format("woff2")}
@@ -33,14 +33,14 @@ a{color:var(--accent)}
 .band{background:var(--page);border-bottom:1px solid var(--line)}
 .band>.wrap{padding-block:48px}
 .stack{display:flex;flex-direction:column;gap:16px}
-.eyebrow{font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.eyebrow{font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--highlight);font-weight:600}
 .src{font-size:.8125rem;color:var(--ink-soft)}
 
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--page);border-bottom:1px solid var(--line)}
 nav>.wrap{display:flex;align-items:center;gap:24px;padding-block:14px;flex-wrap:wrap}
 .lockup{display:flex;align-items:center;gap:11px;color:var(--accent);flex:0 0 auto;text-decoration:none}
 .lockup svg{width:34px;height:34px;display:block}
-.lockup span{font-family:"Noto Serif",Georgia,serif;font-weight:600;font-size:1.25rem;color:var(--ink);white-space:nowrap}
+.lockup span{font-family:"Noto Serif",Georgia,serif;font-weight:600;font-size:1.25rem;color:var(--header-green);white-space:nowrap}
 nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap;font-size:.9375rem}
 nav a{color:var(--ink-soft);text-decoration:none}
 nav a[aria-current]{color:var(--accent);font-weight:600}
@@ -64,7 +64,7 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .hero-slideshow .slide:nth-child(10){animation-delay:63s}
 .hero-slideshow .slide:nth-child(11){animation-delay:70s}
 .hero-slideshow::after{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(20,16,12,.62),rgba(20,16,12,.78));}
+  background:linear-gradient(180deg,rgba(14,18,24,.62),rgba(14,18,24,.78));}
 @keyframes hero-slide-cycle{
   0%{opacity:0} 1.3%{opacity:1} 7%{opacity:1} 9%{opacity:0} 100%{opacity:0}
 }
@@ -87,17 +87,16 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
       display:flex;flex-direction:column;gap:10px}
 .card p{font-size:.9375rem;color:var(--ink-soft)}
-.note{background:var(--panel);border:1px solid var(--moss);border-radius:var(--radius);padding:16px;
+.note{background:var(--panel);border:1px solid var(--border-soft);border-radius:var(--radius);padding:16px;
       font-size:.9375rem;display:flex;flex-direction:column;gap:10px}
 /* A note raised onto the dark hero. Added 2026-11-04 for Home's premium
-   figure. Every ratio computed, not estimated, per this system's own rule:
-     --on-dark      on --surface-dark-2  10.69  passes body
-     --on-dark-soft on --surface-dark-2   7.33  passes body
-     --ink          on --surface-dark-2   1.41  FAILS — never inherit it here
-   🔴 The raise alone is only 1.27 against --surface-dark, so the box does not
-   read without a border, and --line-dark measured 1.26 on it — invisible.
-   --sage is 3.20, which clears the 3:1 non-text threshold. */
-.hero .note{background:var(--surface-dark-2);border-color:var(--sage);color:var(--on-dark-soft)}
+   figure, re-verified 2026-11-21 against the reversed cool palette:
+     --on-dark      on --surface-dark-2  11.88  passes body
+     --on-dark-soft on --surface-dark-2   7.38  passes body
+     --ink          on --surface-dark-2   never inherit it here
+   --border-soft-dark is 3.37 against --surface-dark-2, clearing the 3:1
+   non-text threshold the same way --sage (3.20) did before it. */
+.hero .note{background:var(--surface-dark-2);border-color:var(--border-soft-dark);color:var(--on-dark-soft)}
 .hero .note strong{color:var(--on-dark)}
 
 .spec{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:4px}
@@ -115,8 +114,12 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font
    whole PAGE wider instead of scrolling within itself, which throws off
    margin:auto centering for everything on the page, not just the table. */
 .tbl{overflow-x:auto}
-th{position:sticky;top:0;background:var(--panel);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
-   text-align:left;font-weight:600;color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--line)}
+/* Chart headers / header-row highlight, Adrian's #5A4F74 -- light-ground
+   tables only. Verified: --on-dark on --highlight is 6.93. Market's own
+   dark trading-floor table keeps its existing on-dark header treatment
+   below (--highlight measures 2.09 on --surface-dark, which fails). */
+th{position:sticky;top:0;background:var(--highlight);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
+   text-align:left;font-weight:600;color:var(--on-dark);padding:10px 12px;border-bottom:1px solid var(--line)}
 td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:middle;height:48px}
 tr:last-child td{border-bottom:0}
 tbody tr:hover{background:var(--panel)}
@@ -125,13 +128,13 @@ td a{font-weight:600}
 .chip{display:inline-block;font-size:.8125rem;padding:2px 8px;border-radius:var(--radius);
       border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
 .chip.named{border-color:var(--ink-soft)}
-.chip.residual{border-color:var(--earth);color:var(--ink-soft);font-weight:600}
+.chip.residual{border-color:var(--highlight);color:var(--ink-soft);font-weight:600}
 .chip.absent{border-color:var(--accent);color:var(--accent);font-weight:600}
 .chip.gap{border-color:var(--accent-warm-deep);color:var(--accent-warm-deep);font-weight:600}
 /* crop_class chips. Colour never carries the meaning on its own — each chip
    ships its own text label, which is why the class name is also the word. */
 .chip.commodity{border-color:var(--ink-soft);color:var(--ink-soft)}
-.chip.specialty{border-color:var(--earth);color:var(--ink-soft);font-weight:600}
+.chip.specialty{border-color:var(--highlight);color:var(--ink-soft);font-weight:600}
 /* Market page: pack/origin/date/region surfaced as stamped tags (Rungis
    reference, Decision Log 2026-11-06) instead of read as a sentence. Same
    neutral chip, no new colour — only the stencil-mark register (uppercase,
@@ -168,7 +171,7 @@ td a{font-weight:600}
 .market-floor th{background:var(--surface-dark-2);color:var(--on-dark-soft);border-bottom-color:var(--line-dark)}
 .market-floor td{border-bottom-color:var(--line-dark);color:var(--on-dark)}
 .market-floor tbody tr:nth-child(even){background:var(--surface-dark-2)}
-.market-floor tbody tr:hover{background:#3F4B32}
+.market-floor tbody tr:hover{background:#324151}
 .market-floor .crop{color:var(--on-dark);font-weight:600}
 .market-floor .data{font-family:"Noto Serif",Georgia,serif;font-weight:700;
                      font-size:1.25rem;color:var(--accent-warm)}
@@ -204,7 +207,7 @@ td a{font-weight:600}
 .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .blk{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
      display:flex;flex-direction:column;gap:6px}
-.blk .lbl{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.blk .lbl{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--highlight);font-weight:600}
 .blk .val{font-size:1.0625rem;font-weight:600}
 .blk .cav{font-size:.8125rem;color:var(--ink-soft)}
 .absent-note{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:6px}
