@@ -853,7 +853,7 @@ def inspect_page():
   <p class="eyebrow">Market Analysis</p>
   <h1>Central Valley Market Analysis</h1>
   <p>The dollars behind the catalogue, computed from six years of the county&rsquo;s own crop
-     reports. Every figure here is public, sourced and dated.</p>
+     reports. These figures were sourced through public data.</p>
   <div class="blocks">
     <div class="blk"><p class="lbl">Specialty-crop premium, per acre</p>
       <p class="val">1.56&times;&ndash;3.12&times;</p>
