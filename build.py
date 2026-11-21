@@ -878,27 +878,6 @@ def inspect_page():
      an aggregate. They say nothing about the {S["commodity"]} commodity crops in this catalogue,
      which the county reports on their own lines, and we do not extend them to those crops.</p>
 
-  <h2 style="margin-top:28px">Thirty-eight crops in October. Eight in January.</h2>
-  <p>Of the 45 crops surveyed in Fresno specialty markets, 38 were available in October and 8 in
-     January. Only daikon and lemongrass ran all twelve months. And the fall is abrupt: 37 crops in
-     November, 13 in December. Sixty-five percent in one month.</p>
-  <p class="src">UC Cooperative Extension Fresno County, specialty Asian retail market survey, 2010.
-     Typical availability, not a live feed, and sixteen years old. The survey marked two kinds of
-     availability and defined neither; no season data exists for any Mexican specialty crop, because
-     the 2010 survey covered Hmong and Southeast Asian retail only.</p>
-
-  <h2 style="margin-top:28px">The county does not break out a single herb</h2>
-  <p>Thirty-two Asian specialty crops appear in the county&rsquo;s reports as one line.
-     {S["absent_all"]} of the crops Fresno markets buy are named in no line and no footnote of any
-     report from 2020 to 2024. {S["footnote"] - 32} more sit inside an
-     undifferentiated &ldquo;other&rdquo; line with no acreage and no value of their own.</p>
-  <div class="spec"><p class="lbl">The clearest case</p>
-    <p><strong>Jicama.</strong> Two-tenths of an acre county-wide in 2000, a published growing guide in
-       2001, and still carried by Fresno specialty markets in the 2010 retail survey.</p></div>
-  <p class="src">Two retail categories are too small for the federal government to publish without
-     identifying the businesses in them. We recovered roughly thirty-five establishments by
-     subtraction.</p>
-
   {price_section()}
   {market_section()}
 
