@@ -20,6 +20,17 @@ import csv, datetime, hashlib, io, os, re, shutil, sys, unicodedata
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+# 🔴 Found 2026-11-22, adding viz.py: `python3 -I` (this script's own required
+# invocation -- see the usage note below and both GitHub Actions workflows)
+# does NOT put the script's own directory on sys.path the way a plain
+# `python3 build.py` does -- confirmed directly, not assumed: sys.path[0]
+# under -I is the stdlib zip, never ROOT. A sibling module next to build.py
+# is therefore NOT importable under -I without this line, regardless of
+# Python version -- inserting ROOT explicitly is correct however -I itself
+# resolves sys.path on whatever Python version actually runs it, local or CI.
+sys.path.insert(0, ROOT)
+import viz
+
 DIST = os.path.join(ROOT, "dist")
 # ── data, vendored into the repo 2026-11-04 ───────────────────────────
 # These three CSVs are BUILT in /home/adrian/data-engineering/marts and COPIED
@@ -216,10 +227,14 @@ def how_it_moves():
     moving it.
 
     🔴 It never leads with acreage. "One to two acres" reads to this reader as
-    "there is no load here"."""
+    "there is no load here".
+
+    ⭐ Split from its own <h3> 2026-11-22, round-one VFX/web-design panel: the
+    heading now travels with the caller as an accordion summary (information-
+    architect seat), not baked into this function's own return value. Nothing
+    links to the old id="how-it-moves" anchor (checked, zero references), so
+    nothing breaks by moving it to the accordion wrapper instead."""
     return """
-  <h3 id="how-it-moves" style="margin-top:12px">How it actually moves, and who is responsible for
-      what</h3>
   <p>A load out of this network is a route, not a truckload. Several stops, a few pallets at each,
      on a fixed day of the week, inside one county. That is a different shape from the
      single-destination truckload the national rate reports describe. There is no such lane to
@@ -264,7 +279,37 @@ def slug(name):
     s = re.sub(r"[^a-zA-Z0-9]+","-",s).strip("-").lower()
     return s or "crop"
 
+def accordion(summary_html, body_html, open=False, elem_id=None):
+    """Native <details>/<summary> progressive disclosure -- zero JavaScript,
+    keyboard- and screen-reader-accessible by default, fully reversible.
+    Round-one VFX/web-design panel 2026-11-22, information-architect seat:
+    Buyers and Growers each run a dozen-plus h3 sections top to bottom with
+    no way to skip past what a given reader doesn't need. Collapsing a
+    section never removes it from the page's own text -- Gate C's checks all
+    run against text_of(), which strips tags including <details>, so nothing
+    a closed accordion holds becomes invisible to the content gate, only to
+    a reader who hasn't opened it. `open` is a per-call decision, not a
+    blanket default -- every call site states why."""
+    o = " open" if open else ""
+    i = f' id="{esc(elem_id)}"' if elem_id else ""
+    return f'<details class="acc"{i}{o}><summary>{summary_html}</summary><div class="acc-body">{body_html}</div></details>'
+
 def page(title, body, depth=0, desc=META_DESC, current=None):
+    # The reveal script's own JS comments were tried first and removed --
+    # Gate C's vault-annotation-marker check correctly flagged this project's
+    # own 🔴/⭐ convention leaking into a script that ships on every page.
+    # Reasoning lives here instead, in a Python comment that never ships.
+    #
+    # Round-one VFX/web-design panel, 2026-11-22. First version revealed
+    # .card/.blk only via IntersectionObserver. Screenshotting the actual
+    # rendered page (not just reading the code) found a real bug: the
+    # observer's callback fires on its own async tick, never synchronously
+    # with script execution, so anything already in the viewport at load
+    # stayed faded for one frame before the observer's first callback ran --
+    # confirmed in a headless screenshot, not assumed. Checking
+    # getBoundingClientRect() synchronously on script run reveals anything
+    # already on screen immediately; the observer only has to handle what
+    # scrolls into view afterward.
     up = "../"*depth
     def nav_item(h, l):
         # A backslash-escaped quote directly inside an f-string {} expression
@@ -282,6 +327,7 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="stylesheet" href="{up}tokens.css?v={TOKENS_CSS_HASH}"><link rel="stylesheet" href="{up}site.css?v={SITE_CSS_HASH}">
+<script>document.documentElement.classList.add('js')</script>
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <nav><div class="wrap wide">
@@ -307,6 +353,25 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
   <p class="src">Staying out of the purchase path between grower and buyer is what keeps a
      buyer&rsquo;s own direct-from-farm record relief intact.</p>
 </div></footer>
+<script>
+(function(){{
+  var els=document.querySelectorAll('.card,.blk');
+  if(!els.length) return;
+  function show(el){{ el.classList.add('in-view'); }}
+  var vh=window.innerHeight||document.documentElement.clientHeight;
+  els.forEach(function(el){{
+    var r=el.getBoundingClientRect();
+    if(r.top<vh && r.bottom>0) show(el);
+  }});
+  if(!window.IntersectionObserver){{ els.forEach(show); return; }}
+  var io=new IntersectionObserver(function(entries){{
+    entries.forEach(function(e){{
+      if(e.isIntersecting){{ show(e.target); io.unobserve(e.target); }}
+    }});
+  }},{{threshold:.15}});
+  els.forEach(function(el){{ if(!el.classList.contains('in-view')) io.observe(el); }});
+}})();
+</script>
 </body></html>
 """
 
@@ -1132,6 +1197,7 @@ def market_page():
             lo, hi, latest = float(r["range_low"]), float(r["range_high"]), float(r["latest_value_per_acre"])
             county_cell = (f'<span class="data">{money(lo)}&ndash;{money(hi)}, latest {money(latest)}'
                            f' ({esc(r["latest_data_year"])})</span>'
+                           f'{viz.range_bar_svg(lo, hi, latest)}'
                            f'<span class="chips"><span class="chip market">{esc(r["n_years"])}-yr range</span>'
                            f'<span class="chip market">{esc(status)}</span></span>')
             # 🔴 Round-seven panel: carries the real float for the JS "high to
@@ -1259,6 +1325,39 @@ def buyers_page():
        that date as the compliance date.
        <span class="src">FDA, FSMA Inflation Adjusted Cut-Offs, content current as of 13 May 2026.</span></p>
   </div>"""
+    # Accordions, round-one VFX/web-design panel 2026-11-22: these two read as
+    # reference material a buyer checks once, not a must-read on a first pass
+    # -- collapsed by default. The relief block above and the registration
+    # section below stay plain headings; this is a per-section call, not a
+    # blanket collapse.
+    membership_acc = accordion("What membership is", """<p>This membership never takes a cut of what you buy or sell. That&rsquo;s the point, not a
+     courtesy: if a broker or a parent company buys the food, the direct-from-farm record relief
+     stops applying to you, and FDA has said so expressly, <em>&ldquo;even if no third party ever
+     takes physical possession of the food.&rdquo;</em> The farm sells to you directly, and
+     membership stays outside that sale, so your position does not change by working with us.</p>
+  <p>What gets checked is a grower&rsquo;s capacity to take on a commercial contract: their scale,
+     their terms, their records. Inspecting and certifying food is somebody else&rsquo;s standard to
+     set, and nothing here is a food-safety judgment.</p>
+  <p class="src">Terms are published once the network&rsquo;s structure is settled.</p>""")
+    contract_terms_acc = accordion("What the contract settles, in the terms this trade already uses", """<p>The produce trade has its own delivery terms, written into federal regulation, so that is the
+     language the contract uses rather than general commercial wording.
+     <strong>F.o.b.</strong> means the crop is placed free on board at the shipping point
+     <strong>in suitable shipping condition</strong>, and the buyer carries the risk of damage and
+     delay in transit not caused by the seller, <em>irrespective of how the shipment is
+     billed.</em> <span class="src">7 CFR &sect;46.43(i).</span></p>
+  <p><strong>Suitable shipping condition</strong> is the clause that matters most and the one most
+     often left out: the crop, at the time of billing, is in a condition which, handled under
+     normal transportation service, will assure delivery without abnormal deterioration at the
+     contract destination the two parties agreed.
+     <span class="src">7 CFR &sect;46.43(j); good-delivery tolerances at &sect;46.44.</span></p>
+  <div class="note">
+    <p><strong>Two consequences worth knowing before agreeing anything.</strong></p>
+    <p>Paying the freight and carrying the risk are different questions. The regulation settles
+       transit risk <em>irrespective of how the shipment is billed</em>, so an agreement about who
+       books the truck has not settled who bears a loss.</p>
+    <p>And <strong>there has to be an agreed contract destination</strong> for suitable shipping
+       condition to measure anything at all. Leave it out and the clause has nothing to work against.</p>
+  </div>""")
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">For Buyers</p>
   <h1>A grade decides a category. A variety and a week decide what arrives.</h1>
@@ -1345,39 +1444,11 @@ def buyers_page():
   <p class="src">The regulatory position is identical for both. &sect;1.1305(j) and
      &sect;1.1345(b)(1) treat a retail food establishment and a restaurant alike.</p>
 
-  <h3 style="margin-top:12px">What membership is</h3>
-  <p>This membership never takes a cut of what you buy or sell. That&rsquo;s the point, not a
-     courtesy: if a broker or a parent company buys the food, the direct-from-farm record relief
-     stops applying to you, and FDA has said so expressly, <em>&ldquo;even if no third party ever
-     takes physical possession of the food.&rdquo;</em> The farm sells to you directly, and
-     membership stays outside that sale, so your position does not change by working with us.</p>
-  <p>What gets checked is a grower&rsquo;s capacity to take on a commercial contract: their scale,
-     their terms, their records. Inspecting and certifying food is somebody else&rsquo;s standard to
-     set, and nothing here is a food-safety judgment.</p>
-  <p class="src">Terms are published once the network&rsquo;s structure is settled.</p>
+  {membership_acc}
 
-  <h3 style="margin-top:12px">What the contract settles, in the terms this trade already uses</h3>
-  <p>The produce trade has its own delivery terms, written into federal regulation, so that is the
-     language the contract uses rather than general commercial wording.
-     <strong>F.o.b.</strong> means the crop is placed free on board at the shipping point
-     <strong>in suitable shipping condition</strong>, and the buyer carries the risk of damage and
-     delay in transit not caused by the seller, <em>irrespective of how the shipment is
-     billed.</em> <span class="src">7 CFR &sect;46.43(i).</span></p>
-  <p><strong>Suitable shipping condition</strong> is the clause that matters most and the one most
-     often left out: the crop, at the time of billing, is in a condition which, handled under
-     normal transportation service, will assure delivery without abnormal deterioration at the
-     contract destination the two parties agreed.
-     <span class="src">7 CFR &sect;46.43(j); good-delivery tolerances at &sect;46.44.</span></p>
-  <div class="note">
-    <p><strong>Two consequences worth knowing before agreeing anything.</strong></p>
-    <p>Paying the freight and carrying the risk are different questions. The regulation settles
-       transit risk <em>irrespective of how the shipment is billed</em>, so an agreement about who
-       books the truck has not settled who bears a loss.</p>
-    <p>And <strong>there has to be an agreed contract destination</strong> for suitable shipping
-       condition to measure anything at all. Leave it out and the clause has nothing to work against.</p>
-  </div>
+  {contract_terms_acc}
 
-  {how_it_moves()}
+  {accordion("How it actually moves, and who is responsible for what", how_it_moves(), elem_id="how-it-moves")}
 
   <h3 id="next-step" style="margin-top:12px">Hear what gets published next</h3>
   <p class="src">This is not a registration, and nothing here is live to join yet. Say what you are
@@ -1392,6 +1463,31 @@ def buyers_page():
 # ── For Growers (C2e) ─────────────────────────────────────────────────────────
 def growers_page():
     S = stats()
+    # Accordions, round-one VFX/web-design panel 2026-11-22: reference
+    # material a grower checks once, collapsed by default -- the premium
+    # figures, the threshold section, the Bok choy stat and the registration
+    # section all stay plain, read-once-start-to-finish content.
+    published_acc = accordion("What is already published about growing these crops", """<p>UC Cooperative Extension published a guide to Asian specialty vegetables in the Central Valley in
+     2001, and seven cost-and-return studies in 2005. Those seven cover twelve of these crops:
+     one study covers moqua and opo together, one covers all three eggplants, and bitter melon and
+     sinqua each appear here as two entries. Both sources are public, both are on the crop pages, and
+     neither is ours.</p>
+  <p class="src">The 2001 guide identifies crops and describes general culture. It is not an agronomic
+     manual. It says almost nothing about soil or climate per crop, and we will not pad it out
+     with figures it does not contain. The 2005 cost studies carry per-acre costs and returns; they are
+     twenty-one years old and we do not publish their figures until they have been re-verified and
+     adjusted.</p>""")
+    qualification_acc = accordion("What qualification actually means", """<p>Your capacity to take on a commercial contract gets qualified: your scale, the terms you can meet,
+     the records you already keep. It is a statement that you can transact, within stated bounds, on
+     criteria that are published, the same for everyone, and open to appeal.</p>
+  <p><strong>It is a capacity check, nothing more.</strong> Food safety stays with the agencies built
+     for it; the qualification record speaks only to whether you can take on the contract. Any buyer who reads
+     our qualification as a food certification has read it wrong.</p>
+  <p class="src">This membership never takes a cut of what you sell, and stays outside the
+     purchase path. That is also what keeps your buyer&rsquo;s own record relief intact. The
+     contract settles delivery, risk, records, specification and remedies. What you sell for stays
+     between you and your buyer, every time. Terms are published once the network&rsquo;s
+     structure is settled.</p>""")
     body = f"""<section class="band"><div class="wrap stack">
   <p class="eyebrow">For Growers</p>
   <h1>Ground that is earning nothing is still ground.</h1>
@@ -1496,7 +1592,7 @@ def growers_page():
   <p class="src">That clause is what disputes in this trade turn on, and it is the one most often
      missing from a contract drafted by someone outside the trade.</p>
 
-  {how_it_moves()}
+  {accordion("How it actually moves, and who is responsible for what", how_it_moves(), elem_id="how-it-moves")}
 
   <h3 id="next-step" style="margin-top:12px">Hear what gets published next</h3>
   <p class="src">This is not a registration either. Two of the questions below &mdash; land, and
@@ -1504,30 +1600,10 @@ def growers_page():
      screen anyone out. The crop pages stay free to read whether you ever write in or not.</p>
   {registration_form("grower")}
 
-  <h3 style="margin-top:12px">What is already published about growing these crops</h3>
-  <p>UC Cooperative Extension published a guide to Asian specialty vegetables in the Central Valley in
-     2001, and seven cost-and-return studies in 2005. Those seven cover twelve of these crops:
-     one study covers moqua and opo together, one covers all three eggplants, and bitter melon and
-     sinqua each appear here as two entries. Both sources are public, both are on the crop pages, and
-     neither is ours.</p>
-  <p class="src">The 2001 guide identifies crops and describes general culture. It is not an agronomic
-     manual. It says almost nothing about soil or climate per crop, and we will not pad it out
-     with figures it does not contain. The 2005 cost studies carry per-acre costs and returns; they are
-     twenty-one years old and we do not publish their figures until they have been re-verified and
-     adjusted.</p>
+  {published_acc}
 
-  <h3 style="margin-top:12px">What qualification actually means</h3>
-  <p>Your capacity to take on a commercial contract gets qualified: your scale, the terms you can meet,
-     the records you already keep. It is a statement that you can transact, within stated bounds, on
-     criteria that are published, the same for everyone, and open to appeal.</p>
-  <p><strong>It is a capacity check, nothing more.</strong> Food safety stays with the agencies built
-     for it; the qualification record speaks only to whether you can take on the contract. Any buyer who reads
-     our qualification as a food certification has read it wrong.</p>
-  <p class="src">This membership never takes a cut of what you sell, and stays outside the
-     purchase path. That is also what keeps your buyer&rsquo;s own record relief intact. The
-     contract settles delivery, risk, records, specification and remedies. What you sell for stays
-     between you and your buyer, every time. Terms are published once the network&rsquo;s
-     structure is settled.</p>
+  {qualification_acc}
+
   <h3 style="margin-top:12px">Getting in touch</h3>
   <p>hello@ainatotable.com. One address, and it reaches a person rather than a form.</p>
   <p class="src">Terms publish once the network&rsquo;s structure is settled. Until then the useful conversation is about what this county actually grows, and whether anything on these pages is wrong.</p>
