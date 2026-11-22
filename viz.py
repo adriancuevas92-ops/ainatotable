@@ -36,11 +36,19 @@ def range_bar_svg(lo, hi, value, width=120, height=14):
     tick_w = 3
     tick_x = frac * (width - tick_w)
     track_y = height / 2 - 2
+    # Round-five panel, 2026-11-22: track recoloured var(--line) -> var(--accent-blue)
+    # at Adrian's direction ("I only care about having a bright blue and
+    # green as colors in the site... for branded merch"). The tick stays
+    # green (--accent-bright) -- it already carried real meaning (the
+    # "latest" position within the range) that recolouring would have
+    # obscured, so only the neutral track became the new colour, giving
+    # every range-bar on Market both brand colours at once rather than
+    # inventing a separate place for blue to appear.
     return (
         f'<svg class="range-bar" viewBox="0 0 {width} {height}" width="{width}" '
         f'height="{height}" aria-hidden="true" focusable="false">'
         f'<rect x="0" y="{track_y:.1f}" width="{width}" height="4" rx="2" '
-        f'fill="var(--line)"/>'
+        f'fill="var(--accent-blue)"/>'
         f'<rect x="{tick_x:.1f}" y="0" width="{tick_w}" height="{height}" rx="1.5" '
         f'fill="var(--accent-bright)"/>'
         f'</svg>'

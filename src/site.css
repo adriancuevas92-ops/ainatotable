@@ -48,7 +48,21 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 /* The hero is a flat surface. There is no photography on this property, by
    decision: the six existing images were South Kona and retired with Origin,
    and no crop photography exists. Decision Log 2026-11-03. */
-.hero{background:var(--surface-dark);color:var(--on-dark-soft);position:relative;overflow:hidden}
+/* Round-five panel, 2026-11-22: the hero's buttons and the rest of the
+   site's accent language had drifted apart -- these still carried the
+   retired "Earthen Wall" amber/gold (--accent-warm, #F8B500) from before
+   2026-11-21's palette reversal, the one page nobody had rechecked since
+   (Adrian's own carve-out, 2026-11-21: "extend the kalshi treatment
+   throughout except the home page," which exempted the DOLLAR-FORWARD
+   stat-tile reframe specifically, not an indefinite exemption from the
+   rest of the site's own accent colours). Top bar added to match every
+   other section's own green accent (Market's .market-floor>.wrap carries
+   the identical pattern); kept green rather than blue here specifically
+   -- blue (#0B5ED7) measures 2.68 against --surface-dark, below even the
+   3:1 non-text minimum, so it cannot do this job on this dark a ground,
+   confirmed by computing it rather than assumed from vibe. */
+.hero{background:var(--surface-dark);color:var(--on-dark-soft);position:relative;overflow:hidden;
+      border-top:4px solid var(--accent-bright)}
 .hero-slideshow{position:absolute;inset:0;z-index:0}
 .hero-slideshow .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
   animation:hero-slide-cycle 77s infinite}
@@ -77,11 +91,15 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .hero .eyebrow{color:var(--on-dark-soft)}
 .hero p{color:var(--on-dark-soft);max-width:60ch}
 .hero .mk{width:52px;height:52px;color:var(--on-dark);margin-bottom:8px}
-.hero a{color:var(--accent-warm)}
+.hero a{color:var(--on-dark)}
 .btn{display:inline-block;font-weight:600;font-size:.9375rem;padding:10px 18px;border-radius:var(--radius);
      text-decoration:none;background:var(--accent);color:var(--page);border:0}
-.hero .btn{background:var(--accent-warm);color:#4A2B06}
-.btn.ghost{background:transparent;color:var(--on-dark);border:1px solid var(--accent-warm)}
+/* Verified both as solid fills, same discipline as --accent-bright's own
+   fill case in tokens.css: black/accent-bright 5.11 (passes), black/
+   accent-blue 3.60 (passes 3:1, UI/border only -- which is exactly how
+   .ghost uses it, as a border, never as this button's own fill). */
+.hero .btn{background:var(--accent-bright);color:#000}
+.btn.ghost{background:transparent;color:var(--on-dark);border:1px solid var(--accent-bright)}
 
 /* Motion, round-one VFX panel 2026-11-22: every effect here responds to a
    real user action (a cursor arriving, a row being hovered) -- never
