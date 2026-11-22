@@ -147,6 +147,18 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
    non-text threshold the same way --sage (3.20) did before it. */
 .hero .note{background:var(--surface-dark-2);border-color:var(--border-soft-dark);color:var(--on-dark-soft)}
 .hero .note strong{color:var(--on-dark)}
+/* Round-nine verification pass, 2026-11-22, after the institutional-green
+   palette shipped: checked the FULL contrast matrix this time, not just
+   the pairings already spot-checked -- found .src citation lines inside
+   the hero (both standalone and nested in .hero .note) were still
+   rendering in --ink-soft, a colour tuned for LIGHT grounds, because .src
+   itself has no dark-ground override the way .eyebrow and .note already
+   do. Measured against what it actually sits on: 2.09 against
+   --surface-dark-2 (inside a note), 2.42 against --surface-dark directly
+   -- both real failures, confirmed live on the deployed site (screenshot
+   showed the UNESCO and USDA citation lines were genuinely hard to read),
+   not a theoretical gap caught only by the arithmetic. */
+.hero .src{color:var(--on-dark-soft)}
 
 .spec{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:4px}
 
@@ -302,6 +314,10 @@ footer{background:var(--surface-dark);color:var(--on-dark-soft)}
 footer>.wrap{padding-block:36px;font-size:.9375rem;display:flex;flex-direction:column;gap:12px}
 footer a{color:var(--accent-warm)}
 footer strong{color:var(--on-dark)}
+/* Same gap as .hero .src above, caught by the same full-matrix pass --
+   this one is worse, since it ships on every single page's footer, not
+   just Home's. */
+footer .src{color:var(--on-dark-soft)}
 
 /* registration form — the MVP capture mechanism, added 2026-11-11 */
 .register{display:flex;flex-direction:column;gap:14px;max-width:560px}
