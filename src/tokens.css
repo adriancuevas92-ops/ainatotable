@@ -1,128 +1,132 @@
 /* ʻĀina to Table — design tokens
-   🔒 EARTHEN WALL PALETTE REVERSED 2026-11-21 — Adrian: "The muted earth
-   tones in the body aren't working for me to look tech forward." Named
-   three fixed colours directly (page background, the ʻĀina to Table header's
-   own green, and a highlight for chart headers / header-row emphasis); this
-   file works out everything else needed to make those three cohere. This is
-   a reversal, not an edit — see Decision Log, "Palette Reversed for a
-   Tech-Forward, Dollar-Forward Posture." The 2026-11-03 Earthen Wall base
-   (and the navy/brown bases withdrawn before it) are prior history now.
+   🔒 INSTITUTIONAL GREEN PALETTE, 2026-11-22 — Adrian, after the bright
+   teal-on-tinted-page direction shipped across six rounds: "my suggestions
+   are not landing in the tone and quality intended... let's aim for the
+   legitimacy of those market sites like Kalshi, JP Morgan, Charles Schwab."
+   One colour named directly as his own: #407A52. Everything else here was
+   worked out from that anchor plus direct research, not guessed: visited
+   jpmorgan.com, schwab.com and kalshi.com and read real computed colours off
+   the live pages (see the Decision Log entry for the exact values and where
+   each one is used) rather than reasoning from a memory of "bank blue."
+   What that research actually showed: JPMorgan and Schwab run on white, not
+   a tinted page, with ONE confident brand colour plus tonal variation of it
+   for emphasis, and a near-black (not colourful) wordmark. Kalshi, despite
+   being the reference for the EARLIER direction, turns out to be the least
+   restrained of the three on its own current page -- which is the direct
+   evidence that "sterile Kalshi" and "legitimate like these three" are not
+   the same target, and the second one is what's being built now.
+
+   This is a reversal, not an edit, the same way the 2026-11-21 "Earthen
+   Wall Reversed" pass was -- see the Decision Log for the prior palette,
+   kept as history, not deleted.
    🔴 Use the values, never the palette names as brand terms.
 
    Every ratio below is WCAG relative luminance, computed — not estimated. */
 
 :root {
   /* ---- GROUNDS --------------------------------------------------------- */
-  --page:           #EBF6F7;  /* "indigo white" — Adrian's exact value, in place
-                                 of the old Great Wave cream                   */
-  --panel:          #C7DEE0;  /* cards, table bodies, bands. A deeper tint of
-                                 the same cool family — 1.27 against page, the
-                                 same order of subtlety the old panel/page
-                                 split (1.46) used for card separation.        */
-  --surface-dark:   #1B2430;  /* the reverse surface. A cool charcoal-navy,
-                                 replacing the old green-black reverse — the
-                                 green that survives this reversal lives only
-                                 in --header-green below, never here.          */
-  --surface-dark-2: #28333F;  /* raised element on the dark surface           */
-  /* page/panel 1.27 · page/dark 14.20 · panel/dark 11.15                     */
+  --page:           #FFFFFF;  /* True white -- both JPMorgan and Schwab run
+                                 their entire page on white, not a tinted
+                                 field. The cool cyan tint (#EBF6F7) the last
+                                 six rounds built on was never matched by
+                                 either stated reference site, confirmed by
+                                 sampling their actual computed background
+                                 colour rather than assumed from a vibe.       */
+  --panel:          #EAEDE8;  /* Cards/tables/bands -- a barely-there warm-
+                                 neutral, 1.18 against page. Deliberately
+                                 subtle: a confident, restrained system
+                                 separates surfaces by a whisper, not a
+                                 visible colour field the way the tinted
+                                 cyan panel (1.27, but a real colour cast)
+                                 did.                                          */
+  --surface-dark:   #141D17;  /* the reverse surface -- a near-black with a
+                                 whisper of the brand green's own undertone,
+                                 replacing the cool navy-charcoal the last
+                                 reversal used. Echoes JPMorgan's own
+                                 near-black wordmark ink (#31373D, sampled
+                                 live) more than it echoes any prior surface
+                                 on this site.                                 */
+  --surface-dark-2: #1F2A22;  /* raised element on the dark surface           */
+  /* page/panel 1.18 · page/dark ~18 · panel/dark ~15                         */
 
   /* ---- TEXT ------------------------------------------------------------- */
-  --ink:      #1C232B;  /* body, cool near-black. 14.39 on page · 12.00 panel */
-  --ink-soft: #53606A;  /* secondary. 5.87 on page · 4.60 on panel            */
-  --on-dark:      #F2F7F8;  /* text on surface-dark. 14.49                    */
-  --on-dark-soft: #B9C7C9;  /* secondary on surface-dark. 9.00                */
+  --ink:      #1A231D;  /* body, near-black with the same green whisper as
+                            surface-dark. 16.13 on page · 14.71 on panel      */
+  --ink-soft: #4F5B52;  /* secondary. 7.12 on page · 6.02 on panel            */
+  --on-dark:      #F2F5F1;  /* text on surface-dark. 15.69                    */
+  --on-dark-soft: #AEBBAF;  /* secondary on surface-dark. 8.64                */
 
   /* ---- LINE -------------------------------------------------------------- */
-  --line: #A7BBBD;  /* 1.82 on page · 1.52 on panel. Visible on BOTH grounds,
-                       same subtlety class as the line this replaces.          */
-  --line-dark: #4A5864;  /* 2.14 on surface-dark                              */
+  --line: #CBD2C5;  /* 1.55 on page · 1.31 on panel -- same subtlety class as
+                       the border this replaces, recomputed for the new
+                       neutral family.                                        */
+  --line-dark: #3A463D;  /* 1.74 on surface-dark                              */
 
   /* ---- ACCENTS ----------------------------------------------------------- */
-  --accent: #841A1A;  /* Ruby Leaf brick, UNCHANGED — not part of what Adrian
-                         called the muted earth tones, and still measures
-                         8.89 on the new page · 7.41 on the new panel.
-                         🔴 Still DARK-SURFACE FAILS: 1.60 on surface-dark,
-                         same failure mode as before, now re-verified against
-                         the new dark value rather than assumed to still hold. */
+  --accent: #841A1A;  /* Ruby Leaf brick, UNCHANGED across every palette this
+                         site has had -- still 9.80 on the new page · 8.29 on
+                         the new panel.
+                         🔴 Still DARK-SURFACE FAILS: 1.76 on the new
+                         surface-dark, same failure mode as every prior
+                         version, re-verified against the new dark value. */
   /* 🔴 DARK SURFACE ONLY. Both fail on every light ground, unchanged roles.  */
-  --accent-warm:      #F8B500;  /* 8.65 on new dark · 1.64 on new page — FAILS light */
-  --accent-warm-deep: #E08A1E;  /* 5.83 on new dark · fails light — unchanged values,
-                                   re-verified against the new surface-dark.    */
+  --accent-warm:      #F8B500;  /* kept, dark-surface button role unchanged;
+                                   re-verify against the new surface-dark
+                                   before relying on the old figure.           */
+  --accent-warm-deep: #E08A1E;
 
-  /* ---- BRAND CONSTANT ----------------------------------------------------- */
-  /* 🔒 Adrian: "I want that green ʻĀina to Table Header to stay and be
-     constant." A dedicated token, not an alias of --ink or any grounds/text
-     role above — nothing else may ever resolve to this value, and this value
-     must never be reassigned to style anything but the wordmark itself.      */
-  --header-green: #454D32;  /* 8.07 on page · 6.73 on panel. Used ONLY by
-                                .lockup span (the "ʻĀina to Table" wordmark). */
+  /* ---- BRAND, Adrian's own anchor ------------------------------------------ */
+  /* 🔒 Adrian, 2026-11-22: "#407A52 is the only color I'm partial to." This
+     is now the site's ONE confident brand colour, not a wordmark-only
+     constant the way --header-green was -- it IS the wordmark, AND the
+     primary link/accent/button colour everywhere on a light ground. A
+     single confident colour doing both jobs is the actual pattern the
+     research found (Schwab's blue is both the logo block and reappears as
+     the brand's own identity elsewhere), not two unrelated roles that
+     happen to share a hue family.
+     5.09 on page -- clears 4.5:1 for NORMAL body text, not just large/bold
+     the way the previous bright green (--accent-bright, 3.73/2.93) could
+     only ever manage. 4.64 on panel. White text on this as a button fill:
+     5.09, passes normal text comfortably -- the previous green's own
+     fill case (3.86 actual, against the documented-but-unreproducible 7.47)
+     never cleared that bar at all.                                           */
+  --brand-green: #407A52;
+  --brand-green-deep: #2E5A3C;  /* hover/active state, and anywhere the plain
+                                   brand colour needs more weight -- tonal
+                                   variation of ONE colour, not a second hue,
+                                   the same restraint the research found.
+                                   7.94 on page -- passes AAA normal text.     */
+  /* Kept as a dedicated alias so no call site needs to change meaning:
+     .lockup still reads --header-green specifically for the wordmark. */
+  --header-green: var(--brand-green);
 
-  /* ---- HIGHLIGHT ------------------------------------------------------------ */
-  --highlight: #5A4F74;  /* Adrian's exact value, for chart headers and the
-                            header-row highlight, and reused for the chip
-                            borders the old --earth token carried (5.67 on
-                            panel, comfortably clears body text there too).
-                            6.79 on page · 5.67 on panel · on-dark text on
-                            this as a fill: 6.93. Market's trading floor no
-                            longer needs its own exception to this -- see
-                            --accent-bright below, 2026-11-21: the floor
-                            itself went light, so the ordinary light-ground
-                            --highlight header now applies there too.         */
-
-  /* ---- BRIGHT GREEN, Kalshi reference ---------------------------------------- */
-  /* Adrian, 2026-11-21, after the first Market pass: "The Market chart is too
-     dark... I would rather use a brighter green tone then the dark blue tone
-     you've applied... I want the site to eventually have the sterile look of
-     Kalshi with the pops of colors." Checked kalshi.com directly rather than
-     guess at "sterile": it is almost entirely white, with a vivid green used
-     only as small pops (brand mark, buy buttons, up-indicators, a thin accent
-     bar) and thin light-gray horizontal dividers between rows -- never a large
-     dark fill. This retires Market's dark "Chalkboard Stall" surface
-     (2026-11-06) in favour of that same light-plus-pop pattern; the trading
-     floor keeps its own identity through this accent and a visible top bar,
-     not through a colour field.                                              */
-  --accent-bright: #008F63;      /* 3.73 on page · 2.93 on panel -- a visible
-                                    accent bar/border, not body text.
-                                    Dark ink on this as a fill: 7.47 -- use
-                                    dark text on bright-green chips, never
-                                    white, the same way Kalshi's own pill
-                                    badges pair a vivid fill with dark text. */
-  --accent-bright-tint: #DCF2EA; /* pale mint for a hover/zebra row -- a pop
-                                    of tint, not a saturated fill.            */
-  /* 🔴 Round-five panel, 2026-11-22: re-verified every "dark ink on this as a
-     fill" claim on this token after adding --accent-blue below, since both
-     get checked against the same grounds. The "7.47" figure above does not
-     reproduce against --ink (#1C232B) by independent computation -- actual
-     is 3.86, and the one real place this token is used as TEXT on a
-     --panel background (.market-floor .data, large/bold) measures 2.93 on
-     panel, which is below even the 3:1 large-text minimum. Not changed
-     here -- the exact hex has been screenshotted, approved and shipped
-     across three rounds and changing it is Adrian's call, not a silent
-     fix -- but flagged accurately rather than left mis-documented as
-     passing. The figure above is left as found rather than quietly edited,
-     so the discrepancy itself stays visible in history.                     */
-
-  /* ---- BRIGHT BLUE, for a genuine two-colour brand pair --------------------- */
-  /* Adrian, 2026-11-22: "I only care about having a bright blue and green as
-     colors in the site because I want to use those colors on branded
-     merch." --accent-bright (above) already covers green; nothing in this
-     system was blue before this. Chosen and verified the same way, not
-     picked by eye: 5.30 on page · 4.16 on panel (clears 4.5:1 on page for
-     normal text, and 3:1 on panel for large/bold text or non-text UI,
-     same bar --accent-bright itself is held to). FAILS on --surface-dark
-     (2.68) and as dark-ink-on-fill (2.72) -- same shape of limitation as
-     --accent-bright's own fill case above, so it is used as an accent
-     (borders, the revived mark, large bold figures on light grounds)
-     never as body text on a dark or saturated ground.                        */
-  --accent-blue: #0B5ED7;
+  /* ---- TABLE HEADERS / EMPHASIS --------------------------------------------- */
+  /* Replaces --highlight (#5A4F74, violet). Neither JPMorgan, Schwab nor
+     Kalshi uses purple anywhere on their own pages -- confirmed by looking,
+     not assumed absent. A dark neutral reads as the restrained, confident
+     choice the research actually showed; introducing a second decorative
+     hue here would be the opposite move from "one brand colour, used with
+     discipline."                                                             */
+  --emphasis: #242E28;  /* 14.03 on page as a header fill w/ on-dark text.    */
 
   /* ---- BORDERS, NON-TEXT ----------------------------------------------------- */
-  --border-soft:      #8FA8AB;  /* replaces --moss's role: .note border on light
-                                    ground. Non-text; 1.90 against panel.       */
-  --border-soft-dark: #71868F;  /* replaces --sage's role: .hero .note border on
-                                    the dark surface. Non-text; 3.37 against
-                                    surface-dark-2, clearing the 3:1 threshold
-                                    the way --sage (3.20) did before it.        */
+  --border-soft:      #8FA8AB;  /* .note border on light ground -- unchanged
+                                    value, re-verify contrast before reuse.    */
+  --border-soft-dark: #71868F;  /* .hero .note border on the dark surface --
+                                    unchanged value, re-verify before reuse.   */
+
+  /* ---- CARRIED FORWARD, NOT YET RECONCILED WITH THIS PALETTE ---------------- */
+  /* --accent-bright (#008F63) and --accent-blue (#0B5ED7) were built for a
+     DIFFERENT, explicit purpose -- Market's range-bar and the merch-bound
+     favicon/icon set, both approved separately and for a reason unrelated
+     to the site's own screen tone (Adrian named "branded merch" directly).
+     Not touched by this proposal. Flagged as an open question for Adrian in
+     the Decision Log: a vivid teal+blue data element sitting inside an
+     otherwise restrained white/green page is a real visual tension this
+     round's seats noticed, not something resolved here on their own say-so. */
+  --accent-bright: #008F63;
+  --accent-bright-tint: #DCF2EA;
+  --accent-blue: #0B5ED7;
 
   /* ---- CATALOGUE SEMANTICS ----------------------------------------------- */
   /* season-peak/shoulder/none and gap-contractable/input-limited/blocked
@@ -167,9 +171,11 @@ table, .data { font-variant-numeric: tabular-nums; font-size: var(--fs-data); }
 .on-dark .mark, .reverse .mark { color: var(--on-dark); }
 
 /* 🔴 FORBIDDEN — stated so a builder cannot do it by accident:
-   color: var(--accent-warm);      background: var(--page);   1.64 — fails
-   color: var(--accent-warm-deep); background: var(--page);   fails
-   color: var(--accent);           background: var(--surface-dark); 1.60 — fails
-   color: var(--highlight);        background: var(--surface-dark); 2.09 — fails
+   color: var(--accent-warm);      background: var(--page);   fails, re-verify before reuse
+   color: var(--accent-warm-deep); background: var(--page);   fails, re-verify before reuse
+   color: var(--accent);           background: var(--surface-dark); 1.76 — fails
+   color: var(--brand-green) or --brand-green-deep; background: var(--surface-dark) as
+     BODY TEXT — 3.39/2.17, only the deep variant even reaches 3:1, and that's the
+     large-text/non-text bar, not body text. Use --on-dark for dark-surface text.
    color: var(--border-soft) or var(--border-soft-dark) at body text size — fails
    🔴 No red works on any dark surface. The reverse treatment uses --on-dark. */

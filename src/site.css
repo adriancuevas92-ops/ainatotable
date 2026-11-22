@@ -33,7 +33,7 @@ a{color:var(--accent)}
 .band{background:var(--page);border-bottom:1px solid var(--line)}
 .band>.wrap{padding-block:48px}
 .stack{display:flex;flex-direction:column;gap:16px}
-.eyebrow{font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--highlight);font-weight:600}
+.eyebrow{font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-green);font-weight:600}
 .src{font-size:.8125rem;color:var(--ink-soft)}
 
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--page);border-bottom:1px solid var(--line)}
@@ -62,7 +62,7 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
    3:1 non-text minimum, so it cannot do this job on this dark a ground,
    confirmed by computing it rather than assumed from vibe. */
 .hero{background:var(--surface-dark);color:var(--on-dark-soft);position:relative;overflow:hidden;
-      border-top:4px solid var(--accent-bright)}
+      border-top:4px solid var(--brand-green)}
 .hero-slideshow{position:absolute;inset:0;z-index:0}
 .hero-slideshow .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
   animation:hero-slide-cycle 77s infinite}
@@ -94,12 +94,13 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .hero a{color:var(--on-dark)}
 .btn{display:inline-block;font-weight:600;font-size:.9375rem;padding:10px 18px;border-radius:var(--radius);
      text-decoration:none;background:var(--accent);color:var(--page);border:0}
-/* Verified both as solid fills, same discipline as --accent-bright's own
-   fill case in tokens.css: black/accent-bright 5.11 (passes), black/
-   accent-blue 3.60 (passes 3:1, UI/border only -- which is exactly how
-   .ghost uses it, as a border, never as this button's own fill). */
-.hero .btn{background:var(--accent-bright);color:#000}
-.btn.ghost{background:transparent;color:var(--on-dark);border:1px solid var(--accent-bright)}
+/* Institutional-green palette, 2026-11-22: white/on-dark text on
+   --brand-green as a fill measures 5.09 -- passes normal body text, not
+   borderline the way the old bright teal's white-text case (4.11) was,
+   which is why that one needed black text specifically. This fill can
+   just use the token system's own on-dark role instead. */
+.hero .btn{background:var(--brand-green);color:var(--on-dark)}
+.btn.ghost{background:transparent;color:var(--on-dark);border:1px solid var(--brand-green)}
 
 /* Motion, round-one VFX panel 2026-11-22: every effect here responds to a
    real user action (a cursor arriving, a row being hovered) -- never
@@ -158,7 +159,7 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .acc summary{cursor:pointer;font-family:"Noto Serif",Georgia,serif;font-weight:600;font-size:1.25rem;
              list-style:none;display:flex;align-items:center;gap:10px}
 .acc summary::-webkit-details-marker{display:none}
-.acc summary::before{content:"+";color:var(--highlight);font-weight:700;width:.7em;flex:0 0 auto}
+.acc summary::before{content:"+";color:var(--brand-green);font-weight:700;width:.7em;flex:0 0 auto}
 .acc[open] summary::before{content:"\2212"}
 .acc .acc-body{padding-top:12px;display:flex;flex-direction:column;gap:16px}
 
@@ -202,7 +203,7 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font
    tables only. Verified: --on-dark on --highlight is 6.93. Market's own
    dark trading-floor table keeps its existing on-dark header treatment
    below (--highlight measures 2.09 on --surface-dark, which fails). */
-th{position:sticky;top:0;background:var(--highlight);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
+th{position:sticky;top:0;background:var(--emphasis);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;
    text-align:left;font-weight:600;color:var(--on-dark);padding:10px 12px;border-bottom:1px solid var(--line)}
 td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:middle;height:48px}
 tr:last-child td{border-bottom:0}
@@ -212,13 +213,13 @@ td a{font-weight:600}
 .chip{display:inline-block;font-size:.8125rem;padding:2px 8px;border-radius:var(--radius);
       border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
 .chip.named{border-color:var(--ink-soft)}
-.chip.residual{border-color:var(--highlight);color:var(--ink-soft);font-weight:600}
+.chip.residual{border-color:var(--brand-green);color:var(--ink-soft);font-weight:600}
 .chip.absent{border-color:var(--accent);color:var(--accent);font-weight:600}
 .chip.gap{border-color:var(--accent-warm-deep);color:var(--accent-warm-deep);font-weight:600}
 /* crop_class chips. Colour never carries the meaning on its own — each chip
    ships its own text label, which is why the class name is also the word. */
 .chip.commodity{border-color:var(--ink-soft);color:var(--ink-soft)}
-.chip.specialty{border-color:var(--highlight);color:var(--ink-soft);font-weight:600}
+.chip.specialty{border-color:var(--brand-green);color:var(--ink-soft);font-weight:600}
 /* Market page: pack/origin/date/region surfaced as stamped tags (Rungis
    reference, Decision Log 2026-11-06) instead of read as a sentence. Same
    neutral chip, no new colour — only the stencil-mark register (uppercase,
@@ -292,7 +293,7 @@ td a{font-weight:600}
 .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .blk{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-4);
      display:flex;flex-direction:column;gap:6px}
-.blk .lbl{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--highlight);font-weight:600}
+.blk .lbl{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--brand-green);font-weight:600}
 .blk .val{font-size:1.0625rem;font-weight:600}
 .blk .cav{font-size:.8125rem;color:var(--ink-soft)}
 .absent-note{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:6px}
