@@ -83,11 +83,41 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .hero .btn{background:var(--accent-warm);color:#4A2B06}
 .btn.ghost{background:transparent;color:var(--on-dark);border:1px solid var(--accent-warm)}
 
+/* Motion, round-one VFX panel 2026-11-22: every effect here responds to a
+   real user action (a cursor arriving, a row being hovered) -- never
+   decorative motion that plays on its own. Gated behind prefers-reduced-
+   motion so a user who has asked for less motion gets the same functional
+   hover state (colour/shadow) with no transform and no animated transition,
+   not a degraded experience. */
+@media (prefers-reduced-motion: no-preference) {
+  .btn{transition:transform .15s ease, box-shadow .15s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(28,35,43,.18)}
+  tbody tr{transition:background-color .15s ease}
+}
+
+/* Scroll reveal, round-one VFX panel 2026-11-22. Progressive enhancement,
+   not a risk to content: the .js class only exists if the inline <script>
+   in <head> ran, so without JS (or with it disabled) .card/.blk are never
+   hidden in the first place -- there is no state where this can leave real
+   content invisible. Responds to real scrolling, the same "is this motion
+   attached to something real" test every other effect this round passed. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .card, .js .blk{opacity:0;transform:translateY(10px);
+    transition:opacity .4s ease, transform .4s ease}
+  .js .card.in-view, .js .blk.in-view{opacity:1;transform:translateY(0)}
+}
+
+/* Consistency pass, round-one VFX/web-design panel 2026-11-22, outside-
+   analog seat: .card and .note/.blk used two different hard-coded paddings
+   (20px vs 16px) for no reason tied to their content -- unified to the same
+   --sp-4 token every other 16px padding in this file already uses, so a
+   future spacing change moves all three together instead of needing three
+   separate edits. */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-4);
       display:flex;flex-direction:column;gap:10px}
 .card p{font-size:.9375rem;color:var(--ink-soft)}
-.note{background:var(--panel);border:1px solid var(--border-soft);border-radius:var(--radius);padding:16px;
+.note{background:var(--panel);border:1px solid var(--border-soft);border-radius:var(--radius);padding:var(--sp-4);
       font-size:.9375rem;display:flex;flex-direction:column;gap:10px}
 /* A note raised onto the dark hero. Added 2026-11-04 for Home's premium
    figure, re-verified 2026-11-21 against the reversed cool palette:
@@ -100,6 +130,19 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
 .hero .note strong{color:var(--on-dark)}
 
 .spec{border-left:3px solid var(--accent);padding-left:16px;display:flex;flex-direction:column;gap:4px}
+
+/* Accordions, round-one VFX/web-design panel 2026-11-22. Native
+   <details>/<summary> -- no JS, works with the keyboard and a screen reader
+   by default. The custom +/- replaces the native marker in both the modern
+   (list-style) and older WebKit (::-webkit-details-marker) cases, so no
+   browser shows two markers or none. */
+.acc{border-bottom:1px solid var(--line);padding-block:14px}
+.acc summary{cursor:pointer;font-family:"Noto Serif",Georgia,serif;font-weight:600;font-size:1.25rem;
+             list-style:none;display:flex;align-items:center;gap:10px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::before{content:"+";color:var(--highlight);font-weight:700;width:.7em;flex:0 0 auto}
+.acc[open] summary::before{content:"\2212"}
+.acc .acc-body{padding-top:12px;display:flex;flex-direction:column;gap:16px}
 
 /* catalogue */
 .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.875rem}
@@ -114,6 +157,29 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font
    whole PAGE wider instead of scrolling within itself, which throws off
    margin:auto centering for everything on the page, not just the table. */
 .tbl{overflow-x:auto}
+/* Round-three VFX panel, 2026-11-22: confirmed at an actual 375px screenshot
+   -- never checked across six prior rounds, all of which verified only at
+   desktop widths -- that .tbl's own overflow-x:auto was reachable (not a
+   dead end) but meant reading any of this site's three data tables on a
+   phone was swiping a wide table sideways one row at a time. Below the
+   breakpoint, every .tbl table becomes a stack of bordered cards instead:
+   the browser's own table layout algorithm turns off (display:block on
+   every table element), the first column keeps its existing look as the
+   card's own title, and data-label (set once per column in build.py,
+   alongside each <th> it names) supplies every other cell's label via a
+   generated ::before -- no JS, no new markup shape, same cells the desktop
+   table already renders. */
+@media (max-width: 640px){
+  .tbl{overflow-x:visible}
+  .tbl table{min-width:0;width:100%}
+  .tbl table,.tbl thead,.tbl tbody,.tbl tr,.tbl th,.tbl td{display:block}
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tbl tr{border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:12px}
+  .tbl td{border-bottom:0;height:auto;padding:4px 0}
+  .tbl td.mk-name{font-size:1.0625rem;padding-bottom:10px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+  .tbl td[data-label]::before{content:attr(data-label);display:block;font-size:.75rem;
+    text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);margin-bottom:2px}
+}
 /* Chart headers / header-row highlight, Adrian's #5A4F74 -- light-ground
    tables only. Verified: --on-dark on --highlight is 6.93. Market's own
    dark trading-floor table keeps its existing on-dark header treatment
@@ -140,6 +206,10 @@ td a{font-weight:600}
    neutral chip, no new colour — only the stencil-mark register (uppercase,
    spaced) distinguishes it from a semantic chip above. */
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+/* Build-time SVG range bars (viz.py, round-one VFX panel 2026-11-22) --
+   decorative and supplementary only, the real numbers already ship as text
+   right beside every one of these. */
+.range-bar{display:block;margin-top:4px}
 .chip.market{text-transform:uppercase;letter-spacing:.03em;font-size:.75rem}
 
 /* Market page table — REVERSED 2026-11-21, Adrian, after seeing the first
@@ -202,7 +272,7 @@ td a{font-weight:600}
 .crop-head{display:flex;flex-direction:column;gap:6px}
 .bot{font-style:italic;color:var(--ink-soft)}
 .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.blk{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+.blk{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-4);
      display:flex;flex-direction:column;gap:6px}
 .blk .lbl{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--highlight);font-weight:600}
 .blk .val{font-size:1.0625rem;font-weight:600}
