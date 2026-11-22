@@ -19,6 +19,15 @@
    This is a reversal, not an edit, the same way the 2026-11-21 "Earthen
    Wall Reversed" pass was -- see the Decision Log for the prior palette,
    kept as history, not deleted.
+
+   🔒 LOCKED, 2026-11-22 — Adrian, after the full reconciliation (Market's
+   trading floor, the range-bar, the OG image, the manifest) shipped and a
+   full contrast-matrix pass confirmed clean: "Lock the new palette in."
+   This is the fourth distinct palette direction this site has had. Do not
+   reopen grounds, --brand-green, or --emphasis on a future round's own
+   initiative -- a real, new instruction from Adrian is what reopens this,
+   not a panel seat's taste. Extending the system (a new token for a
+   genuinely new need) is not the same as relitigating what's already here.
    🔴 Use the values, never the palette names as brand terms.
 
    Every ratio below is WCAG relative luminance, computed — not estimated. */
@@ -163,16 +172,17 @@
                                  month columns plus crop, cuisine and status  */
   --radius: 3px;
   --bp-sm: 640px; --bp-md: 960px; --bp-lg: 1280px;
-  --mark-min: 32px;           /* below this use the purpose-drawn 16px glyph  */
-  --lockup-min-width: 237px;  /* below this: the mark alone                   */
+  /* --mark-min / --lockup-min-width REMOVED 2026-11-22: built for the
+     symbol mark's own responsive behaviour (mark-alone below a width
+     threshold), unused since the 2026-11-19 wordmark-only cleanup should
+     have removed them and didn't. The mark itself is now deleted outright
+     (not just dormant) -- Adrian: "the plant symbol/logo needs to be
+     retired entirely." Nothing references these; confirmed by grep before
+     deleting, not assumed dead from the comment alone. */
 }
 
 /* Tables use tabular figures so columns align. Non-negotiable in the catalogue. */
 table, .data { font-variant-numeric: tabular-nums; font-size: var(--fs-data); }
-
-/* The mark inherits colour. Never hard-code its fill. */
-.mark { color: var(--accent); }
-.on-dark .mark, .reverse .mark { color: var(--on-dark); }
 
 /* 🔴 FORBIDDEN — stated so a builder cannot do it by accident:
    color: var(--accent-warm);      background: var(--page);   fails, re-verify before reuse
