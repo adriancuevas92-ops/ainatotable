@@ -89,6 +89,32 @@
                                     badges pair a vivid fill with dark text. */
   --accent-bright-tint: #DCF2EA; /* pale mint for a hover/zebra row -- a pop
                                     of tint, not a saturated fill.            */
+  /* 🔴 Round-five panel, 2026-11-22: re-verified every "dark ink on this as a
+     fill" claim on this token after adding --accent-blue below, since both
+     get checked against the same grounds. The "7.47" figure above does not
+     reproduce against --ink (#1C232B) by independent computation -- actual
+     is 3.86, and the one real place this token is used as TEXT on a
+     --panel background (.market-floor .data, large/bold) measures 2.93 on
+     panel, which is below even the 3:1 large-text minimum. Not changed
+     here -- the exact hex has been screenshotted, approved and shipped
+     across three rounds and changing it is Adrian's call, not a silent
+     fix -- but flagged accurately rather than left mis-documented as
+     passing. The figure above is left as found rather than quietly edited,
+     so the discrepancy itself stays visible in history.                     */
+
+  /* ---- BRIGHT BLUE, for a genuine two-colour brand pair --------------------- */
+  /* Adrian, 2026-11-22: "I only care about having a bright blue and green as
+     colors in the site because I want to use those colors on branded
+     merch." --accent-bright (above) already covers green; nothing in this
+     system was blue before this. Chosen and verified the same way, not
+     picked by eye: 5.30 on page · 4.16 on panel (clears 4.5:1 on page for
+     normal text, and 3:1 on panel for large/bold text or non-text UI,
+     same bar --accent-bright itself is held to). FAILS on --surface-dark
+     (2.68) and as dark-ink-on-fill (2.72) -- same shape of limitation as
+     --accent-bright's own fill case above, so it is used as an accent
+     (borders, the revived mark, large bold figures on light grounds)
+     never as body text on a dark or saturated ground.                        */
+  --accent-blue: #0B5ED7;
 
   /* ---- BORDERS, NON-TEXT ----------------------------------------------------- */
   --border-soft:      #8FA8AB;  /* replaces --moss's role: .note border on light
