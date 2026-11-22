@@ -660,6 +660,12 @@ def product_page(r):
     if r["la_price_low"]:
         lo, hi = r["la_price_low"], r["la_price_high"]
         amt = f"${lo}" if lo == hi else f"${lo}&ndash;${hi}"
+        # Round-two VFX/web-design panel (2026-11-22): a genuine lo/hi spread
+        # exists here, unlike "Scale, 2000" (a single acreage figure with no
+        # range at all) -- span_bar_svg only draws the shape the data
+        # actually has (no tick: there's no third "latest" point to mark,
+        # unlike Market's county-$/acre figure).
+        amt_bar = viz.span_bar_svg(float(lo), float(hi)) if lo != hi else ""
         origin = ("San Joaquin Valley" if r["la_origin_sjv"] == "yes"
                   else "California" if r.get("la_origin_ca") == "yes" else "")
         bits = ['Los Angeles Terminal Market, reported as '
@@ -671,7 +677,7 @@ def product_page(r):
                     '(7 CFR \u00a746.43(i)). The figure excludes freight.')
         if origin:
             bits.append('Origin quoted: ' + origin + '.')
-        blk("What Los Angeles paid", amt,
+        blk("What Los Angeles paid", amt + amt_bar,
             esc(" ".join(bits)) + ' <strong>This is what the alternative to '
             'buying locally cost in that market on that day. It is not a local '
             'figure, it is not what a grower here receives, and it is not a '
@@ -1257,7 +1263,7 @@ def market_page():
     <select id="mfsort"><option value="">As listed</option>
       <option value="az">A&ndash;Z</option>
       <option value="acre-desc">County $/acre, high to low</option></select>
-    <span class="src" id="mcnt">{len(rs)} of {len(rs)} ingredients</span>
+    <span class="src" id="mcnt" aria-live="polite">{len(rs)} of {len(rs)} ingredients</span>
   </div>
   <div class="tbl"><table class="data">
     <thead><tr><th>Ingredient</th><th>County $/acre</th>

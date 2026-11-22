@@ -45,3 +45,26 @@ def range_bar_svg(lo, hi, value, width=120, height=14):
         f'fill="var(--accent-bright)"/>'
         f'</svg>'
     )
+
+
+def span_bar_svg(lo, hi, width=120, height=14):
+    """A plain lo-to-hi bar, no tick.
+
+    Round-two VFX/web-design panel (2026-11-22): checked the actual mart
+    before building this -- product pages' "What Los Angeles paid" carries
+    only a single report's lo/hi (or one figure, when lo == hi), never a
+    separate "latest" point distinct from that range the way Market's
+    multi-year county data does. range_bar_svg's tick exists to mark a real
+    third data point; faking one here (e.g. at the midpoint) would draw a
+    position the data never reported. This shape draws only what the data
+    actually contains: the width of the spread, nothing else. Call only
+    when hi > lo -- a single reported price has no spread to show.
+    """
+    track_y = height / 2 - 2
+    return (
+        f'<svg class="range-bar" viewBox="0 0 {width} {height}" width="{width}" '
+        f'height="{height}" aria-hidden="true" focusable="false">'
+        f'<rect x="0" y="{track_y:.1f}" width="{width}" height="4" rx="2" '
+        f'fill="var(--accent-bright)"/>'
+        f'</svg>'
+    )
