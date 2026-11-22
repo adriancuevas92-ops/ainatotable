@@ -322,3 +322,49 @@ footer strong{color:var(--on-dark)}
 #register-buyer-fallback textarea,#register-grower-fallback textarea{width:100%;font:inherit;
      font-size:.875rem;padding:8px;border:1px solid var(--line);border-radius:var(--radius);
      background:var(--page);color:var(--ink)}
+
+/* Round-seven panel, 2026-11-22: printed buyers.html with Chrome's own
+   --print-to-pdf (not assumed, read the actual output) before writing any
+   of this. Found real content loss, not a styling nicety: every one of
+   round one's accordions (.acc) prints in whatever state it happened to be
+   in on screen -- collapsed by default -- so all three of Buyers' later
+   sections printed as a bare "+ heading" with their entire body missing,
+   silently, with no "..." or note that anything was cut. The ingredient
+   checklist (.ing-grid, max-height:220px + overflow-y:auto on screen) print
+   the same way: clipped mid-list with a visible scrollbar baked into the
+   page, the rest of the checkboxes gone. Neither is a screen bug; both are
+   real on paper, and a site built around being a citable, printable
+   reference should not silently drop a third of a page when printed. */
+@media print {
+  /* A collapsed <details>'s body is NOT just CSS display:none on its
+     content -- tested a `details.acc:not([open]) > .acc-body
+     {display:block!important}` rule directly against real print output
+     here first, and it had no effect while every other rule in this same
+     block did. The actual, working fix is in page()'s own closing
+     script: toggle the real `open` attribute on beforeprint, restore it
+     on afterprint. Nothing left to do here for that specific problem --
+     this comment exists so a future edit doesn't re-add a rule already
+     proven not to work. */
+  .acc summary::before { display: none } /* the +/- toggle glyph means nothing once nothing can be clicked */
+
+  /* The checklist must show every option, not just what fit in 220px on a screen. */
+  .ing-grid { max-height: none; overflow: visible }
+
+  /* Interactive-only chrome: a nav link, a filter control, a submit
+     button, none of them do anything on paper. */
+  nav, footer, .skip, .tools, .btn { display: none }
+
+  /* Ink-friendly: a reader printing a reference page is paying for the
+     ink. Flat white background, black text, no accent fills -- the exact
+     opposite instinct from every screen round this project has run, and
+     exactly why nobody had checked it until this one did. */
+  body, .band, .panel, .card, .blk, .note, .market-floor, .market-floor > .wrap, .hero {
+    background: #fff !important; color: #000 !important; border-color: #999 !important;
+  }
+  .hero { border-top: none !important }
+
+  /* Defensive, not a bug found in practice this round: the scroll-reveal
+     animation (round one) must never leave anything sitting at the
+     pre-reveal opacity on a medium with no scrolling to trigger it. */
+  .card, .blk { opacity: 1 !important; transform: none !important }
+}
