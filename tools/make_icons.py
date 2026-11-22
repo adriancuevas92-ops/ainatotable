@@ -134,12 +134,40 @@ def main():
         f.write(mark_svg())
     print("wrote favicon.svg")
 
-    for size, name in [(16, "favicon-16.png"), (32, "favicon-32.png"), (180, "apple-touch-icon.png")]:
+    for size, name in [(16, "favicon-16.png"), (32, "favicon-32.png"), (180, "apple-touch-icon.png"),
+                       (192, "icon-192.png"), (512, "icon-512.png")]:
         render_png(icon_html(size), size, size, os.path.join(OUT, name))
         print(f"wrote {name} ({size}x{size})")
 
     render_png(og_html(), 1200, 630, os.path.join(OUT, "og-image.png"), transparent=False)
     print("wrote og-image.png (1200x630)")
+
+    # Round-six panel, 2026-11-22: round five built the icon FILES but never
+    # the manifest that makes them actually function as an "app icon" on
+    # Android -- apple-touch-icon alone covers iOS home-screen bookmarking,
+    # but Android's "add to home screen" reads a web manifest for its icon,
+    # name and theme colour, and nothing pointed it at one. 192/512 are the
+    # two sizes a manifest is expected to offer. purpose "any" only, not
+    # "maskable" -- a maskable icon needs a safe-zone padding rule this
+    # glyph was never designed against, and claiming that support without
+    # verifying it would be worse than not claiming it.
+    import json
+    manifest = {
+        "name": "ʻĀina to Table",
+        "short_name": "ʻĀina to Table",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": PAGE,
+        "theme_color": PAGE,
+        "icons": [
+            {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+            {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+        ],
+    }
+    with open(os.path.join(OUT, "site.webmanifest"), "w") as f:
+        json.dump(manifest, f, indent=2)
+        f.write("\n")
+    print("wrote site.webmanifest")
 
 
 if __name__ == "__main__":
