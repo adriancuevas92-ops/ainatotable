@@ -16,7 +16,7 @@ A violation fails the build.
 
 Usage: python3 -I build.py
 """
-import csv, datetime, io, os, re, shutil, sys, unicodedata
+import csv, datetime, hashlib, io, os, re, shutil, sys, unicodedata
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -65,6 +65,21 @@ MARK = ('<svg viewBox="-1.2199 -1.2859 2.484 2.484" aria-hidden="true">'
 
 NAV = [("index.html","Home"),("inspect.html","Inspect"),
        ("market.html","Market"),("about.html","About")]
+
+# 🔴 Found 2026-11-21: the two stylesheet <link> tags carried no cache-bust at
+# all, so a browser (or the GitHub Pages CDN, cache-control: max-age=600) that
+# had already fetched tokens.css/site.css kept serving the stale copy after a
+# real colour-palette deploy -- Adrian saw the old Earthen Wall scheme minutes
+# after the new one shipped, purely from caching, not a failed deploy. A
+# content hash in the query string changes the URL itself whenever the file's
+# bytes change, so a cache can keep the old response forever and it still
+# never gets served once the content is different.
+def _css_hash(name):
+    with io.open(os.path.join(ROOT, "src", name), "rb") as f:
+        return hashlib.sha256(f.read()).hexdigest()[:10]
+
+TOKENS_CSS_HASH = _css_hash("tokens.css")
+SITE_CSS_HASH = _css_hash("site.css")
 
 # ⭐ The one contact route, and it is shown as TEXT as well as linked. A mailto
 # is unreliable for many readers and the page cannot tell whether it worked, so
@@ -266,7 +281,7 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<link rel="stylesheet" href="{up}tokens.css"><link rel="stylesheet" href="{up}site.css">
+<link rel="stylesheet" href="{up}tokens.css?v={TOKENS_CSS_HASH}"><link rel="stylesheet" href="{up}site.css?v={SITE_CSS_HASH}">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <nav><div class="wrap wide">
