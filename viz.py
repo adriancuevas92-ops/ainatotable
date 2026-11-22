@@ -12,7 +12,7 @@ one already-2100-line build.py that it stops being the single auditable file
 it currently is. Everything that computes a <svg> string lives here instead.
 
 Colours are never hard-coded: every fill references a CSS custom property
-(var(--line), var(--accent-bright)), the same discipline tokens.css already
+(var(--line), var(--brand-green)), the same discipline tokens.css already
 holds every other colour to, so a future palette change recolours these
 shapes automatically instead of needing a second edit here.
 """
@@ -36,21 +36,24 @@ def range_bar_svg(lo, hi, value, width=120, height=14):
     tick_w = 3
     tick_x = frac * (width - tick_w)
     track_y = height / 2 - 2
-    # Round-five panel, 2026-11-22: track recoloured var(--line) -> var(--accent-blue)
-    # at Adrian's direction ("I only care about having a bright blue and
-    # green as colors in the site... for branded merch"). The tick stays
-    # green (--accent-bright) -- it already carried real meaning (the
-    # "latest" position within the range) that recolouring would have
-    # obscured, so only the neutral track became the new colour, giving
-    # every range-bar on Market both brand colours at once rather than
-    # inventing a separate place for blue to appear.
+    # Institutional-green palette, 2026-11-22: Adrian, "bring everything into
+    # the new color palette." The blue track (round five, built specifically
+    # for the merch-colors ask) is retired from screen UI -- the merch icon
+    # itself is untouched, a separate asset for a separate physical purpose,
+    # but this bar is part of the site's own screen tone, which is what's
+    # being brought into line here. Back to a neutral track (--line) with a
+    # single confident tick (--brand-green) -- the track and the tick need
+    # to read as two different things (the range vs. the one point inside
+    # it that matters), and two shades of one green would have blurred that
+    # distinction right as the tick became the exact same brand colour used
+    # everywhere else on the page.
     return (
         f'<svg class="range-bar" viewBox="0 0 {width} {height}" width="{width}" '
         f'height="{height}" aria-hidden="true" focusable="false">'
         f'<rect x="0" y="{track_y:.1f}" width="{width}" height="4" rx="2" '
-        f'fill="var(--accent-blue)"/>'
+        f'fill="var(--line)"/>'
         f'<rect x="{tick_x:.1f}" y="0" width="{tick_w}" height="{height}" rx="1.5" '
-        f'fill="var(--accent-bright)"/>'
+        f'fill="var(--brand-green)"/>'
         f'</svg>'
     )
 
@@ -73,6 +76,6 @@ def span_bar_svg(lo, hi, width=120, height=14):
         f'<svg class="range-bar" viewBox="0 0 {width} {height}" width="{width}" '
         f'height="{height}" aria-hidden="true" focusable="false">'
         f'<rect x="0" y="{track_y:.1f}" width="{width}" height="4" rx="2" '
-        f'fill="var(--accent-bright)"/>'
+        f'fill="var(--brand-green)"/>'
         f'</svg>'
     )

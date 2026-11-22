@@ -37,11 +37,17 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "images", "icons")
 
-# Keep in sync with tokens.css --accent-bright / --accent-blue.
+# GREEN/BLUE are the mark's own merch colours (round five, "I want to use
+# those colors on branded merch") -- a separate, explicit decision from the
+# site's own screen palette in tokens.css, deliberately NOT tied to it, so
+# they don't change just because tokens.css does.
 GREEN = "#008F63"
 BLUE = "#0B5ED7"
-PAGE = "#EBF6F7"
-HEADER_GREEN = "#454D32"
+# PAGE/HEADER_GREEN DO represent the site's own current screen branding (the
+# OG-image is a preview of the site itself) -- kept in sync with tokens.css
+# --page / --brand-green. Institutional-green palette, 2026-11-22.
+PAGE = "#FFFFFF"
+HEADER_GREEN = "#407A52"
 
 VIEWBOX = "-1.2199 -1.2859 2.484 2.484"
 MASK_RECT = '<rect x="-1.2199" y="-1.2859" width="2.484" height="2.484" fill="#fff"/>'
