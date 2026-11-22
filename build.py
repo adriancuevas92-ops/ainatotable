@@ -404,6 +404,31 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
   els.forEach(function(el){{ if(!el.classList.contains('in-view')) io.observe(el); }});
 }})();
 </script>
+<script>
+(function(){{
+  // Round-seven panel, 2026-11-22: tested print output directly (Chrome's
+  // own --print-to-pdf) before writing this. The @media print rule
+  // forcing .acc-body visible did NOT work -- Chromium hides a collapsed
+  // <details>'s non-summary content through a mechanism CSS display
+  // alone could not override on the print render path, confirmed by
+  // everything else in that same stylesheet block taking effect while
+  // only this one rule silently didn't. This is the actual, working fix:
+  // toggle the real `open` attribute right before printing and put it
+  // back right after, so a reader who left a section collapsed on screen
+  // still gets it on paper, and the live page is untouched once printing
+  // ends.
+  var toReopen = [];
+  window.addEventListener('beforeprint', function(){{
+    document.querySelectorAll('details.acc:not([open])').forEach(function(d){{
+      d.open = true; toReopen.push(d);
+    }});
+  }});
+  window.addEventListener('afterprint', function(){{
+    toReopen.forEach(function(d){{ d.open = false; }});
+    toReopen = [];
+  }});
+}})();
+</script>
 </body></html>
 """
 
