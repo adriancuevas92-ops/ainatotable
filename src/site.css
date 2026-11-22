@@ -157,6 +157,29 @@ table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font
    whole PAGE wider instead of scrolling within itself, which throws off
    margin:auto centering for everything on the page, not just the table. */
 .tbl{overflow-x:auto}
+/* Round-three VFX panel, 2026-11-22: confirmed at an actual 375px screenshot
+   -- never checked across six prior rounds, all of which verified only at
+   desktop widths -- that .tbl's own overflow-x:auto was reachable (not a
+   dead end) but meant reading any of this site's three data tables on a
+   phone was swiping a wide table sideways one row at a time. Below the
+   breakpoint, every .tbl table becomes a stack of bordered cards instead:
+   the browser's own table layout algorithm turns off (display:block on
+   every table element), the first column keeps its existing look as the
+   card's own title, and data-label (set once per column in build.py,
+   alongside each <th> it names) supplies every other cell's label via a
+   generated ::before -- no JS, no new markup shape, same cells the desktop
+   table already renders. */
+@media (max-width: 640px){
+  .tbl{overflow-x:visible}
+  .tbl table{min-width:0;width:100%}
+  .tbl table,.tbl thead,.tbl tbody,.tbl tr,.tbl th,.tbl td{display:block}
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tbl tr{border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:12px}
+  .tbl td{border-bottom:0;height:auto;padding:4px 0}
+  .tbl td.mk-name{font-size:1.0625rem;padding-bottom:10px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+  .tbl td[data-label]::before{content:attr(data-label);display:block;font-size:.75rem;
+    text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft);margin-bottom:2px}
+}
 /* Chart headers / header-row highlight, Adrian's #5A4F74 -- light-ground
    tables only. Verified: --on-dark on --highlight is 6.93. Market's own
    dark trading-floor table keeps its existing on-dark header treatment

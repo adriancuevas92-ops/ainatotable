@@ -1220,10 +1220,10 @@ def market_page():
         cu = cuisines_for(r["display_name"])
         cuisine_chips = "".join(f'<span class="chip market">{esc(c)}</span>' for c in cu)
         return f"""<tr data-status="{esc(status)}" data-terminal="{'yes' if has_terminal(r) else 'no'}" data-retail="{'yes' if has_retail(r) else 'no'}" data-cuisine="{esc(','.join(cu))}"{acre_attr}>
-  <td><span class="crop">{crop_link(r["display_name"])}</span>{f'<span class="chips">{cuisine_chips}</span>' if cu else ''}</td>
-  <td>{county_cell}</td>
-  <td>{term_cell(r)}</td>
-  <td>{retail_cell(r)}</td></tr>"""
+  <td class="mk-name"><span class="crop">{crop_link(r["display_name"])}</span>{f'<span class="chips">{cuisine_chips}</span>' if cu else ''}</td>
+  <td data-label="County $/acre">{county_cell}</td>
+  <td data-label="Terminal (wholesale)">{term_cell(r)}</td>
+  <td data-label="Retail">{retail_cell(r)}</td></tr>"""
 
     openly = sorted((r for r in rs if r["status"] == "Traded openly"),
                     key=lambda r: -float(r["latest_value_per_acre"]))
@@ -1753,11 +1753,11 @@ def market_section():
     live = [m for m in mk if m["status"] == "live"]
     frozen = [m for m in mk if m["status"] != "live"]
     trs = "".join(
-        f'<tr><td><span class="crop">{esc(m["city"])}, {esc(m["state"])}</span>'
+        f'<tr><td class="mk-name"><span class="crop">{esc(m["city"])}, {esc(m["state"])}</span>'
         f'<span class="aka">{esc(m["code"].upper())}_FV020 &middot; '
         f'{esc(m["code"].upper())}_FV010</span></td>'
-        f'<td>{"Reporting" if m["status"] == "live" else "<strong>Stopped</strong>"}</td>'
-        f'<td>{esc(m["report_date"])}</td></tr>'
+        f'<td data-label="Status">{"Reporting" if m["status"] == "live" else "<strong>Stopped</strong>"}</td>'
+        f'<td data-label="Latest report seen">{esc(m["report_date"])}</td></tr>'
         for m in mk)
     return f"""
   <h2 style="margin-top:28px" id="your-market">Which market is your alternative?</h2>
@@ -1876,15 +1876,15 @@ def price_section():
     n_total = len(rows())
     sjv = [r["crop"] for r in pr if r["la_origin_sjv"] == "yes"]
     trs = "".join(
-        f'<tr><td><a href="crops/{slug(r["crop"])}.html">{esc(r["crop"])}</a>'
+        f'<tr><td class="mk-name"><a href="crops/{slug(r["crop"])}.html">{esc(r["crop"])}</a>'
         f'<span class="aka">reported as {esc(r["la_report_commodity"]).lower()}</span></td>'
-        f'<td>{trade_chip(r)}</td>'
-        f'<td>{esc(r["la_pack"]) or "&mdash;"}</td>'
-        f'<td>${float(r["la_price_low"]):.2f}'
+        f'<td data-label="Kind of trade">{trade_chip(r)}</td>'
+        f'<td data-label="Pack">{esc(r["la_pack"]) or "&mdash;"}</td>'
+        f'<td data-label="Reported price">${float(r["la_price_low"]):.2f}'
         + (f'&ndash;${float(r["la_price_high"]):.2f}'
            if float(r["la_price_high"]) != float(r["la_price_low"]) else "")
         + '</td>'
-        f'<td>{"San Joaquin Valley" if r["la_origin_sjv"] == "yes" else ("California" if r.get("la_origin_ca") == "yes" else "&mdash;")}</td></tr>'
+        f'<td data-label="Origin">{"San Joaquin Valley" if r["la_origin_sjv"] == "yes" else ("California" if r.get("la_origin_ca") == "yes" else "&mdash;")}</td></tr>'
         for r in pr)
     return f"""
   <h2 style="margin-top:28px">What the alternative costs</h2>
