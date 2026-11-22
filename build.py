@@ -332,7 +332,7 @@ def page(title, body, depth=0, desc=META_DESC, current=None):
 <link rel="icon" type="image/png" sizes="16x16" href="{up}images/icons/favicon-16.png">
 <link rel="apple-touch-icon" href="{up}images/icons/apple-touch-icon.png">
 <link rel="manifest" href="{up}images/icons/site.webmanifest">
-<meta name="theme-color" content="#EBF6F7">
+<meta name="theme-color" content="#FFFFFF">
 <!-- Round-six panel, 2026-11-22: round five built the icon files but never
      the manifest that makes them function as an "app icon" on Android --
      apple-touch-icon alone only covers iOS. theme-color is the page's own

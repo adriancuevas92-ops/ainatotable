@@ -249,7 +249,7 @@ td a{font-weight:600}
    the site now shares one header treatment instead of Market carrying its
    own exception. */
 .market-floor{background:var(--page);border-bottom:none;padding-block:32px}
-.market-floor>.wrap{background:var(--panel);border-top:4px solid var(--accent-bright);
+.market-floor>.wrap{background:var(--panel);border-top:4px solid var(--brand-green);
                      border-radius:var(--radius);padding:32px}
 /* A hard rule between the toolbar and the table -- without it the toolbar's
    label/field pairs and the table's own header cells read as one confused
@@ -258,10 +258,10 @@ td a{font-weight:600}
 .market-floor table{border-top:1px solid var(--line)}
 .market-floor td{border-bottom-color:var(--line);color:var(--ink)}
 .market-floor tbody tr:nth-child(even){background:var(--page)}
-.market-floor tbody tr:hover{background:var(--accent-bright-tint)}
+.market-floor tbody tr:hover{background:var(--brand-green-tint)}
 .market-floor .crop{color:var(--ink);font-weight:600}
 .market-floor .data{font-family:"Noto Serif",Georgia,serif;font-weight:700;
-                     font-size:1.25rem;color:var(--accent-bright)}
+                     font-size:1.25rem;color:var(--brand-green)}
 .market-floor .chip{border-color:var(--line);color:var(--ink-soft)}
 .market-floor .src{color:var(--ink-soft)}
 .market-floor tr[hidden]{display:none}

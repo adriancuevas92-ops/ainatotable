@@ -99,6 +99,10 @@
   /* Kept as a dedicated alias so no call site needs to change meaning:
      .lockup still reads --header-green specifically for the wordmark. */
   --header-green: var(--brand-green);
+  --brand-green-tint: #DCE8E0;  /* pale hover/zebra tint -- 1.26 against page,
+                                   a whisper, not a colour field. Replaces
+                                   --accent-bright-tint's role on Market's
+                                   row hover.                                  */
 
   /* ---- TABLE HEADERS / EMPHASIS --------------------------------------------- */
   /* Replaces --highlight (#5A4F74, violet). Neither JPMorgan, Schwab nor
@@ -115,18 +119,18 @@
   --border-soft-dark: #71868F;  /* .hero .note border on the dark surface --
                                     unchanged value, re-verify before reuse.   */
 
-  /* ---- CARRIED FORWARD, NOT YET RECONCILED WITH THIS PALETTE ---------------- */
-  /* --accent-bright (#008F63) and --accent-blue (#0B5ED7) were built for a
-     DIFFERENT, explicit purpose -- Market's range-bar and the merch-bound
-     favicon/icon set, both approved separately and for a reason unrelated
-     to the site's own screen tone (Adrian named "branded merch" directly).
-     Not touched by this proposal. Flagged as an open question for Adrian in
-     the Decision Log: a vivid teal+blue data element sitting inside an
-     otherwise restrained white/green page is a real visual tension this
-     round's seats noticed, not something resolved here on their own say-so. */
-  --accent-bright: #008F63;
-  --accent-bright-tint: #DCF2EA;
-  --accent-blue: #0B5ED7;
+  /* --accent-bright, --accent-bright-tint and --accent-blue (the prior
+     direction's bright teal/blue) RETIRED from this file, 2026-11-22:
+     Adrian, after seeing Market's trading floor and the range-bar left on
+     the old colours while the rest of the site moved to this palette,
+     "bring everything into the new color palette." Every call site that
+     used them (Market's top bar/hover/price text, viz.py's range-bar and
+     span-bar) now reads --brand-green/--brand-green-tint/--line instead --
+     confirmed by grep, not assumed, before deleting these three outright.
+     The merch-bound favicon/icon set (tools/make_icons.py) is untouched: it
+     hard-codes its own literal hex constants for a stated, separate
+     purpose (physical merch, not screen tone) and was never wired to these
+     tokens in the first place, so nothing there needed to change for this. */
 
   /* ---- CATALOGUE SEMANTICS ----------------------------------------------- */
   /* season-peak/shoulder/none and gap-contractable/input-limited/blocked
