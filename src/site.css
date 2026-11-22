@@ -142,47 +142,44 @@ td a{font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .chip.market{text-transform:uppercase;letter-spacing:.03em;font-size:.75rem}
 
-/* Market page tables get their own surface — the reverse ground already used
-   for the hero and footer, not a new colour. The point is that this is the
-   trading floor, not another editorial band (Brand Decision Log 2026-11-06,
-   following the Aalsmeer/Rungis/Tsukiji lock). */
-/* 2026-11-06, "Chalkboard Stall" pass: a traditional market board makes the
-   PRICE the only thing read from across the room; everything else (origin,
-   pack, date) is small print beneath it. Top bar is a signage device, not
-   decoration -- same accent already approved for dark-surface use (hero's
-   own CTA), not a new color. */
-/* The dark surface lives on the INNER wrap, not the full-bleed section --
-   on a wide desktop viewport this reads as a bounded, centered card with
-   the page's own light ground visible on both sides, not a colored band
-   that stretches edge to edge regardless of window width (which is why it
-   never looked centered: there was nothing for "centered" to mean). */
-/* padding, not margin -- the wrap's own margin would collapse through this
-   section (which has no padding/border of its own to contain it) and expose
-   the BODY's background (--panel, tan) instead of this section's --page,
-   which is exactly the off-color strip found by screenshot 2026-11-06. */
+/* Market page table — REVERSED 2026-11-21, Adrian, after seeing the first
+   pass: "The Market chart is too dark... I would rather use a brighter green
+   tone then the dark blue tone you've applied... I want the site to
+   eventually have the sterile look of Kalshi with the pops of colors."
+   Checked kalshi.com directly rather than guess at "sterile": it is almost
+   entirely white, with a vivid green used only as small pops (the brand
+   mark, buy buttons, up-indicators, a thin accent bar) and thin light-gray
+   horizontal dividers between rows — never a large dark fill. This retires
+   the 2026-11-06 "Chalkboard Stall" dark trading-floor surface in favour of
+   that same light-plus-pop pattern. The bounded-card structure that pass
+   introduced — the floor lives on the INNER wrap, not the full-bleed
+   section, so it reads as a centered card on a wide viewport — stays; only
+   its fill and accents go light. th needs no override here any more: the
+   ordinary light-ground rule (--highlight fill, on-dark text) already
+   applies once the floor itself is light, which is also why every table on
+   the site now shares one header treatment instead of Market carrying its
+   own exception. */
 .market-floor{background:var(--page);border-bottom:none;padding-block:32px}
-.market-floor>.wrap{background:var(--surface-dark);border-top:4px solid var(--accent-warm);
+.market-floor>.wrap{background:var(--panel);border-top:4px solid var(--accent-bright);
                      border-radius:var(--radius);padding:32px}
 /* A hard rule between the toolbar and the table -- without it the toolbar's
    label/field pairs and the table's own header cells read as one confused
    grid stacked on top of itself, which is exactly the complaint. */
-.market-floor .tools{padding-bottom:20px;margin-bottom:12px;border-bottom:1px solid var(--line-dark)}
-.market-floor table{border-top:1px solid var(--line-dark)}
-.market-floor th{background:var(--surface-dark-2);color:var(--on-dark-soft);border-bottom-color:var(--line-dark)}
-.market-floor td{border-bottom-color:var(--line-dark);color:var(--on-dark)}
-.market-floor tbody tr:nth-child(even){background:var(--surface-dark-2)}
-.market-floor tbody tr:hover{background:#324151}
-.market-floor .crop{color:var(--on-dark);font-weight:600}
+.market-floor .tools{padding-bottom:20px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.market-floor table{border-top:1px solid var(--line)}
+.market-floor td{border-bottom-color:var(--line);color:var(--ink)}
+.market-floor tbody tr:nth-child(even){background:var(--page)}
+.market-floor tbody tr:hover{background:var(--accent-bright-tint)}
+.market-floor .crop{color:var(--ink);font-weight:600}
 .market-floor .data{font-family:"Noto Serif",Georgia,serif;font-weight:700;
-                     font-size:1.25rem;color:var(--accent-warm)}
-.market-floor .chip{border-color:var(--line-dark);color:var(--on-dark-soft)}
-.market-floor .src{color:var(--on-dark-soft)}
+                     font-size:1.25rem;color:var(--accent-bright)}
+.market-floor .chip{border-color:var(--line);color:var(--ink-soft)}
+.market-floor .src{color:var(--ink-soft)}
 .market-floor tr[hidden]{display:none}
-/* Title and toolbar now live ON the floor, not in a separate light band
-   above it -- the whole thing (title, controls, table) is one bounded
-   surface, not three pieces that happen to sit near each other. */
-.market-floor h1{color:var(--on-dark)}
-.market-floor .tools label{color:var(--on-dark-soft)}
+/* Title and toolbar live ON the floor, not in a separate band above it --
+   the whole thing (title, controls, table) is one bounded surface. */
+.market-floor h1{color:var(--ink)}
+.market-floor .tools label{color:var(--ink-soft)}
 
 .market-title{font-size:3.052rem;margin:0}
 .market-title+.tools{margin-top:4px}
