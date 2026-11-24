@@ -593,8 +593,14 @@ def county_sentence(r):
 
 def window_label(r):
     w = r["window"] or ""
-    return {"Jan-Dec":"Year-round","NOT IN 2010 MATRIX":"No data",
-            "special orders only":"Special order only"}.get(w, w or "No data")
+    if not w or w == "NOT IN 2010 MATRIX":
+        # A broader (non-Fresno) source, added 2026-11-24: the label says so
+        # up front ("No Fresno data — CA: ...") rather than hiding real,
+        # clearly-scoped information behind a bare "No data" that a reader
+        # would have to open the caveat to learn isn't the whole story.
+        return r["broader_availability_label"] or "No data"
+    return {"Jan-Dec":"Year-round",
+            "special orders only":"Special order only"}.get(w, w)
 
 # season_cell() REMOVED 2026-11-21, round-six panel: it rendered a
 # colour-only dot strip (dk/lt marks with no text alternative -- tokens.css's
@@ -607,16 +613,23 @@ def window_label(r):
 # record rather than silently vanishing from history.
 
 def season_sentence(r):
-    if not r["window"]:
-        # 🔴 This branch was missing and the fall-through built the string
-        # "Typically available  —  months. Source: UCCE Fresno retail survey,
-        # 2010." for every crop the 2010 survey never covered: an empty claim
-        # with a real citation bolted to it. A citation for nothing is worse
-        # than no citation.
-        return ('No Fresno availability data exists for this crop. The 2010 '
-                'retail survey covered Asian specialty vegetables and did not '
-                'reach it, and we have found no other published Fresno source.')
-    if r["window"] == "NOT IN 2010 MATRIX":
+    if not r["window"] or r["window"] == "NOT IN 2010 MATRIX":
+        if r["broader_availability_note"]:
+            # Added 2026-11-24: a broader (California or national) source,
+            # found when the Fresno-specific 2010 survey didn't cover this
+            # crop. Carries its own full caveat and citation already
+            # written into the data -- never silently blended in as if it
+            # were the local figure.
+            return r["broader_availability_note"]
+        if not r["window"]:
+            # 🔴 This branch was missing and the fall-through built the string
+            # "Typically available  —  months. Source: UCCE Fresno retail survey,
+            # 2010." for every crop the 2010 survey never covered: an empty claim
+            # with a real citation bolted to it. A citation for nothing is worse
+            # than no citation.
+            return ('No Fresno availability data exists for this crop. The 2010 '
+                    'retail survey covered Asian specialty vegetables and did not '
+                    'reach it, and we have found no other published Fresno source.')
         return ('No season data exists for this crop. The 2010 retail survey did not cover it. '
                 'Not “unknown”: no published Fresno source has measured it.')
     if r["special_orders_only"] == "yes":
