@@ -29,6 +29,12 @@ a{color:var(--accent)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .skip{position:absolute;left:-9999px}
 .skip:focus{position:static;display:block;padding:8px 16px;background:var(--accent);color:var(--page)}
+/* Content for a screen reader only -- unlike .skip, never meant to become
+   visible on focus. Used on the hero-tabs <legend>, which needs no sighted
+   label (the tab buttons already say what they do) but does need a group
+   name a screen reader can announce. */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .band{background:var(--page);border-bottom:1px solid var(--line)}
 .band>.wrap{padding-block:48px}
@@ -45,9 +51,6 @@ nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap;f
 nav a{color:var(--ink-soft);text-decoration:none}
 nav a[aria-current]{color:var(--accent);font-weight:600}
 
-/* The hero is a flat surface. There is no photography on this property, by
-   decision: the six existing images were South Kona and retired with Origin,
-   and no crop photography exists. Decision Log 2026-11-03. */
 /* Round-five panel, 2026-11-22: the hero's buttons and the rest of the
    site's accent language had drifted apart -- these still carried the
    retired "Earthen Wall" amber/gold (--accent-warm, #F8B500) from before
@@ -63,35 +66,52 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
    confirmed by computing it rather than assumed from vibe. */
 .hero{background:var(--surface-dark);color:var(--on-dark-soft);position:relative;overflow:hidden;
       border-top:4px solid var(--brand-green)}
-.hero-slideshow{position:absolute;inset:0;z-index:0}
-.hero-slideshow .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;
-  animation:hero-slide-cycle 77s infinite}
-.hero-slideshow .slide:nth-child(1){animation-delay:0s}
-.hero-slideshow .slide:nth-child(2){animation-delay:7s}
-.hero-slideshow .slide:nth-child(3){animation-delay:14s}
-.hero-slideshow .slide:nth-child(4){animation-delay:21s}
-.hero-slideshow .slide:nth-child(5){animation-delay:28s}
-.hero-slideshow .slide:nth-child(6){animation-delay:35s}
-.hero-slideshow .slide:nth-child(7){animation-delay:42s}
-.hero-slideshow .slide:nth-child(8){animation-delay:49s}
-.hero-slideshow .slide:nth-child(9){animation-delay:56s}
-.hero-slideshow .slide:nth-child(10){animation-delay:63s}
-.hero-slideshow .slide:nth-child(11){animation-delay:70s}
-.hero-slideshow::after{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(14,18,24,.62),rgba(14,18,24,.78));}
-@keyframes hero-slide-cycle{
-  0%{opacity:0} 1.3%{opacity:1} 7%{opacity:1} 9%{opacity:0} 100%{opacity:0}
-}
-@media (prefers-reduced-motion: reduce){
-  .hero-slideshow .slide{animation:none;opacity:0}
-  .hero-slideshow .slide:nth-child(1){opacity:1}
-}
 .hero>.wrap{padding-block:64px;position:relative;z-index:2}
 .hero h1{font-size:2.441rem;color:var(--on-dark)}
 .hero .eyebrow{color:var(--on-dark-soft)}
 .hero p{color:var(--on-dark-soft);max-width:60ch}
 .hero .mk{width:52px;height:52px;color:var(--on-dark);margin-bottom:8px}
 .hero a{color:var(--on-dark)}
+
+/* Content & presentation panel, 2026-11-25: retires the darkened full-bleed
+   crossfade (11 photos under a fixed rgba(14,18,24,.62-.78) overlay, which
+   is what made every one of them read as "faded" -- confirmed from the CSS
+   itself, not guessed) in favour of pairing ONE specific, full-quality,
+   captioned photo with the hero's own opening argument -- the panel's
+   "never let a photo go to waste as a mood-setter" finding, applied to the
+   first and most-seen photo on the site. The other 10 slideshow images are
+   NOT discarded -- CREDITS.md keeps their provenance record, and the
+   content plan names them as the raw material for the four content bands
+   and Buyers/Growers, not for the hero a second time. */
+.hero-intro{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:start}
+.hero-photo{margin:0}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius)}
+.hero-photo figcaption{font-size:.75rem;color:var(--on-dark-soft);margin-top:8px}
+@media (max-width:640px){
+  .hero-intro{grid-template-columns:1fr}
+  .hero-photo img{max-height:320px}
+}
+
+/* Hero's three CTA buttons, converted from flat buttons to a small tabbed
+   chooser -- the interaction-design seat's own recommendation, since these
+   three are genuinely parallel either-or choices (unlike the five sequential
+   argument sections below, which stay sequential, not tabbed). Native
+   radio+label: zero JavaScript, keyboard-operable (arrow keys cycle a named
+   radio group) and screen-reader-understandable by default, the same
+   "accessible by construction, not a review step" discipline .acc already
+   uses -- the first radio's `checked` attribute is what makes the first
+   panel visible with no JS at all, not a script-set default. */
+.hero-tabs{border:0;margin:0;padding:0}
+.hero-tabs input[type=radio]{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden}
+.hero-tabs label{display:inline-block;cursor:pointer;font-weight:600;font-size:.875rem;
+  padding:8px 14px;margin:0 8px 8px 0;border-radius:var(--radius);border:1px solid var(--brand-green);
+  color:var(--on-dark)}
+.hero-tabs input:checked + label{background:var(--brand-green)}
+.hero-tabs input:focus-visible + label{outline:2px solid var(--on-dark);outline-offset:2px}
+.hero-tabs .tab-panel{display:none;padding-top:4px}
+#hs-crop:checked ~ .panel-crop,
+#hs-buyer:checked ~ .panel-buyer,
+#hs-grower:checked ~ .panel-grower{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
 .btn{display:inline-block;font-weight:600;font-size:.9375rem;padding:10px 18px;border-radius:var(--radius);
      text-decoration:none;background:var(--accent);color:var(--page);border:0}
 /* Institutional-green palette, 2026-11-22: white/on-dark text on
@@ -132,6 +152,21 @@ nav a[aria-current]{color:var(--accent);font-weight:600}
    --sp-4 token every other 16px padding in this file already uses, so a
    future spacing change moves all three together instead of needing three
    separate edits. */
+/* Content & presentation panel, 2026-11-25: one specific, captioned photo
+   beside each content band's own lead argument -- the light-ground sibling
+   of .hero-intro, same grid shape, reused rather than redeclared, since both
+   are "text beside one photo." Used on Buyers/Growers too (see those pages'
+   own call sites), closing the real content gap the panel named: those two
+   pages carried zero imagery while Home carried eleven. */
+.media-row{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:start}
+.media-row figure{margin:0}
+.media-row img{width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius)}
+.media-row figcaption{font-size:.75rem;color:var(--ink-soft);margin-top:8px}
+@media (max-width:640px){
+  .media-row{grid-template-columns:1fr}
+  .media-row img{max-height:320px}
+}
+
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:var(--sp-4);
       display:flex;flex-direction:column;gap:10px}
@@ -366,6 +401,31 @@ footer .src{color:var(--on-dark-soft)}
 
   /* The checklist must show every option, not just what fit in 220px on a screen. */
   .ing-grid { max-height: none; overflow: visible }
+
+  /* Round seven's own finding, repeated: the hero-tabs chooser (2026-11-25)
+     hides two of its three panels exactly the way a collapsed accordion
+     hid its body -- and unlike <details>, a radio-driven display:none IS a
+     plain CSS rule, so overriding it here (verified against real
+     --print-to-pdf output, not assumed) is enough on its own; no
+     beforeprint/afterprint JS toggle needed this time. Every tab button's
+     content ships on paper, not just whichever one was selected on screen. */
+  .hero-tabs .tab-panel { display: flex !important; flex-direction: column; gap: 12px }
+  .hero-tabs label { border-color: #999 !important; background: none !important }
+
+  /* Real pre-existing bug, found while verifying the fix above against
+     actual print output (confirmed independently with pdftoppm, not just
+     one viewer): the broad `.hero{color:#000!important}` rule several
+     lines up never actually reaches hero's own children. A child
+     selector's own non-important color declaration always wins over an
+     inherited value, regardless of `!important` on the ancestor -- CSS
+     inheritance is resolved per element, and `.hero p`/`.hero h1`/etc. set
+     color directly on themselves. Hero's on-dark/on-dark-soft tokens
+     (#F2F5F1, #AEBBAF -- built for the near-black screen surface) were
+     printing nearly invisible on the forced-white print page as a result;
+     not introduced by today's hero rebuild, surfaced by actually testing
+     rather than assuming the broader rule already covered it. */
+  .hero h1, .hero p, .hero .eyebrow, .hero .note, .hero .note strong,
+  .hero .src, .hero a, .hero-photo figcaption, .hero-tabs label { color: #000 !important }
 
   /* Interactive-only chrome: a nav link, a filter control, a submit
      button, none of them do anything on paper. */

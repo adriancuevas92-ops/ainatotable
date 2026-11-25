@@ -825,33 +825,30 @@ def product_page(r):
 def home_page():
     S = stats()
     body = f"""<section class="hero">
-  <div class="hero-slideshow" aria-hidden="true">
-    <div class="slide" style="background-image:url(images/homepage-slideshow/01-beet-laborers-lunch-stockton-1943.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/02-sugar-beet-harvest.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/03-mission-farms-meal.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/04-sierra-leone-farm-meal-1934.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/05-orange-pickers-santa-ana-1900.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/06-tortillas-hacienda-chichen-1923.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/07-tomato-loading-britain-1914.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/08-apple-packing-line.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/09-vegetable-market-vendor.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/10-chef-commercial-kitchen.jpg)"></div>
-    <div class="slide" style="background-image:url(images/homepage-slideshow/11-strawberry-field-harvest.jpg)"></div>
-  </div>
   <div class="wrap stack">
-  <h1>Some things are worth looking for.</h1>
-  <p>A grade tells you a category. It doesn&rsquo;t tell you who grew it, when it was picked, or
-     why it tastes like something instead of nothing.</p>
-  <div class="note">
-    <p style="font-style:italic">&ldquo;Through flavors, techniques, and shared meals, culinary
-       traditions connect generations, carrying stories of place, community, and creativity.&rdquo;</p>
-    <p class="src">UNESCO, <em>Forever Flavors: Stories of Food, Memory and Living Heritage</em>, 2026.</p>
+  <div class="hero-intro">
+    <div class="stack">
+      <h1>Some things are worth looking for.</h1>
+      <p>A grade tells you a category. It doesn&rsquo;t tell you who grew it, when it was picked, or
+         why it tastes like something instead of nothing.</p>
+      <div class="note">
+        <p style="font-style:italic">&ldquo;Through flavors, techniques, and shared meals, culinary
+           traditions connect generations, carrying stories of place, community, and creativity.&rdquo;</p>
+        <p class="src">UNESCO, <em>Forever Flavors: Stories of Food, Memory and Living Heritage</em>, 2026.</p>
+      </div>
+      <p>Food is one of the few things that carries a tradition forward without anyone having to explain
+         it. A recipe survives as long as someone keeps growing what it calls for, and a crop survives
+         as long as someone can still make a living growing it. Most of the Central Valley&rsquo;s
+         ingredients never get the chance to be known this way. They get sorted into a grade and sold as
+         a category instead of a thing with a name.</p>
+    </div>
+    <figure class="hero-photo">
+      <img src="images/homepage-slideshow/01-beet-laborers-lunch-stockton-1943.jpg" loading="eager"
+           alt="Mexican agricultural laborers eating lunch during the beet harvest, beside a &ldquo;Bienvenidos los Trabajadores Mexicanos&rdquo; welcome banner. Stockton, California, May 1943.">
+      <figcaption>Stockton, California, May 1943. Photograph by Marjory Collins. Public domain, via
+         Wikimedia Commons.</figcaption>
+    </figure>
   </div>
-  <p>Food is one of the few things that carries a tradition forward without anyone having to explain
-     it. A recipe survives as long as someone keeps growing what it calls for, and a crop survives
-     as long as someone can still make a living growing it. Most of the Central Valley&rsquo;s
-     ingredients never get the chance to be known this way. They get sorted into a grade and sold as
-     a category instead of a thing with a name.</p>
   <p>That isn&rsquo;t a complaint about farming. It&rsquo;s what happens when scale decides what an
      ingredient is worth instead of the ingredient itself. The numbers that follow are part of the
      same argument, not a separate one.</p>
@@ -888,13 +885,30 @@ def home_page():
   <p>If you want ingredients you can trace, or you&rsquo;re holding ground that&rsquo;s earning
      nothing, the land gets qualified and the terms get settled before price is ever on the
      table.</p>
-  <div class="note">
-    <p style="display:flex;gap:12px;flex-wrap:wrap">
+  <fieldset class="hero-tabs">
+    <legend class="visually-hidden">Choose where to start</legend>
+    <input type="radio" name="hero-start" id="hs-crop" checked>
+    <label for="hs-crop">A crop, by name</label>
+    <input type="radio" name="hero-start" id="hs-buyer">
+    <label for="hs-buyer">A direct line to a grower</label>
+    <input type="radio" name="hero-start" id="hs-grower">
+    <label for="hs-grower">Something you already grow</label>
+    <div class="tab-panel panel-crop">
+      <p>Look up a crop instead of a grade &mdash; its season, its scale in growers rather than
+         acres, and how Fresno County&rsquo;s own reports actually treat it.</p>
       <a class="btn" href="buyers.html">A crop, by name and not by grade &rarr;</a>
+    </div>
+    <div class="tab-panel panel-buyer">
+      <p>Source for a kitchen directly from the person who grew it, with the terms settled
+         between you before price is ever on the table.</p>
       <a class="btn" href="buyers.html">A direct line to a grower for your kitchen &rarr;</a>
+    </div>
+    <div class="tab-panel panel-grower">
+      <p>If you&rsquo;re holding ground that&rsquo;s earning nothing, or already growing
+         something worth tracing, the land gets qualified and the terms get settled next.</p>
       <a class="btn" href="growers.html">A next step for something you already grow &rarr;</a>
-    </p>
-  </div>
+    </div>
+  </fieldset>
   <p style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
     <a class="btn ghost" href="market.html">Open the market &rarr;</a>
     <a class="btn ghost" href="inspect.html">Read the market analysis &rarr;</a>
@@ -902,8 +916,18 @@ def home_page():
 </div></section>
 
 <section class="band"><div class="wrap stack">
-  <p class="eyebrow">What scale costs</p>
-  <h2>The ground remembers who worked it. The supply chain never asks.</h2>
+  <div class="media-row">
+    <div class="stack">
+      <p class="eyebrow">What scale costs</p>
+      <h2>The ground remembers who worked it. The supply chain never asks.</h2>
+    </div>
+    <figure>
+      <img src="images/homepage-slideshow/02-sugar-beet-harvest.jpg" loading="lazy"
+           alt="Mexican agricultural laborers eating during the sugar beet harvest, May 1943.">
+      <figcaption>Sugar beet harvest, May 1943. Photograph by Marjory Collins. Public domain, via
+         Wikimedia Commons.</figcaption>
+    </figure>
+  </div>
   <div class="cards">
     <div class="card"><h3>Fewer hands, fewer owners</h3>
       <p>California had about <strong>4,000 processing-tomato growers in
@@ -956,9 +980,18 @@ def home_page():
 </div></section>
 
 <section class="band"><div class="wrap stack">
-  <p class="eyebrow">The problem</p>
-  <h2>Local sourcing does not fail for one reason. It fails three ways, and any one of them stops
-      the same order.</h2>
+  <div class="media-row">
+    <div class="stack">
+      <p class="eyebrow">The problem</p>
+      <h2>Local sourcing does not fail for one reason. It fails three ways, and any one of them stops
+          the same order.</h2>
+    </div>
+    <figure>
+      <img src="images/homepage-slideshow/09-vegetable-market-vendor.jpg" loading="lazy"
+           alt="A vendor arranging produce at a market stall.">
+      <figcaption>Photograph by Aysha Manal Arafath, via Unsplash.</figcaption>
+    </figure>
+  </div>
   <div class="cards">
     <div class="card"><h3>Nobody can see what is here</h3>
       <p>Fresno County reports thirty-two Asian specialty crops as a single line, and every Mexican
@@ -978,8 +1011,18 @@ def home_page():
 </div></section>
 
 <section class="band"><div class="wrap stack">
-  <p class="eyebrow">What you cannot get anywhere else</p>
-  <h2>The season does not taper. It falls off a cliff.</h2>
+  <div class="media-row">
+    <div class="stack">
+      <p class="eyebrow">What you cannot get anywhere else</p>
+      <h2>The season does not taper. It falls off a cliff.</h2>
+    </div>
+    <figure>
+      <img src="images/homepage-slideshow/05-orange-pickers-santa-ana-1900.jpg" loading="lazy"
+           alt="Orange pickers sorting fruit into crates in a California orchard. Santa Ana, California, circa 1900.">
+      <figcaption>Santa Ana, California, c. 1900. California Historical Society Collection, via
+         USC Libraries. Public domain.</figcaption>
+    </figure>
+  </div>
   <div class="note">
     <p><strong>Thirty-seven of the surveyed crops were available in November. Thirteen were available
        in December.</strong> A sixty-five percent collapse in one month. If you plan on a
@@ -991,8 +1034,18 @@ def home_page():
 </div></section>
 
 <section class="band"><div class="wrap stack">
-  <p class="eyebrow">The crops</p>
-  <h2>What is actually known about each crop</h2>
+  <div class="media-row">
+    <div class="stack">
+      <p class="eyebrow">The crops</p>
+      <h2>What is actually known about each crop</h2>
+    </div>
+    <figure>
+      <img src="images/homepage-slideshow/07-tomato-loading-britain-1914.jpg" loading="lazy"
+           alt="Women loading harvested tomatoes onto a rail cart beside a row of glasshouses. Britain, 1914.">
+      <figcaption>Britain, 1914. Imperial War Museums collection, via Wikimedia Commons. Public
+         domain.</figcaption>
+    </figure>
+  </div>
   <p>{S["total"]} crops in all: {S["commodity"]} commodity, {S["specialty"]} specialty,
      {S["gap"]} unreported. Each with its season, its scale in growers rather than acres,
      and how this county reports it. Where the record is silent, the market
@@ -1435,15 +1488,25 @@ def buyers_page():
        condition to measure anything at all. Leave it out and the clause has nothing to work against.</p>
   </div>""")
     body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow">For Buyers</p>
-  <h1>A grade decides a category. A variety and a week decide what arrives.</h1>
-  <p class="src"><a href="#next-step">Jump to what gets published next &darr;</a></p>
-  <p>A grade is the floor. It says nothing about which variety, or how many days ago the thing was
-     cut, and those are the two facts that decide what arrives in your kitchen. <strong>This
-     network exists so you can ask for them and have the answer written down.</strong></p>
-  <p>We publish which crops this county reports growing, which ones it reports only inside an
-     aggregate, and which ones it does not report at all. The sources come with it, before you tell us
-     anything about your business.</p>
+  <div class="media-row">
+    <div class="stack">
+      <p class="eyebrow">For Buyers</p>
+      <h1>A grade decides a category. A variety and a week decide what arrives.</h1>
+      <p class="src"><a href="#next-step">Jump to what gets published next &darr;</a></p>
+      <p>A grade is the floor. It says nothing about which variety, or how many days ago the thing was
+         cut, and those are the two facts that decide what arrives in your kitchen. <strong>This
+         network exists so you can ask for them and have the answer written down.</strong></p>
+      <p>We publish which crops this county reports growing, which ones it reports only inside an
+         aggregate, and which ones it does not report at all. The sources come with it, before you tell us
+         anything about your business.</p>
+    </div>
+    <figure>
+      <img src="images/homepage-slideshow/03-mission-farms-meal.jpg" loading="lazy"
+           alt="A speaker addresses a group gathered for a shared meal at Mission Farms, Plymouth, Minnesota, during the Depression era.">
+      <figcaption>Plymouth, Minnesota, Depression era. Union City Mission. Public domain, via
+         Wikimedia Commons.</figcaption>
+    </figure>
+  </div>
   <div class="blocks">
     <div class="blk"><p class="lbl">The buying universe</p>
       <p class="val">287 retail &middot; 508 restaurants &middot; 48 wholesalers</p>
@@ -1565,15 +1628,24 @@ def growers_page():
      between you and your buyer, every time. Terms are published once the network&rsquo;s
      structure is settled.</p>""")
     body = f"""<section class="band"><div class="wrap stack">
-  <p class="eyebrow">For Growers</p>
-  <h1>Ground that is earning nothing is still ground.</h1>
-  <p class="src"><a href="#next-step">Jump to what gets published next &darr;</a></p>
-  <p class="src">And the crops this county measures only in aggregate (the specialty line, not
-     its commodity rows) have earned a premium per acre in every one of the last six years,
-     while that same acreage has been going out of production faster than the sector around it. Both
-     figures, and what they do and do not cover, are below.</p>
-  <p>That is not encouragement. It is what six years of the county&rsquo;s own crop reports say, and the
-     second half of it is the part nobody mentions.</p>
+  <div class="media-row">
+    <div class="stack">
+      <p class="eyebrow">For Growers</p>
+      <h1>Ground that is earning nothing is still ground.</h1>
+      <p class="src"><a href="#next-step">Jump to what gets published next &darr;</a></p>
+      <p class="src">And the crops this county measures only in aggregate (the specialty line, not
+         its commodity rows) have earned a premium per acre in every one of the last six years,
+         while that same acreage has been going out of production faster than the sector around it. Both
+         figures, and what they do and do not cover, are below.</p>
+      <p>That is not encouragement. It is what six years of the county&rsquo;s own crop reports say, and the
+         second half of it is the part nobody mentions.</p>
+    </div>
+    <figure>
+      <img src="images/homepage-slideshow/06-tortillas-hacienda-chichen-1923.jpg" loading="lazy"
+           alt="A woman making tortillas by hand outside a stone building. Yucat&aacute;n, Mexico, 1923.">
+      <figcaption>Yucat&aacute;n, Mexico, 1923. Public domain, via Wikimedia Commons.</figcaption>
+    </figure>
+  </div>
   <div class="blocks">
     <div class="blk"><p class="lbl">Specialty-crop premium, per acre</p>
       <p class="val">1.56&times;&ndash;3.12&times;</p>
