@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
-"""Generate the favicon / app-icon / social-share image set from the site's
-own retired symbol mark, in the two brand accent colours.
+"""Generate the favicon / app-icon / social-share image set for ʻĀina to
+Table.
 
-This closes the one open item [[2026-11-07 - Symbol Eliminated; Wordmark-Only
-Going Forward]] itself logged as "owed": a wordmark does not compress to a
-16px tab icon, and nothing was ever built to fill that gap. This does NOT
-revive the mark in the nav lockup or reverse that decision -- the mark still
-appears nowhere in the page content build.py produces, only in these
-standalone icon files.
+Reversed 2026-11-25: round five (2026-11-22) had revived the retired
+five-petal mark ([[2026-11-07 - Symbol Eliminated; Wordmark-Only Going
+Forward]]) as a two-tone icon specifically to fill this gap, with Adrian's
+direct go-ahead at the time ("yes, build a two-tone favicon/icon"). Adrian,
+2026-11-25: seeing it live in his own browser tabs, he asked for "the
+remnants of the old logo" gone. That reverses the round-five approval, not
+the Nov 7 one -- the mark was never revived in the nav lockup and still
+isn't. This file no longer references the mark geometry at all; see
+build.py's own MARK constant for the retired asset's continued provenance
+record (still kept there, still unused).
 
-The mark geometry is copied from MARK in build.py (the same masked five-petal
-path data) rather than imported, because a favicon/OG image needs literal
-hex colours baked in -- it has no CSS, no custom properties, no page context
--- while build.py's own copy stays a currentColor glyph for any future
-in-page use. If the geometry ever changes, change it in both places; a
-comment is left in each pointing at the other.
+The replacement is a plain typographic monogram -- "Ā" (U+0100, the same
+kahakō-bearing letter the wordmark itself opens with, not a plain "A") in
+white on the site's one locked identity colour, HEADER_GREEN. This is the
+literal "the name is the feature instead of a logo" decision applied to the
+one surface a wordmark can't reach on its own: a 16px tab icon has no room
+for "ʻĀina to Table" as a string, but it has room for the ʻokina-bearing
+letter the name itself starts with.
 
 Renders through actual Chrome (already a build-verification dependency on
 this project, not a new one) rather than adding an SVG-rasterizing library:
@@ -24,7 +29,8 @@ output file -- no cropping, no separate crop step to get wrong.
 
 Run:  python3 -I tools/make_icons.py
 Output: images/icons/favicon.svg, favicon-16.png, favicon-32.png,
-        apple-touch-icon.png (180x180), og-image.png (1200x630)
+        apple-touch-icon.png (180x180), icon-192.png, icon-512.png,
+        og-image.png (1200x630), site.webmanifest
 These are committed, build artefacts of a design decision -- not generated
 by build.py itself, the same way data/ is refreshed by its own script and
 then committed rather than rebuilt on every run.
@@ -37,51 +43,30 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "images", "icons")
 
-# GREEN/BLUE are the mark's own merch colours (round five, "I want to use
-# those colors on branded merch") -- a separate, explicit decision from the
-# site's own screen palette in tokens.css, deliberately NOT tied to it, so
-# they don't change just because tokens.css does.
-GREEN = "#008F63"
-BLUE = "#0B5ED7"
-# PAGE/HEADER_GREEN DO represent the site's own current screen branding (the
-# OG-image is a preview of the site itself) -- kept in sync with tokens.css
-# --page / --brand-green. Institutional-green palette, 2026-11-22.
+# The site's one locked identity colour (institutional-green palette,
+# 2026-11-22) -- kept in sync with tokens.css --brand-green deliberately,
+# since this monogram IS the current screen branding, not a separate merch
+# treatment the old two-tone mark was.
 PAGE = "#FFFFFF"
 HEADER_GREEN = "#407A52"
-
-VIEWBOX = "-1.2199 -1.2859 2.484 2.484"
-MASK_RECT = '<rect x="-1.2199" y="-1.2859" width="2.484" height="2.484" fill="#fff"/>'
-MASK_PATHS = (
-    '<path d="M-0.0047,-0.0246 0.4131,-1.1892 0.6828,-1.0577 0.0222,-0.0114Z" fill="#000"/>'
-    '<path d="M0.0219,-0.0121 1.2587,0.0254 1.217,0.3225 0.0177,0.0176Z" fill="#000"/>'
-    '<path d="M0.0182,0.0171 0.3648,1.205 0.0693,1.2571 -0.0113,0.0223Z" fill="#000"/>'
-    '<path d="M-0.0106,0.0226 -1.0333,0.7193 -1.1741,0.4544 -0.0247,-0.0039Z" fill="#000"/>'
-    '<path d="M-0.0248,-0.0031 -1.0034,-0.7604 -0.795,-0.9762 -0.004,-0.0247Z" fill="#000"/>'
-)
-# Same 3-green/2-blue petal split, stem+dot blue, considered for the nav
-# lockup revival this round and NOT used there -- used here instead, where
-# a fixed two-colour mark is exactly what a merch-bound icon needs.
-PETALS = [
-    (GREEN, "M0,0C-0.1817,-0.2787 -0.4728,-0.6002 -0.3227,-0.9063C-0.2124,-1.1329 0.1666,-1.1998 0.3478,-1.0246C0.4163,-0.757 0.1463,-0.3365 0,0Z"),
-    (BLUE, "M0,0C0.2089,-0.2589 0.4247,-0.6351 0.7623,-0.587C1.0119,-0.5521 1.1925,-0.2123 1.0819,0.0141C0.8486,0.162 0.3652,0.0351 0,0Z"),
-    (GREEN, "M-0,0C0.3108,0.1187 0.7353,0.2077 0.7938,0.5436C0.8377,0.7917 0.5704,1.0685 0.3209,1.0333C0.1082,0.8571 0.0794,0.3582 -0,0Z"),
-    (BLUE, "M0,-0C-0.0168,0.3322 0.0297,0.7635 -0.2717,0.9229C-0.4941,1.0414 -0.84,0.8727 -0.8836,0.6245C-0.7817,0.3677 -0.3161,0.1863 0,-0Z"),
-    (GREEN, "M0,0C-0.3212,0.0866 -0.7169,0.2642 -0.9617,0.0268C-1.1431,-0.1481 -1.0896,-0.5292 -0.8669,-0.6474C-0.5913,-0.6298 -0.2748,-0.2431 0,0Z"),
-]
-STEM = (BLUE, "M-0.0507,-0.0342 0.4378,-0.7585 0.5392,-0.69 0.0507,0.0342Z")
-DOT = (BLUE, None)  # ellipse, handled separately
+LETTER = "Ā"  # LATIN CAPITAL LETTER A WITH MACRON -- the exact letter
+# ʻĀina to Table's own wordmark starts with, written as a literal codepoint
+# rather than typed, per the vault's diacritical hard rule. Matches the same
+# &#256; (decimal 256 = 0x100) og_html below and build.py's own wordmark use.
 
 
-def mark_svg(mask_id="mki"):
-    petals = "".join(f'<path fill="{c}" d="{d}"/>' for c, d in PETALS)
+def mark_svg():
+    """A solid HEADER_GREEN square (no corner radius -- iOS/Android apply
+    their own masking, and a favicon tab reads fine square) with the single
+    monogram letter centered, in a serif face matching the site's own Noto
+    Serif role. Full-bleed, self-contained, scales to any output size."""
     return (
-        f'<svg viewBox="{VIEWBOX}" xmlns="http://www.w3.org/2000/svg">'
-        f'<defs><mask id="{mask_id}" maskUnits="userSpaceOnUse" x="-1.2199" y="-1.2859" width="2.484" height="2.484">'
-        f'{MASK_RECT}{MASK_PATHS}</mask></defs>'
-        f'<g><g mask="url(#{mask_id})">{petals}</g>'
-        f'<path fill="{STEM[0]}" d="{STEM[1]}"/>'
-        f'<ellipse fill="{BLUE}" cx="0.5386" cy="-0.7985" rx="0.135" ry="0.1242"/>'
-        f'</g></svg>'
+        '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">'
+        f'<rect width="32" height="32" fill="{HEADER_GREEN}"/>'
+        '<text x="16" y="23" text-anchor="middle" '
+        'font-family="Georgia, \'Noto Serif\', serif" font-weight="700" '
+        f'font-size="20" fill="#FFFFFF">{LETTER}</text>'
+        '</svg>'
     )
 
 
@@ -102,32 +87,33 @@ def render_png(html, width, height, out_path, transparent=True):
         subprocess.run(cmd, check=True, capture_output=True)
 
 
-def icon_html(size, pad_frac=0.14):
-    """A square page, mark centered with a small margin, background
-    transparent so it reads correctly on both light and dark OS chrome."""
-    pad = round(size * pad_frac)
-    inner = size - 2 * pad
+def icon_html(size):
+    """A square page exactly the output's own pixel size, the monogram SVG
+    filling it completely -- no padding, since the square fill IS the icon,
+    not a mark floating on a separate background."""
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <style>
   html,body{{margin:0;padding:0;width:{size}px;height:{size}px;background:transparent}}
-  .wrap{{width:{size}px;height:{size}px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;padding:{pad}px}}
-  svg{{width:{inner}px;height:{inner}px;display:block}}
-</style></head><body><div class="wrap">{mark_svg()}</div></body></html>"""
+  svg{{display:block;width:{size}px;height:{size}px}}
+</style></head><body>{mark_svg()}</body></html>"""
 
 
 def og_html():
+    """Purely typographic -- no monogram here either. The wordmark itself,
+    at full size, is the social-share image; this is the same "name is the
+    feature" decision applied to the one other surface that used to carry
+    the retired mark."""
     w, h = 1200, 630
-    mark_size = 220
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <style>
   html,body{{margin:0;padding:0;width:{w}px;height:{h}px;background:{PAGE};
     font-family:Georgia,"Noto Serif",serif}}
   .wrap{{width:{w}px;height:{h}px;display:flex;flex-direction:column;align-items:center;
     justify-content:center;gap:28px;box-sizing:border-box}}
-  svg{{width:{mark_size}px;height:{mark_size}px;display:block}}
-  h1{{margin:0;font-size:56px;color:{HEADER_GREEN};font-weight:700}}
+  .bar{{width:72px;height:6px;background:{HEADER_GREEN}}}
+  h1{{margin:0;font-size:64px;color:{HEADER_GREEN};font-weight:700}}
   p{{margin:0;font-family:Arial,sans-serif;font-size:24px;color:#53606A}}
-</style></head><body><div class="wrap">{mark_svg("mkog")}
+</style></head><body><div class="wrap"><div class="bar"></div>
   <h1>&#699;&#256;ina to Table</h1>
   <p>A network for ingredients you can trace to the ground they came out of.</p>
 </div></body></html>"""
@@ -156,7 +142,8 @@ def main():
     # two sizes a manifest is expected to offer. purpose "any" only, not
     # "maskable" -- a maskable icon needs a safe-zone padding rule this
     # glyph was never designed against, and claiming that support without
-    # verifying it would be worse than not claiming it.
+    # verifying it would be worse than not claiming it. Unaffected by the
+    # 2026-11-25 monogram swap -- still true of the new icon.
     import json
     manifest = {
         "name": "ʻĀina to Table",
